@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
-import TopPanel from './TopPanel';
-import TopHeaderTwo from './TopHeaderTwo';
 import MegaMenuTwo from './MegaMenuTwo';
 
 class NavbarTwo extends Component {
-    render() {
-        return (
-            <>
-                <TopPanel />
-                
-                <div className="header-area">
-
-                    <TopHeaderTwo />
-
-                    <MegaMenuTwo />
-                    
-                </div>
-            </>
-        );
+  render() {
+    return (
+      <>
+      <div className="header-area">
+       <MegaMenuTwo />  
+      </div>
+      </>
+      );
     }
-}
-
-export default NavbarTwo;
+  }
+  
+  export default NavbarTwo;
+  

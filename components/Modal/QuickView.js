@@ -78,36 +78,22 @@ class QuickView extends Component {
 
                                     <div className="price">
                                         <span className="new-price">${modalData.price}</span>
-                                    </div>
-
-                                    <div className="product-review">
-                                        <div className="rating">
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star-half-alt"></i>
-                                        </div>
-
-                                        <Link href="#">
-                                            <a className="rating-count">3 reviews</a>
-                                        </Link>
-                                    </div>
+                                    </div>                                 
 
                                     <ul className="product-info">
                                         <li>
-                                            <span>Vendor:</span> <Link href="#"><a>Lereve</a></Link>
+                                            <span>Vendedor:</span> <Link href="#"><a>Lereve</a></Link>
                                         </li>
                                         <li>
-                                            <span>Availability:</span> <Link href="#"><a>In stock (7 items)</a></Link>
+                                            <span>Disponivel:</span> <Link href="#"><a>Em estoque (7 items)</a></Link>
                                         </li>
                                         <li>
-                                            <span>Product Type:</span> <Link href="#"><a>T-Shirt</a></Link>
+                                            <span>Tipo do produto:</span> <Link href="#"><a>Camiseta</a></Link>
                                         </li>
                                     </ul>
 
                                     <div className="product-color-switch">
-                                        <h4>Color:</h4>
+                                        <h4>Cor:</h4>
 
                                         <ul>
                                             <li>
@@ -139,32 +125,32 @@ class QuickView extends Component {
                                     </div>
 
                                     <div className="product-size-wrapper">
-                                        <h4>Size:</h4>
+                                        <h4>Tamanho:</h4>
 
                                         <ul>
                                             <li>
                                                 <Link href="#">
-                                                    <a>XS</a>
+                                                    <a>PP</a>
                                                 </Link>
                                             </li>
                                             <li className="active">
                                                 <Link href="#">
-                                                    <a>S</a>
+                                                    <a>P</a>
                                                 </Link>
                                             </li>
-                                            <li>
+                                            <li className="active">
                                                 <Link href="#">
                                                     <a>M</a>
                                                 </Link>
                                             </li>
                                             <li>
                                                 <Link href="#">
-                                                    <a>XL</a>
+                                                    <a>GG</a>
                                                 </Link>
                                             </li>
                                             <li>
                                                 <Link href="#">
-                                                    <a>XXL</a>
+                                                    <a>GGG</a>
                                                 </Link>
                                             </li>
                                         </ul>
@@ -198,12 +184,12 @@ class QuickView extends Component {
                                             className="btn btn-primary"
                                             onClick={this.handleAddToCartFromView}
                                         >
-                                            <i className="fas fa-cart-plus"></i> Add to Cart
+                                            <i className="fas fa-cart-plus"></i> Adicionar ao Carrinho
                                         </button>
                                     </div>
 
                                     <Link href="#">
-                                        <a className="view-full-info">View full info</a>
+                                        <a className="view-full-info">Ver mais detalheres</a>
                                     </Link>
                                 </div>
                             </div>

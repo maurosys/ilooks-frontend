@@ -20,122 +20,90 @@ const options = {
 
 class BannerSlider extends Component {
 
-    state = { 
-        display: false,
-        panel: true
-    };
+  state = { 
+      display: false,
+      panel: true
+  };
 
-    componentDidMount(){ 
-        this.setState({ display: true }) 
-    }
+  componentDidMount(){ 
+      this.setState({ display: true }) 
+  }
 
-    render() {
-        return (
-            <>
-                {this.state.display ? <OwlCarousel 
-                    className="home-slides-two owl-carousel owl-theme"
-                    {...options}
-                >
-                    <div className="banner-section item-bg5">
-                        <div className="d-table">
-                            <div className="d-table-cell">
-                                <div className="container">
+  render() {
+    return (
+      <>
+      {this.state.display ? <OwlCarousel 
+        className="home-slides-two owl-carousel owl-theme"
+        {...options}
+        >
+          <div className="banner-section item-bg5">
+            <div className="d-table">
+              <div className="d-table-cell">
+                  <div className="container">
 
-                                    <VisibilitySensor>
-                                        {({ isVisible }) => (
-                                            <div className="banner-content">
-                                                <span
-                                                    className={
-                                                        isVisible ? "sub-title animated fadeInUp opacityOne" : 'opacityZero'
-                                                    }
-                                                >
-                                                    Limited Time Offer!
-                                                </span>
-                                                
-                                                <h1
-                                                className={
-                                                    isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'
-                                                    }
-                                                >
-                                                    Clothing Made for You!
-                                                </h1>
-                                                    
-                                                <p
-                                                    className={
-                                                        isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'
-                                                    }
-                                                >
-                                                    Take 20% Off ‘Sale Must-Haves'
-                                                </p>
+                    <VisibilitySensor>
+                      {({ isVisible }) => (
+                        <div className="banner-content">                                                                                              
+                          <h1
+                          className={
+                            isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'
+                            }
+                          >
+                              Você na moda no seu tempo
+                          </h1>                                                                                      
 
-                                                <Link href="#">
-                                                    <a 
-                                                        className={
-                                                            `btn btn-primary ${isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'}`
-                                                        }
-                                                    >
-                                                        Shop Women's
-                                                    </a>
-                                                </Link>
-                                            </div>
-                                        )}
-                                    </VisibilitySensor>
-                                </div>
-                            </div>
+                          <Link href="#">
+                              <a 
+                                className={
+                                  `btn btn-primary ${isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'}`
+                                }
+                              >
+                                Loja
+                              </a>
+                          </Link>
                         </div>
-                    </div>
+                      )}
+                    </VisibilitySensor>
+                  </div>
+              </div>
+            </div>
+          </div>
 
-                    <div className="banner-section item-bg6">
-                        <div className="d-table">
-                            <div className="d-table-cell">
-                                <div className="container">
-                                    <VisibilitySensor>
-                                        {({ isVisible }) => (
-                                            <div className="banner-content">
-                                                <span
-                                                    className={
-                                                        isVisible ? "sub-title animated fadeInUp opacityOne" : 'opacityZero'
-                                                    }
-                                                >
-                                                    Limited Time Offer!
-                                                </span>
-                                                
-                                                <h1
-                                                className={
-                                                    isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'
-                                                    }
-                                                >
-                                                    Clothing Made for You!
-                                                </h1>
-                                                    
-                                                <p
-                                                    className={
-                                                        isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'
-                                                    }
-                                                >
-                                                    Take 20% Off ‘Sale Must-Haves'
-                                                </p>
+        <div className="banner-section item-bg6">
+          <div className="d-table">
+            <div className="d-table-cell">
+              <div className="container">
+                <VisibilitySensor>
+                  {({ isVisible }) => (
+                    <div className="banner-content">                                                                                             
+                      <h1
+                      className={
+                        isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'
+                        }
+                      >
+                        Tudo para o seu guarda roupa
+                      </h1>                                                                                           
 
-                                                <Link href="#">
-                                                    <a 
-                                                        className={
-                                                            `btn btn-primary ${isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'}`
-                                                        }
-                                                    >
-                                                        Shop Men's
-                                                    </a>
-                                                </Link>
-                                            </div>
-                                        )}
-                                    </VisibilitySensor>
-                                </div>
-                            </div>
-                        </div>
+                      <Link href="#">
+                          <a 
+                            className={
+                              `btn btn-primary ${isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'}`
+                            }
+                          >
+                            Categorias
+                          </a>
+                      </Link>
                     </div>
-                </OwlCarousel> : ''}
-            </>
-        );
-    }
+                  )}
+                </VisibilitySensor>
+              </div>
+            </div>
+          </div>
+        </div>
+      </OwlCarousel> : ''}
+      </>
+    );
+  }
 }
 
 export default BannerSlider;

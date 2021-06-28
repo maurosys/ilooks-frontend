@@ -29,7 +29,7 @@ const AddToCart = ({id}) => {
                     e.preventDefault(); handleAddToCart(id)
                 }}
             >
-                Add to Cart
+                Adicionar ao Carrinho
             </a>
         </Link>
     )
