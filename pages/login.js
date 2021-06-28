@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import Facility from '../components/Common/Facility';
+import Facility from '../components/shop-style-five/Facility';
 import Breadcrumb from '../components/Common/Breadcrumb';
 
 const Login = () => {
     return (
         <>
-            <Navbar />
+            <Header />
 
             <Breadcrumb title="Login" />
 
@@ -32,10 +32,10 @@ const Login = () => {
                                         <input type="password" className="form-control" placeholder="Enter your password" id="password" name="password" />
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary">Login</button>
+                                    <button type="submit" className="btn btn-primary">Entrar</button>
                                     
                                     <Link href="#">
-                                        <a className="forgot-password">Lost your password?</a>
+                                        <a className="forgot-password">Perdeu a senha ?</a>
                                     </Link>
                                 </form>
                             </div>
@@ -44,7 +44,7 @@ const Login = () => {
                         <div className="col-lg-6 col-md-12">
                             <div className="new-customer-content">
                                 <div className="section-title">
-                                    <h2><span className="dot"></span> New Customer</h2>
+                                    <h2><span className="dot"></span> Novo Usuário</h2>
                                 </div>
 
                                 <span>Create a Account</span>

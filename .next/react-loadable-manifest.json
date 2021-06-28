@@ -1,11 +1,29 @@
 {
+  "../components/Common/InstagramPhoto.js -> react-owl-carousel3": {
+    "id": "./node_modules/react-owl-carousel3/lib/OwlCarousel.js",
+    "files": [
+      "static/chunks/1.js"
+    ]
+  },
+  "../components/Common/Partner.js -> react-owl-carousel3": {
+    "id": "./node_modules/react-owl-carousel3/lib/OwlCarousel.js",
+    "files": [
+      "static/chunks/1.js"
+    ]
+  },
   "../components/Layout/TopPanel.js -> react-owl-carousel3": {
     "id": "./node_modules/react-owl-carousel3/lib/OwlCarousel.js",
     "files": [
       "static/chunks/1.js"
     ]
   },
-  "../components/product-details/RelatedProducts.js -> react-owl-carousel3": {
+  "../components/shop-style-five/BannerSlider.js -> react-owl-carousel3": {
+    "id": "./node_modules/react-owl-carousel3/lib/OwlCarousel.js",
+    "files": [
+      "static/chunks/1.js"
+    ]
+  },
+  "../components/shop-style-five/Products.js -> react-owl-carousel3": {
     "id": "./node_modules/react-owl-carousel3/lib/OwlCarousel.js",
     "files": [
       "static/chunks/1.js"

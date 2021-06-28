@@ -82,15 +82,15 @@ class MegaMenuTwo extends Component {
                     <ul className="navbar-nav">
                       <li className="nav-item p-relative">
                         <Link href="/">
-                          <a className="nav-link active" onClick={e => e.preventDefault()}>
-                            Home 
+                          <a className="nav-link active" >
+                            Home
                           </a>
                         </Link>                                          
                       </li>                                                                           
 
                       <li className="nav-item megamenu">
-                        <Link href="#">
-                          <a className="nav-link" onClick={e => e.preventDefault()}>
+                        <Link href="/about">
+                          <a className="nav-link" >
                             Sobre nos 
                           </a>
                         </Link>                                          
@@ -108,25 +108,25 @@ class MegaMenuTwo extends Component {
                                       <h6 className="submenu-title">Roupas</h6>
                                       <ul className="megamenu-submenu">
                                         <li>
-                                          <Link href="/category-left-sidebar">
+                                          <Link href="/category-sidebar-fullwidth">
                                             <a>Camisa</a>
                                           </Link>
                                         </li>
 
                                         <li>
-                                          <Link href="/category-left-sidebar-with-block">
+                                          <Link href="/category-sidebar-fullwidth">
                                             <a>Camiseta</a>
                                           </Link>
                                         </li>
                                           
                                         <li>
-                                          <Link href="/category-right-sidebar">
+                                          <Link href="/category-sidebar-fullwidth">
                                             <a>Jeans</a>
                                           </Link>
                                         </li>
 
                                         <li>
-                                          <Link href="/category-right-sidebar-with-block">
+                                          <Link href="/category-sidebar-fullwidth">
                                             <a>Blusa,</a>
                                           </Link>
                                         </li>
@@ -138,7 +138,7 @@ class MegaMenuTwo extends Component {
                                         </li>
 
                                         <li>
-                                          <Link href="/category-without-sidebar">
+                                          <Link href="/category-sidebar-fullwidth">
                                             <a>Blusa de Frio</a>
                                           </Link>
                                         </li>
@@ -156,7 +156,7 @@ class MegaMenuTwo extends Component {
 
                                         <ul className="megamenu-submenu">
                                             <li>
-                                                <Link href="/category-without-sidebar-fullwidth">
+                                                <Link href="/category-sidebar-fullwidth">
                                                   <a>Sapatilha</a>
                                                 </Link>
                                             </li>
@@ -168,37 +168,37 @@ class MegaMenuTwo extends Component {
                                             </li>
 
                                             <li>
-                                                <Link href="/category-left-sidebar">
+                                                <Link href="/category-sidebar-fullwidth">
                                                   <a>Tamanco</a>
                                                 </Link>
                                             </li>
 
                                             <li>
-                                                <Link href="/category-left-sidebar-with-block">
+                                                <Link href="/category-sidebar-fullwidth">
                                                   <a>Anabela</a>
                                                 </Link>
                                             </li>
 
                                             <li>
-                                                <Link href="/category-right-sidebar">
+                                                <Link href="/category-sidebar-fullwidth">
                                                   <a>Sandália </a>
                                                 </Link>
                                             </li>
 
                                             <li>
-                                                <Link href="/category-right-sidebar-with-block">
+                                                <Link href="/category-sidebar-fullwidth">
                                                   <a>Birkenstock</a>
                                                 </Link>
                                             </li>
 
                                             <li>
-                                                <Link href="/category-left-sidebar-with-block">
+                                                <Link href="/category-sidebar-fullwidth">
                                                   <a>Slipper</a>
                                                 </Link>
                                             </li>
 
                                             <li>
-                                                <Link href="/category-without-sidebar">
+                                                <Link href="/category-sidebar-fullwidth">
                                                   <a>Plataforma</a>
                                                 </Link>
                                             </li>
@@ -210,25 +210,25 @@ class MegaMenuTwo extends Component {
 
                                         <ul className="megamenu-submenu">
                                           <li>
-                                            <Link href="/category-without-sidebar">
+                                            <Link href="/category-sidebar-fullwidth">
                                               <a>Bolas</a>
                                             </Link>
                                           </li>
 
                                           <li>
-                                            <Link href="/category-left-sidebar">
+                                            <Link href="/category-sidebar-fullwidth">
                                               <a>Óculos</a>
                                             </Link>
                                           </li>
                                           
                                           <li>
-                                            <Link href="/category-right-sidebar">
+                                            <Link href="/category-sidebar-fullwidth">
                                               <a>Carteiras</a>
                                             </Link>
                                           </li>
 
                                           <li>
-                                            <Link href="/category-left-sidebar">
+                                            <Link href="/category-sidebar-fullwidth">
                                               <a>Pulseiras</a>
                                             </Link>
                                           </li>
@@ -240,13 +240,13 @@ class MegaMenuTwo extends Component {
                                         </li>
 
                                           <li>
-                                            <Link href="/category-right-sidebar">
+                                            <Link href="/category-sidebar-fullwidth">
                                               <a>Boné</a>
                                             </Link>
                                           </li>
 
                                           <li>
-                                            <Link href="/category-without-sidebar-fullwidth">
+                                            <Link href="/category-sidebar-fullwidth">
                                               <a>Relógios</a>
                                             </Link>
                                           </li>

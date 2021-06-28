@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import Head from 'next/head';
 import { addQuantityWithNumber } from '../../store/actions/actions';
 import SizeGuide from './SizeGuide';
 import Shipping from './Shipping';
@@ -18,7 +19,7 @@ class ProductContent extends Component {
     handleAddToCartFromView = () => {
         this.props.addQuantityWithNumber(this.props.product.id, this.state.qty); 
 
-        toast.success('Added to the cart', {
+        toast.success('Adicionado ao carrinho', {
             position: "bottom-left",
             autoClose: 5000,
             hideProgressBar: false,
@@ -65,44 +66,34 @@ class ProductContent extends Component {
     }
 
     closeShipModal = () => {
-        this.setState({ shipModal: false });
+        this.setState({ shipModal: false });    
     }
 
     render() {
         const { sizeGuide, shipModal } = this.state;
         return (
             <>
+                <Head>
+                    <title>Produto</title>
+                </Head>
                 <div className="col-lg-6 col-md-6">
                     <div className="product-details-content">
                         <h3>Belted chino trousers polo</h3>
 
                         <div className="price">
-                            <span className="new-price">$191.00</span>
-                        </div>
-
-                        <div className="product-review">
-                            <div className="rating">
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star-half-alt"></i>
-                            </div>
-                            <Link href="#">
-                                <a className="rating-count">3 reviews</a>
-                            </Link>
-                        </div>
+                            <span className="new-price">R$80.00</span>
+                        </div>                       
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
 
                         <ul className="product-info">
-                            <li><span>Vendor:</span> <Link href="#"><a>Lereve</a></Link></li>
-                            <li><span>Availability:</span> <Link href="#"><a>In stock (7 items)</a></Link></li>
-                            <li><span>Product Type:</span> <Link href="#"><a>T-Shirt</a></Link></li>
+                            <li><span>Vendedor:</span> <Link href="#"><a>Lereve</a></Link></li>
+                            <li><span>Em Estoque:</span> <Link href="#"><a>7 itens</a></Link></li>
+                            <li><span>Tipo do Produto:</span> <Link href="#"><a>T-Shirt</a></Link></li>
                         </ul>
 
                         <div className="product-color-switch">
-                            <h4>Color:</h4>
+                            <h4>Cor:</h4>
 
                             <ul>
                                 <li>
@@ -134,32 +125,32 @@ class ProductContent extends Component {
                         </div>
 
                         <div className="product-size-wrapper">
-                            <h4>Size:</h4>
+                            <h4>Tamanho:</h4>
 
                             <ul>
                                 <li>
                                     <Link href="#">
-                                        <a>XS</a>
+                                        <a>P</a>
                                     </Link>
                                 </li>
                                 <li className="active">
-                                    <Link href="#">
-                                        <a>S</a>
-                                    </Link>
-                                </li>
-                                <li>
                                     <Link href="#">
                                         <a>M</a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="#">
-                                        <a>XL</a>
+                                        <a>G</a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="#">
-                                        <a>XXL</a>
+                                        <a>GG</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="#">
+                                        <a>XG</a>
                                     </Link>
                                 </li>
                             </ul>
@@ -173,7 +164,7 @@ class ProductContent extends Component {
                                         this.openSizeGuide();
                                     }}
                                 >
-                                    <i className="fas fa-crop"></i> Size guide
+                                    <i className="fas fa-crop"></i> Guia de Tamanhos
                                 </a>
                             </Link>
                             <Link href="#">
@@ -183,15 +174,10 @@ class ProductContent extends Component {
                                         this.openShipModal();
                                     }}
                                 >
-                                    <i className="fas fa-truck"></i> Shipping
+                                    <i className="fas fa-truck"></i> Entrega
                                 </a>
                             </Link>
-
-                            <Link href="#">
-                                <a>
-                                    <i className="far fa-envelope"></i> Ask about this product
-                                </a>
-                            </Link>
+                         
                         </div>
 
                         <div className="product-add-to-cart">
@@ -222,23 +208,9 @@ class ProductContent extends Component {
                                 className="btn btn-primary"
                                 onClick={this.handleAddToCartFromView}
                             >
-                                <i className="fas fa-cart-plus"></i> Add to Cart
+                                <i className="fas fa-cart-plus"></i> Adiconar ao Carrinho
                             </button>
-                        </div>
-
-                        <div className="wishlist-compare-btn">
-                            <Link href="#">
-                                <a className="btn btn-light">
-                                    <i className="far fa-heart"></i> Add to Wishlist
-                                </a>
-                            </Link>
-
-                            <Link href="#">
-                                <a className="btn btn-light">
-                                    <i className="fas fa-balance-scale"></i> Add to Compare
-                                </a>
-                            </Link>
-                        </div>
+                        </div>        
 
                         <div className="buy-checkbox-btn">
                             <div className="item">
@@ -249,19 +221,19 @@ class ProductContent extends Component {
                                             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
                                         </svg>
                                     </span>
-                                    <span>I agree with the terms and conditions</span>
+                                    <span>Eu concordo com os termos e condições</span>
                                 </label>
                             </div>
 
                             <div className="item">
                                 <Link href="#">
-                                    <a className="btn btn-primary">Buy it now!</a>
+                                    <a className="btn btn-primary">Compre Agora</a>
                                 </Link>
                             </div>
                         </div>
 
                         <div className="custom-payment-options">
-                            <span>Guaranteed safe checkout:</span>
+                            <span>Check-out seguro garantido:</span>
 
                             <div className="payment-methods">
                                 <Link href="#">

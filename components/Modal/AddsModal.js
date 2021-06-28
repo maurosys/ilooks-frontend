@@ -30,38 +30,24 @@ class AddsModal extends Component {
         return (
             <div className={`bts-popup ${open ? 'is-visible' : ''}`} role="alert">
                 <div className="bts-popup-container">
-                    <h3>Free Shipping</h3>
-                    <p>Worldwide free shipping for all members. To become a member subscribe for our <strong>free offers / discount newsletter.</strong></p>
+                    <h3>Não perca nenhuma novidade!</h3>
+                    <p>Se inscreva no nosso newsletter e <strong>Receba ofertas exclusivas</strong></p>
 
                     <form>
-                        <input type="email" className="form-control" placeholder="mail@name.com" name="EMAIL" required={true} />
+                        <input type="email" className="form-control" placeholder="exemplo@exemp" name="EMAIL" required={true} />
                         <button type="submit"><i className="far fa-paper-plane"></i></button>
                     </form>
 
                     <ul>
                         <li>
-                            <Link href="#">
+                            <Link href="https://www.facebook.com/ILooks_Oficial-109689344531318">
                                 <a className="facebook" target="_blank">
                                     <i className="fab fa-facebook-f"></i>
                                 </a>
                             </Link>
                         </li>
                         <li>
-                            <Link href="#">
-                                <a className="twitter" target="_blank">
-                                    <i className="fab fa-twitter"></i>
-                                </a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#">
-                                <a className="linkdein" target="_blank">
-                                    <i className="fab fa-linkedin-in"></i>
-                                </a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#">
+                            <Link href="https://www.instagram.com/ilooksmodaoficial/">
                                 <a className="instagram" target="_blank">
                                     <i className="fab fa-instagram"></i>
                                 </a>

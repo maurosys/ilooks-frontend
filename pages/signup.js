@@ -1,32 +1,30 @@
 import React from 'react';
 import Link from 'next/link';
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import Facility from '../components/Common/Facility';
+import Facility from '../components/shop-style-five/Facility';
 import Breadcrumb from '../components/Common/Breadcrumb';
 
 const Signup = () => {
     return (
         <>
-            <Navbar />
-
-            <Breadcrumb title="Signup" />
-
+            <Header />
+            
             <section className="signup-area ptb-60">
                 <div className="container">
                     <div className="signup-content">
                         <div className="section-title">
-                            <h2><span className="dot"></span> Create an Account</h2>
+                            <h2><span className="dot"></span> Criar um conta</h2>
                         </div>
 
                         <form className="signup-form">
                             <div className="form-group">
-                                <label>First Name</label>
+                                <label>Primeiro Nome</label>
                                 <input type="text" className="form-control" placeholder="Enter your name" id="fname" name="fname" />
                             </div>
 
                             <div className="form-group">
-                                <label>Last Name</label>
+                                <label>Sobrenome</label>
                                 <input type="text" className="form-control" placeholder="Enter your name" id="lname" name="lname" />
                             </div>
 
@@ -42,7 +40,7 @@ const Signup = () => {
 
                             <button type="submit" className="btn btn-primary">Signup</button>
                             <Link href="/">
-                                <a className="return-store">or Return to Store</a>
+                                <a className="return-store">Retorne para a loja</a>
                             </Link>
                         </form>
                     </div>

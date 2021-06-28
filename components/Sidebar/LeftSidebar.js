@@ -57,7 +57,8 @@ class LeftSidebar extends Component {
                             className={`collapse-widget-title ${currentSelection ? '' : 'active'}`}
                             onClick={e => this.handleToggle(e, "currentSelection")}
                         >
-                            Current Selection
+                            
+                            Seleção atual
 
                             <i className="fas fa-angle-up"></i>
                         </h3>
@@ -108,7 +109,7 @@ class LeftSidebar extends Component {
                             className={`collapse-widget-title ${collection ? '' : 'active'}`}
                             onClick={e => this.handleToggle(e, "collection")}
                         >
-                            Collections
+                            Coleções
 
                             <i className="fas fa-angle-up"></i>
                         </h3>
@@ -154,7 +155,7 @@ class LeftSidebar extends Component {
                             className={`collapse-widget-title ${brand ? '' : 'active'}`}
                             onClick={e => this.handleToggle(e, "brand")}
                         >
-                            Brands
+                            Marcas
 
                             <i className="fas fa-angle-up"></i>
                         </h3>
@@ -200,7 +201,7 @@ class LeftSidebar extends Component {
                             className={`collapse-widget-title ${size ? '' : 'active'}`}
                             onClick={e => this.handleToggle(e, "size")}
                         >
-                            Size
+                            Tamanho
 
                             <i className="fas fa-angle-up"></i>
                         </h3>
@@ -266,7 +267,7 @@ class LeftSidebar extends Component {
                             className={`collapse-widget-title ${price ? '' : 'active'}`}
                             onClick={e => this.handleToggle(e, "price")}
                         >
-                            Price
+                            Preço
 
                             <i className="fas fa-angle-up"></i>
                         </h3>
@@ -312,7 +313,7 @@ class LeftSidebar extends Component {
                             className={`collapse-widget-title ${color ? '' : 'active'}`}
                             onClick={e => this.handleToggle(e, "color")}
                         >
-                            Color
+                           Cor
 
                             <i className="fas fa-angle-up"></i>
                         </h3>
@@ -393,7 +394,7 @@ class LeftSidebar extends Component {
                             className={`collapse-widget-title ${popular ? '' : 'active'}`}
                             onClick={e => this.handleToggle(e, "popular")}
                         >
-                            Popular Tags
+                            Tags populares
 
                             <i className="fas fa-angle-up"></i>
                         </h3>
@@ -439,7 +440,7 @@ class LeftSidebar extends Component {
 
                     <div className="collapse-widget aside-products-widget">
                         <h3 className="aside-widget-title">
-                            Popular Products
+                            Produtos populares
                         </h3>
 
                         <div className="aside-single-products">

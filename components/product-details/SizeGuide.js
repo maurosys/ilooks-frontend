@@ -16,14 +16,14 @@ class SizeGuide extends Component {
                         </button>
 
                         <div className="modal-sizeguide">
-                            <h3>Size Guide</h3>
-                            <p>This is an approximate conversion table to help you find your size.</p>
+                            <h3>Guia de Tamanhos</h3>
+                            <p>Esta é uma tabela de conversão aproximada para ajudá-lo a encontrar seu tamanho.</p>
 
                             <div className="table-responsive">
                                 <table className="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Italian</th>
+                                            <th>Brasil</th>
                                             <th>Spanish</th>
                                             <th>German</th>
                                             <th>UK</th>

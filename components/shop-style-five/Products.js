@@ -99,7 +99,7 @@ class Products extends Component {
                       className="current"
                     >
                       <span className="tabs-nav-text">
-                          <span className="dot"></span> produtos recem adicionada
+                          <span className="dot"></span> Produtos recem adicionados
                       </span>
                     </li>
                     

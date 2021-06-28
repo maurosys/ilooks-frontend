@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSelector } from 'react-redux'
 
-import NavbarTwo from '../components/Layout/NavbarTwo';
+import Header from '../components/Layout/Header';
 
 import BannerSlider from '../components/shop-style-five/BannerSlider';
 
@@ -11,8 +11,6 @@ import Facility from '../components/shop-style-five/Facility';
 import CategoryTypes from '../components/shop-style-five/CategoryTypes';
 
 import ProductsOffer from '../components/shop-style-five/ProductsOffer';
-
-import News from '../components/Common/News';
 
 import Partner from '../components/Common/Partner';
 
@@ -36,7 +34,7 @@ const Index = () => {
     <Head>
       <title> Ilooks | Home </title>
     </Head>
-    <NavbarTwo /> 
+    <Header /> 
     
     <BannerSlider /> 
     

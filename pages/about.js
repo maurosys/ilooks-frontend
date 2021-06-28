@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import Facility from '../components/Common/Facility';
-import Breadcrumb from '../components/Common/Breadcrumb';
-import Testimonials from '../components/Common/Testimonials';
+import Facility from '../components/shop-style-five/Facility';
 
 class Index extends Component {
     render() {
         return (
             <>
-                <Navbar />
-
-                <Breadcrumb title="About Us" />
+                <Header />
 
                 <section className="about-area ptb-60">
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-12">
                                 <div className="about-content">
-                                    <h2>About Our Store</h2>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <h2>Sobre Nossa Loja</h2>
+                                    <p>Atualmente no mercado da moda existem diversos fatores que causam insegurança dos consumidores nas compras virtuais de vestuário.</p>
                                     
-                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                    <p>Fatores como não termos uma tabela de medidas padronizada no Brasil, processos para devoluções extremamente burocráticos e fretes com custos elevados.</p>
                                     
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>A história da Ilook’s nasceu justamente com propósito de quebrar todos esses paradigmas e oferecer um serviço diferenciado aos nossos consumidores garantindo uma experiência de compra on-line 100% satisfatória</p>
 
-                                    <div className="signature mb-0">
-                                        <img src={require("../images/signature.png")} alt="image" />
-                                    </div>
+                                    <p>Com entregas rápidas, processos de devoluções facilitados, comodidade de experimentar, tocar e sentir o produto antes da efetivação de compra, nossa missão é levar aos nossos clientes conforto e praticidade para o dia o dia.</p>
+                                  
                                 </div>
                             </div>
 
@@ -40,9 +35,7 @@ class Index extends Component {
                             </div>
                         </div>
                     </div>
-                </section>
-                
-                <Testimonials />
+                </section>                
 
                 <Facility />
                 

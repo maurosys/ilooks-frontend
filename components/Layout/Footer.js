@@ -12,7 +12,7 @@ class Footer extends Component {
                                 <div className="logo">
                                     <Link href="/">
                                         <a>
-                                            <img src={require("../../images/logo.png")} alt="logo" />
+                                            <img src={require("../../images/ilooks.png")} alt="logo" />                                           
                                         </a>
                                     </Link>
                                 </div>
@@ -23,27 +23,22 @@ class Footer extends Component {
 
                         <div className="col-lg-3 col-md-6">
                             <div className="single-footer-widget">
-                                <h3>Quick Links</h3>
+                                <h3>Link rápidos</h3>
 
                                 <ul className="quick-links">
                                     <li>
                                         <Link href="/about">
-                                            <a>About Us</a>
+                                            <a>Sobre nós</a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/faq">
                                             <a>Faq's</a>
                                         </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/customer-service">
-                                            <a>Customer Services</a>
-                                        </Link>
-                                    </li>
+                                    </li>                                
                                     <li>
                                         <Link href="/contact-us">
-                                            <a>Contact Us</a>
+                                            <a>Nosso Contato</a>
                                         </Link>
                                     </li>
                                 </ul>
@@ -57,22 +52,17 @@ class Footer extends Component {
                                 <ul className="information-links">
                                     <li>
                                         <Link href="/about">
-                                            <a>About Us</a>
+                                            <a>Sobre nós</a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/contact-us">
-                                            <a>Contact Us</a>
+                                            <a>Nosso contato</a>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/sizing-guide">
-                                            <a>Sizing Guide</a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/customer-service">
-                                            <a>Customer Services</a>
+                                            <a>Guia de Tamanhos</a>
                                         </Link>
                                     </li>
                                 </ul>
@@ -81,24 +71,20 @@ class Footer extends Component {
 
                         <div className="col-lg-3 col-md-6">
                             <div className="single-footer-widget">
-                                <h3>Contact Us</h3>
+                                <h3>Contate-Nos</h3>
 
                                 <ul className="footer-contact-info">
                                     <li>
                                         <i className="fas fa-map-marker-alt"></i> 
-                                        Location: 2750 Quadra Street <br /> Victoria, Canada
+                                        Localização: 2750 Quadra Street <br /> Victoria, Canada
                                     </li>
                                     <li>
                                         <i className="fas fa-phone"></i> 
-                                        Call Us: <a href="tel:(+123) 456-7898">(+123) 456-7898</a>
+                                        Ligue para nós: <a href="tel:(+55)11 99999-7898">(+55)11 99999-9999</a>
                                     </li>
                                     <li>
                                         <i className="far fa-envelope"></i> 
-                                        Email Us: <a href="mailto:support@novine.com">support@novine.com</a>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-fax"></i> 
-                                        Fax: <a href="tel:+123456">+123456</a>
+                                        Email Us: <a href="mailto:support@novine.com">support@ilooks.com</a>
                                     </li>
                                 </ul>
                             </div>
@@ -110,7 +96,7 @@ class Footer extends Component {
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-6 col-md-6">
-                                <p>Copyright &copy; 2021 Novine. All Rights Reserved By <a href="https://envytheme.com/" target="_blank">EnvyTheme.com</a></p>
+                                <p>Copyright &copy; 2021 Ilooks.</p>
                             </div>
 
                             <div className="col-lg-6 col-md-6">

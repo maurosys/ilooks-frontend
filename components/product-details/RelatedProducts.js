@@ -102,21 +102,7 @@ class RelatedProducts extends Component {
                                                                 <i className="far fa-eye"></i>
                                                             </a>
                                                         </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="#">
-                                                            <a data-tip="Add to Wishlist" data-place="left">
-                                                                <i className="far fa-heart"></i>
-                                                            </a>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="#">
-                                                            <a data-tip="Add to Compare" data-place="left">
-                                                                <i className="fas fa-sync"></i>
-                                                            </a>
-                                                        </Link>
-                                                    </li>
+                                                    </li>                                                                                                
                                                 </ul>
                                             </div>
 
