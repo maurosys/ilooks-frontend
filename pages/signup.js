@@ -3,13 +3,12 @@ import Link from 'next/link';
 import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 import Facility from '../components/shop-style-five/Facility';
-import Breadcrumb from '../components/Common/Breadcrumb';
 
 const Signup = () => {
     return (
         <>
             <Header />
-            
+
             <section className="signup-area ptb-60">
                 <div className="container">
                     <div className="signup-content">
