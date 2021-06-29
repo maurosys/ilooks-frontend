@@ -38,25 +38,25 @@ class DetailsTab extends Component {
                                     className="current"
                                 >
                                     <span className="tabs-nav-text">
-                                        <div className="dot"></div> Description
+                                        <div className="dot"></div> Descrição
                                     </span>
                                 </li>
                                 
                                 <li onClick={(e) => {e.preventDefault(); this.openTabSection(e, 'tab2')}}>
                                     <span className="tabs-nav-text">
-                                        <div className="dot"></div> Additional information
+                                        <div className="dot"></div> Informação Adicional
                                     </span>
                                 </li>
 
                                 <li onClick={(e) => {e.preventDefault(); this.openTabSection(e, 'tab3')}}>
                                     <span className="tabs-nav-text">
-                                        <div className="dot"></div> Shipping
+                                        <div className="dot"></div> Entrega
                                     </span>
                                 </li>
                                 
                                 <li onClick={(e) => {e.preventDefault(); this.openTabSection(e, 'tab4')}}>
                                     <span className="tabs-nav-text">
-                                        <div className="dot"></div> Why Buy From Us
+                                        <div className="dot"></div> Por que comprar com a gente ?
                                     </span>
                                 </li>
 

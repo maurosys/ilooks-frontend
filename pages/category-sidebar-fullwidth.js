@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { useSelector } from 'react-redux'
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 import Breadcrumb from '../components/Common/Breadcrumb';
-import Facility from '../components/Common/Facility';
+import Facility from '../components/shop-style-five/Facility';
 import LeftSidebar from '../components/Sidebar/LeftSidebar';
 import ProductsFilterOptions from '../components/Common/ProductsFilterOptions';
 import ProductsCard from '../components/products/ProductsCard';
@@ -31,14 +31,14 @@ class Index extends Component {
         let { products, CompareProducts } = this.props;
         return (
             <>
-                <Navbar />
+                <Header />
                 
                 <Breadcrumb title="Women's" />
 
                 <section className="products-collections-area ptb-60">
                     <div className="container-fluid">
                         <div className="section-title">
-                            <h2><span className="dot"></span> Women's</h2>
+                            <h2><span className="dot"></span> Mulheres</h2>
                         </div>
 
                         <div className="row">

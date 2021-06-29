@@ -16,19 +16,19 @@ class Shipping extends Component {
                         </button>
 
                         <div className="shipping-content">
-                            <h3>Shipping</h3>
+                            <h3>Entregas</h3>
                             <ul>
-                                <li>Complimentary ground shipping within 1 to 7 business days</li>
-                                <li>In-store collection available within 1 to 7 business days</li>
-                                <li>Next-day and Express delivery options also available</li>
-                                <li>Purchases are delivered in an orange box tied with a Bolduc ribbon, with the exception of certain items</li>
-                                <li>See the delivery FAQs for details on shipping methods, costs and delivery times</li>
+                                <li>Envio terrestre gratuito em 1 a 7 dias úteis</li>
+                                <li>Coleta na loja disponível em 1 a 7 dias úteis</li>
+                                <li>Opções de entrega expressa e no dia seguinte também disponíveis</li>
+                                <li>As compras são entregues em uma caixa laranja amarrada com uma fita Bolduc, com exceção de alguns itens</li>
+                                <li>Consulte as perguntas frequentes sobre entrega para obter detalhes sobre métodos de envio, custos e prazos de entrega</li>
                             </ul>
 
-                            <h3>Returns and Exchanges</h3>
+                            <h3>Devoluções e trocas</h3>
                             <ul>
-                                <li>Easy and complimentary, within 14 days</li>
-                                <li>See conditions and procedure in our return FAQs</li>
+                                <li>Fácil e gratuito, em 48 horas</li>
+                                <li>Consulte as condições e o procedimento em nossas Perguntas frequentes sobre devolução</li>
                             </ul>
                         </div>
                     </div>

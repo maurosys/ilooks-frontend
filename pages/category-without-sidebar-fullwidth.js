@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { useSelector } from 'react-redux'
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 import Breadcrumb from '../components/Common/Breadcrumb';
 import ProductsFilterOptions from '../components/category-without-sidebar/ProductsFilterOptions';
@@ -29,7 +29,7 @@ class Index extends Component {
         let { products, CompareProducts } = this.props;
         return (
             <>
-                <Navbar />
+                <Header />
                 
                 <Breadcrumb title="Men's" />
 

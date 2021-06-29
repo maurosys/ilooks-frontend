@@ -17,7 +17,7 @@ export const products = [
     },
     {
         id: 3,
-        title: "Mermaid pencil midi lace",
+        title: "Renda midi lápis sereia",
         price: 160,
         image: require("../../images/img3.jpg"),
         imageHover: require("../../images/img-hover3.jpg"),

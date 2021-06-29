@@ -82,18 +82,6 @@ class ProductsCard extends Component {
                                             </a>
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link href="#">
-                                            <a data-tip="Add to Wishlist" data-place="left">
-                                                <i className="far fa-heart"></i>
-                                            </a>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        {
-                                            this.compareButton(data.id)
-                                        }
-                                    </li>
                                 </ul>
                             </div>
 

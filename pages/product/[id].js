@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
-import Navbar from '../../components/Layout/Navbar';
-import Breadcrumb from '../../components/Common/Breadcrumb';
 import Footer from '../../components/Layout/Footer';
 import ProductImage from '../../components/product-details/ProductImage';
 import ProductContent from '../../components/product-details/ProductContent';
 import DetailsTab from '../../components/product-details/DetailsTab';
 import RelatedProducts from '../../components/product-details/RelatedProducts';
-import Facility from '../../components/shop-style-one/Facility';
+import Facility from '../../components/shop-style-five/Facility';
+import NavbarTwo from '../../components/Layout/NavbarTwo';
 
 const Product = () => {
     const router = useRouter()
@@ -19,8 +18,7 @@ const Product = () => {
     const addedItemsToCompare = useSelector((state) => state.addedItemsToCompare)
     return (
         <>
-            <Navbar />
-            <Breadcrumb title="Belted chino trousers polo" />
+            <NavbarTwo />             
 
             <section className="products-details-area pt-60">
                 <div className="container">
