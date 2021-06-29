@@ -52,7 +52,7 @@ class BannerSlider extends Component {
                               Você na moda no seu tempo
                           </h1>                                                                                      
 
-                          <Link href="#">
+                          <Link href="/category-sidebar-fullwidth">
                               <a 
                                 className={
                                   `btn btn-primary ${isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'}`
@@ -84,7 +84,7 @@ class BannerSlider extends Component {
                         Tudo para o seu guarda roupa
                       </h1>                                                                                           
 
-                      <Link href="#">
+                      <Link href="/category-sidebar-fullwidth">
                           <a 
                             className={
                               `btn btn-primary ${isVisible ? "animated fadeInUp opacityOne" : 'opacityZero'}`
