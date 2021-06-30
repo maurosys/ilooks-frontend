@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import QuickView from '../Modal/QuickView';
 import AddToCart from '../Shared/AddToCart';
-import AddToCompare from '../Shared/AddToCompare';
+
 
 class ProductsCard extends Component {
     state = {
@@ -17,31 +17,6 @@ class ProductsCard extends Component {
         this.setState({ modalOpen: false });
     }
 
-    compareButton = (id) => {
-        let compare_exist = this.props.CompareProducts.filter(item => item.id === id);
-        if(compare_exist.length > 0){
-            return(
-                <Link href="#">
-                    <a 
-                        data-tip="Already Added" 
-                        data-place="left" 
-                        onClick={e => {
-                                e.preventDefault(); 
-                            }
-                        }
-                        disabled={true}
-                        className="disabled"
-                    >
-                        <i className="fas fa-sync"></i>
-                    </a>
-                </Link>
-            )
-        } else {
-            return(
-                <AddToCompare id={id} />
-            )
-        }
-    }
 
     handleModalData = (data) => {
         this.setState({ 

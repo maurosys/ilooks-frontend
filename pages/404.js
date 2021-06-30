@@ -1,34 +1,28 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import Facility from '../components/Common/Facility';
-import Breadcrumb from '../components/Common/Breadcrumb';
 
 class Custom404 extends Component {
     render() {
         return (
             <>
-                <Navbar />
-
-                <Breadcrumb title="404 Not Found" />
+                <Header />
 
                 <section className="error-area ptb-60">
                     <div className="container">
                         <div className="error-content">
                             <img src={require("../images/404.png")} alt="error" />
 
-                            <h3>{this.props.statusCode} Page Not Found</h3>
-                            <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+                            <h3>{this.props.statusCode} Página não encontrada</h3>
+                            <p>A página que você está procurando pode ter sido removida devido a mudança de nome ou está temporariamente indisponível.</p>
 
                             <Link href="/">
-                                <a className="btn btn-light">Go to Home</a>
+                                <a className="btn btn-light">Ir para Home</a>
                             </Link>
                         </div>
                     </div>
                 </section>
-
-                <Facility />
                 
                 <Footer />
             </>

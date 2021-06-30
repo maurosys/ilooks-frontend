@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { useSelector } from 'react-redux'
 import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import Breadcrumb from '../components/Common/Breadcrumb';
 import Facility from '../components/shop-style-five/Facility';
 import LeftSidebar from '../components/Sidebar/LeftSidebar';
 import ProductsFilterOptions from '../components/Common/ProductsFilterOptions';
@@ -32,8 +31,6 @@ class Index extends Component {
         return (
             <>
                 <Header />
-                
-                <Breadcrumb title="Women's" />
 
                 <section className="products-collections-area ptb-60">
                     <div className="container-fluid">

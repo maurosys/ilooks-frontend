@@ -9,16 +9,13 @@ import {
 import Footer from '../components/Layout/Footer';
 import Header from '../components/Layout/Header';
 import Facility from '../components/shop-style-five/Facility';
-import Breadcrumb from '../components/Common/Breadcrumb';
 
 class Index extends Component {
     render() {
         return (
             <>
                 <Header />
-
-                <Breadcrumb title="Contact Us" />
-
+                
                 <section className="faq-area ptb-60">
                     <div className="container">
                         <div className="section-title">

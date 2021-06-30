@@ -129,29 +129,6 @@ export const products = [
     }
 ]
 
-export const productsCollectionSix = [
-    {
-        id: 17,
-        title: "Linen crochet trim",
-        price: 190,
-        image: require("../../images/sunglasses-image/sunglasses-img1.jpg"),
-        quickView: require("../../images/quick-view-img.jpg")
-    },
-    {
-        id: 18,
-        title: "Neck empire sleeve",
-        price: 120,
-        image: require("../../images/sunglasses-image/sunglasses-img2.jpg"),
-        quickView: require("../../images/quick-view-img.jpg")
-    },
-    {
-        id: 19,
-        title: "Mermaid pencil midi",
-        price: 160,
-        image: require("../../images/sunglasses-image/sunglasses-img3.jpg"),
-        quickView: require("../../images/quick-view-img.jpg")
-    }
-]
 
 export const productsCollectionSeven = [
     {

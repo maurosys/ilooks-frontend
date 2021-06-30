@@ -1475,15 +1475,6 @@ Main Banner Area CSS
     &.item-bg1 {
         background-image: url(../../../images/main-banner1.jpg);
     }
-    &.item-bg2 {
-        background-image: url(../../../images/main-banner2.jpg);
-    }
-    &.item-bg3 {
-        background-image: url(../../../images/main-banner3.jpg);
-    }
-    &.item-bg4 {
-        background-image: url(../../../images/main-banner4.jpg);
-    }
 }
 .main-banner-content {
     max-width: 520px;
@@ -2977,7 +2968,6 @@ Testimonials Area CSS
         position: center center;
         size: cover;
         repeat: no-repeat;
-        image: url(../../../images/testimonials-bg.jpg);
     }
     &::before {
         content: '';
@@ -2989,10 +2979,6 @@ Testimonials Area CSS
         z-index: -1;
         background: $black-color;
         opacity: .70;
-    }
-    &.bg2 {
-        background-image: url(../../../images/testimonials-bg2.jpg);
-        background-attachment: fixed;
     }
 }
 .single-testimonials {
@@ -3063,7 +3049,6 @@ Products Offer Area CSS
     position: relative;
     z-index: 1;
     background: {
-        image: url(../../../images/offer-bg.jpg);
         position: center center;
         size: cover;
         attachment: fixed;
@@ -6654,15 +6639,6 @@ Sidebar Area CSS
                         repeat: no-repeat;
                         position: center center !important;
                     }
-                    &.bg1 {
-                        background-image: url(../../../images/blog1.jpg);
-                    }
-                    &.bg2 {
-                        background-image: url(../../../images/blog3.jpg);
-                    }
-                    &.bg3 {
-                        background-image: url(../../../images/blog4.jpg);
-                    }
                 }
             }
             .info {
@@ -8347,56 +8323,6 @@ Navbar Area CSS
 /*================================================
 Main Banner Area CSS
 =================================================*/
-.main-banner {
-    &.item-bg7 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg1.jpg);
-    }
-    &.item-bg8 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg2.jpg);
-    }
-    &.item-bg9 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg3.jpg);
-    }
-    &.item-bg10 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg4.jpg);
-    }
-    &.item-bg11 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg5.jpg);
-    }
-    &.item-bg12 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg6.jpg);
-    }
-    &.item-bg13 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg7.jpg);
-    }
-    &.item-bg14 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg8.jpg);
-    }
-    &.item-bg15 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg9.jpg);
-    }
-    &.item-bg16 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg10.jpg);
-    }
-    &.item-bg17 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg11.jpg);
-    }
-    &.item-bg18 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg12.jpg);
-    }
-    &.item-bg19 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg13.jpg);
-    }
-    &.item-bg20 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg14.jpg);
-    }
-    &.item-bg21 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg15.jpg);
-    }
-    &.item-bg22 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg16.jpg);
-    }
-}
 .main-banner-content {
     &.white-color {
         .btn-light {
@@ -8506,25 +8432,6 @@ Main Banner Area CSS
     }
 }
 
-// Covid-19 Banner
-.covid-19-banner {
-    height: 700px;
-    position: relative;
-    &.covid-19-item-bg1 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg17.jpg);
-    }
-    &.covid-19-item-bg2 {
-        background-image: url(../../../images/main-banner-image/banner-new-bg18.jpg);
-    }
-
-    .main-banner-content {
-        p {
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-    }
-}
-
 .instagram-title {
     text-align: center;
     margin-bottom: 30px;
@@ -8548,10 +8455,6 @@ Main Banner Area CSS
     background-attachment: fixed;
     padding-top: 100px;
     padding-bottom: 100px;
-
-    &.offer-bg-image {
-        background-image: url(../../../images/offer-bg3.jpg);
-    }
 
     .offer-content-box {
         max-width: 720px;
@@ -8612,7 +8515,6 @@ Main Banner Area CSS
     height: 700px;
     background-position: center center;
     background-size: cover;
-    background-image: url(../../../images/grocery-banner-bg.jpg);
 
     .main-banner-content {
         max-width: 720px;
@@ -8648,19 +8550,6 @@ Main Banner Area CSS
                 color: #fff;
             }
         }
-    }
-}
-
-.electronics-banner {
-    background-image: url(../../../images/electronics-banner-bg.jpg);
-}
-
-.furniture-banner {
-    background-image: url(../../../images/furniture-banner-bg.jpg);
-
-    .main-banner-content {
-        max-width: 100%;
-        text-align: left;
     }
 }
 
