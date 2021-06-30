@@ -4,16 +4,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import {
     products, 
-    productsCollectionSix, 
-    productsCollectionSeven, 
-    productsCollectionEight, 
-    productsCollectionNine, 
-    productsCollectionTen, 
-    productsCollectionEleven,
-    productsCovid19,
-    productsGrocery,
-    productsElectronics,
-    productsFurniture
 } from '../json-data/products';
 
 let store
@@ -32,16 +22,6 @@ import {
 
 const initialState = {
     products: products,
-    productsCollectionSix: productsCollectionSix,
-    productsCollectionSeven: productsCollectionSeven,
-    productsCollectionEight: productsCollectionEight,
-    productsCollectionNine: productsCollectionNine,
-    productsCollectionTen: productsCollectionTen,
-    productsCollectionEleven: productsCollectionEleven,
-    productsCovid19: productsCovid19,
-    productsGrocery: productsGrocery,
-    productsElectronics: productsElectronics,
-    productsFurniture: productsFurniture,
     addedItems:[],
     addedItemsToCompare:[],
     total: 0,
@@ -52,16 +32,6 @@ const reducers = (state = initialState, action) => {
    
     if(action.type === ADD_TO_CART){
         let addedItem = state.products.find(item => item.id === action.id) 
-        || state.productsCollectionSix.find(item => item.id === action.id)
-        || state.productsCollectionSeven.find(item => item.id === action.id)
-        || state.productsCollectionEight.find(item => item.id === action.id)
-        || state.productsCollectionNine.find(item => item.id === action.id)
-        || state.productsCollectionTen.find(item => item.id === action.id)
-        || state.productsCollectionEleven.find(item => item.id === action.id)
-        || state.productsCovid19.find(item => item.id === action.id)
-        || state.productsGrocery.find(item => item.id === action.id)
-        || state.productsElectronics.find(item => item.id === action.id)
-        || state.productsFurniture.find(item => item.id === action.id)
         //check if the action id exists in the addedItems
         let existed_item = state.addedItems.find(item => action.id === item.id)
         if(existed_item){

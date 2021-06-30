@@ -13,10 +13,10 @@ class CategoryTypes extends Component {
 
                 <h3>Bolsas</h3>
                 
-                <Link href="/category-without-sidebar">
+                <Link href="/category-sidebar-fullwidth">
                   <a className="shop-now-btn">Compre agora</a>
                 </Link>
-                <Link href="/category-without-sidebar">
+                <Link href="/category-sidebar-fullwidth">
                   <a className="link-btn"></a>
                 </Link>
             </div>
@@ -28,11 +28,11 @@ class CategoryTypes extends Component {
 
               <h3>Calçados</h3>
 
-              <Link href="/collections-style-one">
+              <Link href="/category-sidebar-fullwidth">
                 <a className="shop-now-btn">Compre agora</a>
               </Link>
 
-              <Link href="/collections-style-one">
+              <Link href="/category-sidebar-fullwidth">
                 <a className="link-btn"></a>
               </Link>
             </div>
@@ -44,11 +44,11 @@ class CategoryTypes extends Component {
 
               <h3>Rélogios</h3>
 
-              <Link href="/category-left-sidebar-with-block">
+              <Link href="/category-sidebar-fullwidth">
                 <a className="shop-now-btn">Compre agora</a>
               </Link>
 
-              <Link href="/category-left-sidebar-with-block">
+              <Link href="/category-sidebar-fullwidth">
                 <a className="link-btn"></a>
               </Link>
           </div>
@@ -60,11 +60,11 @@ class CategoryTypes extends Component {
 
                 <h3>Óculos</h3>
 
-                <Link href="/category-right-sidebar-with-block">
+                <Link href="/category-sidebar-fullwidth">
                   <a className="shop-now-btn">Compre agora</a>
                 </Link>
 
-                <Link href="/category-right-sidebar-with-block">
+                <Link href="/category-sidebar-fullwidth">
                   <a className="link-btn"></a>
                 </Link>
               </div>

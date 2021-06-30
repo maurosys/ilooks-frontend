@@ -7,7 +7,7 @@ import ProductContent from '../../components/product-details/ProductContent';
 import DetailsTab from '../../components/product-details/DetailsTab';
 import RelatedProducts from '../../components/product-details/RelatedProducts';
 import Facility from '../../components/shop-style-five/Facility';
-import NavbarTwo from '../../components/Layout/NavbarTwo';
+import Header from '../../components/Layout/Header';
 
 const Product = () => {
     const router = useRouter()
@@ -18,7 +18,7 @@ const Product = () => {
     const addedItemsToCompare = useSelector((state) => state.addedItemsToCompare)
     return (
         <>
-            <NavbarTwo />             
+            <Header />             
 
             <section className="products-details-area pt-60">
                 <div className="container">

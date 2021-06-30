@@ -17,8 +17,7 @@ class Payments extends React.Component {
             pauseOnHover: true,
             draggable: true
         });
-
-        setTimeout(function(){ Router.push('/thankyou'); }, 3000);
+        
     }
     render(){
         let { amount } = this.props;

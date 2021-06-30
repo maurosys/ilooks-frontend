@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import Facility from '../components/Common/Facility';
-import Breadcrumb from '../components/Common/Breadcrumb';
+import Facility from '../components/shop-style-five/Facility';
 import CheckoutForm from '../components/checkout/CheckoutForm';
 
 class Index extends Component {
     render() {
         return (
             <>
-                <Navbar />
-                
-                <Breadcrumb title="Checkout" />
+                <Header />
 
                 <CheckoutForm />
 

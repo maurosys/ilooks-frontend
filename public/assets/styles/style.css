@@ -1538,22 +1538,6 @@ Main Banner Area CSS
   background-position: center center;
 }
 
-.main-banner.item-bg1 {
-  background-image: url(../../../images/main-banner1.jpg);
-}
-
-.main-banner.item-bg2 {
-  background-image: url(../../../images/main-banner2.jpg);
-}
-
-.main-banner.item-bg3 {
-  background-image: url(../../../images/main-banner3.jpg);
-}
-
-.main-banner.item-bg4 {
-  background-image: url(../../../images/main-banner4.jpg);
-}
-
 .main-banner-content {
   max-width: 520px;
 }
@@ -3073,15 +3057,6 @@ Facility Area CSS
 /*================================================
 Testimonials Area CSS
 =================================================*/
-.testimonials-area {
-  position: relative;
-  z-index: 1;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(../../../images/testimonials-bg.jpg);
-}
-
 .testimonials-area::before {
   content: '';
   position: absolute;
@@ -3094,10 +3069,6 @@ Testimonials Area CSS
   opacity: .70;
 }
 
-.testimonials-area.bg2 {
-  background-image: url(../../../images/testimonials-bg2.jpg);
-  background-attachment: fixed;
-}
 
 .single-testimonials {
   text-align: center;
@@ -3162,7 +3133,6 @@ Products Offer Area CSS
 .products-offer-area {
   position: relative;
   z-index: 1;
-  background-image: url(../../../images/offer-bg.jpg);
   background-position: center center;
   background-size: cover;
   background-attachment: fixed;
@@ -6812,18 +6782,6 @@ Sidebar Area CSS
   background-position: center center !important;
 }
 
-.widget-area .widget_comero_posts_thumb .item .thumb .fullimage.bg1 {
-  background-image: url(../../../images/blog1.jpg);
-}
-
-.widget-area .widget_comero_posts_thumb .item .thumb .fullimage.bg2 {
-  background-image: url(../../../images/blog3.jpg);
-}
-
-.widget-area .widget_comero_posts_thumb .item .thumb .fullimage.bg3 {
-  background-image: url(../../../images/blog4.jpg);
-}
-
 .widget-area .widget_comero_posts_thumb .item .info {
   overflow: hidden;
 }
@@ -8439,69 +8397,6 @@ Navbar Area CSS
 /*================================================
 Main Banner Area CSS
 =================================================*/
-.main-banner.item-bg7 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg1.jpg);
-}
-
-.main-banner.item-bg8 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg2.jpg);
-}
-
-.main-banner.item-bg9 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg3.jpg);
-}
-
-.main-banner.item-bg10 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg4.jpg);
-}
-
-.main-banner.item-bg11 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg5.jpg);
-}
-
-.main-banner.item-bg12 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg6.jpg);
-}
-
-.main-banner.item-bg13 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg7.jpg);
-}
-
-.main-banner.item-bg14 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg8.jpg);
-}
-
-.main-banner.item-bg15 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg9.jpg);
-}
-
-.main-banner.item-bg16 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg10.jpg);
-}
-
-.main-banner.item-bg17 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg11.jpg);
-}
-
-.main-banner.item-bg18 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg12.jpg);
-}
-
-.main-banner.item-bg19 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg13.jpg);
-}
-
-.main-banner.item-bg20 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg14.jpg);
-}
-
-.main-banner.item-bg21 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg15.jpg);
-}
-
-.main-banner.item-bg22 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg16.jpg);
-}
 
 .main-banner-content.white-color .btn-light {
   color: #ffffff;
@@ -8593,24 +8488,6 @@ Main Banner Area CSS
   margin-top: 0 !important;
 }
 
-.covid-19-banner {
-  height: 700px;
-  position: relative;
-}
-
-.covid-19-banner.covid-19-item-bg1 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg17.jpg);
-}
-
-.covid-19-banner.covid-19-item-bg2 {
-  background-image: url(../../../images/main-banner-image/banner-new-bg18.jpg);
-}
-
-.covid-19-banner .main-banner-content p {
-  line-height: 1.6;
-  margin-bottom: 30px;
-}
-
 .instagram-title {
   text-align: center;
   margin-bottom: 30px;
@@ -8634,10 +8511,6 @@ Main Banner Area CSS
   background-attachment: fixed;
   padding-top: 100px;
   padding-bottom: 100px;
-}
-
-.offer-area-two.offer-bg-image {
-  background-image: url(../../../images/offer-bg3.jpg);
 }
 
 .offer-area-two .offer-content-box {
@@ -8699,7 +8572,6 @@ Main Banner Area CSS
   height: 700px;
   background-position: center center;
   background-size: cover;
-  background-image: url(../../../images/grocery-banner-bg.jpg);
 }
 
 .grocery-banner .main-banner-content {
@@ -8742,13 +8614,6 @@ Main Banner Area CSS
   color: #fff;
 }
 
-.electronics-banner {
-  background-image: url(../../../images/electronics-banner-bg.jpg);
-}
-
-.furniture-banner {
-  background-image: url(../../../images/furniture-banner-bg.jpg);
-}
 
 .furniture-banner .main-banner-content {
   max-width: 100%;

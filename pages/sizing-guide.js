@@ -1,15 +1,12 @@
 import React from 'react';
-import Navbar from '../components/Layout/Navbar';
+import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
-import Facility from '../components/Common/Facility';
-import Breadcrumb from '../components/Common/Breadcrumb';
+import Facility from '../components/shop-style-five/Facility';
 
 const SizingGuide = () => {
     return (
         <>
-            <Navbar />
-
-            <Breadcrumb title="Sizing Guide" />
+            <Header />
 
             <section className="sizing-guide-area ptb-60">
                 <div className="container">

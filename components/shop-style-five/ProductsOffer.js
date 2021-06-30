@@ -9,7 +9,7 @@ class ProductsOffer extends Component {
                     <div className="products-offer-content">
                         <span>O Tempo estar se esgotando</span>
                         <h1>-40% Off</h1>
-                        <p>Ganhe um incrívem desconto de inaguração</p>
+                        <p>Ganhe um incríveis desconto de inaguração</p>
 
                         <Link href="#">
                             <a className="btn btn-primary">Discover Now</a>
