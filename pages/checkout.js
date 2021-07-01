@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
-import Header from '../components/Layout/Header';
-import Footer from '../components/Layout/Footer';
-import Facility from '../components/shop-style-five/Facility';
-import CheckoutForm from '../components/checkout/CheckoutForm';
+import React, { Component } from "react";
+import Header from "../components/Layout/Header";
+import Footer from "../components/Layout/Footer";
+import Facility from "../components/shop-style-five/Facility";
+import CheckoutForm from "../components/checkout/CheckoutForm";
 
-class Index extends Component {
-    render() {
-        return (
-            <>
-                <Header />
+const checkout = () => {
+  return (
+    <>
+      <Header />
 
-                <CheckoutForm />
+      <CheckoutForm />
 
-                <Facility />
+      <Facility />
 
-                <Footer />
-            </>
-        );
-    }
-}
-
-export default Index;
+      <Footer />
+    </>
+  );
+};
+export default checkout;
