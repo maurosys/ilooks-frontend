@@ -3,15 +3,17 @@
     list-style: none;
     cursor: pointer;
     padding: 10px;
+
     margin-top: 5px;
     color: #a2a2a2;
 }
 .menu-options-orders > ul > li.active{ 
     color: #222;
 }
-.menu-options-orders > ul > li :hover{ 
+.menu-options-orders > ul > li:hover { 
     color: #222;
 }
+
 .menu-options-orders > ul { 
    padding: 0;
 }
