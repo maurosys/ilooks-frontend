@@ -1,0 +1,119 @@
+
+.menu-options-orders > ul > li { 
+    list-style: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 5px;
+    color: #a2a2a2;
+}
+.menu-options-orders > ul > li.active{ 
+    color: #222;
+}
+.menu-options-orders > ul > li :hover{ 
+    color: #222;
+}
+.menu-options-orders > ul { 
+   padding: 0;
+}
+
+.menu-options-orders > ul > li > span > span { 
+    padding-left: 15px;
+}
+
+.menu-option-orders-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} 
+
+
+.button-options {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: #9a9595;
+}
+
+.button-options :hover {
+    color: #222222;
+}
+
+
+.button-options-active {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: #222222;
+}
+
+.accordion-custom {
+    width: 90%;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 5px solid #222222;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.accordion-custom-header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.accordion-custom-header-span-status {
+    padding-left: 15px;
+    color: #40cd28;
+    font-weight: bold;
+}
+
+.container-order {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-order-content {
+    flex: 1;
+    padding-left: 30px;
+}
+
+.container-order-content {
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+.container-order-content-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-field-search {
+    display: flex;
+    width: 90%;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.container-field-search > input {
+    width: 95%;
+    border-radius: 20px;
+    padding-left: 10px;
+    border: none
+}
+
+.container-field-search > input:focus{
+    outline: none;
+}

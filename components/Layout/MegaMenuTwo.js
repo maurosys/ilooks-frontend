@@ -322,7 +322,7 @@ class MegaMenuTwo extends Component {
 
                         <div className="option-item">
                           <Link href="/login">
-                            <a>Login</a>
+                            <a>Login / Cadastro</a>
                           </Link>
                         </div>
 

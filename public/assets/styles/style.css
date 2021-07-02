@@ -61,6 +61,7 @@ Default CSS
   scroll-behavior: inherit;
 }
 
+
 body {
   padding: 0;
   margin: 0;
@@ -7908,6 +7909,14 @@ Go Top CSS
   height: auto;
   z-index: 999;
 }
+.header-fixed-area {
+  background-color: #222222;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: 999;
+}
 
 .navbar-area .container-fluid {
   padding-left: 35px;
@@ -9555,5 +9564,8 @@ Pagination CSS
   border-color: #222222;
 }
 
+
+
 /* End home Six, Seven, Eight, Nine, Ten & Eleven Style */
 /*# sourceMappingURL=style.css.map */
+

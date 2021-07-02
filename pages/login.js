@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Header from '../components/Layout/Header';
+import HeaderFixed from '../components/Layout/HeaderFixed';
 import Footer from '../components/Layout/Footer';
 import Facility from '../components/shop-style-five/Facility';
 
 const Login = () => {
     return (
         <>
-            <Header />
+            <HeaderFixed />
             <section className="login-area ptb-60">
                 <div className="container">
                     <div className="row">
