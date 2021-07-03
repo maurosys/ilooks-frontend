@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import { addQuantityWithNumber } from '../../store/actions/actions';
+// import { addQuantityWithNumber } from '../../store/actions/actions';
 import { ToastContainer, toast } from 'react-toastify';
 
 class QuickView extends Component {
@@ -12,20 +12,20 @@ class QuickView extends Component {
         min: 1
     };
 
-    handleAddToCartFromView = () => {
-        this.props.addQuantityWithNumber(this.props.modalData.id, this.state.qty); 
+    // handleAddToCartFromView = () => {
+    //     this.props.addQuantityWithNumber(this.props.modalData.id, this.state.qty); 
 
-        toast.success('Added to the cart', {
-            position: "bottom-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true
-        });
+    //     toast.success('Added to the cart', {
+    //         position: "bottom-left",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true
+    //     });
 
-        setTimeout(() => {this.props.closeModal()},5000); 
-    }
+    //     setTimeout(() => {this.props.closeModal()},5000); 
+    // }
 
     IncrementItem = () => {
         this.setState(prevState => {

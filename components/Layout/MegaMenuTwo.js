@@ -334,7 +334,7 @@ class MegaMenuTwo extends Component {
                                     this.handleCart()
                                   }}
                                 >
-                                  Carrinho({products.length}) <i className="fas fa-shopping-bag"></i>
+                                  {/* Carrinho({products.length}) <i className="fas fa-shopping-bag"></i> */}
                                 </a>
                             </Link>
                         </div>

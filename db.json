@@ -112,6 +112,13 @@
       "price": 530,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img8.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover8.jpg"
+    },
+    {
+      "id": 17,
+      "title": "Testesdsdsdsd Emerson",
+      "price": 9999,
+      "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover1.jpg"
     }
   ]
 }
