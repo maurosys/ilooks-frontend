@@ -70,10 +70,10 @@ class Cart extends Component {
 
                             <div className="product-cart-btn">
                                 <Link href="/checkout">
-                                    <a className="btn btn-primary">Proceed to Checkout</a>
+                                    <a className="btn btn-primary">Fazer o check-out</a>
                                 </Link>
                                 <Link href="/cart">
-                                    <a className="btn btn-light">View Shopping Cart</a>
+                                    <a className="btn btn-light">Ver carrinho de compras</a>
                                 </Link>
                             </div>
                         </div>
