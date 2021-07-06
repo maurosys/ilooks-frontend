@@ -6,6 +6,7 @@
       "price": 190,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover1.jpg"
+      
     },
     {
       "id": 2,
@@ -13,6 +14,7 @@
       "price": 120,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover2.jpg"
+      
     },
     {
       "id": 3,
@@ -20,6 +22,7 @@
       "price": 160,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover3.jpg"
+      
     },
     {
       "id": 4,
@@ -27,6 +30,7 @@
       "price": 130,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img4.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover4.jpg"
+      
     },
     {
       "id": 5,
@@ -34,14 +38,15 @@
       "price": 90,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img5.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover5.jpg"
+      
     },
     {
       "id": 6,
       "title": "Tenku remastered",
       "price": 180,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img6.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover6.jpg",
-      "quickView": ""
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover6.jpg"
+      
     },
     {
       "id": 7,
@@ -49,74 +54,84 @@
       "price": 330,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img7.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover7.jpg"
+      
     },
     {
       "id": 8,
       "title": "Belted chino trousers polo",
       "price": 140,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img8.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover8.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover8.jpg",
+      "quantity": 0
     },
     {
       "id": 9,
       "title": "The cosmic cornucopia",
       "price": 430,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover1.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover1.jpg",
+      "quantity": 0
     },
     {
       "id": 10,
       "title": "Tenku remastered",
       "price": 650,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover2.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover2.jpg",
+      "quantity": 0
     },
     {
       "id": 11,
       "title": "Women's sherpa lined hoodie",
       "price": 230,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover3.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover3.jpg",
+      "quantity": 0
     },
     {
       "id": 12,
       "title": "Linen crochet trim t-shirt",
       "price": 670,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img4.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover4.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover4.jpg",
+      "quantity": 0
     },
     {
       "id": 13,
       "title": "Neck empire sleeve t-shirts",
       "price": 120,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img5.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover5.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover5.jpg",
+      "quantity": 0
     },
     {
       "id": 14,
       "title": "Mermaid pencil midi lace",
       "price": 540,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img6.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover6.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover6.jpg",
+      "quantity": 0
     },
     {
       "id": 15,
       "title": "Criss-cross V neck bodycon",
       "price": 230,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img7.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover7.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover7.jpg",
+      "quantity": 0
     },
     {
       "id": 16,
       "title": "Belted chino trousers polo",
       "price": 530,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img8.jpg",
-      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover8.jpg"
+      "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover8.jpg",
+      "quantity": 0
     },
     {
-      "id": 17,
-      "title": "Testesdsdsdsd Emerson",
-      "price": 9999,
+      "id": 18,
+      "title": "Vitinho parceiro",
+      "price": 198481,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover1.jpg"
     }

@@ -28,7 +28,7 @@ import Products from '../components/shop-style-five/Products';
 
 import { Products as ProductsPros } from '../store/ducks/products/types';
 
-import { loadResquest } from '../store/ducks/products/actions';
+import { loadResquestProduct } from '../store/ducks/products/actions';
 
 import Head from 'next/head';
 
@@ -42,7 +42,7 @@ const Index = ({products}: Props) => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    dispatch(loadResquest())
+    dispatch(loadResquestProduct())
   },[])
 
   return (
