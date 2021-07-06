@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
     render() {
         return (
-            <Html lang="en">
+            <Html>
                 <Head>
                     <link rel="icon" type="image/png" href={require("../images/favicon.png")}></link>
                 </Head>

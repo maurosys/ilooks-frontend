@@ -49,7 +49,7 @@ interface StateProps {
 const Products = ({products}:StateProps) =>  {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [display, setDisplay] = useState(true);
+  const [display, setDisplay] = useState(false);
   const [panel, setPanel] = useState(true);
 
 
