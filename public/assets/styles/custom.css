@@ -1,4 +1,8 @@
 
+.container-menu-orders {
+    width: 180px;
+}
+
 .menu-options-orders > ul > li { 
     list-style: none;
     cursor: pointer;
@@ -65,6 +69,8 @@
     padding: 10px;
 }
 
+
+
 .accordion-custom-header {
     display: flex;
     justify-content: space-between;
@@ -84,13 +90,11 @@
 
 .container-order-content {
     flex: 1;
-    padding-left: 30px;
+    margin-top: 40px;
+    padding-left: 40px;
 }
 
-.container-order-content {
-    margin-top: 40px;
-    margin-left: 10px;
-}
+
 
 .container-order-content-items{
     display: flex;
@@ -118,4 +122,110 @@
 
 .container-field-search > input:focus{
     outline: none;
+}
+
+
+
+.card-address-container {
+    border: 2px solid #222222;
+    max-width: 350px;
+}
+
+.card-address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #222222;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 3px;
+}
+
+.card-address-content {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.rb-custom {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 4px;
+}
+
+.rb-custom > input[type="radio"] {
+    display: none;
+}
+
+.rb-custom > span{
+    margin-left: 16px;
+}
+
+.rb-custom > .circle {
+    border: 1px solid #222;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* background-color: aqua; */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rb-custom > .circle > .active{
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.container-address-content {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container-address-content > .card{
+    width: 350px;
+    border: none;
+    padding: 5px;
+}
+
+@media (max-width: 992px){
+
+    .container-order{
+        flex-direction: column;
+    }
+
+    .container-menu-orders {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu-options-orders > ul  {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .menu-option-orders-details {
+        display: none;
+    }
+
+    .container-order-content {
+        margin-top: 0;
+        padding-left: 0;
+    }
+
+    .container-address-content {
+        justify-content: center;
+    }
 }

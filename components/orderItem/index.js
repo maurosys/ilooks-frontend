@@ -19,7 +19,6 @@ export default function OrderItem () {
                             cursor: 'pointer'
                         }}/>)
                     }
-                    
                     <span className="accordion-custom-header-span-status">Entrega realizada</span>
                 </div>
                 <span>entregue dia <span style={{
@@ -35,7 +34,6 @@ export default function OrderItem () {
                         <p>adasdas</p>
                     )
                 }
-                
             </div>
         </div>
     )

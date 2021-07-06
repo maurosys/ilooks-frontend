@@ -7,7 +7,7 @@ import OrderItem from '../components/orderItem';
 import FieldSearch from '../components/FieldSearch';
 
 
-const Login = () => {
+const Orders = () => {
     return (
         <>
             <HeaderFixed />
@@ -47,4 +47,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Orders;

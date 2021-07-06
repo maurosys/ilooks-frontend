@@ -1,21 +1,49 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 import { FiArchive } from 'react-icons/fi';
 import { MdCardGiftcard, MdAccountCircle, MdLocationOn, MdContactPhone } from 'react-icons/md';
 
 const Details = (props) => {
     const router = useRouter();
+    const path = router.pathname;
 
+    const itemsMenu = [
+        {
+            icon: <MdCardGiftcard size={30} />,
+            label: 'Pedidos',
+            route: '/orders',
+        },
+        {
+            icon: <MdAccountCircle size={30} />,
+            label: 'Cadastro',
+            route: '/account',
+        },
+        {
+            icon: <MdLocationOn size={30} />,
+            label: 'Endereços',
+            route: '/address',
+        },
+        {
+            icon: <MdContactPhone size={30} />,
+            label: 'Telefones',
+            route: '/phones',
+        }
+        
+    ] 
+    
     return (
-        <div style={{
-            width: 180,
-        }}>
+        <div className="container-menu-orders">
            
             <div className="menu-options-orders">
                 <ul>
-                    <li className="active"><span><MdCardGiftcard size={30} /> <span>Pedidos</span></span></li>
-                    <li><span><MdAccountCircle size={30} /> <span>Cadastro</span></span></li>
-                    <li><span><MdLocationOn size={30} /> <span>Endereços</span></span></li>
-                    <li><span><MdContactPhone size={30} /> <span>Telefones</span></span></li>
+                    {
+                        itemsMenu.map(item => {
+                            return (
+                                <Link href={item.route}><li className={path === item.route && "active"}><span>{item.icon} <span>{item.label}</span></span></li></Link>
+                            )
+                        })
+                    }
+
                 </ul>
             </div>
             <hr />
@@ -27,9 +55,6 @@ const Details = (props) => {
                     marginTop: 50
                 }} />
             </div>
-
-
-
     
         </div>
     )
