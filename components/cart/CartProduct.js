@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
 import Link from "next/link";
 import { connect } from 'react-redux';
-import { removeItem, addQuantity, subtractQuantity } from '../../store/actions/actions';
+// import { removeItem, addQuantity, subtractQuantity } from '../../store/actions/actions';
 import { toast } from 'react-toastify';
 
 class CartProduct extends Component {
 
-    handleRemove = (id) => {
-        this.props.removeItem(id);
+    // handleRemove = (id) => {
+    //     this.props.removeItem(id);
 
-        toast.error('Removed from cart', {
-            position: "bottom-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true
-        });
-    }
+    //     toast.error('Removed from cart', {
+    //         position: "bottom-left",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true
+    //     });
+    // }
     //to add the quantity
-    handleAddQuantity = (id)=>{
-        this.props.addQuantity(id);
-    }
-    //to substruct from the quantity
-    handleSubtractQuantity = (id)=>{
-        this.props.subtractQuantity(id);
-    }
+    // handleAddQuantity = (id)=>{
+    //     this.props.addQuantity(id);
+    // }
+    // //to substruct from the quantity
+    // handleSubtractQuantity = (id)=>{
+    //     this.props.subtractQuantity(id);
+    // }
 
     render() {
         let cartItems = this.props.products.length ?
@@ -60,7 +60,7 @@ class CartProduct extends Component {
                             <div className="input-counter">
                                 <span 
                                     className="minus-btn"
-                                    onClick={()=>{this.handleSubtractQuantity(data.id)}}
+                                    // onClick={()=>{this.handleSubtractQuantity(data.id)}}
                                 >
                                     <i className="fas fa-minus"></i>
                                 </span>
@@ -74,7 +74,7 @@ class CartProduct extends Component {
                                 />
                                 <span 
                                     className="plus-btn"
-                                    onClick={()=>{this.handleAddQuantity(data.id)}}
+                                    // onClick={()=>{this.handleAddQuantity(data.id)}}
                                 >
                                     <i className="fas fa-plus"></i>
                                 </span>
@@ -87,7 +87,7 @@ class CartProduct extends Component {
                             <Link href="#">
                                 <a
                                     className="remove"
-                                    onClick={(e)=>{e.preventDefault();this.handleRemove(data.id)}}
+                                    // onClick={(e)=>{e.preventDefault();this.handleRemove(data.id)}}
                                 >
                                     <i className="far fa-trash-alt"></i>
                                 </a>

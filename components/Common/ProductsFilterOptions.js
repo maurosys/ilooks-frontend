@@ -39,7 +39,7 @@ class ProductsFilterOptions extends Component {
 
                                 <Link href="#">
                                     <a 
-                                        className="icon-view-three active"
+                                        className="icon-view-three"
                                         onClick={e => {
                                             e.preventDefault();
                                             this.handleGrid(e, "")
@@ -68,7 +68,7 @@ class ProductsFilterOptions extends Component {
 
                                 <Link href="#">
                                     <a 
-                                        className="view-grid-switch"
+                                        className="view-grid-switch active"
                                         onClick={e => {
                                             e.preventDefault();
                                             this.handleGrid(e, "products-row-view")

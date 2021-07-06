@@ -3,6 +3,7 @@ import Slider from "react-slick";
 
 class ProductImage extends Component {
 
+
     constructor(props) {
         super(props);
         this.state = {
