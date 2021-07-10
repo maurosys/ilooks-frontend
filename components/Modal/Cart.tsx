@@ -5,16 +5,15 @@ import { Products as ProductsPros } from "../../store/ducks/products/types";
 import {removeItem } from '../../store/ducks/Card/actions';
 
 interface StateProps {
-  products: ProductsPros[];
+  card: ProductsPros[];
   onClick: (display) => void;
 }
 
 
 
-const Cart = ({ products, onClick }: StateProps) => {
+const Cart = ({ card, onClick }: StateProps) => {
   const display = false;
   const dispatch = useDispatch();
-
   const closeCart = () => {
     onClick(display);
   };
@@ -22,7 +21,7 @@ const Cart = ({ products, onClick }: StateProps) => {
   function removeitemCart(id) {
     dispatch(removeItem(id))
   }
-
+  // console.table(card)
   return (
     <div
       className="modal right fade show shoppingCartModal"
@@ -44,30 +43,30 @@ const Cart = ({ products, onClick }: StateProps) => {
           </button>
 
           <div className="modal-body">
-            <h3>Meu carrinho {products.length} </h3>
+            <h3>Meu carrinho {card?.length} </h3>
 
             <div className="product-cart-content">
-              {products?.length > 0
-                ? products.map((product, idx) => (
+              {card?.length > 0
+                ? card.map((card, idx) => (
                     <div className="product-cart" key={idx}>
                       <div className="product-image">
-                        <img src={product.image} alt="image" />
+                        <img src={card.image} alt="image" />
                       </div>
 
                       <div className="product-content">
                         <h3>
                           <Link href="#">
-                            <a>{product.title}</a>
+                            <a>{card.title}</a>
                           </Link>
                         </h3>
                         <span>Blue / XS</span>
                         <div className="product-price">
-                          <span>{product.qty}</span>
+                          <span>{card.qty ? card.qty : 1}</span>
                           <span>x</span>
-                          <span className="price">${product.price}</span>
+                          <span className="price">${card.price}</span>
                           <i 
                             className="fa fa-trash fa-1x" style={{marginLeft: '100px', cursor: 'pointer'}}
-                            onClick={()=> removeitemCart(product.id)} 
+                            onClick={()=> removeitemCart(card.id)} 
                           />
                         </div>
                       </div>
@@ -99,8 +98,7 @@ const Cart = ({ products, onClick }: StateProps) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.card
-    //addedItems: state.addedItems
+    card: state.card
   };
 };
 

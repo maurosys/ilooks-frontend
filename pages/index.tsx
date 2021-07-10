@@ -33,12 +33,12 @@ import { loadResquestProduct } from '../store/ducks/products/actions';
 import Head from 'next/head';
 
 interface StateProps {
-  products: ProductsPros[]
+  productss: ProductsPros[]
 }
 
 type Props = StateProps ;
 
-const Index = ({products}: Props) => {
+const Index = ({productss}: Props) => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -58,7 +58,7 @@ const Index = ({products}: Props) => {
     
     <CategoryTypes />
     
-    <Products products={products} /> 
+    <Products products={productss} /> 
     
     <ProductsOffer />    
     
@@ -77,7 +77,7 @@ const Index = ({products}: Props) => {
   }
   
   const mapStateToProps = (state: ApplicationState ) => ({
-    products: state.products.data
+    productss: state.products.data
   });
 
   export default connect(mapStateToProps)(Index);

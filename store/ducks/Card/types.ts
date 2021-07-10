@@ -14,6 +14,7 @@ export interface card {
     image: string,
     imageHover: string
     quantity: number
+    total: number
 }
 
 /**

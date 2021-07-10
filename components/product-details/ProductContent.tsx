@@ -6,13 +6,15 @@ import Head from "next/head";
 import SizeGuide from "./SizeGuide";
 import Shipping from "./Shipping";
 import { Products as ProductsPros } from "../../store/ducks/products/types";
-import { addToCart } from "../../store/ducks/Card/actions";
+import { addToCart, removeItem } from "../../store/ducks/Card/actions";
+import { card } from "../../store/ducks/Card/types";
 
 interface StateProps {
   product: ProductsPros;
+  card: card[];
 }
 
-const ProductContent = ({ product }: StateProps) => {
+const ProductContent = ({ product, card }: StateProps) => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   const [max, setMax] = useState(10);
@@ -20,11 +22,24 @@ const ProductContent = ({ product }: StateProps) => {
   const [sizeGuide, setSizeGuide] = useState(false);
   const [shipModal, setShipModal] = useState(false);
   const [produtosCard, setProdutoCards] = useState(product);
+  // console.table(card);
+  const teste = card.find((item) => product.id === item.id);
+  console.table(teste);
+
+  function checkIsExist (item) {
+    if (!teste) {
+      addItemCart(item)
+      return;
+    } else {
+      dispatch(removeItem(item.id))
+      addItemCart({...item, qty})      
+    }
+  }
 
   function addItemCart(item) {
     dispatch(addToCart(item));
 
-    toast.success("Adicionado com sucesso", {
+    toast.success("Adicionado ao carrinho", {
       position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
@@ -67,18 +82,18 @@ const ProductContent = ({ product }: StateProps) => {
   return (
     <>
       <Head>
-        <title>{product.title}</title>
+        <title>{product?.title}</title>
       </Head>
       <div className="col-lg-6 col-md-6">
         <div className="product-details-content">
-          <h3>{product.title}</h3>
+          <h3>{product?.title}</h3>
 
           <div className="price">
             <span className="new-price">
               {new Intl.NumberFormat("br-BR", {
                 style: "currency",
                 currency: "BRL",
-              }).format(product.price)}
+              }).format(product?.price)}
             </span>
           </div>
 
@@ -205,7 +220,7 @@ const ProductContent = ({ product }: StateProps) => {
             <button
               type="submit"
               className="btn btn-primary"
-              onClick={() => addItemCart({ ...product, qty })}
+              onClick={() => checkIsExist({ ...product, qty })}
             >
               <i className="fas fa-cart-plus"></i> Adiconar ao Carrinho
             </button>
@@ -307,4 +322,10 @@ const ProductContent = ({ product }: StateProps) => {
   );
 };
 
-export default ProductContent;
+const mapStateToProps = (state) => {
+  return {
+    card: state.card,
+  };
+};
+
+export default connect(mapStateToProps)(ProductContent);

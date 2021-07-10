@@ -25,10 +25,10 @@ const Product = ( { products }: Props ) => {
     const product = products.find(item => item.id === Number(id))
     
     useEffect(()=> {
-        dispatch(loadResquestProduct())
+        dispatch(loadResquestProduct())        
     }, [])
 
-
+console.table(product)
     return (
         <>
             <Header />             
