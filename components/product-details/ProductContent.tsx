@@ -35,7 +35,7 @@ const ProductContent = ({ product, card }: StateProps) => {
   }
 
   function addItemCart(item) {
-    dispatch(addToCart(item));
+    dispatch(addToCart({...item, total: item.price * qty}));
 
     toast.success("Adicionado ao carrinho", {
       position: "bottom-left",

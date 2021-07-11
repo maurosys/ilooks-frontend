@@ -52,9 +52,6 @@ const Products = ({ products }: StateProps) => {
   const [display, setDisplay] = useState(false);
   const [panel, setPanel] = useState(true);
 
-  console.log('chegou aqui',modalData)
-
-
   const openTabSection = (evt, tabNmae) => {
     let i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabs_item");

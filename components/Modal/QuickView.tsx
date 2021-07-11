@@ -21,10 +21,9 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
   const [max, setMax] = useState(10);
   const [min, setMin] = useState(1);
   const modalOpen = false;
-  console.table(qty)
 
   function addItemCart(item) {
-    dispatch(addToCart(item));
+    dispatch(addToCart({...item, total: item.price * qty, qty: qty}));
 
     toast.success("Adicionado ao carrinho", {
       position: "bottom-left",
