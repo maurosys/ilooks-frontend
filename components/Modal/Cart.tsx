@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import Link from "next/link";
-import { Products as ProductsPros } from "../../store/ducks/products/types";
 import { card } from '../../store/ducks/Card/types';
 import {removeItem } from '../../store/ducks/Card/actions';
 
@@ -20,7 +19,7 @@ const Cart = ({ card, onClick }: StateProps) => {
     }
     return acc;
   }, 0)
-  console.table(card)
+
   const display = false;
   const dispatch = useDispatch();
   const closeCart = () => {
@@ -71,7 +70,10 @@ const Cart = ({ card, onClick }: StateProps) => {
                         <div className="product-price">
                           <span>{card.qty ? card.qty : 1}</span>
                           <span>x</span>
-                          <span className="price">${card.price}</span>
+                          <span className="price">{new Intl.NumberFormat("br-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          }).format(card.price)}</span>
                           <i 
                             className="fa fa-trash fa-1x" style={{marginLeft: '100px', cursor: 'pointer'}}
                             onClick={()=> removeitemCart(card.id)} 

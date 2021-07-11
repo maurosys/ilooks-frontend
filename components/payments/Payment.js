@@ -4,11 +4,9 @@ import Router from 'next/router'
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { resetCart } from '../../store/actions/actions';
 
 class Payments extends React.Component {
-    handleClick = () => {
-        this.props.resetCart(); 
+    handleClick = () => {       
         toast.success('Order has been confirmed', {
             position: "top-center",
             autoClose: 3000,
@@ -52,13 +50,10 @@ class Payments extends React.Component {
     }
 }
 
-const mapDispatchToProps= (dispatch)=>{
+const mapStateToProps= (state) => {
     return {
-        resetCart: () => { dispatch(resetCart()) }
+       card: state.card
     }
 }
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(Payments)
+export default connect(mapStateToProps)(Payments)
