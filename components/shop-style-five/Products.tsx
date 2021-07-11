@@ -85,13 +85,6 @@ const Products = ({ products }: StateProps) => {
     return setModalOpen(false);
   };
 
-  // const handleModalData = (data) => {
-    
-  //   setModalData(data);
-  //   console.log('chegou aqui',modalData)
-    
-  // };
-
   return (
     <section className="all-products-area pb-60">
       <div className="container">

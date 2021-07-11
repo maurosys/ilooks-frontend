@@ -21,10 +21,8 @@ const ProductContent = ({ product, card }: StateProps) => {
   const [min, setMin] = useState(1);
   const [sizeGuide, setSizeGuide] = useState(false);
   const [shipModal, setShipModal] = useState(false);
-  const [produtosCard, setProdutoCards] = useState(product);
-  // console.table(card);
   const teste = card.find((item) => product.id === item.id);
-  console.table(teste);
+
 
   function checkIsExist (item) {
     if (!teste) {
