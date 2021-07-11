@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Products as ProductsPros } from "../../store/ducks/products/types";
 import {removeItem } from '../../store/ducks/Card/actions';
 
+
 interface StateProps {
   card: ProductsPros[];
   onClick: (display) => void;
@@ -12,6 +13,13 @@ interface StateProps {
 
 
 const Cart = ({ card, onClick }: StateProps) => {
+  const total = card?.reduce((acc, card) => {
+    if (card.price) {
+      return acc + card.price;
+    }
+    return acc;
+  }, 0)
+  console.table(total)
   const display = false;
   const dispatch = useDispatch();
   const closeCart = () => {
@@ -21,7 +29,6 @@ const Cart = ({ card, onClick }: StateProps) => {
   function removeitemCart(id) {
     dispatch(removeItem(id))
   }
-  // console.table(card)
   return (
     <div
       className="modal right fade show shoppingCartModal"
@@ -43,7 +50,7 @@ const Cart = ({ card, onClick }: StateProps) => {
           </button>
 
           <div className="modal-body">
-            <h3>Meu carrinho {card?.length} </h3>
+            <h3>Meu carrinho  </h3>
 
             <div className="product-cart-content">
               {card?.length > 0
@@ -78,7 +85,10 @@ const Cart = ({ card, onClick }: StateProps) => {
             <div className="product-cart-subtotal">
               <span>Subtotal</span>
 
-              <span className="subtotal">total</span>
+              <span className="subtotal"> {new Intl.NumberFormat("br-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(total)}</span>
             </div>
 
             <div className="product-cart-btn">
