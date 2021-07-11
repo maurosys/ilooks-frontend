@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import Link from "next/link";
 import { Products as ProductsPros } from "../../store/ducks/products/types";
+import { card } from '../../store/ducks/Card/types';
 import {removeItem } from '../../store/ducks/Card/actions';
 
 
 interface StateProps {
-  card: ProductsPros[];
+  card: card[];
   onClick: (display) => void;
 }
 
@@ -15,11 +16,11 @@ interface StateProps {
 const Cart = ({ card, onClick }: StateProps) => {
   const total = card?.reduce((acc, card) => {
     if (card.price) {
-      return acc + card.price;
+      return acc + card.total;
     }
     return acc;
   }, 0)
-  console.table(total)
+  console.table(card)
   const display = false;
   const dispatch = useDispatch();
   const closeCart = () => {
@@ -50,7 +51,7 @@ const Cart = ({ card, onClick }: StateProps) => {
           </button>
 
           <div className="modal-body">
-            <h3>Meu carrinho  </h3>
+            <h3>Meu carrinho   </h3>
 
             <div className="product-cart-content">
               {card?.length > 0
