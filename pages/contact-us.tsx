@@ -175,8 +175,8 @@ const Contact = () => {
                         <textarea
                           name="message"
                           id="message"
-                          cols="30"
-                          rows="8"
+                          cols={30}
+                          rows={8}
                           required={true}
                           data-error="Please enter your message"
                           className="form-control"
