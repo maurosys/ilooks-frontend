@@ -7,7 +7,7 @@ import ProductContent from '../../components/product-details/ProductContent';
 import DetailsTab from '../../components/product-details/DetailsTab';
 import RelatedProducts from '../../components/product-details/RelatedProducts';
 import Facility from '../../components/shop-style-five/Facility';
-import Header from '../../components/Layout/Header';
+import Header from '../../components/Layout/HeaderFixed';
 import { ApplicationState } from '../../store';
 import {  Products as ProductsPros  } from '../../store/ducks/products/types';
 import { loadResquestProduct } from '../../store/ducks/products/actions';

@@ -7,7 +7,7 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 import Footer from "../components/Layout/Footer";
-import Header from "../components/Layout/Header";
+import Header from "../components/Layout/HeaderFixed";
 import Facility from "../components/shop-style-five/Facility";
 
 const Faq = () => {

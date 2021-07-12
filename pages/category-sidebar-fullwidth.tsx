@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
-import Header from "../components/Layout/Header";
+import Header from "../components/Layout/HeaderFixed";
 import Footer from "../components/Layout/Footer";
 import Facility from "../components/shop-style-five/Facility";
 import LeftSidebar from "../components/Sidebar/LeftSidebar";

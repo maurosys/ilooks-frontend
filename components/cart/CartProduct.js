@@ -28,7 +28,7 @@ class CartProduct extends Component {
     // }
 
     render() {
-        let cartItems = this.props.products.length ?
+        let cartItems = this.props.products && this.props.products.length > 0 ?
         (
             this.props.products.map((data, idx) => {
                 return (

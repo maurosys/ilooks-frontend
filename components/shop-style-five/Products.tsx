@@ -120,7 +120,6 @@ const Products = ({ products }: StateProps) => {
                   <div className="row">
                     {display ? (
                       <OwlCarousel
-                        className="all-products-slides-two owl-carousel owl-theme"
                         {...options}
                       >
                         {products?.map((data, idx) => (
