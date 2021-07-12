@@ -119,8 +119,7 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab1" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel
-                        className="all-products-slides-two owl-carousel owl-theme"
+                      <OwlCarousel                        
                         {...options}
                       >
                         {products?.map((data, idx) => (
@@ -194,8 +193,7 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab2" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel
-                        className="all-products-slides-two owl-carousel owl-theme"
+                      <OwlCarousel                        
                         {...options}
                       >
                         {products.map((data, idx) => (
@@ -270,8 +268,7 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab3" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel
-                        className="all-products-slides-two owl-carousel owl-theme"
+                      <OwlCarousel                        
                         {...options}
                       >
                         {products.map((data, idx) => (
