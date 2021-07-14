@@ -237,6 +237,21 @@
     padding-bottom: 6px;
 }
 
+.card-address-add-container {
+    border: 2px dashed #868383;
+    max-width: 350px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card-address-add-container .button-add label {
+    color: white;
+}
+
 
 .rb-custom {
     display: flex;

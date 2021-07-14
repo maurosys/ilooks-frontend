@@ -4,6 +4,7 @@ import Footer from '../components/Layout/Footer';
 import Facility from '../components/shop-style-five/Facility';
 import Details from '../components/Detalis';
 import CardAddress from '../components/Cards/Address'
+import CardsAdd from '../components/Cards/Add'
 
 const Address = () => {
     const [address, setAddress] = useState([
@@ -57,16 +58,6 @@ const Address = () => {
             state: 'SP',
             primary: false,
         },
-        {   
-            id: '6',
-            nickname: 'Profissional',
-            address: 'Rua teste, 123',
-            zipcode: '01111-222',
-            district: 'NextJS',
-            city: 'São Paulo',
-            state: 'SP',
-            primary: false,
-        }
     ]);
 
     
@@ -97,9 +88,9 @@ const Address = () => {
                     
                             <div className="container-address-content">
                             {
-                                address.map(add => {
+                                address.map((add, index) => {
                                     return (
-                                        <div className="card">
+                                        <div className="card" key={index}>
                                                 <CardAddress 
                                                 id={add.id}
                                                 nickname={add.nickname}
@@ -115,6 +106,10 @@ const Address = () => {
                                     )
                                 })
                             }
+
+                                <div className="card">
+                                    <CardsAdd />
+                                </div>
                             </div>
                             
                             

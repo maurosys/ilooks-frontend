@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link'
-import { FiArchive } from 'react-icons/fi';
+
 import { MdCardGiftcard, MdAccountCircle, MdLocationOn, MdContactPhone } from 'react-icons/md';
 
 

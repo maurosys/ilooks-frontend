@@ -3,11 +3,8 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 interface CardAddressProps {
     id?: string;
     nickname?: string
-    address?: string;
-    zipcode?: string;
-    district?: string;
-    city?: string;
-    state?: string;
+    phone?: string;
+    description?: string;
     primary?: boolean;
     handleChangePrimary?: any;
 }
@@ -15,11 +12,8 @@ interface CardAddressProps {
 export default function CardAddress({
     id,
     nickname,
-    address,
-    zipcode,
-    district,
-    city,
-    state,
+    phone,
+    description,
     primary,
     handleChangePrimary
 }: CardAddressProps) {
@@ -35,18 +29,20 @@ export default function CardAddress({
                     <FaEdit size={25} style={{
                         cursor: 'pointer',
                     }} />
+
                     {
                         !primary && (<FaTrashAlt size={20} style={{
                             cursor: 'pointer',
                         }}  />)
                     }
+                    
                 </div>
             </div>
 
             <div className="card-address-content">
-                {address}<br />
-                {zipcode} - {district}<br />
-                {city}/{state}<br />
+                {phone}<br />
+                {description}<br />
+                <br />
                 <hr />
 
                 <div className="rb-custom" onClick={() => {
