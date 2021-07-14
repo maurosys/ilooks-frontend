@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { FiArchive } from 'react-icons/fi';
 import { MdCardGiftcard, MdAccountCircle, MdLocationOn, MdContactPhone } from 'react-icons/md';
 
+
+
 const Details = (props) => {
     const router = useRouter();
     const path = router.pathname;
@@ -37,9 +39,9 @@ const Details = (props) => {
             <div className="menu-options-orders">
                 <ul>
                     {
-                        itemsMenu.map(item => {
+                        itemsMenu.map((item, index) => {
                             return (
-                                <Link href={item.route}><li className={path === item.route && "active"}><span>{item.icon} <span>{item.label}</span></span></li></Link>
+                                <Link href={item.route} key={index}><li className={path === item.route ? "active" : ''}><span>{item.icon} <span>{item.label}</span></span></li></Link>
                             )
                         })
                     }
@@ -49,7 +51,11 @@ const Details = (props) => {
             <hr />
             
             <div className="menu-option-orders-details">
-                <button className="btn btn-secondary">fale com a gente</button>
+                <button className="btn btn-secondary" style={{
+                    backgroundColor: '#222',
+                    borderRadius: 5,
+                }}>fale com a gente</button>
+                {/* <button className="btn-primary-br">Fale com a gente</button> */}
                 <img src={require("../../images/ilooks.png")} alt="logo" style={{
                     width: 100,
                     marginTop: 50

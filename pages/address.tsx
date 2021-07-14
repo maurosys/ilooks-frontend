@@ -83,17 +83,18 @@ const Address = () => {
         <>
             <HeaderFixed />
             <section className="login-area ptb-60">
-                <div className="container">
-                    <h1>Minha conta</h1>
+                <div className="container" style={{
+                    marginTop: -35
+                }}>
+                    <h1>Meus endereços</h1>
                     <div className="container-order">
                         <div className="container-order-options">
                             <Details />
                         </div>
 
                         <div className="container-order-content">
-                            <h5>Endereços</h5>
-
-                          
+                            {/* <h5>Endereços</h5> */}
+                    
                             <div className="container-address-content">
                             {
                                 address.map(add => {
