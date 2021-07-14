@@ -4,7 +4,7 @@
  export enum CardTypes {
     ADD_TO_CART = '@card/ADD_TO_CART',
     REMOVE_ITEM = '@card/REMOVE_ITEM',
-    
+    GET_ALL = '@card/GET_ALL',
 };
 
 export interface card {
