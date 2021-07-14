@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "../components/Layout/Header";
+import Header from "../components/Layout/HeaderFixed";
 import Footer from "../components/Layout/Footer";
 import Facility from "../components/shop-style-five/Facility";
 
@@ -175,8 +175,8 @@ const Contact = () => {
                         <textarea
                           name="message"
                           id="message"
-                          cols="30"
-                          rows="8"
+                          cols={30}
+                          rows={8}
                           required={true}
                           data-error="Please enter your message"
                           className="form-control"

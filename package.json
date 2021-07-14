@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "next -p 3006",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "server": "json-server --watch db.json"
     },
     "author": "EnvyTheme.com",
     "license": "ISC",
