@@ -6,6 +6,7 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     <link rel="icon" type="image/png" href={require("../images/favicon.png")}></link>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 </Head>
                 <body>
                     <Main />

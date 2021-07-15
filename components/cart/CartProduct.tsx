@@ -58,7 +58,10 @@ const CartProduct = ({ card }: CartPorductProps) => {
             </td>
 
             <td className="product-price">
-              <span className="unit-amount">${data.price}</span>
+              <span className="unit-amount">{new Intl.NumberFormat("br-BR",{
+                style: "currency",
+                currency: "BRL"
+              }).format(data.price)}</span>
             </td>
 
             <td className="product-quantity">
@@ -68,7 +71,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                   type="number"
                   value={data.qty}
                   min="1"
-                  max={10}
+                  max={100}
                   onChange={(e) => IncrementItem({...data, total: data.price * Number(e.target.value) , qty: Number(e.target.value)}) }
                 />
                 
@@ -76,7 +79,10 @@ const CartProduct = ({ card }: CartPorductProps) => {
             </td>
 
             <td className="product-subtotal">
-              <span className="subtotal-amount">${data.price * data.qty}</span>
+              <span className="subtotal-amount">{new Intl.NumberFormat("br-BR", {
+                style: "currency",
+                currency: "BRL"
+              }).format(data.price * data.qty)}</span>
 
               <Link href="#">
                 <a className="remove" onClick={() => deleteCard(data.id)}>
