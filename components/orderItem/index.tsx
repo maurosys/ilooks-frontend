@@ -1,58 +1,3 @@
-<<<<<<< HEAD
-import { useState } from "react";
-import { FiChevronsDown, FiChevronsUp } from "react-icons/fi";
-
-export default function OrderItem() {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleExpanded = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  return (
-    <div className="accordion-custom">
-      <div className="accordion-custom-header" onClick={handleExpanded}>
-        <div>
-          {!isExpanded ? (
-            <FiChevronsDown
-              size={20}
-              style={{
-                cursor: "pointer",
-              }}
-            />
-          ) : (
-            <FiChevronsUp
-              size={20}
-              style={{
-                cursor: "pointer",
-              }}
-            />
-          )}
-          <span className="accordion-custom-header-span-status">
-            Entrega realizada
-          </span>
-        </div>
-        <span>
-          entregue dia{" "}
-          <span
-            style={{
-              color: "#40cd28",
-            }}
-          >
-            19/abril
-          </span>
-        </span>
-      </div>
-      <hr />
-
-      <div>
-        Produto
-        {isExpanded && <p>adasdas</p>}
-      </div>
-    </div>
-  );
-}
-=======
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { FiChevronsDown, FiChevronsUp } from 'react-icons/fi';
@@ -110,32 +55,7 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
                                 </div>
                             </div>
                         ))
-                    }
-
-
-                    {/* <div className="item">
-                        <img src="https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg" alt="imageProduct" width={80} />
-                        <div>
-                            <p>Vestido teste rosa - verão</p>
-                            <span>1 unidade</span>
-                        </div>
-                    </div>
-
-                    <div className="item">
-                        <img src="https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg" alt="imageProduct" width={80} />
-                        <div>
-                            <p>Vestido teste rosa - verão</p>
-                            <span>1 unidade</span>
-                        </div>
-                    </div>
-
-                    <div className="item">
-                        <img src="https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg" alt="imageProduct" width={80} />
-                        <div>
-                            <p>Vestido teste rosa - verão</p>
-                            <span>1 unidade</span>
-                        </div>
-                    </div> */}
+                    }ð
 
                     
                 </div>
@@ -169,4 +89,3 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
         </div>
     )
 }
->>>>>>> 5bdfab38ba1658124e9095715aea584b239b6450

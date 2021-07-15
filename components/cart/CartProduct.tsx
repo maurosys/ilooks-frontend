@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useDispatch, connect } from "react-redux";
 import { toast } from "react-toastify";
 import { card } from "../../store/ducks/Card/types";
-import { addToCart, removeItem, getAll } from "../../store/ducks/Card/actions";
+import { addToCart, removeItem, getAll, alterQuantity } from "../../store/ducks/Card/actions";
 import { useEffect } from "react";
 
 interface CartPorductProps {
@@ -14,7 +14,6 @@ const CartProduct = ({ card }: CartPorductProps) => {
   const dispatch = useDispatch();
   const [max, setMax] = useState(10);
   const [min, setMin] = useState(1);
-  const [qty, setQty] = useState(null);
 
   let teste = 0
 
@@ -23,17 +22,10 @@ const CartProduct = ({ card }: CartPorductProps) => {
   };
 
   const IncrementItem = (data: card) => {
-    dispatch(removeItem(data.id))
-    dispatch(addToCart({...data}))
+    dispatch(alterQuantity(data))
   };
 
-  const DecreaseItem = (data: card) => {
-    
-      dispatch(removeItem(data.id))
-      dispatch(addToCart({...data}))
-      return setQty(qty - 1);
-    
-  };
+
 
   let cartItems =
     card && card.length > 0 ? (
@@ -77,7 +69,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                   value={data.qty}
                   min="1"
                   max={10}
-                  onChange={(e) => IncrementItem({...data, qty: Number(e.target.value)}) }
+                  onChange={(e) => IncrementItem({...data, total: data.price * Number(e.target.value) , qty: Number(e.target.value)}) }
                 />
                 
               </div>

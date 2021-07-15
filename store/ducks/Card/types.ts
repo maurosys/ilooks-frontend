@@ -4,6 +4,7 @@
  export enum CardTypes {
     ADD_TO_CART = '@card/ADD_TO_CART',
     REMOVE_ITEM = '@card/REMOVE_ITEM',
+    ALTER_QUANTITY = '@card/ALTER_QUANTITY',
     GET_ALL = '@card/GET_ALL',
 };
 
