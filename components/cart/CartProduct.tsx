@@ -14,7 +14,6 @@ const CartProduct = ({ card }: CartPorductProps) => {
   const dispatch = useDispatch();
   const [max, setMax] = useState(10);
   const [min, setMin] = useState(1);
-  const [qty, setQty] = useState(null);
 
   let teste = 0
 
@@ -77,7 +76,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                   value={data.qty}
                   min="1"
                   max={10}
-                  onChange={(e) => IncrementItem({...data, qty: Number(e.target.value)}) }
+                  onChange={(e) => IncrementItem({...data, total: data.price * Number(e.target.value) , qty: Number(e.target.value)}) }
                 />
                 
               </div>
