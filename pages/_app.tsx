@@ -8,7 +8,7 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 import 'react-image-lightbox/style.css';
 import '../public/assets/styles/style.css';
 import '../public/assets/styles/responsive.css';
-import '../public/assets/styles/custom.css'
+import '../public/assets/styles/custom.css';
 
 import Layout from '../components/_App/Layout';
 import { AppProps } from 'next/app'
