@@ -21,6 +21,8 @@ export interface Products {
     image: string,
     imageHover: string
     qty: number
+    total: number
+    active?: boolean;
 }
 
 /**
@@ -31,5 +33,4 @@ export interface ProductsState {
     readonly data: Products[],
     readonly loading: boolean,
     readonly error: boolean,
-    getProduto?: ProductsState,
 }
