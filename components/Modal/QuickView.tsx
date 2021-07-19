@@ -102,7 +102,7 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
                 </h3>
 
                 <div className="price">
-                  <span className="new-price">${modalData?.price}</span>
+                  <span className="new-price">{modalData?.price}</span>
                 </div>
 
                 <ul className="product-info">

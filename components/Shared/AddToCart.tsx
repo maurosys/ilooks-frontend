@@ -3,16 +3,17 @@ import { useDispatch, connect } from "react-redux";
 import { toast } from "react-toastify";
 import checkout from "../../pages/checkout";
 import { addToCart } from "../../store/ducks/Card/actions";
-import { card } from "../../store/ducks/Card/types";
+import { Products } from "../../store/ducks/products/types";
 
 interface CardProps {
-  card: card[];
+  data: Products;
 }
 
-const AddToCart = (data, { card }: CardProps) => {
+const AddToCart = ({data}: CardProps) => {
+  const qty = 1;
   const dispatch = useDispatch();
-  const handleAddToCart = (data) => {
-    dispatch(addToCart(data));
+  const handleAddToCart = (data: Products) => {
+    dispatch(addToCart({ ...data, total: data.price * qty, qty: qty }));
 
     toast.success("Adicionado com sucesso", {
       position: "bottom-left",
@@ -25,7 +26,7 @@ const AddToCart = (data, { card }: CardProps) => {
   };
 
   return (
-    <Link href="#">
+    <div>
       <a
         className="btn btn-light"
         onClick={(e) => {
@@ -35,12 +36,10 @@ const AddToCart = (data, { card }: CardProps) => {
       >
         Adicionar ao Carrinho
       </a>
-    </Link>
+    </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  card: state.card,
-});
 
-export default connect(mapStateToProps)(AddToCart);
+
+export default AddToCart;

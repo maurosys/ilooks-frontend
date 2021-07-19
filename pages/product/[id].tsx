@@ -28,7 +28,6 @@ const Product = ( { products }: Props ) => {
         dispatch(loadResquestProduct())        
     }, [])
 
-console.table(product)
     return (
         <>
             <Header />             

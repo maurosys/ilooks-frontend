@@ -6,7 +6,11 @@ import AddToCart from "../Shared/AddToCart";
 import { useEffect } from "react";
 const OwlCarousel = dynamic(import("react-owl-carousel3"));
 import { Products as ProductsPros } from "../../store/ducks/products/types";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { addToWishlist } from "../../store/ducks/WishList/action";
+import { ToastContainer, toast } from "react-toastify";
+import { Wishlist } from "../../store/ducks/WishList/types";
+import { BsHeartFill } from "react-icons/bs";
 
 const options = {
   loop: true,
@@ -42,15 +46,22 @@ const options = {
   },
 };
 
-interface StateProps {
-  products: ProductsPros[];
+const handleActive = (data) => {
+  if (data.active) {
+   return data.active = false;
+  }
 }
 
-const Products = ({ products }: StateProps) => {
+interface StateProps {
+  products: ProductsPros[];
+  wishlist?: Wishlist[];
+}
+
+const Products = ({ products, wishlist }: StateProps) => {
+  const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [display, setDisplay] = useState(false);
-  const [panel, setPanel] = useState(true);
 
   const openTabSection = (evt, tabNmae) => {
     let i, tabcontent, tablinks;
@@ -119,70 +130,83 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab1" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel                        
-                        {...options}
-                      >
-                        {products?.map((data, idx) => (
-                          <div className="col-lg-12 col-md-12" key={idx}>
-                            <div className="single-product-box">
-                              <div className="product-image">
-                                <Link
-                                  href="/product/[id]"
-                                  as={`/product/${data.id}`}
-                                >
-                                  <a>
-                                    <img src={data.image} alt="image" />
-                                    <img src={data.imageHover} alt="image" />
-                                  </a>
-                                </Link>
-
-                                <ul>
-                                  <li>
-                                    <Link href="#">
-                                      <a
-                                        data-tip="Quick View"
-                                        data-place="left"
-                                        onClick={(e) => {                                         
-                                          setModalData(data);
-                                          openModal();
-                                        }}
-                                      >
-                                        <i className="far fa-eye"></i>
-                                      </a>
-                                    </Link>
-                                  </li>
-                                </ul>
-                              </div>
-
-                              <div className="product-content">
-                                <h3>
+                      <OwlCarousel {...options}>
+                        {products?.map((data, idx) => {
+                          const wishlistId = wishlist.filter((item: Wishlist) => item.id === data.id )                       
+                          return (
+                            <div className="col-lg-12 col-md-12" key={idx}>
+                              <div className="single-product-box">
+                                <div className="product-image">
                                   <Link
                                     href="/product/[id]"
                                     as={`/product/${data.id}`}
                                   >
-                                    <a>{data.title}</a>
+                                    <a>
+                                      <img src={data.image} alt="image" />
+                                      <img src={data.imageHover} alt="image" />
+                                    </a>
                                   </Link>
-                                </h3>
 
-                                <div className="product-price">
-                                  <span className="new-price">
-                                    ${data.price}
-                                  </span>
+                                  <ul>
+                                    <li>
+                                      <Link href="#">
+                                        <a
+                                          data-tip="Quick View"
+                                          data-place="left"
+                                          onClick={(e) => {
+                                            setModalData(data);
+                                            openModal();
+                                          }}
+                                        >
+                                          <i className="far fa-eye"></i>
+                                        </a>
+                                      </Link>
+                                    </li>
+                                    <li onClick={() => {dispatch(addToWishlist({...data, active: true}))}}>
+                                      <Link href="#">
+                                        <a
+                                          data-tip="Add to Wishlist"
+                                          data-place="left"
+                                        >
+                                          <i
+                                            className="far"                                            
+                                          >
+                                            {wishlistId[0]?.active ? (
+                                              <BsHeartFill color="red" />
+                                            ) : (
+                                              <BsHeartFill />
+                                            )}
+                                          </i>
+                                        </a>
+                                      </Link>
+                                    </li>
+                                  </ul>
                                 </div>
 
-                                <div className="rating">
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="far fa-star"></i>
-                                </div>
+                                <div className="product-content">
+                                  <h3>
+                                    <Link
+                                      href="/product/[id]"
+                                      as={`/product/${data.id}`}
+                                    >
+                                      <a>{data.title}</a>
+                                    </Link>
+                                  </h3>
 
-                                {/* <AddToCart {...data} /> */}
+                                  <div className="product-price">
+                                    <span className="new-price">
+                                      {new Intl.NumberFormat("br-BR", {
+                                        style: "currency",
+                                        currency: "BRL",
+                                      }).format(data.price)}
+                                    </span>
+                                  </div>
+                                  <AddToCart data={data} />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </OwlCarousel>
                     ) : (
                       ""
@@ -193,166 +217,85 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab2" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel                        
-                        {...options}
-                      >
-                        {products.map((data, idx) => (
-                          <div className="col-lg-12 col-md-12" key={idx}>
-                            <div className="single-product-box">
-                              <div className="product-image">
-                                <Link
-                                  href="/product/[id]"
-                                  as={`/product/${data.id}`}
-                                >
-                                  <a>
-                                    <img src={data.image} alt="image" />
-                                    <img src={data.imageHover} alt="image" />
-                                  </a>
-                                </Link>
-
-                                <ul>
-                                  <li>
-                                    <Link href="#">
-                                      <a
-                                        data-tip="Quick View"
-                                        data-place="left"
-                                        onClick={(e) => {
-                                          e.preventDefault();
-                                          setModalData(data);
-                                          openModal();
-                                        }}
-                                      >
-                                        <i className="far fa-eye"></i>
-                                      </a>
-                                    </Link>
-                                  </li>
-                                </ul>
-                              </div>
-
-                              <div className="product-content">
-                                <h3>
+                      <OwlCarousel {...options}>
+                        {products.map((data, idx) => {
+                          const wishlistId = wishlist.filter((item: Wishlist) => item.id === data.id )
+                          return (
+                            <div className="col-lg-12 col-md-12" key={idx}>
+                              <div className="single-product-box">
+                                <div className="product-image">
                                   <Link
                                     href="/product/[id]"
                                     as={`/product/${data.id}`}
                                   >
-                                    <a>{data.title}</a>
+                                    <a>
+                                      <img src={data.image} alt="image" />
+                                      <img src={data.imageHover} alt="image" />
+                                    </a>
                                   </Link>
-                                </h3>
-
-                                <div className="product-price">
-                                  <span className="new-price">
-                                    ${data.price}
-                                  </span>
+  
+                                  <ul>
+                                    <li>
+                                      <Link href="#">
+                                        <a
+                                          data-tip="Quick View"
+                                          data-place="left"
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            setModalData(data);
+                                            openModal();
+                                          }}
+                                        >
+                                          <i className="far fa-eye"></i>
+                                        </a>
+                                      </Link>
+                                    </li>
+                                    <li  onClick={() => {dispatch(addToWishlist({...data, active: true}))}}>
+                                      <Link href="#">
+                                        <a
+                                          data-tip="Add to Wishlist"
+                                          data-place="left"
+                                        >
+                                          <i
+                                              className="far"                                            
+                                            >
+                                              {wishlistId[0]?.active ? (
+                                                <BsHeartFill color="red" />
+                                              ) : (
+                                                <BsHeartFill />
+                                              )}
+                                            </i>
+                                        </a>
+                                      </Link>
+                                    </li>
+                                  </ul>
                                 </div>
-
-                                <div className="rating">
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="far fa-star"></i>
+  
+                                <div className="product-content">
+                                  <h3>
+                                    <Link
+                                      href="/product/[id]"
+                                      as={`/product/${data.id}`}
+                                    >
+                                      <a>{data.title}</a>
+                                    </Link>
+                                  </h3>
+  
+                                  <div className="product-price">
+                                    <span className="new-price">
+                                      {new Intl.NumberFormat("br-BR", {
+                                        style: "currency",
+                                        currency: "BRL",
+                                      }).format(data.price)}
+                                    </span>
+                                  </div>
+  
+                                  <AddToCart data={data} />
                                 </div>
-
-                                <AddToCart {...data} />
                               </div>
                             </div>
-                          </div>
-                        ))}
-                      </OwlCarousel>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
-
-                <div id="tab3" className="tabs_item">
-                  <div className="row">
-                    {display ? (
-                      <OwlCarousel                        
-                        {...options}
-                      >
-                        {products.map((data, idx) => (
-                          <div className="col-lg-12 col-md-12" key={idx}>
-                            <div className="single-product-box">
-                              <div className="product-image">
-                                <Link
-                                  href="/product/[id]"
-                                  as={`/product/${data.id}`}
-                                >
-                                  <a>
-                                    <img src={data.image} alt="image" />
-                                    <img src={data.imageHover} alt="image" />
-                                  </a>
-                                </Link>
-
-                                <ul>
-                                  <li>
-                                    <Link href="#">
-                                      <a
-                                        data-tip="Quick View"
-                                        data-place="left"
-                                        onClick={(e) => {
-                                          e.preventDefault();
-                                          setModalData(data);
-                                          openModal();
-                                        }}
-                                      >
-                                        <i className="far fa-eye"></i>
-                                      </a>
-                                    </Link>
-                                  </li>
-                                  <li>
-                                    <Link href="#">
-                                      <a
-                                        data-tip="Add to Wishlist"
-                                        data-place="left"
-                                      >
-                                        <i className="far fa-heart"></i>
-                                      </a>
-                                    </Link>
-                                  </li>
-                                  <li>
-                                    <Link href="#">
-                                      <a
-                                        data-tip="Add to Compare"
-                                        data-place="left"
-                                      >
-                                        <i className="fas fa-sync"></i>
-                                      </a>
-                                    </Link>
-                                  </li>
-                                </ul>
-                              </div>
-
-                              <div className="product-content">
-                                <h3>
-                                  <Link
-                                    href="/product/[id]"
-                                    as={`/product/${data.id}`}
-                                  >
-                                    <a>{data.title}</a>
-                                  </Link>
-                                </h3>
-
-                                <div className="product-price">
-                                  <span className="new-price">
-                                    ${data.price}
-                                  </span>
-                                </div>
-
-                                <div className="rating">
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="far fa-star"></i>
-                                </div>
-
-                                <AddToCart {...data} />
-                              </div>
-                            </div>
-                          </div>
-                        ))}
+                          )
+                        })}
                       </OwlCarousel>
                     ) : (
                       ""
@@ -365,7 +308,7 @@ const Products = ({ products }: StateProps) => {
         </div>
       </div>
       {modalOpen ? (
-        <QuickView  closeModal={closeModal} modalData={modalData}  />
+        <QuickView closeModal={closeModal} modalData={modalData} />
       ) : (
         ""
       )}
@@ -375,7 +318,7 @@ const Products = ({ products }: StateProps) => {
 
 const mapStateToProps = (state) => {
   return {
-    card: state.card,
+    wishlist: state.wishlist,
   };
 };
 
