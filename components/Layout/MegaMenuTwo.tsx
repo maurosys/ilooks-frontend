@@ -3,6 +3,7 @@ import Head from "next/head";
 import { connect } from "react-redux";
 import Link from "next/link";
 import Cart from "../Modal/Cart";
+import Wishlist from "../Modal/Wishlist";
 import { Products as ProductsPros } from "../../store/ducks/products/types";
 import { ApplicationState } from "../../store";
 import { useAppSelector } from "../../store/hooks";
@@ -15,9 +16,18 @@ interface StateProps {
 
 const MegaMenuTwo = ({ products, card }: StateProps) => {
   const [display, setDisplay] = useState(false);
+  const [openWishlist, setOpenWishlist] = useState(false);
   const [searchForma, setSearchForma] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
   const authUser = useAppSelector(selectAuth);
+
+  const handleWishlist = () => {
+    setOpenWishlist(true);
+  };
+
+  const handleCloseWishlist = () => {
+    setOpenWishlist(false);
+  };
 
   const handleCart = () => {
     return setDisplay(!display);
@@ -283,7 +293,7 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
 
                   <li className="nav-item p-relative">
                     <Link href="/">
-                      <a className="nav-link active">Inicio</a>
+                      <a className="nav-link active">Home</a>
                     </Link>
                   </li>
 
@@ -336,7 +346,7 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
                   <div className="option-item">
                     {authUser.userId ? (
                       <Link href="/orders">
-                        <a>Minha conta ({authUser.fullName})</a>
+                        <a>Minha conta</a>
                       </Link>
                     ) : (
                       <Link href="/login">
@@ -344,7 +354,18 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
                       </Link>
                     )}
                   </div>
-
+                  <div className="option-item">
+                    <Link href="#">
+                      <a
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleWishlist();
+                        }}
+                      >
+                        Lista de desejo <i className="far fa-heart"></i>
+                      </a>
+                    </Link>
+                  </div>
                   <div className="option-item">
                     <Link href="#">
                       <a
@@ -365,6 +386,7 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
         </div>
       </div>
       {display ? <Cart onClick={handleCart} /> : ""}
+      {openWishlist ? <Wishlist closeWishlist={handleCloseWishlist} /> : ""}
     </>
   );
 };

@@ -61,7 +61,12 @@ const CartProduct = ({ card }: CartPorductProps) => {
             </td>
 
             <td className="product-price">
-              <span className="unit-amount">R$ {data.price}</span>
+              <span className="unit-amount">
+                {new Intl.NumberFormat("br-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(data.price)}
+              </span>
             </td>
 
             <td className="product-quantity">
@@ -70,7 +75,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                   type="number"
                   value={data.qty}
                   min="1"
-                  max={10}
+                  max={100}
                   onChange={(e) =>
                     IncrementItem({
                       ...data,
@@ -84,7 +89,10 @@ const CartProduct = ({ card }: CartPorductProps) => {
 
             <td className="product-subtotal">
               <span className="subtotal-amount">
-                R$ {data.price * data.qty}
+                {new Intl.NumberFormat("br-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(data.price * data.qty)}
               </span>
 
               <Link href="#">

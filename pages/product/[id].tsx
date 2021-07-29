@@ -13,45 +13,48 @@ import { Products as ProductsPros } from "../../store/ducks/products/types";
 import { loadResquestProduct } from "../../store/ducks/products/actions";
 
 interface StateProps {
-  products: ProductsPros[];
+    products: ProductsPros[]
 }
 
-type Props = StateProps;
+type Props = StateProps ;
 
-const Product = ({ products }: Props) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const { id } = router.query;
-  const product = products.find((item) => item.id === Number(id));
+const Product = ( { products }: Props ) => {
+    const dispatch = useDispatch();
+    const router = useRouter()
+    const { id } = router.query
+    const product = products.find(item => item.id === Number(id))
+    
+    useEffect(()=> {
+        dispatch(loadResquestProduct())        
+    }, [])
 
-  useEffect(() => {
-    dispatch(loadResquestProduct());
-  }, []);
+    return (
+        <>
+            <Header />             
 
-  return (
-    <>
-      <Header />
+            <section className="products-details-area pt-60">
+                <div className="container">
+                    <div className="row">
+                        
+                        <ProductImage />
 
-      <section className="products-details-area pt-60">
-        <div className="container">
-          <div className="row">
-            <ProductImage />
+                        <ProductContent product={product} />
 
-            <ProductContent product={product} />
+                        <DetailsTab />
 
-            <DetailsTab />
-          </div>
-        </div>
+                    </div>
+                </div>
 
-        <RelatedProducts products={products} />
+                <RelatedProducts products={products} />
 
-        <Facility />
-      </section>
+                <Facility />
+            </section>
 
-      <Footer />
-    </>
-  );
-};
+            <Footer />
+        </>
+    );
+}
+
 
 const mapStateToProps = (state: ApplicationState) => ({
   products: state.products.data,

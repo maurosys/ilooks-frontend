@@ -82,7 +82,7 @@ const ProductsCard = ({products}: StateProps) => {
                 <i className="far fa-star"></i>
               </div>
 
-              <AddToCart {...data} />
+              <AddToCart data= {data} />
             </div>
           </div>
         </div>

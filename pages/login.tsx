@@ -78,16 +78,17 @@ const Login = () => {
                                     <h2><span className="dot"></span> Cadastro</h2>
                                 </div>
 
-                                <form className="login-form">
-                                    <div className="form-group">
-                                        <label>Endereço de e-mail</label>
-                                        <input type="email" className="form-control" placeholder="Enter your name" id="name" name="name" />
-                                    </div>
+                  <Link href="#">
+                    <a className="forgot-password">Perdeu a senha ?</a>
+                  </Link>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                                    <div className="form-group">
-                                        <label>Password</label>
-                                        <input type="password" className="form-control" placeholder="Enter your password" id="password" name="password" />
-                                    </div>
+      <Facility />
 
                                     <button type="submit" className="btn btn-primary">Criar Conta</button>                                 
                                                                      
