@@ -1,22 +1,22 @@
-import {useEffect} from 'react';
-import { connect, useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
-import Footer from '../../components/Layout/Footer';
-import ProductImage from '../../components/product-details/ProductImage';
-import ProductContent from '../../components/product-details/ProductContent';
-import DetailsTab from '../../components/product-details/DetailsTab';
-import RelatedProducts from '../../components/product-details/RelatedProducts';
-import Facility from '../../components/shop-style-five/Facility';
-import Header from '../../components/Layout/HeaderFixed';
-import { ApplicationState } from '../../store';
-import {  Products as ProductsPros  } from '../../store/ducks/products/types';
-import { loadResquestProduct } from '../../store/ducks/products/actions';
+import { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import Footer from "../../components/Layout/Footer";
+import ProductImage from "../../components/product-details/ProductImage";
+import ProductContent from "../../components/product-details/ProductContent";
+import DetailsTab from "../../components/product-details/DetailsTab";
+import RelatedProducts from "../../components/product-details/RelatedProducts";
+import Facility from "../../components/shop-style-five/Facility";
+import Header from "../../components/Layout/HeaderFixed";
+import { ApplicationState } from "../../store";
+import { Products as ProductsPros } from "../../store/ducks/products/types";
+import { loadResquestProduct } from "../../store/ducks/products/actions";
 
 interface StateProps {
     products: ProductsPros[]
-  }
-  
-  type Props = StateProps ;
+}
+
+type Props = StateProps ;
 
 const Product = ( { products }: Props ) => {
     const dispatch = useDispatch();
@@ -55,8 +55,9 @@ const Product = ( { products }: Props ) => {
     );
 }
 
-const mapStateToProps = (state: ApplicationState ) => ({
-    products: state.products.data
+
+const mapStateToProps = (state: ApplicationState) => ({
+  products: state.products.data,
 });
 
-  export default connect(mapStateToProps)(Product);
+export default connect(mapStateToProps)(Product);

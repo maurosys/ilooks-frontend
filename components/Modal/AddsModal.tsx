@@ -3,19 +3,18 @@ import Link from "next/link";
 
 const AddsModal = () => {
   const [open, setOpen] = useState(false);
-  const [showFirst, setShowFirst] = useState(0)
+  const [showFirst, setShowFirst] = useState(0);
 
   useEffect(() => {
-    if(showFirst === 0) {
-     setOpen(true);
-     setShowFirst(1)
+    if (showFirst === 0) {
+      setOpen(true);
+      setShowFirst(1);
     } else {
       return;
     }
-
   }, []);
 
-  console.log(showFirst)
+  // console.log(showFirst)
 
   const closeModal = (e) => {
     e.preventDefault();

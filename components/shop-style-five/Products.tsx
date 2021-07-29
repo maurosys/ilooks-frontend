@@ -48,9 +48,9 @@ const options = {
 
 const handleActive = (data) => {
   if (data.active) {
-   return data.active = false;
+    return (data.active = false);
   }
-}
+};
 
 interface StateProps {
   products: ProductsPros[];
@@ -132,7 +132,9 @@ const Products = ({ products, wishlist }: StateProps) => {
                     {display ? (
                       <OwlCarousel {...options}>
                         {products?.map((data, idx) => {
-                          const wishlistId = wishlist.filter((item: Wishlist) => item.id === data.id )                       
+                          const wishlistId = wishlist.filter(
+                            (item: Wishlist) => item.id === data.id
+                          );
                           return (
                             <div className="col-lg-12 col-md-12" key={idx}>
                               <div className="single-product-box">
@@ -162,15 +164,22 @@ const Products = ({ products, wishlist }: StateProps) => {
                                         </a>
                                       </Link>
                                     </li>
-                                    <li onClick={() => {dispatch(addToWishlist({...data, active: true}))}}>
+                                    <li
+                                      onClick={() => {
+                                        dispatch(
+                                          addToWishlist({
+                                            ...data,
+                                            active: true,
+                                          })
+                                        );
+                                      }}
+                                    >
                                       <Link href="#">
                                         <a
                                           data-tip="Add to Wishlist"
                                           data-place="left"
                                         >
-                                          <i
-                                            className="far"                                            
-                                          >
+                                          <i className="far">
                                             {wishlistId[0]?.active ? (
                                               <BsHeartFill color="red" />
                                             ) : (
@@ -219,7 +228,9 @@ const Products = ({ products, wishlist }: StateProps) => {
                     {display ? (
                       <OwlCarousel {...options}>
                         {products.map((data, idx) => {
-                          const wishlistId = wishlist.filter((item: Wishlist) => item.id === data.id )
+                          const wishlistId = wishlist.filter(
+                            (item: Wishlist) => item.id === data.id
+                          );
                           return (
                             <div className="col-lg-12 col-md-12" key={idx}>
                               <div className="single-product-box">
@@ -233,7 +244,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                                       <img src={data.imageHover} alt="image" />
                                     </a>
                                   </Link>
-  
+
                                   <ul>
                                     <li>
                                       <Link href="#">
@@ -250,27 +261,34 @@ const Products = ({ products, wishlist }: StateProps) => {
                                         </a>
                                       </Link>
                                     </li>
-                                    <li  onClick={() => {dispatch(addToWishlist({...data, active: true}))}}>
+                                    <li
+                                      onClick={() => {
+                                        dispatch(
+                                          addToWishlist({
+                                            ...data,
+                                            active: true,
+                                          })
+                                        );
+                                      }}
+                                    >
                                       <Link href="#">
                                         <a
                                           data-tip="Add to Wishlist"
                                           data-place="left"
                                         >
-                                          <i
-                                              className="far"                                            
-                                            >
-                                              {wishlistId[0]?.active ? (
-                                                <BsHeartFill color="red" />
-                                              ) : (
-                                                <BsHeartFill />
-                                              )}
-                                            </i>
+                                          <i className="far">
+                                            {wishlistId[0]?.active ? (
+                                              <BsHeartFill color="red" />
+                                            ) : (
+                                              <BsHeartFill />
+                                            )}
+                                          </i>
                                         </a>
                                       </Link>
                                     </li>
                                   </ul>
                                 </div>
-  
+
                                 <div className="product-content">
                                   <h3>
                                     <Link
@@ -280,7 +298,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                                       <a>{data.title}</a>
                                     </Link>
                                   </h3>
-  
+
                                   <div className="product-price">
                                     <span className="new-price">
                                       {new Intl.NumberFormat("br-BR", {
@@ -289,12 +307,12 @@ const Products = ({ products, wishlist }: StateProps) => {
                                       }).format(data.price)}
                                     </span>
                                   </div>
-  
+
                                   <AddToCart data={data} />
                                 </div>
                               </div>
                             </div>
-                          )
+                          );
                         })}
                       </OwlCarousel>
                     ) : (

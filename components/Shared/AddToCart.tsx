@@ -2,14 +2,15 @@ import Link from "next/link";
 import { useDispatch, connect } from "react-redux";
 import { toast } from "react-toastify";
 import checkout from "../../pages/checkout";
-import { addToCart } from "../../store/ducks/Card/actions";
+import { addToCart, removeItem } from "../../store/ducks/Card/actions";
+import { card } from "../../store/ducks/Card/types";
 import { Products } from "../../store/ducks/products/types";
 
 interface CardProps {
   data: Products;
 }
 
-const AddToCart = ({data}: CardProps) => {
+const AddToCart = ({ data }: CardProps) => {
   const qty = 1;
   const dispatch = useDispatch();
   const handleAddToCart = (data: Products) => {
@@ -39,7 +40,5 @@ const AddToCart = ({data}: CardProps) => {
     </div>
   );
 };
-
-
 
 export default AddToCart;

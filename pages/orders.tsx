@@ -1,12 +1,20 @@
 import React, { Component } from "react";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
+
 import HeaderFixed from "../components/Layout/HeaderFixed";
 import Footer from "../components/Layout/Footer";
 import Facility from "../components/shop-style-five/Facility";
 import Details from "../components/Detalis";
 import OrderItem, { OrderItemProps } from "../components/orderItem";
 import FieldSearch from "../components/FieldSearch";
+import api, { getAPIClient } from "../services/api";
+import ButtonPrimary from "../components/Button/Primary";
+import useLogin from "../hooks/pages/useLogin";
 
 const Orders = () => {
+  const { onLogout } = useLogin();
+
   const orders: OrderItemProps[] = [
     {
       numberOrder: 123456789,
@@ -117,6 +125,10 @@ const Orders = () => {
                 >
                   ver mais pedidos
                 </button>
+
+                <ButtonPrimary type="button" onClick={onLogout}>
+                  Sair
+                </ButtonPrimary>
               </div>
             </div>
           </div>
@@ -128,6 +140,24 @@ const Orders = () => {
       <Footer />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const apiClient = getAPIClient(ctx);
+  const { "nextilooks.auth": auth } = parseCookies(ctx);
+
+  if (!auth) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Orders;

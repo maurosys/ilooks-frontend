@@ -21,21 +21,21 @@ const ProductContent = ({ product, card }: StateProps) => {
   const [min, setMin] = useState(1);
   const [sizeGuide, setSizeGuide] = useState(false);
   const [shipModal, setShipModal] = useState(false);
-  const teste = card.find((item) => product.id === item.id);
+  // const teste = card.find((item) => product.id === item.id);
 
-
-  function checkIsExist (item) {
-    if (!teste) {
-      addItemCart(item)
-      return;
-    } else {
-      dispatch(removeItem(item.id))
-      addItemCart({...item, qty})      
-    }
-  }
+  // function checkIsExist(item) {
+  //   if (!teste) {
+  //     addItemCart(item);
+  //     return;
+  //   } else {
+  //     dispatch(removeItem(item.id));
+  //     addItemCart({ ...item, qty });
+  //   }
+  // }
 
   function addItemCart(item) {
-    dispatch(addToCart({...item, total: item.price * qty}));
+    console.log("dasdas");
+    dispatch(addToCart({ ...item, total: item.price * qty }));
 
     toast.success("Adicionado ao carrinho", {
       position: "bottom-left",
@@ -218,7 +218,7 @@ const ProductContent = ({ product, card }: StateProps) => {
             <button
               type="submit"
               className="btn btn-primary"
-              onClick={() => checkIsExist({ ...product, qty })}
+              onClick={() => addItemCart({ ...product, qty })}
             >
               <i className="fas fa-cart-plus"></i> Adiconar ao Carrinho
             </button>
