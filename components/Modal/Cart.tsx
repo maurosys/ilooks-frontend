@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import Link from "next/link";
-import { card } from '../../store/ducks/Card/types';
-import {removeItem } from '../../store/ducks/Card/actions';
-
+import { card } from "../../store/ducks/Card/types";
+import { removeItem } from "../../store/ducks/Card/actions";
 
 interface StateProps {
   card: card[];
   onClick: (display) => void;
 }
-
-
 
 const Cart = ({ card, onClick }: StateProps) => {
   const total = card?.reduce((acc, card) => {
@@ -18,7 +15,7 @@ const Cart = ({ card, onClick }: StateProps) => {
       return acc + card.total;
     }
     return acc;
-  }, 0)
+  }, 0);
 
   const display = false;
   const dispatch = useDispatch();
@@ -27,7 +24,7 @@ const Cart = ({ card, onClick }: StateProps) => {
   };
 
   function removeitemCart(id) {
-    dispatch(removeItem(id))
+    dispatch(removeItem(id));
   }
   return (
     <div
@@ -50,7 +47,7 @@ const Cart = ({ card, onClick }: StateProps) => {
           </button>
 
           <div className="modal-body">
-            <h3>Meu carrinho   </h3>
+            <h3>Meu carrinho </h3>
 
             <div className="product-cart-content">
               {card?.length > 0
@@ -70,28 +67,34 @@ const Cart = ({ card, onClick }: StateProps) => {
                         <div className="product-price">
                           <span>{card.qty ? card.qty : 1}</span>
                           <span>x</span>
-                          <span className="price">{new Intl.NumberFormat("br-BR", {
-                            style: "currency",
-                            currency: "BRL",
-                          }).format(card.price)}</span>
-                          <i 
-                            className="fa fa-trash fa-1x" style={{marginLeft: '100px', cursor: 'pointer'}}
-                            onClick={()=> removeitemCart(card.id)} 
+                          <span className="price">
+                            {new Intl.NumberFormat("br-BR", {
+                              style: "currency",
+                              currency: "BRL",
+                            }).format(card.price)}
+                          </span>
+                          <i
+                            className="fa fa-trash fa-1x"
+                            style={{ marginLeft: "100px", cursor: "pointer" }}
+                            onClick={() => removeitemCart(card.id)}
                           />
                         </div>
                       </div>
                     </div>
                   ))
-                : "Empty"}
+                : "Carrinho esta vazio"}
             </div>
 
             <div className="product-cart-subtotal">
               <span>Subtotal</span>
 
-              <span className="subtotal"> {new Intl.NumberFormat("br-BR", {
-                style: "currency",
-                currency: "BRL",
-              }).format(total)}</span>
+              <span className="subtotal">
+                {" "}
+                {new Intl.NumberFormat("br-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(total)}
+              </span>
             </div>
 
             <div className="product-cart-btn">
@@ -111,7 +114,7 @@ const Cart = ({ card, onClick }: StateProps) => {
 
 const mapStateToProps = (state) => {
   return {
-    card: state.card
+    card: state.card,
   };
 };
 

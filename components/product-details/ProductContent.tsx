@@ -23,19 +23,18 @@ const ProductContent = ({ product, card }: StateProps) => {
   const [shipModal, setShipModal] = useState(false);
   const teste = card.find((item) => product.id === item.id);
 
-
-  function checkIsExist (item) {
+  function checkIsExist(item) {
     if (!teste) {
-      addItemCart(item)
+      addItemCart(item);
       return;
     } else {
-      dispatch(removeItem(item.id))
-      addItemCart({...item, qty})      
+      dispatch(removeItem(item.id));
+      addItemCart({ ...item, qty });
     }
   }
 
   function addItemCart(item) {
-    dispatch(addToCart({...item, total: item.price * qty}));
+    dispatch(addToCart({ ...item, total: item.price * qty }));
 
     toast.success("Adicionado ao carrinho", {
       position: "bottom-left",

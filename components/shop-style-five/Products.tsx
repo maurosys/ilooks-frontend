@@ -119,9 +119,7 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab1" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel                        
-                        {...options}
-                      >
+                      <OwlCarousel {...options}>
                         {products?.map((data, idx) => (
                           <div className="col-lg-12 col-md-12" key={idx}>
                             <div className="single-product-box">
@@ -142,7 +140,7 @@ const Products = ({ products }: StateProps) => {
                                       <a
                                         data-tip="Quick View"
                                         data-place="left"
-                                        onClick={(e) => {                                         
+                                        onClick={(e) => {
                                           setModalData(data);
                                           openModal();
                                         }}
@@ -178,7 +176,7 @@ const Products = ({ products }: StateProps) => {
                                   <i className="far fa-star"></i>
                                 </div>
 
-                                {/* <AddToCart {...data} /> */}
+                                <AddToCart {...data} />
                               </div>
                             </div>
                           </div>
@@ -193,9 +191,7 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab2" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel                        
-                        {...options}
-                      >
+                      <OwlCarousel {...options}>
                         {products.map((data, idx) => (
                           <div className="col-lg-12 col-md-12" key={idx}>
                             <div className="single-product-box">
@@ -268,9 +264,7 @@ const Products = ({ products }: StateProps) => {
                 <div id="tab3" className="tabs_item">
                   <div className="row">
                     {display ? (
-                      <OwlCarousel                        
-                        {...options}
-                      >
+                      <OwlCarousel {...options}>
                         {products.map((data, idx) => (
                           <div className="col-lg-12 col-md-12" key={idx}>
                             <div className="single-product-box">
@@ -365,7 +359,7 @@ const Products = ({ products }: StateProps) => {
         </div>
       </div>
       {modalOpen ? (
-        <QuickView  closeModal={closeModal} modalData={modalData}  />
+        <QuickView closeModal={closeModal} modalData={modalData} />
       ) : (
         ""
       )}

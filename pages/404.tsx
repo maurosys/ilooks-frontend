@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Header from "../components/Layout/Header";
+import Header from "../components/Layout/HeaderFixed";
 import Footer from "../components/Layout/Footer";
 
 const Custom404 = () => {

@@ -55,7 +55,7 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
                                 </div>
                             </div>
                         ))
-                    }ð
+                    }
 
                     
                 </div>
