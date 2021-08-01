@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import Link from "next/link";
+import React from "react";
 
 //COMPONENT
 import HeaderFixed from "@components/Layout/HeaderFixed";
@@ -9,14 +8,14 @@ import Facility from "@components/shop-style-five/Facility";
 import ContainerCenterCol6 from "@components/Layout/Container/CenterCol6";
 import Form from "@components/Form";
 import InputEmail from "@components/Form/Input/Email";
-import InputPassword from "@components/Form/Input/Password";
 import ButtonPrimary from "@components/Button/Primary";
 
 //HOOKS
-import useLogin from "@hooks/pages/useLogin";
+import useForgotPassword from "@hooks/pages/useForgotPassword";
 
-const Login = () => {
-  const { loading, register, handleSubmit, onLogin, errors } = useLogin();
+const PasswordForgot = () => {
+  const { loading, register, handleSubmit, forgotPassword, errors } =
+    useForgotPassword();
 
   return (
     <>
@@ -24,22 +23,16 @@ const Login = () => {
       <ContainerCenterCol6>
         <div className="section-title">
           <h2>
-            <span className="dot"></span> Login
+            <span className="dot"></span> Recuperação de senha
           </h2>
         </div>
 
-        <Form onSubmit={handleSubmit(onLogin)}>
+        <Form onSubmit={handleSubmit(forgotPassword)}>
           <InputEmail {...register("email")} errors={errors.email} />
 
-          <InputPassword {...register("password")} errors={errors.password} />
-
           <ButtonPrimary type="submit" loading={loading}>
-            Entrar
+            Avançar
           </ButtonPrimary>
-
-          <Link href="/password/forgot">
-            <a className="forgot-password">Perdeu a senha ?</a>
-          </Link>
         </Form>
       </ContainerCenterCol6>
 
@@ -50,4 +43,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default PasswordForgot;

@@ -17,4 +17,5 @@ export interface AuthState {
   token?: string;
   typeUser?: string;
   userId?: string;
+  hash?: string;
 }
