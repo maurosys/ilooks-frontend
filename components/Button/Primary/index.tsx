@@ -1,19 +1,22 @@
 import { HTMLAttributes } from "react";
+import classnames from "classnames";
+import styles from "./buttonPrimary.module.css";
 
 interface ButtonPrimaryProps extends HTMLAttributes<HTMLButtonElement> {
   type: "submit" | "button" | "reset";
   loading?: boolean;
+  disabled?: boolean;
 }
 
 const ButtonPrimary = (props: ButtonPrimaryProps) => {
-  const { children, type = "button" } = props;
+  const { children, type = "button", disabled } = props;
 
   return (
     <button
-      className="btn btn-primary"
+      className={classnames(styles.button, "btn", "btn-primary")}
       type={type}
       {...props}
-      disabled={props.loading ? true : false}
+      disabled={disabled || props.loading ? true : false}
     >
       {props.loading ? (
         <>
