@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #e4e4e4;
+}
+
+.containerText {
+  padding: 0 10px;
+}
