@@ -20,3 +20,18 @@ export const email = string()
 export const password = string()
   .min(6, "Por favor, digite ao menos 6 dígitos")
   .required("Por favor, preencha o campo senha");
+
+export const confirmPassword = string()
+  .test("passwords-match", "Senhas não conferem", function (value) {
+    return this.parent.password === value;
+  })
+  .min(6, "Por favor, digite ao menos 6 dígitos")
+  .required("Por favor, preencha o campo senha");
+
+export const confirmationCode = string()
+  .min(6, "Por favor, digite ao menos 6 dígitos")
+  .required("Campo obrigatório, por favor informe o código enviado");
+
+export const hash = string()
+  .min(6, "Por favor, digite ao menos 6 dígitos")
+  .required("O has é requerido");

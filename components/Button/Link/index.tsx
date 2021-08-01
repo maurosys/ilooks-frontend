@@ -1,20 +1,14 @@
 import { HTMLAttributes } from "react";
+import styles from "./buttonLink.module.css";
 
 interface ButtonPrimaryProps extends HTMLAttributes<HTMLButtonElement> {
-  type: "submit" | "button" | "reset";
   loading?: boolean;
 }
 
-const ButtonPrimary = (props: ButtonPrimaryProps) => {
-  const { children, type = "button" } = props;
-
+const ButtonLink = (props: ButtonPrimaryProps) => {
+  const { children } = props;
   return (
-    <button
-      className="btn btn-primary"
-      type={type}
-      {...props}
-      disabled={props.loading ? true : false}
-    >
+    <button type="button" className={styles.button} {...props}>
       {props.loading ? (
         <>
           <span
@@ -31,4 +25,4 @@ const ButtonPrimary = (props: ButtonPrimaryProps) => {
   );
 };
 
-export default ButtonPrimary;
+export default ButtonLink;
