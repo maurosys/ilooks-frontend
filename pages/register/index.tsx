@@ -167,16 +167,6 @@ const Register = () => {
                 />
               )}
             </div>
-            {/* <div className="col-lg-6 col-md-12">
-              <InputText
-                {...register("typePhone")}
-                name="typePhone"
-                id="typePhone"
-                label="Tipo do contato"
-                placeholder="Ex.: Celular"
-                errors={errors.typePhone}
-              />
-            </div> */}
           </div>
 
           <div className="row">
