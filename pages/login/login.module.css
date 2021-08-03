@@ -1,0 +1,11 @@
+.containerForgotPassword {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.buttonRegister {
+  margin-top: 20px;
+}

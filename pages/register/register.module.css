@@ -1,0 +1,10 @@
+.containerRadio {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.containerRadio > div {
+  padding-right: 10px;
+}

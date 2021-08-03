@@ -20,7 +20,8 @@ import useConfirmationCode from "@hooks/pages/useConfirmationCode";
 import useResendCode from "@hooks/context/useResendCode";
 
 //SECONDS DEFAULT EXPIRES CODE
-const secondsDefault = 125;
+const secondsDefault = 125; //2 MINUTES AND 5 SECONDS
+const secondsShowButtonResendCode = 120; //2 MINUTES
 
 const PasswordCode = (props) => {
   //PROPS DESTRUCTOR
@@ -94,7 +95,7 @@ const PasswordCode = (props) => {
         </div>
         <p>{hashAndMessage.message}</p>O código enviado expira em{" "}
         {dayjs.duration(1000 * seconds).format("HH:mm:ss")}
-        {seconds <= 120 && (
+        {seconds <= secondsShowButtonResendCode && (
           <>
             {" - "}{" "}
             <ButtonLink onClick={handleResendCode} loading={loadingResend}>
@@ -135,7 +136,11 @@ const PasswordCode = (props) => {
             value={source}
           />
 
-          <ButtonPrimary type="submit" loading={loading}>
+          <ButtonPrimary
+            type="submit"
+            loading={loading}
+            disabled={seconds <= 0 ? true : false}
+          >
             Avançar
           </ButtonPrimary>
         </Form>
