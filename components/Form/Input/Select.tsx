@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+import styles from "./styles.module.scss";
 
 export interface OptionSelectProps {
   label: string;
@@ -20,7 +21,12 @@ const InputSelect = (props: InputSelectProps) => {
   return (
     <div className="form-group">
       <label>{label}</label>
-      <select {...props} className="form-control" id={id} name={name}>
+      <select
+        {...props}
+        className={`form-control ${errors && styles["input-error"]}`}
+        id={id}
+        name={name}
+      >
         <option value="">{placeholder}</option>
         {options.map((option, index) => (
           <option key={`select${id}_${index}`} value={option.value}>
@@ -29,7 +35,11 @@ const InputSelect = (props: InputSelectProps) => {
         ))}
       </select>
 
-      {errors && errors.message ? <p>{errors.message}</p> : <></>}
+      {errors && errors.message ? (
+        <p style={{ color: "red" }}>{errors.message}</p>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

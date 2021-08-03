@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react";
 import InputMasked from "react-input-mask";
+import styles from "./styles.module.scss";
 
 interface InputDateProps extends HTMLAttributes<HTMLElement> {
   label?: string;
@@ -19,13 +20,17 @@ const InputDate = (props: InputDateProps) => {
         mask="99/99/9999"
         {...props}
         type="text"
-        className="form-control"
+        className={`form-control ${errors && styles["input-error"]}`}
         placeholder={placeholder}
         id={id}
         name={name}
       />
 
-      {errors && errors.message ? <p>{errors.message}</p> : <></>}
+      {errors && errors.message ? (
+        <p style={{ color: "red" }}>{errors.message}</p>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

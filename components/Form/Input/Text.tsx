@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+import styles from "./styles.module.scss";
 
 interface InputTextProps extends HTMLAttributes<HTMLElement> {
   label?: string;
@@ -18,13 +19,17 @@ const InputText = (props: InputTextProps) => {
       <input
         {...props}
         type="text"
-        className="form-control"
+        className={`form-control ${errors && styles["input-error"]}`}
         placeholder={placeholder}
         id={id}
         name={name}
       />
 
-      {errors && errors.message ? <p>{errors.message}</p> : <></>}
+      {errors && errors.message ? (
+        <p style={{ color: "red" }}>{errors.message}</p>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
