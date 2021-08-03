@@ -1,21 +1,22 @@
 import { HTMLAttributes } from "react";
+import InputMasked from "react-input-mask";
 
-interface InputTextProps extends HTMLAttributes<HTMLElement> {
+interface InputCEPProps extends HTMLAttributes<HTMLElement> {
   label?: string;
   placeholder?: string;
   id?: string;
   name?: string;
   errors?: any;
-  maxlength?: any;
 }
 
-const InputText = (props: InputTextProps) => {
+const InputCEP = (props: InputCEPProps) => {
   const { label, placeholder, id, name, errors } = props;
 
   return (
     <div className="form-group">
       <label>{label}</label>
-      <input
+      <InputMasked
+        mask="99999-999"
         {...props}
         type="text"
         className="form-control"
@@ -29,4 +30,4 @@ const InputText = (props: InputTextProps) => {
   );
 };
 
-export default InputText;
+export default InputCEP;

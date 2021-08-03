@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import React, {
+  ChangeEventHandler,
+  FormEvent,
+  HTMLAttributes,
+  useState,
+} from "react";
 
 //COMPONENT
 import HeaderFixed from "@components/Layout/HeaderFixed";
@@ -9,18 +14,36 @@ import Form from "@components/Form";
 import InputEmail from "@components/Form/Input/Email";
 import InputPassword from "@components/Form/Input/Password";
 import InputText from "@components/Form/Input/Text";
+import InputCPF from "@components/Form/Input/CPF";
+import InputDate from "@components/Form/Input/Date";
+import InputSelect, { OptionSelectProps } from "@components/Form/Input/Select";
+import InputPhone from "@components/Form/Input/Phone";
+import InputCEP from "@components/Form/Input/CEP";
 import ButtonPrimary from "@components/Button/Primary";
-import Radio from "@components/Form/Radio";
 
 //STYLES
-import styles from "./register.module.css";
+// import styles from "./register.module.css";
 
 //HOOKS
-import useLogin from "@hooks/pages/useLogin";
+import useResgister from "@hooks/pages/useRegister";
 
 const Register = () => {
-  const { loading, register, handleSubmit, onLogin, errors } = useLogin();
-  const [radioSelect, setRadioSelect] = useState();
+  //HOOKS INSTANCES
+  const { loading, register, handleSubmit, onRegister, errors } =
+    useResgister();
+
+  //STATES
+  const [typePhone, setTypePhone] = useState("");
+  const [optionsTypePhone, setOptionTypePhone] = useState<OptionSelectProps[]>([
+    {
+      label: "Celular",
+      value: "Celular",
+    },
+    {
+      label: "Telefone",
+      value: "Telefone",
+    },
+  ]);
 
   return (
     <>
@@ -32,7 +55,7 @@ const Register = () => {
           </h2>
         </div>
 
-        <Form onSubmit={handleSubmit(onLogin)}>
+        <Form onSubmit={handleSubmit(onRegister)}>
           <InputEmail {...register("email")} errors={errors.email} />
 
           <div className="row">
@@ -55,32 +78,38 @@ const Register = () => {
           </div>
 
           <InputText
+            {...register("fullName")}
             name="fullName"
             id="fullName"
             label="Nome completo"
             placeholder="Digite seu nome completo"
+            errors={errors.fullName}
           />
 
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <InputText
+              <InputCPF
+                {...register("document")}
                 name="document"
                 id="document"
                 label="CPF"
                 placeholder="Ex.: 123.456.789.12"
+                errors={errors.document}
               />
             </div>
             <div className="col-lg-6 col-md-12">
-              <InputText
+              <InputDate
+                {...register("birthDate")}
                 name="birthDate"
                 id="birthDate"
                 label="Data de Nascimento"
                 placeholder="Ex.: 01/01/1999"
+                errors={errors.birthDate}
               />
             </div>
           </div>
 
-          <label>SEXO</label>
+          {/* <label>SEXO</label>
           <div className={styles.containerRadio}>
             <Radio
               name="sexo"
@@ -99,42 +128,86 @@ const Register = () => {
               setRadioSelect={setRadioSelect}
               radioSelect={radioSelect}
             />
-          </div>
+          </div> */}
 
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <InputText
-                name="phone"
-                id="phone"
-                label="Número de Contato"
-                placeholder="Ex.: (11) 99999-9999"
+              <InputSelect
+                {...register("typePhone")}
+                id="typePhone"
+                name="typePhone"
+                label="Tipo do contato"
+                placeholder="Selecione o tipo do contato"
+                errors={errors.typePhone}
+                options={optionsTypePhone}
+                onChange={(event: any) => {
+                  setTypePhone(event.target.value);
+                }}
               />
             </div>
             <div className="col-lg-6 col-md-12">
+              {typePhone === "Celular" ? (
+                <InputPhone
+                  {...register("phone")}
+                  name="phone"
+                  id="phone"
+                  label="Número de Contato"
+                  placeholder="Ex.: (11) 99999-9999"
+                  errors={errors.phone}
+                  maskFormat={9}
+                />
+              ) : (
+                <InputPhone
+                  {...register("phone")}
+                  name="phone"
+                  id="phone"
+                  label="Número de Contato"
+                  placeholder="Ex.: (11) 99999-9999"
+                  errors={errors.phone}
+                />
+              )}
+            </div>
+            {/* <div className="col-lg-6 col-md-12">
               <InputText
-                name="type"
-                id="type"
+                {...register("typePhone")}
+                name="typePhone"
+                id="typePhone"
                 label="Tipo do contato"
                 placeholder="Ex.: Celular"
+                errors={errors.typePhone}
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="row">
             <div className="col-lg-3 col-md-12">
-              <InputText
+              <InputCEP
+                {...register("zipcode")}
                 name="zipcode"
                 id="zipcode"
                 label="CEP"
                 placeholder="00000-000"
+                errors={errors.zipcode}
               />
             </div>
-            <div className="col-lg-9 col-md-12">
+            <div className="col-lg-6 col-md-12">
               <InputText
+                {...register("address")}
                 name="address"
                 id="address"
                 label="Endereço"
                 placeholder="Ex. Avenida Paulista"
+                errors={errors.address}
+              />
+            </div>
+            <div className="col-lg-3 col-md-12">
+              <InputText
+                {...register("number")}
+                name="number"
+                id="number"
+                label="Número"
+                placeholder="Ex.: 1000"
+                errors={errors.number}
               />
             </div>
           </div>
@@ -142,34 +215,41 @@ const Register = () => {
           <div className="row">
             <div className="col-lg-3 col-md-12">
               <InputText
-                name="number"
-                id="number"
-                label="Número"
-                placeholder="Ex.: 1000"
-              />
-            </div>
-            <div className="col-lg-3 col-md-12">
-              <InputText
+                {...register("complement")}
                 name="complement"
                 id="complement"
                 label="Complemento"
                 placeholder="Ex.: Casa A"
               />
             </div>
+            <div className="col-lg-3 col-md-12">
+              <InputText
+                {...register("district")}
+                name="district"
+                id="district"
+                label="Bairro"
+                placeholder="Ex.: Vila Maria"
+              />
+            </div>
             <div className="col-lg-4 col-md-12">
               <InputText
+                {...register("city")}
                 name="city"
                 id="city"
                 label="Cidade"
                 placeholder="Ex.: São Paulo"
+                errors={errors.city}
               />
             </div>
             <div className="col-lg-2 col-md-12">
               <InputText
+                {...register("state")}
                 name="state"
                 id="state"
                 label="UF"
                 placeholder="Ex.: SP"
+                maxlength="2"
+                errors={errors.state}
               />
             </div>
           </div>
