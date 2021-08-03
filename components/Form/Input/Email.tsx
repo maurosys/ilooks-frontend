@@ -1,4 +1,6 @@
 import { HTMLAttributes } from "react";
+import classNames from "classnames";
+import styles from "./styles.module.scss";
 
 interface InputEmailProps extends HTMLAttributes<HTMLElement> {
   label?: string;
@@ -18,18 +20,22 @@ const InputEmail = (props: InputEmailProps) => {
   } = props;
 
   return (
-    <div className="form-group">
+    <div className={classNames("form-group")}>
       <label>{label}</label>
       <input
         {...props}
         type="email"
-        className="form-control"
+        className={`form-control ${errors && styles["input-error"]}`}
         placeholder={placeholder}
         id={id}
         name={name}
       />
 
-      {errors && errors.message ? <p>{errors.message}</p> : <></>}
+      {errors && errors.message ? (
+        <p style={{ color: "red" }}>{errors.message}</p>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
