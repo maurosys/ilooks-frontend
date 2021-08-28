@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 //COMPONENT
 import HeaderFixed from "@components/Layout/HeaderFixed";
@@ -21,11 +21,13 @@ import styles from "./login.module.css";
 import useLogin from "@hooks/pages/useLogin";
 
 const Login = () => {
+  const router = useRouter();
   const { loading, register, handleSubmit, onLogin, errors } = useLogin();
 
   const goRegister = () => {
-    Router.push("register");
+    router.push("register");
   };
+
 
   return (
     <>

@@ -72,7 +72,7 @@ const OrderSummary = ({ card }: OrderSummaryProps) => {
 
           <tr>
             <td className="order-shipping">
-              <span>Shipping</span>
+              <span>Frete</span>
             </td>
 
             <td className="shipping-price">
@@ -87,7 +87,7 @@ const OrderSummary = ({ card }: OrderSummaryProps) => {
 
           <tr>
             <td className="total-price">
-              <span>Order Total</span>
+              <span>Pedido Total</span>
             </td>
 
             <td className="product-subtotal">
