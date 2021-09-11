@@ -9,12 +9,22 @@ import { ApplicationState } from "../../store";
 import { useAppSelector } from "../../store/hooks";
 import { selectAuth } from "../../store/ducks/Auth";
 
+//TYPES
+import { CategoryRequest, SubCategoryRequest } from "@type/request";
+
 interface StateProps {
   products: ProductsPros[];
   card: ProductsPros[];
+  categories?: CategoryRequest[];
+  subCategories?: SubCategoryRequest[];
 }
 
-const MegaMenuTwo = ({ products, card }: StateProps) => {
+const MegaMenuTwo = ({
+  products,
+  card,
+  categories,
+  subCategories,
+}: StateProps) => {
   const [display, setDisplay] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [searchForma, setSearchForma] = useState(false);
@@ -102,7 +112,35 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
                       <li className="nav-item">
                         <div className="container">
                           <div className="row">
-                            <div className="col">
+                            {categories &&
+                              categories.map((category) => (
+                                <div
+                                  className="col"
+                                  key={`${category.id}listheader`}
+                                >
+                                  <h6 className="submenu-title">
+                                    {category.name}
+                                  </h6>
+                                  <ul className="megamenu-submenu">
+                                    {subCategories
+                                      .filter(
+                                        (subCategory) =>
+                                          subCategory.categoryId === category.id
+                                      )
+                                      .map((itemSubCategory) => (
+                                        <li
+                                          key={`${itemSubCategory.id}listheader`}
+                                        >
+                                          <Link href="#">
+                                            <a>{itemSubCategory.name}</a>
+                                          </Link>
+                                        </li>
+                                      ))}
+                                  </ul>
+                                </div>
+                              ))}
+
+                            {/* <div className="col">
                               <h6 className="submenu-title">Roupas</h6>
                               <ul className="megamenu-submenu">
                                 <li>
@@ -249,7 +287,7 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
                                   </Link>
                                 </li>
                               </ul>
-                            </div>
+                            </div> */}
 
                             <div className="col">
                               <ul className="megamenu-submenu">
@@ -268,7 +306,7 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
                                     </Link>
                                   </div>
 
-                                  <div className="aside-trending-products">
+                                  {/* <div className="aside-trending-products">
                                     <img
                                       src={require("../../images/category-products-img3.jpg")}
                                       alt="image"
@@ -281,7 +319,7 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
                                     <Link href="#">
                                       <a></a>
                                     </Link>
-                                  </div>
+                                  </div> */}
                                 </li>
                               </ul>
                             </div>

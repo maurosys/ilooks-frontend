@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-
+import Head from "next/head";
+import { GetStaticProps } from "next";
 import { connect, useDispatch } from "react-redux";
 
 import { ApplicationState } from "../store";
@@ -30,15 +31,20 @@ import { Products as ProductsPros } from "../store/ducks/products/types";
 
 import { loadResquestProduct } from "../store/ducks/products/actions";
 
-import Head from "next/head";
+//SERVICE
+import { getAPIClient } from "@services/api";
+import { CategoryRequest, SubCategoryRequest } from "@type/request";
 
+//TYPES
 interface StateProps {
   productss: ProductsPros[];
+  categories: CategoryRequest[];
+  subCategories: SubCategoryRequest[];
 }
 
 type Props = StateProps;
 
-const Index = ({ productss }: Props) => {
+const Index = ({ productss, categories, subCategories }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,7 +56,7 @@ const Index = ({ productss }: Props) => {
       <Head>
         <title> Ilooks | Home </title>
       </Head>
-      <Header />
+      <Header categories={categories} subCategories={subCategories} />
 
       <BannerSlider />
 
@@ -73,6 +79,20 @@ const Index = ({ productss }: Props) => {
       <AddsModal />
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const api = getAPIClient(context);
+  const categories = await api.get("category");
+  const subCategories = await api.get("subcategory");
+
+  return {
+    props: {
+      categories: categories.data,
+      subCategories: subCategories.data,
+    },
+    revalidate: 10,
+  };
 };
 
 const mapStateToProps = (state: ApplicationState) => ({
