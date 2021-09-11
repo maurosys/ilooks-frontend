@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
       <ReactTooltip />
 
       <Head>
-        <title>Novine - React Next eCommerce Templates</title>
+        <title> Ilooks </title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"

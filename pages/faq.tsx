@@ -34,9 +34,9 @@ const Faq = () => {
                   </AccordionItemHeading>
                   <AccordionItemPanel>
                     <p>
-                      Você escolhe tudo que o que gostar em nossa plataforma,
+                      Você escolhe tudo que gostar em nossa plataforma,
                       roupas, acessórios, calçados. Vamos realizar a entrega dos
-                      produtos no endereço cadastrado, pode ser sua residência,
+                      produtos no endereço cadastrado, que pode ser sua residência,
                       escritório, ou, em nossos Lockers (vide lista de endereços
                       dos Lockers clicando aqui) e você terá 48h para
                       experimentar tudo com conforto e no seu tempo. Você paga
@@ -95,7 +95,7 @@ const Faq = () => {
                       cartão de crédito. Durante o período de prova precisamos
                       ter uma garantia pelo período que nossos consumidores irão
                       ficar com as roupas. Trata-se de nossa política de
-                      prevenção de perdas. Após o cadastro seu cartão, será
+                      prevenção de perdas. Após o cadastro de seu cartão, será
                       validada uma pré-autorização de crédito no valor dos
                       produtos escolhidos, sendo que nenhum valor será debitado
                       antes do prazo de prova combinado de até 48h.
@@ -113,7 +113,7 @@ const Faq = () => {
                     <p>
                       Após experimentar todos os itens você decide o que vai
                       comprar e o que deseja devolver. As devoluções podem ser
-                      realizadas integralmente, ou, parcialmente em nossa
+                      realizadas integral ou, parcialmente em nossa
                       plataforma através do botão “devolução”, o processo leva
                       menos de 1 minuto para ser concluído. (Acesse política de
                       devolução e o passo a passo clicando aqui.) Pronto! Vamos
@@ -201,7 +201,7 @@ const Faq = () => {
                 <AccordionItem>
                   <AccordionItemHeading>
                     <AccordionItemButton>
-                      EXISTE ALGUM VALOR DE PEDIDO MINIMO, OU, OBRIGAÇÃO DE
+                      EXISTE ALGUM VALOR DE PEDIDO MÍNIMO, OU, OBRIGAÇÃO DE
                       COMPRA?
                     </AccordionItemButton>
                   </AccordionItemHeading>
@@ -230,7 +230,7 @@ const Faq = () => {
                       sociais realizamos um trabalho diferenciado sobre dicas de
                       moda, cartela de cores, combinações de looks com os
                       melhores profissionais de moda para facilitar suas
-                      compras. Deixamos nossos consumidores a vontade para
+                      compras. Deixamos nossos consumidores à vontade para
                       escolherem o que mais combina com seu estilo.
                     </p>
                   </AccordionItemPanel>
@@ -244,7 +244,7 @@ const Faq = () => {
                   </AccordionItemHeading>
                   <AccordionItemPanel>
                     <p>
-                      Atendemos SP Capital e Grande SP com exceção de aéreas de
+                      Atendemos SP Capital e Grande SP com exceção de áreas de
                       risco. (Consulte se seu CEP está em nossa região de
                       atendimento clicando aqui)
                     </p>
@@ -323,9 +323,9 @@ const Faq = () => {
                     <p>
                       A garantia por vícios, ou, defeitos dos produtos que
                       estiverem dentro do prazo de 90 dias conforme direito do
-                      consumidor, serão tratadas pela IOOKS juntamente com a
+                      consumidor, serão tratadas pela ILOOKS juntamente com a
                       marcas fabricantes. Você deverá entrar em contato com
-                      nosso time de atendimento para que possamos orienta-lo
+                      nosso time de atendimento para que possamos orientar-lhe
                       sobre o processo e prazos.
                     </p>
                   </AccordionItemPanel>
@@ -342,7 +342,7 @@ const Faq = () => {
                     <p>
                       Após o período de prova de 48h será validado o valor de
                       reserva e efetivada a compra, enviaremos sua NOTA FISCAL
-                      ELETRONICA através do e-mail cadastrado em até 2 dias
+                      ELETRÔNICA através do e-mail cadastrado em até 2 dias
                       úteis.
                     </p>
                   </AccordionItemPanel>

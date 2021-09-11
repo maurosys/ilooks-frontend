@@ -16,7 +16,7 @@ const Signup = () => {
   return (
     <>
       <HeaderHtml>
-        <title>Signup</title>
+        <title> Ilooks | Signup</title>
       </HeaderHtml>
       <Header />
       <section className="signup-area ptb-60">
@@ -102,7 +102,7 @@ const Signup = () => {
             />{" "}
             <label>Desejo receber ofertas por e-mail</label>
           </div>
- 
+
           <button className='btn-signup'>Criar seu cadastro</button>
         </div>
       </section>

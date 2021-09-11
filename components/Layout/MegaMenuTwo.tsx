@@ -299,7 +299,7 @@ const MegaMenuTwo = ({ products, card }: StateProps) => {
 
                   <li className="nav-item megamenu">
                     <Link href="/about">
-                      <a className="nav-link">Sobre nos</a>
+                      <a className="nav-link">Sobre nós</a>
                     </Link>
                   </li>
                 </ul>

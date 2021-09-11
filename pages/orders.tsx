@@ -1,93 +1,112 @@
-import React, { Component } from "react";
-import { GetServerSideProps } from "next";
-import { parseCookies } from "nookies";
+import {GetServerSideProps}         from 'next';
+import {parseCookies}               from 'nookies';
+import React, {useEffect, useState} from 'react';
+import {useDispatch}                from 'react-redux';
+import ButtonPrimary                from '../components/Button/Primary';
+import Details                      from '../components/Detalis';
+import FieldSearch                  from '../components/FieldSearch';
+import Footer                       from '../components/Layout/Footer';
 
-import HeaderFixed from "../components/Layout/HeaderFixed";
-import Footer from "../components/Layout/Footer";
-import Facility from "../components/shop-style-five/Facility";
-import Details from "../components/Detalis";
-import OrderItem, { OrderItemProps } from "../components/orderItem";
-import FieldSearch from "../components/FieldSearch";
-import api, { getAPIClient } from "../services/api";
-import ButtonPrimary from "../components/Button/Primary";
-import useLogin from "../hooks/pages/useLogin";
+import HeaderFixed         from '../components/Layout/HeaderFixed';
+import OrderItem           from '../components/orderItem';
+import Facility            from '../components/shop-style-five/Facility';
+import useLogin            from '../hooks/pages/useLogin';
+import api, {getAPIClient} from '../services/api';
 
 const Orders = () => {
-  const { onLogout } = useLogin();
+  const dispatch = useDispatch();
+  const {onLogout} = useLogin();
 
-  const orders: OrderItemProps[] = [
-    {
-      numberOrder: 123456789,
-      orderStatus: "pagamento",
-      items: [
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-      ],
-    },
-    ,
-    {
-      numberOrder: 123456789,
-      orderStatus: "transportadora",
-      items: [
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-        {
-          title: "Casaco teste bege - inverno",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg",
-          quantity: 3,
-        },
-        {
-          title: "Camiseta teste vermelha - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg",
-          quantity: 4,
-        },
-      ],
-    },
-    {
-      numberOrder: 123456789,
-      orderStatus: "entregue",
-      items: [
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-        {
-          title: "Casaco teste bege - inverno",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg",
-          quantity: 3,
-        },
-        {
-          title: "Camiseta teste vermelha - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg",
-          quantity: 4,
-        },
-      ],
-    },
-  ];
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    loadOrders();
+  }, []);
+
+  const loadOrders = async () => {
+    api.get('/request/period/864000')
+       .then((response) => {
+         console.log('Retorno: ');
+         console.log(response.data);
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+
+    setOrders([
+                {
+                  numberOrder: 123456789,
+                  orderStatus: 'pagamento',
+                  items:       [
+                    {
+                      title:    'Vestido teste rosa - verão',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
+                      quantity: 2,
+                    },
+                    {
+                      title:    'Vestido teste rosa - verão',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
+                      quantity: 2,
+                    },
+                  ],
+                },
+                ,
+                {
+                  numberOrder: 123456789,
+                  orderStatus: 'transportadora',
+                  items:       [
+                    {
+                      title:    'Vestido teste rosa - verão',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
+                      quantity: 2,
+                    },
+                    {
+                      title:    'Casaco teste bege - inverno',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg',
+                      quantity: 3,
+                    },
+                    {
+                      title:    'Camiseta teste vermelha - verão',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg',
+                      quantity: 4,
+                    },
+                  ],
+                },
+                {
+                  numberOrder: 123456789,
+                  orderStatus: 'entregue',
+                  items:       [
+                    {
+                      title:    'Vestido teste rosa - verão',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
+                      quantity: 2,
+                    },
+                    {
+                      title:    'Casaco teste bege - inverno',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg',
+                      quantity: 3,
+                    },
+                    {
+                      title:    'Camiseta teste vermelha - verão',
+                      imageUrl:
+                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg',
+                      quantity: 4,
+                    },
+                  ],
+                },
+              ]);
+  };
 
   return (
     <>
-      <HeaderFixed />
+      <HeaderFixed/>
       <section className="login-area ptb-60">
         <div
           className="container"
@@ -98,24 +117,24 @@ const Orders = () => {
           <h1>Meus pedidos</h1>
           <div className="container-order">
             <div className="container-order-options">
-              <Details />
+              <Details/>
             </div>
 
             <div className="container-order-content">
               {/* <h5>Pedidos</h5> */}
               <div className="container-order-content-items">
-                <FieldSearch />
+                <FieldSearch/>
 
                 {orders &&
-                  orders.length > 0 &&
-                  orders.map((order, index) => (
-                    <OrderItem
-                      key={index}
-                      orderStatus={order.orderStatus}
-                      numberOrder={order.numberOrder}
-                      items={order.items}
-                    />
-                  ))}
+                 orders.length > 0 &&
+                 orders.map((order, index) => (
+                   <OrderItem
+                     key={index}
+                     orderStatus={order.orderStatus}
+                     numberOrder={order.numberOrder}
+                     items={order.items}
+                   />
+                 ))}
 
                 <button
                   className="btn-primary-br"
@@ -135,22 +154,22 @@ const Orders = () => {
         </div>
       </section>
 
-      <Facility />
+      <Facility/>
 
-      <Footer />
+      <Footer/>
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apiClient = getAPIClient(ctx);
-  const { "nextilooks.auth": auth } = parseCookies(ctx);
+  const {'nextilooks.auth': auth} = parseCookies(ctx);
 
   if (!auth) {
     return {
       redirect: {
-        destination: "/",
-        permanent: false,
+        destination: '/',
+        permanent:   false,
       },
     };
   }
