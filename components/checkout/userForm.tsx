@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { Alert } from "react-bootstrap";
 
 function useForm(stateSchema, validationSchema = {}, callback) {
   const [state, setState] = useState(stateSchema);
@@ -26,7 +27,7 @@ function useForm(stateSchema, validationSchema = {}, callback) {
       const stateValue = state[key].value;
       const stateError = state[key].error;
 
-      return (isInputFieldRequired && !stateValue) || stateError;
+      return (isInputFieldRequired && !stateValue) || stateError != '';
     });
 
     return hasErrorInState;
@@ -39,7 +40,7 @@ function useForm(stateSchema, validationSchema = {}, callback) {
     const value = event.target.value;
 
     let error = "";
-    if (validationSchema[name].required) {
+    if (validationSchema[name]?.required) {
       if (!value) {
         error = "This is required field.";
       }
@@ -69,6 +70,8 @@ function useForm(stateSchema, validationSchema = {}, callback) {
     // Before calling the submit callback function
     if (!validateState()) {
       callback();
+    } else {
+      alert("Preencha todos os campos corretamente!");
     }
   }
 

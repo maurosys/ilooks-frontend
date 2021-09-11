@@ -7258,6 +7258,10 @@ textarea.form-control {
   margin-bottom: 20px;
 }
 
+.payment-method .form-group {
+  margin-bottom: 20px;
+}
+
 .billing-details .form-group label {
   display: block;
   color: #222222;

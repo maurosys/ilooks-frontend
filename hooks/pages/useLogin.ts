@@ -67,8 +67,12 @@ const useLogin = () => {
         });
 
         api.defaults.headers["Authorization"] = `Bearer ${dataResponse.token}`;
-
-        Router.push("/orders");
+        console.log(Router.query);
+        if (Router.query.redirect) {
+          Router.push(`${Router.query.redirect}`)
+        } else {
+          Router.push("/orders");
+        }
         setLoading(false);
       })
       .catch((err) => {
