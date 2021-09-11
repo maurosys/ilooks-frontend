@@ -18,3 +18,16 @@ export type RegisterRequest = {
   address?: Address[];
   phones?: PhoneRequest[];
 };
+
+export type CategoryRequest = {
+  id: string;
+  name: string;
+  created_at: Date;
+};
+
+export type SubCategoryRequest = {
+  id: string;
+  name: string;
+  category: string;
+  categoryId: string;
+};

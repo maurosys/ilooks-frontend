@@ -6,7 +6,6 @@
       "price": 190,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover1.jpg"
-      
     },
     {
       "id": 2,
@@ -14,7 +13,6 @@
       "price": 120,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover2.jpg"
-      
     },
     {
       "id": 3,
@@ -22,7 +20,6 @@
       "price": 160,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover3.jpg"
-      
     },
     {
       "id": 4,
@@ -30,7 +27,6 @@
       "price": 130,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img4.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover4.jpg"
-      
     },
     {
       "id": 5,
@@ -38,7 +34,6 @@
       "price": 90,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img5.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover5.jpg"
-      
     },
     {
       "id": 6,
@@ -46,7 +41,6 @@
       "price": 180,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img6.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover6.jpg"
-      
     },
     {
       "id": 7,
@@ -54,7 +48,6 @@
       "price": 330,
       "image": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img7.jpg",
       "imageHover": "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img-hover7.jpg"
-      
     },
     {
       "id": 8,
