@@ -5,7 +5,7 @@ import Link from "next/link";
 import Cart from "../Modal/Cart";
 import Wishlist from "../Modal/Wishlist";
 import { Products as ProductsPros } from "../../store/ducks/products/types";
-import { ApplicationState } from "../../store";
+// import { ApplicationState } from "../../store";
 import { useAppSelector } from "../../store/hooks";
 import { selectAuth } from "../../store/ducks/Auth";
 
