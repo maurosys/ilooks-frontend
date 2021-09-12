@@ -24,84 +24,13 @@ const Orders = () => {
   }, []);
 
   const loadOrders = async () => {
-    api.get('/request/period/864000')
+    api.get('/request')
        .then((response) => {
-         console.log('Retorno: ');
-         console.log(response.data);
+         setOrders(response.data.orders);
        })
        .catch((error) => {
          console.log(error);
        });
-
-    setOrders([
-                {
-                  numberOrder: 123456789,
-                  orderStatus: 'pagamento',
-                  items:       [
-                    {
-                      title:    'Vestido teste rosa - verão',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
-                      quantity: 2,
-                    },
-                    {
-                      title:    'Vestido teste rosa - verão',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
-                      quantity: 2,
-                    },
-                  ],
-                },
-                ,
-                {
-                  numberOrder: 123456789,
-                  orderStatus: 'transportadora',
-                  items:       [
-                    {
-                      title:    'Vestido teste rosa - verão',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
-                      quantity: 2,
-                    },
-                    {
-                      title:    'Casaco teste bege - inverno',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg',
-                      quantity: 3,
-                    },
-                    {
-                      title:    'Camiseta teste vermelha - verão',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg',
-                      quantity: 4,
-                    },
-                  ],
-                },
-                {
-                  numberOrder: 123456789,
-                  orderStatus: 'entregue',
-                  items:       [
-                    {
-                      title:    'Vestido teste rosa - verão',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg',
-                      quantity: 2,
-                    },
-                    {
-                      title:    'Casaco teste bege - inverno',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg',
-                      quantity: 3,
-                    },
-                    {
-                      title:    'Camiseta teste vermelha - verão',
-                      imageUrl:
-                                'https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg',
-                      quantity: 4,
-                    },
-                  ],
-                },
-              ]);
   };
 
   return (
@@ -130,7 +59,7 @@ const Orders = () => {
                  orders.map((order, index) => (
                    <OrderItem
                      key={index}
-                     orderStatus={order.orderStatus}
+                     orderStatus={order.orderStatus.toLowerCase()}
                      numberOrder={order.numberOrder}
                      items={order.items}
                    />

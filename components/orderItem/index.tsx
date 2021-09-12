@@ -37,12 +37,12 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
                     } */}
                     <span className="accordion-custom-header-span-status">Pedido: {numberOrder}</span>
                 </div>
-                <span>{rulesActives[orderStatus].label}</span>
+                <span>{rulesActives[orderStatus.toLowerCase()].label}</span>
             </div>
             <hr />
 
             <div>
-                
+
                 <div className="accordion-content-not-expanded">
 
                     {
@@ -57,7 +57,7 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
                         ))
                     }
 
-                    
+
                 </div>
 
                 <TimeLineOrder orderStatus={orderStatus} />
@@ -66,12 +66,12 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
                         <button className="btn-primary-br">Trocar ou devolver</button>
                         <button className="btn-secondary-br">Detalhes do pedido</button>
                 </div>
-                
+
 
                 {/* {
                     isExpanded && (
                         <>
-                            
+
                             <div className="accordion-content-expanded">
                                 <div className="item">
                                     <img src="https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg" alt="imageProduct" width={80} />
