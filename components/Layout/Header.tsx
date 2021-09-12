@@ -1,13 +1,22 @@
-import MegaMenuTwo from './MegaMenuTwo';
+import MegaMenuTwo from "./MegaMenuTwo";
 
-const Header = () => {
+//TYPES
+import { CategoryRequest, SubCategoryRequest } from "@type/request";
+
+interface HeaderProps {
+  categories?: CategoryRequest[];
+  subCategories?: SubCategoryRequest[];
+}
+
+const Header = (props: HeaderProps) => {
+  const { categories, subCategories } = props;
+
   return (
     <>
       <div className="header-area">
-        <MegaMenuTwo />  
+        <MegaMenuTwo categories={categories} subCategories={subCategories} />
       </div>
     </>
   );
-}
+};
 export default Header;
-  
