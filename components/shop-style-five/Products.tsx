@@ -295,7 +295,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                                       href="/product/[id]"
                                       as={`/product/${data.id}`}
                                     >
-                                      <a>{data.title}</a>
+                                      <a>{data.name}</a>
                                     </Link>
                                   </h3>
 

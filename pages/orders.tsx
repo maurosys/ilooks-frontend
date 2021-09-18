@@ -65,16 +65,18 @@ const Orders = () => {
                    />
                  ))}
 
-                <button
+{/*                <button
                   className="btn-primary-br"
                   style={{
                     marginTop: 20,
                   }}
                 >
                   ver mais pedidos
-                </button>
+                </button>*/}
 
-                <ButtonPrimary type="button" onClick={onLogout}>
+                <ButtonPrimary type="button" onClick={onLogout} style={{
+                  marginTop: 20,
+                }}>
                   Sair
                 </ButtonPrimary>
               </div>

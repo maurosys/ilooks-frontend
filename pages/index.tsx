@@ -1,39 +1,24 @@
-import { useEffect } from "react";
-import Head from "next/head";
-import { GetStaticProps } from "next";
-import { connect, useDispatch } from "react-redux";
-
-import { ApplicationState } from "../store";
-
-import Header from "../components/Layout/Header";
-
-import BannerSlider from "../components/shop-style-five/BannerSlider";
-
-import Facility from "../components/shop-style-five/Facility";
-
-import CategoryTypes from "../components/shop-style-five/CategoryTypes";
-
-import ProductsOffer from "../components/shop-style-five/ProductsOffer";
-
-import Partner from "../components/Common/Partner";
-
-import Subscribe from "../components/Common/Subscribe";
-
-import InstagramPhoto from "../components/Common/InstagramPhoto";
-
-import Footer from "../components/Layout/Footer";
-
-import AddsModal from "../components/Modal/AddsModal";
-
-import Products from "../components/shop-style-five/Products";
-
-import { Products as ProductsPros } from "../store/ducks/products/types";
-
-import { loadResquestProduct } from "../store/ducks/products/actions";
-
 //SERVICE
-import { getAPIClient } from "@services/api";
-import { CategoryRequest, SubCategoryRequest } from "@type/request";
+import api, {getAPIClient}                   from '@services/api';
+import {CategoryRequest, SubCategoryRequest} from '@type/request';
+import {GetStaticProps}                      from 'next';
+import Head                                  from 'next/head';
+import {useEffect, useState}                 from 'react';
+import {connect, useDispatch}                from 'react-redux';
+import InstagramPhoto                        from '../components/Common/InstagramPhoto';
+import Partner                               from '../components/Common/Partner';
+import Subscribe                             from '../components/Common/Subscribe';
+import Footer                                from '../components/Layout/Footer';
+import Header                                from '../components/Layout/Header';
+import AddsModal                             from '../components/Modal/AddsModal';
+import BannerSlider                          from '../components/shop-style-five/BannerSlider';
+import CategoryTypes                         from '../components/shop-style-five/CategoryTypes';
+import Facility                              from '../components/shop-style-five/Facility';
+import Products                              from '../components/shop-style-five/Products';
+import ProductsOffer                         from '../components/shop-style-five/ProductsOffer';
+
+import {ApplicationState}         from '../store';
+import {Products as ProductsPros} from '../store/ducks/products/types';
 
 //TYPES
 interface StateProps {
@@ -44,51 +29,75 @@ interface StateProps {
 
 type Props = StateProps;
 
-const Index = ({ productss, categories, subCategories }: Props) => {
+const Index = ({productss, categories, subCategories}: Props) => {
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    dispatch(loadResquestProduct());
+    //dispatch(loadResquestProduct());
+    loadProducts();
   }, []);
+
+  const loadProducts = async () => {
+    api.get('/product')
+       .then((response) => {
+         const _products: ProductsPros[] = response.data.products.map((prod) => {
+           return {
+             id:         prod.id,
+             title:      prod.name,
+             price:      prod.price,
+             image:      prod.image ?? '',
+             imageHover: prod.imageHover ?? '',
+             qty:        prod.quantity_all,
+             total:      0,
+             active:     true
+           };
+         });
+         setProducts(_products);
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+  };
 
   return (
     <>
       <Head>
         <title> Ilooks | Home </title>
       </Head>
-      <Header categories={categories} subCategories={subCategories} />
+      <Header categories={categories} subCategories={subCategories}/>
 
-      <BannerSlider />
+      <BannerSlider/>
 
-      <Facility />
+      <Facility/>
 
-      <CategoryTypes />
+      <CategoryTypes/>
 
-      <Products products={productss} />
+      <Products products={products}/>
 
-      <ProductsOffer />
+      <ProductsOffer/>
 
-      <Partner />
+      <Partner/>
 
-      <Subscribe />
+      <Subscribe/>
 
-      <InstagramPhoto />
+      <InstagramPhoto/>
 
-      <Footer />
+      <Footer/>
 
-      <AddsModal />
+      <AddsModal/>
     </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const api = getAPIClient(context);
-  const categories = await api.get("category");
-  const subCategories = await api.get("subcategory");
+  const categories = await api.get('category');
+  const subCategories = await api.get('subcategory');
 
   return {
-    props: {
-      categories: categories.data,
+    props:      {
+      categories:    categories.data,
       subCategories: subCategories.data,
     },
     revalidate: 10,
