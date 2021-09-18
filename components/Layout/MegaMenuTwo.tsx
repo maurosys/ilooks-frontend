@@ -11,6 +11,7 @@ import { selectAuth } from "../../store/ducks/Auth";
 
 //TYPES
 import { CategoryRequest, SubCategoryRequest } from "@type/request";
+import { getAPIClient } from "@services/api";
 
 interface StateProps {
   products: ProductsPros[];
@@ -22,14 +23,28 @@ interface StateProps {
 const MegaMenuTwo = ({
   products,
   card,
-  categories,
-  subCategories,
-}: StateProps) => {
+}: // categories,
+// subCategories,
+StateProps) => {
   const [display, setDisplay] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [searchForma, setSearchForma] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
   const authUser = useAppSelector(selectAuth);
+
+  const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  const api = getAPIClient();
+
+  useEffect(() => {
+    const getDatas = async () => {
+      const categories = await api.get("category");
+      const subCategories = await api.get("subcategory");
+      setCategories(categories.data);
+      setSubCategories(subCategories.data);
+    };
+    getDatas();
+  }, []);
 
   const handleWishlist = () => {
     setOpenWishlist(true);
@@ -337,7 +352,7 @@ const MegaMenuTwo = ({
 
                   <li className="nav-item megamenu">
                     <Link href="/about">
-                      <a className="nav-link">Sobre nós</a>
+                      <a className="nav-link">Sobre nos</a>
                     </Link>
                   </li>
                 </ul>
