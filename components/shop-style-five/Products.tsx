@@ -114,7 +114,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                   </span>
                 </li>
 
-                <li
+                {/* <li
                   onClick={(e) => {
                     e.preventDefault();
                     openTabSection(e, "tab2");
@@ -123,7 +123,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                   <span className="tabs-nav-text">
                     <span className="dot"></span> Últimos produtos
                   </span>
-                </li>
+                </li> */}
               </ul>
             </div>
 
