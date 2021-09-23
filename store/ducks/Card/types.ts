@@ -6,6 +6,7 @@ export enum CardTypes {
   REMOVE_ITEM = "@card/REMOVE_ITEM",
   ALTER_QUANTITY = "@card/ALTER_QUANTITY",
   GET_ALL = "@card/GET_ALL",
+  CLEAR_CART = "@card/CLEAR_CART",
 }
 
 export interface card {

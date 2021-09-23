@@ -6,8 +6,11 @@ import {createRequest, getUserFromId, Request} from "@services/request.api";
 import {AlertSuccess, AlertWarning} from "@utils/dialog";
 import {useRouter} from "next/router";
 import api from "@services/api";
+import {clearCart, removeItem} from "@store/ducks/Card/actions";
+import {useDispatch} from "react-redux";
 
 function CheckoutForm() {
+	const dispatch = useDispatch();
 	const router = useRouter();
 	const [isLoged, setIsLoged] = useState(false);
 	const [isDiffentetAddress, setIsDiffentetAddress] = useState(false);
@@ -170,55 +173,6 @@ function CheckoutForm() {
 				error: "Invalid number_token format use like 21",
 			},
 		},
-		
-		// differentAddress_address: {
-		//   required: true,
-		//   validator: {
-		//     error: "Invalid address format.",
-		//   },
-		// },
-		
-		// differentAddress_district: {
-		//   required: true,
-		//   validator: {
-		//     error: "Invalid district format.",
-		//   },
-		// },
-		
-		// differentAddress_city: {
-		//   required: true,
-		//   validator: {
-		//     error: "Invalid city format.",
-		//   },
-		// },
-		
-		// differentAddress_number: {
-		//   required: true,
-		//   validator: {
-		//     error: "Invalid number format.",
-		//   },
-		// },
-		
-		// differentAddress_complement: {
-		//   required: true,
-		//   validator: {
-		//     error: "Invalid complement format.",
-		//   },
-		// },
-		
-		// differentAddress_state: {
-		//   required: true,
-		//   validator: {
-		//     error: "Invalid state format.",
-		//   },
-		// },
-		
-		// differentAddress_zipcode: {
-		//   required: true,
-		//   validator: {
-		//     error: "Invalid zipcode format.",
-		//   },
-		// },
 	};
 	
 	const {state, handleOnChange, handleOnSubmit, disable} = useForm(
@@ -274,13 +228,12 @@ function CheckoutForm() {
 				return acc;
 			}, 0);
 			await createRequest(_REQUEST, token);
+			//localStorage.removeItem("@ilooksecommerce_cart");
+			dispatch(clearCart());
 			AlertSuccess({
 				title: "Pedido",
 				message: "Seu Pedido foi finalizado com sucesso!",
 			});
-			
-			localStorage.removeItem("@ilooksecommerce_cart");
-			// ToDo: limpar carrinho na página
 			setTimeout(() => {
 				router.push("/orders");
 			}, 5000);
