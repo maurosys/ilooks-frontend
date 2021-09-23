@@ -26,6 +26,10 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
 
       return [...state];
 
+    case CardTypes.CLEAR_CART:
+      localStorage.removeItem("@ilooksecommerce_cart");
+      return [];
+      
     case CardTypes.REMOVE_ITEM:
       localStorage.setItem(
         "@ilooksecommerce_cart",

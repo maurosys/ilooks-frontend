@@ -109,27 +109,6 @@ const Register = () => {
             </div>
           </div>
 
-          {/* <label>SEXO</label>
-          <div className={styles.containerRadio}>
-            <Radio
-              name="sexo"
-              value="masculino"
-              id="masculino"
-              label="Masculino"
-              radioSelect={radioSelect}
-              setRadioSelect={setRadioSelect}
-            />
-
-            <Radio
-              name="sexo"
-              value="feminino"
-              id="feminino"
-              label="Feminino"
-              setRadioSelect={setRadioSelect}
-              radioSelect={radioSelect}
-            />
-          </div> */}
-
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <InputSelect
