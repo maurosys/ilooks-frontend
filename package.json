@@ -1,7 +1,7 @@
 {
-  "name": "novine-react-next",
+  "name": "ilooks",
   "version": "3.9.0",
-  "description": "Novine - React Next eCommerce Templates",
+  "description": "Ilooks",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 3006",
