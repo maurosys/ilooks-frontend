@@ -20,6 +20,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
+    console.log('CARREGANDO...')
     loadOrders();
   }, []);
 
@@ -65,15 +66,6 @@ const Orders = () => {
                    />
                  ))}
 
-{/*                <button
-                  className="btn-primary-br"
-                  style={{
-                    marginTop: 20,
-                  }}
-                >
-                  ver mais pedidos
-                </button>*/}
-
                 <ButtonPrimary type="button" onClick={onLogout} style={{
                   marginTop: 20,
                 }}>
@@ -94,6 +86,7 @@ const Orders = () => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apiClient = getAPIClient(ctx);
+  console.log('API_CLIENT', apiClient);
   const {'nextilooks.auth': auth} = parseCookies(ctx);
 
   if (!auth) {

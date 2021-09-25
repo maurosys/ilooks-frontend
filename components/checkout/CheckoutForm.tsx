@@ -81,14 +81,7 @@ function CheckoutForm() {
 	}, []);
 	
 	const validationStateSchema = {
-		name: {
-			required: true,
-			validator: {
-				regEx: /^[a-zA-Z]+$/,
-				error: "Invalid first name format.",
-			},
-		},
-		
+
 		address: {
 			required: true,
 			validator: {
@@ -107,13 +100,6 @@ function CheckoutForm() {
 			required: true,
 			validator: {
 				error: "Invalid number format.",
-			},
-		},
-		
-		complement: {
-			required: true,
-			validator: {
-				error: "Invalid complement format.",
 			},
 		},
 		
@@ -173,6 +159,45 @@ function CheckoutForm() {
 				error: "Invalid number_token format use like 21",
 			},
 		},
+
+		differentAddress_address: {
+			required: isDiffentetAddress,
+			validator: {
+				error: "Invalid address format.",
+			},
+		},
+
+		differentAddress_city: {
+			required: isDiffentetAddress,
+			validator: {
+				error: "Invalid city format.",
+			},
+		},
+
+		differentAddress_state: {
+			required: isDiffentetAddress,
+			validator: {
+				error: "Invalid state format.",
+			},
+		},
+
+		differentAddress_number: {
+			required: isDiffentetAddress,
+			validator: {
+				error: "Invalid number format.",
+			},
+		},
+
+		differentAddress_zipcode: {
+			required: isDiffentetAddress,
+			validator: {
+				error: "Invalid zipcode format.",
+			},
+		},
+
+		differentAddress_complement: {
+			required: false
+		}
 	};
 	
 	const {state, handleOnChange, handleOnSubmit, disable} = useForm(
@@ -188,14 +213,14 @@ function CheckoutForm() {
 				const response = await api.post(
 					"/address",
 					{
-						address: state.differentAddress_address,
-						district: state.differentAddress_district,
-						number: state.differentAddress_number,
-						complement: state.differentAddress_complement,
-						city: state.differentAddress_city,
-						state: state.differentAddress_state,
-						zipcode: state.differentAddress_zipcode,
-						description: "Descricao",
+						address: state.differentAddress_address.value,
+						district: state.differentAddress_district.value,
+						number: state.differentAddress_number.value,
+						complement: state.differentAddress_complement.value,
+						city: state.differentAddress_city.value,
+						state: state.differentAddress_state.value,
+						zipcode: state.differentAddress_zipcode.value,
+						description: "Novo endereço",
 						userId: user["id"],
 						primary: false,
 					},
@@ -206,7 +231,10 @@ function CheckoutForm() {
 					}
 				);
 				_REQUEST.addressId = response.data.id;
+			} else {
+				_REQUEST.addressId = user["primaryAddres"]["id"];
 			}
+			// @ts-ignore
 			_REQUEST.required_products = cart?.map((item:any) => {
 				return {
 					productDetailId: item.details_product[0].id,
@@ -220,7 +248,6 @@ function CheckoutForm() {
 				expiration_year: state.expiration_year.value,
 			};
 			_REQUEST.userId = user["id"];
-			_REQUEST.addressId = user["primaryAddres"]["id"];
 			_REQUEST.amount = cart?.reduce((acc, card) => {
 				if (card.price) {
 					return acc + card.total;
@@ -228,7 +255,6 @@ function CheckoutForm() {
 				return acc;
 			}, 0);
 			await createRequest(_REQUEST, token);
-			//localStorage.removeItem("@ilooksecommerce_cart");
 			dispatch(clearCart());
 			AlertSuccess({
 				title: "Pedido",
@@ -236,7 +262,7 @@ function CheckoutForm() {
 			});
 			setTimeout(() => {
 				router.push("/orders");
-			}, 5000);
+			}, 3000);
 		} catch (error) {
 			console.log(error);
 			AlertWarning({
@@ -345,7 +371,7 @@ function CheckoutForm() {
 										<div className="col-lg-6 col-md-6">
 											<div className="form-group">
 												<label>
-													Complemento <span className="required">*</span>
+													Complemento
 												</label>
 												<input
 													type="text"
@@ -501,7 +527,7 @@ function CheckoutForm() {
 												<div className="col-lg-6 col-md-6">
 													<div className="form-group">
 														<label>
-															Complemento <span className="required">*</span>
+															Complemento
 														</label>
 														<input
 															type="text"
@@ -579,19 +605,6 @@ function CheckoutForm() {
 												</div>
 											</div>
 										)}
-										
-										{/* <div className="col-lg-12 col-md-12">
-                    <div className="form-group">
-                      <textarea
-                        name="notes"
-                        id="notes"
-                        cols={30}
-                        rows={6}
-                        placeholder="Order Notes"
-                        className="form-control"
-                      />
-                    </div>
-                  </div> */}
 									</div>
 								</div>
 							</div>

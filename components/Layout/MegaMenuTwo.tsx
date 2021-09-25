@@ -155,155 +155,6 @@ StateProps) => {
                                 </div>
                               ))}
 
-                            {/* <div className="col">
-                              <h6 className="submenu-title">Roupas</h6>
-                              <ul className="megamenu-submenu">
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Camisa</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Camiseta</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Jeans</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Blusa,</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Jaqueta</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Blusa de Frio</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Gravata</a>
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="col">
-                              <h6 className="submenu-title">Calçados</h6>
-
-                              <ul className="megamenu-submenu">
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Sapatilha</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Rasteirinha</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Tamanco</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Anabela</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Sandália </a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Birkenstock</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Slipper</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Plataforma</a>
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="col">
-                              <h6 className="submenu-title">Acessórios</h6>
-
-                              <ul className="megamenu-submenu">
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Bolas</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Óculos</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Carteiras</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Pulseiras</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Colar</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Boné</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Relógios</a>
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div> */}
-
                             <div className="col">
                               <ul className="megamenu-submenu">
                                 <li>
@@ -320,21 +171,6 @@ StateProps) => {
                                       <a></a>
                                     </Link>
                                   </div>
-
-                                  {/* <div className="aside-trending-products">
-                                    <img
-                                      src={require("../../images/category-products-img3.jpg")}
-                                      alt="image"
-                                    />
-
-                                    <div className="category">
-                                      <h4>Últimos Produtos</h4>
-                                    </div>
-
-                                    <Link href="#">
-                                      <a></a>
-                                    </Link>
-                                  </div> */}
                                 </li>
                               </ul>
                             </div>
@@ -398,13 +234,13 @@ StateProps) => {
 
                   <div className="option-item">
                     {authUser.userId ? (
-                      <Link href="/orders">
-                        <a>Minha conta</a>
-                      </Link>
+                        <Link href="/orders">
+                          <a>Minha conta</a>
+                        </Link>
                     ) : (
-                      <Link href="/login">
-                        <a>Login / Cadastro</a>
-                      </Link>
+                        <Link href="/login">
+                          <a>Login / Cadastro</a>
+                        </Link>
                     )}
                   </div>
                   <div className="option-item">

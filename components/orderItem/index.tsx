@@ -10,11 +10,17 @@ export interface ItemsProps {
     quantity: number;
 }
 
+export interface OrderStatusProps {
+    status: string;
+    statusDate: string;
+}
+
 export interface OrderItemProps {
     id?: string;
     numberOrder: number;
     orderStatus: string;
     items: ItemsProps[];
+    statusHistory:OrderStatusProps[];
 }
 
 export default function OrderItem ({ id, numberOrder, orderStatus, items }: OrderItemProps) {

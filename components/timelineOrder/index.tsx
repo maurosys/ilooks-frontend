@@ -55,8 +55,7 @@ export const rulesActives = {
 }
 
 const TimeLineOrder = ({ orderStatus }: TimeLineOrderProps) => {
-
-
+    console.log('STATUS',orderStatus);
     return (
     <div className="timeline">
 
