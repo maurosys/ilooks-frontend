@@ -15,8 +15,8 @@ interface historyStatusProps {
 }
 
 const TimeLineOrder = ({orderStatus, statusHistory}: TimeLineOrderProps) => {
-	const [history, setHistory] = useState({});
-	const dateOptions = {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:false};
+	const [history, setHistory] = useState<historyStatusProps|undefined>({});
+	const dateOptions:any = {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:false};
 	
 	useEffect(() => {
 			console.log('STA:', statusHistory);
