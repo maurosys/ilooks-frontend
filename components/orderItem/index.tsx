@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { FiChevronsDown, FiChevronsUp } from 'react-icons/fi';
-import TimeLineOrder, { rulesActives } from '../timelineOrder';
-import {date} from "yup";
+import TimeLineOrder from '../timelineOrder';
 
 
 export interface ItemsProps {
@@ -15,7 +12,7 @@ export interface OrderStatusProps {
     id: string;
     status_request: string;
     status_payment: string;
-    change_date: date;
+    change_date: string;
 }
 
 export interface OrderItemProps {
