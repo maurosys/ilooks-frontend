@@ -20,7 +20,6 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    console.log('CARREGANDO...')
     loadOrders();
   }, []);
 
@@ -62,6 +61,7 @@ const Orders = () => {
                      key={index}
                      orderStatus={order.orderStatus.toLowerCase()}
                      numberOrder={order.numberOrder}
+                     statusHistory={order.statusHistory}
                      items={order.items}
                    />
                  ))}

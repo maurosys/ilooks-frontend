@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { FiChevronsDown, FiChevronsUp } from 'react-icons/fi';
 import TimeLineOrder, { rulesActives } from '../timelineOrder';
+import {date} from "yup";
 
 
 export interface ItemsProps {
@@ -11,8 +12,10 @@ export interface ItemsProps {
 }
 
 export interface OrderStatusProps {
-    status: string;
-    statusDate: string;
+    id: string;
+    status_request: string;
+    status_payment: string;
+    change_date: date;
 }
 
 export interface OrderItemProps {
@@ -23,7 +26,7 @@ export interface OrderItemProps {
     statusHistory:OrderStatusProps[];
 }
 
-export default function OrderItem ({ id, numberOrder, orderStatus, items }: OrderItemProps) {
+export default function OrderItem ({ id, numberOrder, orderStatus, items, statusHistory }: OrderItemProps) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleExpanded = () => {
@@ -34,16 +37,9 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
         <div className="accordion-custom">
             <div className="accordion-custom-header" onClick={handleExpanded}>
                 <div>
-                    {/* {
-                        !isExpanded ? (<FiChevronsDown size={20}  style={{
-                            cursor: 'pointer'
-                        }}/>) : (<FiChevronsUp size={20} style={{
-                            cursor: 'pointer'
-                        }}/>)
-                    } */}
                     <span className="accordion-custom-header-span-status">Pedido: {numberOrder}</span>
                 </div>
-                <span>{rulesActives[orderStatus.toLowerCase()].label}</span>
+                <span>{orderStatus}</span>
             </div>
             <hr />
 
@@ -66,31 +62,13 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
 
                 </div>
 
-                <TimeLineOrder orderStatus={orderStatus} />
+                <TimeLineOrder orderStatus={orderStatus} statusHistory={statusHistory} />
 
                 <div className="accordion-footer">
                         <button className="btn-primary-br">Trocar ou devolver</button>
                         <button className="btn-secondary-br">Detalhes do pedido</button>
                 </div>
-
-
-                {/* {
-                    isExpanded && (
-                        <>
-
-                            <div className="accordion-content-expanded">
-                                <div className="item">
-                                    <img src="https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg" alt="imageProduct" width={80} />
-                                    <div>
-                                        <p>Vestido teste rosa - verão</p>
-                                        <span>1 unidade</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </>
-                    )
-                } */}
+                
             </div>
         </div>
     )
