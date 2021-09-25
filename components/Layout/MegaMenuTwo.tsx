@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { connect } from "react-redux";
 import Link from "next/link";
+import { parseCookies } from "nookies";
+
 import Cart from "../Modal/Cart";
 import Wishlist from "../Modal/Wishlist";
 import { Products as ProductsPros } from "../../store/ducks/products/types";
@@ -30,7 +32,10 @@ StateProps) => {
   const [openWishlist, setOpenWishlist] = useState(false);
   const [searchForma, setSearchForma] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
-  const authUser = useAppSelector(selectAuth);
+  // const authUser = useAppSelector(selectAuth);
+
+  const { "nextilooks.auth": auth } = parseCookies();
+  const authUser = auth ? JSON.parse(auth) : {};
 
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
@@ -234,13 +239,13 @@ StateProps) => {
 
                   <div className="option-item">
                     {authUser.userId ? (
-                        <Link href="/orders">
-                          <a>Minha conta</a>
-                        </Link>
+                      <Link href="/orders">
+                        <a>Minha conta</a>
+                      </Link>
                     ) : (
-                        <Link href="/login">
-                          <a>Login / Cadastro</a>
-                        </Link>
+                      <Link href="/login">
+                        <a>Login / Cadastro</a>
+                      </Link>
                     )}
                   </div>
                   <div className="option-item">

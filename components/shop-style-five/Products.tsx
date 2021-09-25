@@ -204,7 +204,10 @@ const Products = ({ products, wishlist }: StateProps) => {
                                   <h3>
                                     <Link
                                       href="/product/[id]"
-                                      as={`/product/${data.id}`}
+                                      as={`/product/${formatToUggly({
+                                        name: data.title,
+                                        id: data.id,
+                                      })}`}
                                     >
                                       <a>{data.title}</a>
                                     </Link>
@@ -218,7 +221,24 @@ const Products = ({ products, wishlist }: StateProps) => {
                                       }).format(data.price)}
                                     </span>
                                   </div>
-                                  <AddToCart data={data} />
+
+                                  <div>
+                                    <Link
+                                      href="/product/[id]"
+                                      as={`/product/${formatToUggly({
+                                        name: data.title,
+                                        id: data.id,
+                                      })}`}
+                                    >
+                                      <a
+                                        className="btn btn-light"
+                                        onClick={(e) => {}}
+                                      >
+                                        Visualizar detalhes
+                                      </a>
+                                    </Link>
+                                  </div>
+                                  {/* <AddToCart data={data} /> */}
                                 </div>
                               </div>
                             </div>
@@ -318,7 +338,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                                     </span>
                                   </div>
 
-                                  <AddToCart data={data} />
+                                  {/* <AddToCart data={data} /> */}
                                 </div>
                               </div>
                             </div>

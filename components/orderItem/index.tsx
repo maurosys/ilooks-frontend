@@ -1,80 +1,127 @@
-import { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { FiChevronsDown, FiChevronsUp } from 'react-icons/fi';
-import TimeLineOrder, { rulesActives } from '../timelineOrder';
-
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "react-bootstrap";
+import { FiChevronsDown, FiChevronsUp } from "react-icons/fi";
+import TimeLineOrder, { rulesActives } from "../timelineOrder";
+import { formatToUggly } from "@utils/formatToUggly";
 
 export interface ItemsProps {
-    title: string;
-    imageUrl: string;
-    quantity: number;
+  title: string;
+  imageUrl: string;
+  quantity: number;
+  color?: string;
+  size?: string;
+  productId?: string;
 }
 
 export interface OrderStatusProps {
-    status: string;
-    statusDate: string;
+  status: string;
+  statusDate: string;
 }
 
 export interface OrderItemProps {
-    id?: string;
-    numberOrder: number;
-    orderStatus: string;
-    items: ItemsProps[];
-    statusHistory:OrderStatusProps[];
+  id?: string;
+  numberOrder: number;
+  orderStatus: string;
+  items: ItemsProps[];
+  statusHistory: OrderStatusProps[];
 }
 
-export default function OrderItem ({ id, numberOrder, orderStatus, items }: OrderItemProps) {
-    const [isExpanded, setIsExpanded] = useState(false);
+export default function OrderItem({
+  id,
+  numberOrder,
+  orderStatus,
+  items,
+}: OrderItemProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
 
-    const handleExpanded = () => {
-        setIsExpanded(!isExpanded)
-    }
+  const handleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
 
-    return (
-        <div className="accordion-custom">
-            <div className="accordion-custom-header" onClick={handleExpanded}>
-                <div>
-                    {/* {
+  return (
+    <div className="accordion-custom">
+      <div className="accordion-custom-header" onClick={handleExpanded}>
+        <div>
+          {/* {
                         !isExpanded ? (<FiChevronsDown size={20}  style={{
                             cursor: 'pointer'
                         }}/>) : (<FiChevronsUp size={20} style={{
                             cursor: 'pointer'
                         }}/>)
                     } */}
-                    <span className="accordion-custom-header-span-status">Pedido: {numberOrder}</span>
+          <span className="accordion-custom-header-span-status">
+            Pedido: {numberOrder}
+          </span>
+        </div>
+        <span>{rulesActives[orderStatus.toLowerCase()].label}</span>
+      </div>
+      <hr />
+
+      <div>
+        <div className="accordion-content-not-expanded">
+          {items &&
+            items.length > 0 &&
+            items.map((item, index) => (
+              <Link
+                href="/product/[id]"
+                as={`/product/${formatToUggly({
+                  name: item.title,
+                  id: item.productId,
+                })}`}
+              >
+                <div
+                  className="item"
+                  key={`orderItem${index}`}
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
+                  <img
+                    src={item.imageUrl}
+                    alt={`imageProduct${index}`}
+                    width={80}
+                  />
+                  <div>
+                    <p>{item.title}</p>
+                    <span>
+                      {item.quantity}{" "}
+                      {item.quantity > 1 ? "unidades" : "unidade"}
+                    </span>
+                    <br />
+                    <span
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      Cor:{" "}
+                      <div
+                        style={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: 5,
+                          background: item.color,
+                          marginRight: 3,
+                          marginLeft: 3,
+                        }}
+                      />
+                      {`| Tamanho: ${item.size}`}
+                    </span>
+                  </div>
                 </div>
-                <span>{rulesActives[orderStatus.toLowerCase()].label}</span>
-            </div>
-            <hr />
+              </Link>
+            ))}
+        </div>
 
-            <div>
+        <TimeLineOrder orderStatus={orderStatus} />
 
-                <div className="accordion-content-not-expanded">
+        <div className="accordion-footer">
+          <button className="btn-primary-br">Trocar ou devolver</button>
+          <button className="btn-secondary-br">Detalhes do pedido</button>
+        </div>
 
-                    {
-                        items && items.length > 0 && items.map((item, index) => (
-                            <div className="item" key={`orderItem${index}`}>
-                                <img src={item.imageUrl} alt={`imageProduct${index}`} width={80} />
-                                <div>
-                                    <p>{item.title}</p>
-                                    <span>{item.quantity} {item.quantity > 1 ? 'unidades' : 'unidade'}</span>
-                                </div>
-                            </div>
-                        ))
-                    }
-
-
-                </div>
-
-                <TimeLineOrder orderStatus={orderStatus} />
-
-                <div className="accordion-footer">
-                        <button className="btn-primary-br">Trocar ou devolver</button>
-                        <button className="btn-secondary-br">Detalhes do pedido</button>
-                </div>
-
-
-                {/* {
+        {/* {
                     isExpanded && (
                         <>
 
@@ -91,7 +138,7 @@ export default function OrderItem ({ id, numberOrder, orderStatus, items }: Orde
                         </>
                     )
                 } */}
-            </div>
-        </div>
-    )
+      </div>
+    </div>
+  );
 }

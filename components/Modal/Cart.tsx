@@ -63,7 +63,25 @@ const Cart = ({ card, onClick }: StateProps) => {
                             <a>{card.title}</a>
                           </Link>
                         </h3>
-                        <span>Blue / XS</span>
+                        <span
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          Cor:{" "}
+                          <div
+                            style={{
+                              width: 10,
+                              height: 10,
+                              borderRadius: 5,
+                              background: card.productDetail.color,
+                              marginRight: 3,
+                              marginLeft: 3,
+                            }}
+                          />
+                          {`/ Tamanho: ${card.productDetail.size}`}
+                        </span>
                         <div className="product-price">
                           <span>{card.qty ? card.qty : 1}</span>
                           <span>x</span>
