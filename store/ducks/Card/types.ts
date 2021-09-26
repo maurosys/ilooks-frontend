@@ -1,3 +1,5 @@
+import { ProductsDetails } from "../products/types";
+
 /**
  * Actions Types
  */
@@ -15,6 +17,9 @@ export interface card {
   price: number;
   image: string;
   imageHover: string;
+  color?: string;
+  materialType?: string;
+  productDetail?: ProductsDetails;
   qty: number;
   total: number;
 }

@@ -62,7 +62,61 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
   }, [colorSelect]);
 
   function addItemCart(item) {
-    dispatch(addToCart({ ...item, total: item.price * qty, qty: qty }));
+    if (!sizeSelected || sizeSelected.length === 0) {
+      toast.warn("Por favor selecione ao menos um tamanho", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    if (!colorSelect || colorSelect.length === 0) {
+      toast.warn("Por favor selecione ao menos uma cor", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    const detailSelected = detailsProductAll.find(
+      (detail) => detail.size === sizeSelected && detail.color === colorSelect
+    );
+
+    if (!detailSelected) {
+      toast.error(
+        "Ocorreu um erro ao adicionar ao carrinho, por favor tente novamente mais tarde.",
+        {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
+      return;
+    }
+
+    dispatch(
+      addToCart({
+        ...item,
+        qty: qty,
+        total: item.price * qty,
+        title: item.name,
+        image: detailSelected.photos[0],
+        imageHover: detailSelected.photos[0],
+        productDetail: detailSelected,
+      })
+    );
+    // dispatch(addToCart({ ...item, total: item.price * qty, qty: qty }));
 
     toast.success("Adicionado ao carrinho", {
       position: "bottom-left",
@@ -229,18 +283,29 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
 
                   <ul>
                     {allSizes.map((size, index) => (
-                      <li
-                        key={`${index}${size}size`}
-                        className={size === sizeSelected ? "active" : ""}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        onClick={() => {
-                          siteSizeSelected(size);
-                        }}
-                      >
-                        <a>{size}</a>
-                      </li>
+                      <>
+                        {detailsProductAll.find(
+                          (s) => s.size === size && s.color === colorSelect
+                        ) &&
+                        detailsProductAll.find(
+                          (s) => s.size === size && s.color === colorSelect
+                        ).quantity > 0 ? (
+                          <li
+                            key={`${index}${size}size`}
+                            className={size === sizeSelected ? "active" : ""}
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => {
+                              siteSizeSelected(size);
+                            }}
+                          >
+                            <a>{size}</a>
+                          </li>
+                        ) : (
+                          <></>
+                        )}
+                      </>
                     ))}
                   </ul>
 

@@ -7,6 +7,7 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CardTypes.ADD_TO_CART:
       const products0 = action.payload;
+
       const index0 = state.findIndex((e) => e.id === products0.id);
 
       if (index0 < 0) {
@@ -29,7 +30,7 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
     case CardTypes.CLEAR_CART:
       localStorage.removeItem("@ilooksecommerce_cart");
       return [];
-      
+
     case CardTypes.REMOVE_ITEM:
       localStorage.setItem(
         "@ilooksecommerce_cart",

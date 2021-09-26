@@ -59,7 +59,6 @@ const useForgotPassowrd = () => {
           Router.push("/orders");
           setLoading(false);
         } else if (data.source === "forgot") {
-          console.log(dataResponse);
           setCookie(undefined, "nextilooks.rtk", JSON.stringify(dataResponse), {
             maxAge: 60 * 10, //2 minutes
             path: "/",

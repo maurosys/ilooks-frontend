@@ -15,6 +15,7 @@ export enum ProductsTypes {
  */
 
 export interface ProductsDetails {
+  id: string;
   size: string | number;
   color: string;
   quantity: number;

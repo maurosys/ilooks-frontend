@@ -1,21 +1,21 @@
-import {GetServerSideProps}         from 'next';
-import {parseCookies}               from 'nookies';
-import React, {useEffect, useState} from 'react';
-import {useDispatch}                from 'react-redux';
-import ButtonPrimary                from '../components/Button/Primary';
-import Details                      from '../components/Detalis';
-import FieldSearch                  from '../components/FieldSearch';
-import Footer                       from '../components/Layout/Footer';
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import ButtonPrimary from "../components/Button/Primary";
+import Details from "../components/Detalis";
+import FieldSearch from "../components/FieldSearch";
+import Footer from "../components/Layout/Footer";
 
-import HeaderFixed         from '../components/Layout/HeaderFixed';
-import OrderItem           from '../components/orderItem';
-import Facility            from '../components/shop-style-five/Facility';
-import useLogin            from '../hooks/pages/useLogin';
-import api, {getAPIClient} from '../services/api';
+import HeaderFixed from "../components/Layout/HeaderFixed";
+import OrderItem from "../components/orderItem";
+import Facility from "../components/shop-style-five/Facility";
+import useLogin from "../hooks/pages/useLogin";
+import api, { getAPIClient } from "../services/api";
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const {onLogout} = useLogin();
+  const { onLogout } = useLogin();
 
   const [orders, setOrders] = useState([]);
 
@@ -24,18 +24,19 @@ const Orders = () => {
   }, []);
 
   const loadOrders = async () => {
-    api.get('/request')
-       .then((response) => {
-         setOrders(response.data.orders);
-       })
-       .catch((error) => {
-         console.log(error);
-       });
+    api
+      .get("/request")
+      .then((response) => {
+        setOrders(response.data.orders);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <>
-      <HeaderFixed/>
+      <HeaderFixed />
       <section className="login-area ptb-60">
         <div
           className="container"
@@ -46,29 +47,33 @@ const Orders = () => {
           <h1>Meus pedidos</h1>
           <div className="container-order">
             <div className="container-order-options">
-              <Details/>
+              <Details />
             </div>
 
             <div className="container-order-content">
               {/* <h5>Pedidos</h5> */}
               <div className="container-order-content-items">
-                <FieldSearch/>
+                <FieldSearch />
 
                 {orders &&
-                 orders.length > 0 &&
-                 orders.map((order, index) => (
-                   <OrderItem
-                     key={index}
-                     orderStatus={order.orderStatus.toLowerCase()}
-                     numberOrder={order.numberOrder}
+                  orders.length > 0 &&
+                  orders.map((order, index) => (
+                    <OrderItem
+                      key={index}
+                      orderStatus={order.orderStatus.toLowerCase()}
+                      numberOrder={order.numberOrder}
                      statusHistory={order.statusHistory}
-                     items={order.items}
-                   />
-                 ))}
+                      items={order.items}
+                    />
+                  ))}
 
-                <ButtonPrimary type="button" onClick={onLogout} style={{
-                  marginTop: 20,
-                }}>
+                <ButtonPrimary
+                  type="button"
+                  onClick={onLogout}
+                  style={{
+                    marginTop: 20,
+                  }}
+                >
                   Sair
                 </ButtonPrimary>
               </div>
@@ -77,23 +82,22 @@ const Orders = () => {
         </div>
       </section>
 
-      <Facility/>
+      <Facility />
 
-      <Footer/>
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apiClient = getAPIClient(ctx);
-  console.log('API_CLIENT', apiClient);
-  const {'nextilooks.auth': auth} = parseCookies(ctx);
+  const { "nextilooks.auth": auth } = parseCookies(ctx);
 
   if (!auth) {
     return {
       redirect: {
-        destination: '/',
-        permanent:   false,
+        destination: "/",
+        permanent: false,
       },
     };
   }
