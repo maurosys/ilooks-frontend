@@ -30,9 +30,7 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
 
   const [allSizes, setAllSizes] = useState<any[]>([]);
   const [sizeSelected, siteSizeSelected] = useState("");
-
-  const modalOpen = false;
-
+  
   useEffect(() => {
     setDetailsProductAll(modalData.details_product);
 
@@ -365,7 +363,7 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
                 </div>
 
                 <Link href={`/products/${modalData?.id}`}>
-                  <a className="view-full-info">Ver mais detalheres</a>
+                  <a className="view-full-info">Ver mais detalhes</a>
                 </Link>
               </div>
             </div>

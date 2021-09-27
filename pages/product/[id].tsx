@@ -49,7 +49,7 @@ const Product = ({ product }: StateProps) => {
             <ProductContent product={product} setImages={setImages} />
           </div>
 
-          <DetailsTab />
+          {/*<DetailsTab />*/}
         </div>
 
         <br />

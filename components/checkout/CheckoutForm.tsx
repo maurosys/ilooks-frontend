@@ -79,6 +79,8 @@ function CheckoutForm() {
             setStateSchema(INIT_STATE_VIEW);
           })
           .catch((err) => console.error(err));
+      } else {
+        router.push("/login");
       }
       const cart_session = JSON.parse(
         localStorage.getItem("@ilooksecommerce_cart")
