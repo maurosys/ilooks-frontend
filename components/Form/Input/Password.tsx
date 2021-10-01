@@ -6,6 +6,7 @@ interface InputPasswordProps extends HTMLAttributes<HTMLElement> {
   placeholder?: string;
   id?: string;
   name?: string;
+  autoComplete?:string;
   errors?: any;
 }
 

@@ -2,6 +2,9 @@ import { useState } from "react";
 import Link from "next/link";
 import TimeLineOrder from "../timelineOrder";
 import { formatToUggly } from "@utils/formatToUggly";
+import {FiChevronsDown} from "@react-icons/all-files/fi/FiChevronsDown";
+import {FiChevronsUp} from "@react-icons/all-files/fi/FiChevronsUp";
+import api from "@services/api";
 
 export interface ItemsProps {
 	title: string;
@@ -36,21 +39,32 @@ export default function OrderItem({
                                   }: OrderItemProps) {
 	const [isExpanded, setIsExpanded] = useState(false);
 	
-	const handleExpanded = () => {
-		setIsExpanded(!isExpanded);
+	const handleExpanded = async () => {
+		if (!isExpanded) {
+			await api.get(`request/details/${numberOrder}`)
+				.then((result) => {
+					console.log(result);
+					setIsExpanded(!isExpanded);
+				})
+				.catch((error) => {
+				
+				});
+		} else {
+			setIsExpanded(!isExpanded);
+		}
 	};
 	
 	return (
 		<div className="accordion-custom">
 			<div className="accordion-custom-header" onClick={handleExpanded}>
 				<div>
-					{/* {
+					 {
                         !isExpanded ? (<FiChevronsDown size={20}  style={{
                             cursor: 'pointer'
                         }}/>) : (<FiChevronsUp size={20} style={{
                             cursor: 'pointer'
                         }}/>)
-                    } */}
+                    }
 					<span className="accordion-custom-header-span-status">
             Pedido: {numberOrder}
           </span>
@@ -67,8 +81,8 @@ export default function OrderItem({
 							<Link
 								href="/product/[id]"
 								as={`/product/${formatToUggly({
-									name: item.title,
-									id: item.productId,
+									name: item?.title,
+									id: item?.productId,
 								})}`}
 							>
 								<div
@@ -119,10 +133,10 @@ export default function OrderItem({
 				
 				<div className="accordion-footer">
 					<button className="btn-primary-br">Trocar ou devolver</button>
-					<button className="btn-secondary-br">Detalhes do pedido</button>
+					<button className="btn-secondary-br" onClick={handleExpanded}>Detalhes do pedido</button>
 				</div>
 				
-				{/* {
+				 {
                     isExpanded && (
                         <>
 
@@ -138,7 +152,7 @@ export default function OrderItem({
                             </div>
                         </>
                     )
-                } */}
+                }
 			</div>
 		</div>
 	);

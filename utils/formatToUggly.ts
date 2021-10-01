@@ -10,9 +10,9 @@ export const formatToUggly = ({ name, id }: FormatToUglyProps) => {
 
   if (
     name !== "" &&
-    name.replaceAll(" ", "").length > 0 &&
+    name?.replaceAll(" ", "").length > 0 &&
     id !== "" &&
-    id.replaceAll(" ", "").length > 0
+    id?.replaceAll(" ", "").length > 0
   ) {
     return `${removeAccents(name)
       .replaceAll(" ", "-")

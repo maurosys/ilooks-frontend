@@ -49,10 +49,10 @@ const BannerSlider = () => {
                                 : "opacityZero"
                             }
                           >
-                            Você na moda no seu tempo
+                            Você na moda <br/> no seu tempo
                           </h1>
 
-                          <Link href="/category-sidebar-fullwidth">
+                          {/*<Link href="/category-sidebar-fullwidth">
                             <a
                               className={`btn btn-primary ${
                                 isVisible
@@ -62,7 +62,7 @@ const BannerSlider = () => {
                             >
                               Loja
                             </a>
-                          </Link>
+                          </Link>*/}
                         </div>
                       )}
                     </VisibilitySensor>
@@ -85,10 +85,10 @@ const BannerSlider = () => {
                                 : "opacityZero"
                             }
                           >
-                            Tudo para o seu guarda roupa
+                            Tudo para o seu <br/> guarda roupa
                           </h1>
 
-                          <Link href="/category-sidebar-fullwidth">
+                          {/*<Link href="/category-sidebar-fullwidth">
                             <a
                               className={`btn btn-primary ${
                                 isVisible
@@ -98,7 +98,7 @@ const BannerSlider = () => {
                             >
                               Categorias
                             </a>
-                          </Link>
+                          </Link>*/}
                         </div>
                       )}
                     </VisibilitySensor>
