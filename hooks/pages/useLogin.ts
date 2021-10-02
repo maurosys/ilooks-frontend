@@ -33,7 +33,9 @@ const useLogin = () => {
   });
 
   const onLogout = () => {
-    destroyCookie(undefined, "nextilooks.auth");
+    destroyCookie(undefined, "nextilooks.auth", {
+      path: "/",
+    });
     // dispach(removeAuth());
     Router.push("/");
   };

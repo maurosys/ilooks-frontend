@@ -1,4 +1,30 @@
+import { OrderStatusProps } from "@components/orderItem";
 import { ProductsDetails } from "@store/ducks/products/types";
+import { string } from "yup/lib/locale";
+
+type Product = {
+  productDetailsId: string;
+  id: string;
+  name: string;
+  color: string;
+  size: string;
+  quantity: number;
+  provider: UserReponse;
+  photos: string[];
+};
+
+export type UserReponse = {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  city: string;
+  complement?: string;
+  district?: string;
+  state: string;
+  zipcode: any;
+};
 
 export type Address = {
   id?: string;
@@ -38,4 +64,15 @@ export type ProductReponse = {
   };
   quantity_all: number;
   details_product: ProductsDetails[];
+};
+
+export type RequestDetailsResponse = {
+  id: string;
+  amount: string;
+  customer: UserReponse;
+  products: Product[];
+  request_date: Date;
+  status_payment: string;
+  status_request: string;
+  statusHistory: OrderStatusProps[];
 };

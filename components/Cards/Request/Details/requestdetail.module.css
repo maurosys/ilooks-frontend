@@ -1,0 +1,35 @@
+.containerDetail {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.p {
+  margin-bottom: 25px;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 15px 5px 15px;
+  /* border: 1px solid #a2a2a2; */
+  /* background-color: aquamarine; */
+}
+
+@media (max-width: 420px) {
+  .containerDetail {
+    flex-direction: column;
+  }
+  .cardContainer {
+    width: 100%;
+  }
+}

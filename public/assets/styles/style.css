@@ -2608,7 +2608,9 @@ All Products Area CSS
 }
 
 .single-product-box .product-image img {
-  width: 100%;
+  width: 50px;
+  height: 280px;
+  object-fit: cover;
 }
 
 .single-product-box .product-image img:nth-child(2) {
