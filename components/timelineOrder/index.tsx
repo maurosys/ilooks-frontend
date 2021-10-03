@@ -25,13 +25,13 @@ const TimeLineOrder = ({orderStatus, statusHistory}: TimeLineOrderProps) => {
 					return h.status_request.toLowerCase() == 'realizado'
 				})[0]?.change_date ?? '',
 				reservedPayment: statusHistory.filter((h) => {
-					return h.status_request.toLowerCase() == 'pagamento'
+					return h.status_payment.toLowerCase() == 'pré reservado'
 				})[0]?.change_date ?? '',
 				withCarrier: statusHistory.filter((h) => {
-					return h.status_request.toLowerCase() == 'transportadora'
+					return h.status_request.toLowerCase() == 'recebido transportadora'
 				})[0]?.change_date ?? '',
 				onCarriage: statusHistory.filter((h) => {
-					return h.status_request.toLowerCase() == 'transito'
+					return h.status_request.toLowerCase() == 'em trânsito'
 				})[0]?.change_date ?? '',
 				delivered: statusHistory.filter((h) => {
 					return h.status_request.toLowerCase() == 'entregue'
@@ -76,7 +76,7 @@ const TimeLineOrder = ({orderStatus, statusHistory}: TimeLineOrderProps) => {
 			<div className={`circle ${history.onCarriage ? 'active' : ''}`}>
 				<div className="icon"></div>
 				<div className="labels">
-					<span className="title-circle">Em tranporte</span>
+					<span className="title-circle">Em transporte</span>
 					<span className="description-circle">{history.onCarriage && new Date(history.onCarriage).toLocaleString('pt-BR',dateOptions)}</span>
 				</div>
 				<div className="line"></div>
