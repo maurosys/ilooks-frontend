@@ -8,6 +8,7 @@ interface InputCPFProps extends HTMLAttributes<HTMLElement> {
   placeholder?: string;
   id?: string;
   name?: string;
+  value?: string;
   errors?: any;
 }
 

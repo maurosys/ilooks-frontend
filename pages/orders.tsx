@@ -1,89 +1,46 @@
-import React, { Component } from "react";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import ButtonPrimary from "../components/Button/Primary";
+import Details from "../components/Detalis";
+import FieldSearch from "../components/FieldSearch";
+import Footer from "../components/Layout/Footer";
+
+import Spinner from "@components/Spinner";
 
 import HeaderFixed from "../components/Layout/HeaderFixed";
-import Footer from "../components/Layout/Footer";
+import OrderItem from "../components/orderItem";
 import Facility from "../components/shop-style-five/Facility";
-import Details from "../components/Detalis";
-import OrderItem, { OrderItemProps } from "../components/orderItem";
-import FieldSearch from "../components/FieldSearch";
-import api, { getAPIClient } from "../services/api";
-import ButtonPrimary from "../components/Button/Primary";
 import useLogin from "../hooks/pages/useLogin";
+import api, { getAPIClient } from "../services/api";
+import OrderDetail from "@components/OrderDetail";
 
 const Orders = () => {
+  const dispatch = useDispatch();
   const { onLogout } = useLogin();
 
-  const orders: OrderItemProps[] = [
-    {
-      numberOrder: 123456789,
-      orderStatus: "pagamento",
-      items: [
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-      ],
-    },
-    ,
-    {
-      numberOrder: 123456789,
-      orderStatus: "transportadora",
-      items: [
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-        {
-          title: "Casaco teste bege - inverno",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg",
-          quantity: 3,
-        },
-        {
-          title: "Camiseta teste vermelha - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg",
-          quantity: 4,
-        },
-      ],
-    },
-    {
-      numberOrder: 123456789,
-      orderStatus: "entregue",
-      items: [
-        {
-          title: "Vestido teste rosa - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img1.jpg",
-          quantity: 2,
-        },
-        {
-          title: "Casaco teste bege - inverno",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img2.jpg",
-          quantity: 3,
-        },
-        {
-          title: "Camiseta teste vermelha - verão",
-          imageUrl:
-            "https://raw.githubusercontent.com/victorsfp/ilooks-frontend/em/limpeza/images/img3.jpg",
-          quantity: 4,
-        },
-      ],
-    },
-  ];
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showDetails, setShowDetails] = useState(false);
+
+  useEffect(() => {
+    loadOrders();
+  }, []);
+
+  const loadOrders = async () => {
+    setLoading(true);
+    api
+      .get("/request")
+      .then((response) => {
+        setOrders(response.data.orders);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  };
 
   return (
     <>
@@ -104,29 +61,34 @@ const Orders = () => {
             <div className="container-order-content">
               {/* <h5>Pedidos</h5> */}
               <div className="container-order-content-items">
-                <FieldSearch />
+                {loading ? (
+                  <Spinner loading={loading} />
+                ) : (
+                  <>
+                    <FieldSearch />
 
-                {orders &&
-                  orders.length > 0 &&
-                  orders.map((order, index) => (
-                    <OrderItem
-                      key={index}
-                      orderStatus={order.orderStatus}
-                      numberOrder={order.numberOrder}
-                      items={order.items}
-                    />
-                  ))}
+                    {orders &&
+                      orders.length > 0 &&
+                      orders.map((order, index) => (
+                        <OrderItem
+                          key={index}
+                          orderStatus={order?.orderStatus.toLowerCase()}
+                          numberOrder={order?.numberOrder}
+                          statusHistory={order?.statusHistory}
+                          items={order?.items}
+                        />
+                      ))}
+                  </>
+                )}
 
-                <button
-                  className="btn-primary-br"
+                <ButtonPrimary
+                  type="button"
+                  onClick={onLogout}
                   style={{
                     marginTop: 20,
+                    width: "90%",
                   }}
                 >
-                  ver mais pedidos
-                </button>
-
-                <ButtonPrimary type="button" onClick={onLogout}>
                   Sair
                 </ButtonPrimary>
               </div>
@@ -138,6 +100,8 @@ const Orders = () => {
       <Facility />
 
       <Footer />
+
+      {showDetails && <OrderDetail></OrderDetail>}
     </>
   );
 };

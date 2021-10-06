@@ -1,26 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import Head from "next/head";
+
+//REDUX
+import { card } from "../../store/ducks/Card/types";
+import { addToCart, removeItem } from "../../store/ducks/Card/actions";
+
+//COMPONENTS
+import CircleColors from "@components/CircleColors";
 import SizeGuide from "./SizeGuide";
 import Shipping from "./Shipping";
-import { Products as ProductsPros } from "../../store/ducks/products/types";
-import { addToCart, removeItem } from "../../store/ducks/Card/actions";
-import { card } from "../../store/ducks/Card/types";
+
+//TYPES
+
+import {
+  Products as ProductsPros,
+  ProductsDetails,
+} from "../../store/ducks/products/types";
+import { ProductReponse } from "@type/global";
 
 interface StateProps {
-  product: ProductsPros;
-  card: card[];
+  product?: ProductReponse;
+  card?: card[];
+  setImages?: any;
 }
 
-const ProductContent = ({ product, card }: StateProps) => {
+const ProductContent = ({ product, card, setImages }: StateProps) => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   const [max, setMax] = useState(10);
   const [min, setMin] = useState(1);
   const [sizeGuide, setSizeGuide] = useState(false);
   const [shipModal, setShipModal] = useState(false);
+
+  const [detailsProductAll, setDetailsProductAll] = useState<ProductsDetails[]>(
+    []
+  );
+
+  const [allColors, setAllColors] = useState<string[]>([]);
+  const [colorSelect, setColorSelected] = useState<string>();
+
+  const [allSizes, setAllSizes] = useState<any[]>([]);
+  const [sizeSelected, siteSizeSelected] = useState("");
+
+  useEffect(() => {
+    setDetailsProductAll(product.details_product);
+
+    const allColorsWithRep = product.details_product.map(
+      (detail) => detail.color
+    );
+    var allColorsWithoutRept = allColorsWithRep.filter(function (este, i) {
+      return allColorsWithRep.indexOf(este) === i;
+    });
+    setAllColors(allColorsWithoutRept);
+    setColorSelected(allColorsWithoutRept[0]);
+  }, [product]);
+
+  useEffect(() => {
+    const detail = product.details_product.filter(
+      (detail) => detail.color === colorSelect
+    );
+
+    if (detail.length > 0 && detail[0].photos.length > 0) {
+      const photos = detail[0].photos.map((photo, index) => ({
+        id: index,
+        image: photo,
+      }));
+
+      setImages && setImages([...photos]);
+    }
+
+    siteSizeSelected("");
+    const sizes = detail.map((size) => size.size);
+
+    setAllSizes(sizes);
+  }, [colorSelect]);
+
   // const teste = card.find((item) => product.id === item.id);
 
   // function checkIsExist(item) {
@@ -34,8 +91,59 @@ const ProductContent = ({ product, card }: StateProps) => {
   // }
 
   function addItemCart(item) {
-    console.log("dasdas");
-    dispatch(addToCart({ ...item, total: item.price * qty }));
+    if (!sizeSelected || sizeSelected.length === 0) {
+      toast.warn("Por favor selecione ao menos um tamanho", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    if (!colorSelect || colorSelect.length === 0) {
+      toast.warn("Por favor selecione ao menos uma cor", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    const detailSelected = detailsProductAll.find(
+      (detail) => detail.size === sizeSelected && detail.color === colorSelect
+    );
+
+    if (!detailSelected) {
+      toast.error(
+        "Ocorreu um erro ao adicionar ao carrinho, por favor tente novamente mais tarde.",
+        {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
+      return;
+    }
+
+    dispatch(
+      addToCart({
+        ...item,
+        total: item.price * qty,
+        title: item.name,
+        image: detailSelected.photos[0],
+        imageHover: detailSelected.photos[0],
+        productDetail: detailSelected,
+      })
+    );
 
     toast.success("Adicionado ao carrinho", {
       position: "bottom-left",
@@ -77,14 +185,18 @@ const ProductContent = ({ product, card }: StateProps) => {
     setShipModal(false);
   };
 
+  const handleActiveColor = (color: string) => {
+    setColorSelected(color);
+  };
+
   return (
     <>
       <Head>
-        <title>{product?.title}</title>
+        <title>{product?.name}</title>
       </Head>
       <div className="col-lg-6 col-md-6">
         <div className="product-details-content">
-          <h3>{product?.title}</h3>
+          <h3>{product?.name}</h3>
 
           <div className="price">
             <span className="new-price">
@@ -95,28 +207,31 @@ const ProductContent = ({ product, card }: StateProps) => {
             </span>
           </div>
 
-          <p>
+          {/* <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et.
-          </p>
+          </p> */}
 
           <ul className="product-info">
             <li>
               <span>Vendedor:</span>{" "}
               <Link href="#">
-                <a>Lereve</a>
+                <a>{product.provider.name}</a>
               </Link>
             </li>
             <li>
               <span>Em Estoque:</span>{" "}
               <Link href="#">
-                <a>7 itens</a>
+                <a>
+                  {product.quantity_all} iten
+                  {product.quantity_all > 0 ? "s" : ""}
+                </a>
               </Link>
             </li>
             <li>
-              <span>Tipo do Produto:</span>{" "}
+              <span>Tipo do Material:</span>{" "}
               <Link href="#">
-                <a>T-Shirt</a>
+                <a>{product.materialType}</a>
               </Link>
             </li>
           </ul>
@@ -124,7 +239,25 @@ const ProductContent = ({ product, card }: StateProps) => {
           <div className="product-color-switch">
             <h4>Cor:</h4>
 
-            <ul>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              {allColors.map((color, index) => (
+                <CircleColors
+                  key={`${index}${color}color`}
+                  color={color}
+                  active={color === colorSelect}
+                  onClick={() => {
+                    handleActiveColor(color);
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* <ul>
               <li>
                 <Link href="#">
                   <a title="Black" className="color-black"></a>
@@ -150,13 +283,41 @@ const ProductContent = ({ product, card }: StateProps) => {
                   <a title="Teal" className="color-teal"></a>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <div className="product-size-wrapper">
             <h4>Tamanho:</h4>
 
             <ul>
+              {allSizes.map((size, index) => (
+                <>
+                  {detailsProductAll.find(
+                    (s) => s.size === size && s.color === colorSelect
+                  ) &&
+                  detailsProductAll.find(
+                    (s) => s.size === size && s.color === colorSelect
+                  ).quantity > 0 ? (
+                    <li
+                      key={`${index}${size}size`}
+                      className={size === sizeSelected ? "active" : ""}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        siteSizeSelected(size);
+                      }}
+                    >
+                      <a>{size}</a>
+                    </li>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ))}
+            </ul>
+
+            {/* <ul>
               <li>
                 <Link href="#">
                   <a>P</a>
@@ -182,7 +343,7 @@ const ProductContent = ({ product, card }: StateProps) => {
                   <a>XG</a>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <div className="product-info-btn">
@@ -224,25 +385,13 @@ const ProductContent = ({ product, card }: StateProps) => {
             </button>
           </div>
 
-          <div className="buy-checkbox-btn">
-            <div className="item">
-              <input className="inp-cbx" id="cbx" type="checkbox" />
-              <label className="cbx" htmlFor="cbx">
-                <span>
-                  <svg width="12px" height="10px" viewBox="0 0 12 10">
-                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                  </svg>
-                </span>
-                <span>Eu concordo com os termos e condições</span>
-              </label>
-            </div>
-
+          {/*<div className="buy-checkbox-btn">
             <div className="item">
               <Link href="#">
                 <a className="btn btn-primary">Compre Agora</a>
               </Link>
             </div>
-          </div>
+          </div>*/}
 
           <div className="custom-payment-options">
             <span>Check-out seguro garantido:</span>
@@ -320,10 +469,11 @@ const ProductContent = ({ product, card }: StateProps) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    card: state.card,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     card: state.card,
+//   };
+// };
 
-export default connect(mapStateToProps)(ProductContent);
+// export default connect(mapStateToProps)(ProductContent);
+export default ProductContent;

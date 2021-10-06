@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { parseCookies } from "nookies";
+
 import OrderSummary from "./OrderSummary";
 import useForm from "./userForm";
-import { getUserFromId, createRequest, Request } from "@services/request.api";
+import { createRequest, getUserFromId, Request } from "@services/request.api";
 import { AlertSuccess, AlertWarning } from "@utils/dialog";
 import { useRouter } from "next/router";
 import api from "@services/api";
+import { clearCart, removeItem } from "@store/ducks/Card/actions";
+import { useDispatch } from "react-redux";
+import { card } from "@store/ducks/Card/types";
 
 function CheckoutForm() {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [isLoged, setIsLoged] = useState(false);
   const [isDiffentetAddress, setIsDiffentetAddress] = useState(false);
   const [token, setToken] = useState();
   const [user, setUser] = useState<{}>();
+  const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const INIT_STATE_VIEW = {
@@ -49,9 +56,11 @@ function CheckoutForm() {
 
   useEffect(() => {
     if (process.browser) {
-      const user_session = JSON.parse(
-        localStorage.getItem("@ilooksecommerce_auth")
-      );
+      const { "nextilooks.auth": auth } = parseCookies();
+      const user_session = auth ? JSON.parse(auth) : undefined;
+      // const user_session = JSON.parse(
+      //   localStorage.getItem("@ilooksecommerce_auth")
+      // );
       if (user_session) {
         setIsLoged(true);
         setToken(user_session.token);
@@ -70,19 +79,19 @@ function CheckoutForm() {
             setStateSchema(INIT_STATE_VIEW);
           })
           .catch((err) => console.error(err));
+      } else {
+        router.push("/login");
+      }
+      const cart_session = JSON.parse(
+        localStorage.getItem("@ilooksecommerce_cart")
+      );
+      if (cart_session) {
+        setCart(cart_session);
       }
     }
   }, []);
 
   const validationStateSchema = {
-    name: {
-      required: true,
-      validator: {
-        regEx: /^[a-zA-Z]+$/,
-        error: "Invalid first name format.",
-      },
-    },
-
     address: {
       required: true,
       validator: {
@@ -101,13 +110,6 @@ function CheckoutForm() {
       required: true,
       validator: {
         error: "Invalid number format.",
-      },
-    },
-
-    complement: {
-      required: true,
-      validator: {
-        error: "Invalid complement format.",
       },
     },
 
@@ -168,54 +170,44 @@ function CheckoutForm() {
       },
     },
 
-    // differentAddress_address: {
-    //   required: true,
-    //   validator: {
-    //     error: "Invalid address format.",
-    //   },
-    // },
+    differentAddress_address: {
+      required: isDiffentetAddress,
+      validator: {
+        error: "Invalid address format.",
+      },
+    },
 
-    // differentAddress_district: {
-    //   required: true,
-    //   validator: {
-    //     error: "Invalid district format.",
-    //   },
-    // },
+    differentAddress_city: {
+      required: isDiffentetAddress,
+      validator: {
+        error: "Invalid city format.",
+      },
+    },
 
-    // differentAddress_city: {
-    //   required: true,
-    //   validator: {
-    //     error: "Invalid city format.",
-    //   },
-    // },
+    differentAddress_state: {
+      required: isDiffentetAddress,
+      validator: {
+        error: "Invalid state format.",
+      },
+    },
 
-    // differentAddress_number: {
-    //   required: true,
-    //   validator: {
-    //     error: "Invalid number format.",
-    //   },
-    // },
+    differentAddress_number: {
+      required: isDiffentetAddress,
+      validator: {
+        error: "Invalid number format.",
+      },
+    },
 
-    // differentAddress_complement: {
-    //   required: true,
-    //   validator: {
-    //     error: "Invalid complement format.",
-    //   },
-    // },
+    differentAddress_zipcode: {
+      required: isDiffentetAddress,
+      validator: {
+        error: "Invalid zipcode format.",
+      },
+    },
 
-    // differentAddress_state: {
-    //   required: true,
-    //   validator: {
-    //     error: "Invalid state format.",
-    //   },
-    // },
-
-    // differentAddress_zipcode: {
-    //   required: true,
-    //   validator: {
-    //     error: "Invalid zipcode format.",
-    //   },
-    // },
+    differentAddress_complement: {
+      required: false,
+    },
   };
 
   const { state, handleOnChange, handleOnSubmit, disable } = useForm(
@@ -231,14 +223,14 @@ function CheckoutForm() {
         const response = await api.post(
           "/address",
           {
-            address: state.differentAddress_address,
-            district: state.differentAddress_district,
-            number: state.differentAddress_number,
-            complement: state.differentAddress_complement,
-            city: state.differentAddress_city,
-            state: state.differentAddress_state,
-            zipcode: state.differentAddress_zipcode,
-            description: "Descricao",
+            address: state.differentAddress_address.value,
+            district: state.differentAddress_district.value,
+            number: state.differentAddress_number.value,
+            complement: state.differentAddress_complement.value,
+            city: state.differentAddress_city.value,
+            state: state.differentAddress_state.value,
+            zipcode: state.differentAddress_zipcode.value,
+            description: "Novo endereço",
             userId: user["id"],
             primary: false,
           },
@@ -249,14 +241,16 @@ function CheckoutForm() {
           }
         );
         _REQUEST.addressId = response.data.id;
+      } else {
+        _REQUEST.addressId = user["primaryAddres"]["id"];
       }
-
-      _REQUEST.required_products = [
-        {
-          productDetailId: "3f87545f-8f90-4dc2-811a-e2c94512cec0",
-          quantity: 2,
-        },
-      ];
+      // @ts-ignore
+      _REQUEST.required_products = cart?.map((item: card) => {
+        return {
+          productDetailId: item.productDetail.id,
+          quantity: item.qty,
+        };
+      });
       _REQUEST.credit_payment.card = {
         cardholder_name: state.cardholder_name.value,
         number_token: state.number_token.value,
@@ -264,16 +258,21 @@ function CheckoutForm() {
         expiration_year: state.expiration_year.value,
       };
       _REQUEST.userId = user["id"];
-      _REQUEST.addressId = user["primaryAddres"]["id"];
-      _REQUEST.amount = "1000";
+      _REQUEST.amount = cart?.reduce((acc, card) => {
+        if (card.price) {
+          return acc + card.total;
+        }
+        return acc;
+      }, 0);
       await createRequest(_REQUEST, token);
+      dispatch(clearCart());
       AlertSuccess({
         title: "Pedido",
         message: "Seu Pedido foi finalizado com sucesso!",
       });
       setTimeout(() => {
         router.push("/orders");
-      }, 5000);
+      }, 3000);
     } catch (error) {
       console.log(error);
       AlertWarning({
@@ -381,9 +380,7 @@ function CheckoutForm() {
 
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
-                        <label>
-                          Complemento <span className="required">*</span>
-                        </label>
+                        <label>Complemento</label>
                         <input
                           type="text"
                           name="email"
@@ -537,9 +534,7 @@ function CheckoutForm() {
 
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
-                            <label>
-                              Complemento <span className="required">*</span>
-                            </label>
+                            <label>Complemento</label>
                             <input
                               type="text"
                               name="differentAddress_complement"
@@ -616,19 +611,6 @@ function CheckoutForm() {
                         </div>
                       </div>
                     )}
-
-                    {/* <div className="col-lg-12 col-md-12">
-                    <div className="form-group">
-                      <textarea
-                        name="notes"
-                        id="notes"
-                        cols={30}
-                        rows={6}
-                        placeholder="Order Notes"
-                        className="form-control"
-                      />
-                    </div>
-                  </div> */}
                   </div>
                 </div>
               </div>

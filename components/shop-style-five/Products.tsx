@@ -12,6 +12,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { Wishlist } from "../../store/ducks/WishList/types";
 import { BsHeartFill } from "react-icons/bs";
 
+import { formatToUggly } from "@utils/formatToUggly";
+
 const options = {
   loop: true,
   nav: false,
@@ -112,7 +114,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                   </span>
                 </li>
 
-                <li
+                {/* <li
                   onClick={(e) => {
                     e.preventDefault();
                     openTabSection(e, "tab2");
@@ -121,7 +123,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                   <span className="tabs-nav-text">
                     <span className="dot"></span> Últimos produtos
                   </span>
-                </li>
+                </li> */}
               </ul>
             </div>
 
@@ -141,7 +143,10 @@ const Products = ({ products, wishlist }: StateProps) => {
                                 <div className="product-image">
                                   <Link
                                     href="/product/[id]"
-                                    as={`/product/${data.id}`}
+                                    as={`/product/${formatToUggly({
+                                      name: data.title,
+                                      id: data.id,
+                                    })}`}
                                   >
                                     <a>
                                       <img src={data.image} alt="image" />
@@ -150,19 +155,22 @@ const Products = ({ products, wishlist }: StateProps) => {
                                   </Link>
 
                                   <ul>
-                                    <li>
-                                      <Link href="#">
-                                        <a
-                                          data-tip="Quick View"
-                                          data-place="left"
-                                          onClick={(e) => {
-                                            setModalData(data);
-                                            openModal();
-                                          }}
-                                        >
-                                          <i className="far fa-eye"></i>
-                                        </a>
-                                      </Link>
+                                    <li
+                                      style={{
+                                        cursor: "pointer",
+                                      }}
+                                      onClick={() => {
+                                        // e.preventDefault();
+                                        setModalData(data);
+                                        openModal();
+                                      }}
+                                    >
+                                      <a
+                                        data-tip="Quick View"
+                                        data-place="left"
+                                      >
+                                        <i className="far fa-eye"></i>
+                                      </a>
                                     </li>
                                     <li
                                       onClick={() => {
@@ -196,7 +204,10 @@ const Products = ({ products, wishlist }: StateProps) => {
                                   <h3>
                                     <Link
                                       href="/product/[id]"
-                                      as={`/product/${data.id}`}
+                                      as={`/product/${formatToUggly({
+                                        name: data.title,
+                                        id: data.id,
+                                      })}`}
                                     >
                                       <a>{data.title}</a>
                                     </Link>
@@ -210,7 +221,24 @@ const Products = ({ products, wishlist }: StateProps) => {
                                       }).format(data.price)}
                                     </span>
                                   </div>
-                                  <AddToCart data={data} />
+
+                                  <div>
+                                    <Link
+                                      href="/product/[id]"
+                                      as={`/product/${formatToUggly({
+                                        name: data.title,
+                                        id: data.id,
+                                      })}`}
+                                    >
+                                      <a
+                                        className="btn btn-light"
+                                        onClick={(e) => {}}
+                                      >
+                                        Visualizar detalhes
+                                      </a>
+                                    </Link>
+                                  </div>
+                                  {/* <AddToCart data={data} /> */}
                                 </div>
                               </div>
                             </div>
@@ -246,20 +274,22 @@ const Products = ({ products, wishlist }: StateProps) => {
                                   </Link>
 
                                   <ul>
-                                    <li>
-                                      <Link href="#">
-                                        <a
-                                          data-tip="Quick View"
-                                          data-place="left"
-                                          onClick={(e) => {
-                                            e.preventDefault();
-                                            setModalData(data);
-                                            openModal();
-                                          }}
-                                        >
-                                          <i className="far fa-eye"></i>
-                                        </a>
-                                      </Link>
+                                    <li
+                                      style={{
+                                        cursor: "pointer",
+                                      }}
+                                      onClick={() => {
+                                        // e.preventDefault();
+                                        setModalData(data);
+                                        openModal();
+                                      }}
+                                    >
+                                      <a
+                                        data-tip="Quick View"
+                                        data-place="left"
+                                      >
+                                        <i className="far fa-eye"></i>
+                                      </a>
                                     </li>
                                     <li
                                       onClick={() => {
@@ -308,7 +338,7 @@ const Products = ({ products, wishlist }: StateProps) => {
                                     </span>
                                   </div>
 
-                                  <AddToCart data={data} />
+                                  {/* <AddToCart data={data} /> */}
                                 </div>
                               </div>
                             </div>

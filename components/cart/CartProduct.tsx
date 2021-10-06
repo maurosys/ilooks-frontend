@@ -11,6 +11,8 @@ import {
 } from "../../store/ducks/Card/actions";
 import { useEffect } from "react";
 
+import { formatToUggly } from "@utils/formatToUggly";
+
 interface CartPorductProps {
   card: card[];
 }
@@ -36,7 +38,13 @@ const CartProduct = ({ card }: CartPorductProps) => {
         return (
           <tr key={idx}>
             <td className="product-thumbnail">
-              <Link href="#">
+              <Link
+                href="/product/[id]"
+                as={`/product/${formatToUggly({
+                  name: data.title,
+                  id: data.id,
+                })}`}
+              >
                 <a>
                   <img src={data.image} alt="item" />
                 </a>
@@ -44,18 +52,39 @@ const CartProduct = ({ card }: CartPorductProps) => {
             </td>
 
             <td className="product-name">
-              <Link href="#">
+              <Link
+                href="/product/[id]"
+                as={`/product/${formatToUggly({
+                  name: data.title,
+                  id: data.id,
+                })}`}
+              >
                 <a>{data.title}</a>
               </Link>
               <ul>
-                <li>
-                  Cor: <strong>Light Blue</strong>
+                <li
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  Cor:
+                  <div
+                    style={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: 5,
+                      background: data.productDetail.color,
+                      marginRight: 3,
+                      marginLeft: 3,
+                    }}
+                  />
                 </li>
                 <li>
-                  Tamanho: <strong>XL</strong>
+                  Tamanho: <strong>{data.productDetail.size}</strong>
                 </li>
                 <li>
-                  Material: <strong>Cotton</strong>
+                  Material: <strong>{data.materialType}</strong>
                 </li>
               </ul>
             </td>

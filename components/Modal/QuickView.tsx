@@ -1,29 +1,120 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
-import { Products } from '../../store/ducks/products/types';
-import { addToCart, removeItem } from '../../store/ducks/Card/actions';
-import { card } from '../../store/ducks/Card/types';
+import { Products, ProductsDetails } from "../../store/ducks/products/types";
+import { addToCart, removeItem } from "../../store/ducks/Card/actions";
+import { card } from "../../store/ducks/Card/types";
+
+import CircleColors from "@components/CircleColors";
 
 interface QuickViewProps {
-  modalData: Products,
-  closeModal: (close) => void,
-  card: card[]
+  modalData: Products;
+  closeModal: (close) => void;
+  card: card[];
 }
 
-
-
-
-const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
+const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   const [max, setMax] = useState(10);
   const [min, setMin] = useState(1);
-  const modalOpen = false;
+
+  const [detailsProductAll, setDetailsProductAll] = useState<ProductsDetails[]>(
+    []
+  );
+
+  const [imageUrl, setImageUrl] = useState("");
+  const [allColors, setAllColors] = useState<string[]>([]);
+  const [colorSelect, setColorSelected] = useState<string>();
+
+  const [allSizes, setAllSizes] = useState<any[]>([]);
+  const [sizeSelected, siteSizeSelected] = useState("");
+  
+  useEffect(() => {
+    setDetailsProductAll(modalData.details_product);
+
+    const allColorsWithRep = modalData.details_product.map(
+      (detail) => detail.color
+    );
+    var allColorsWithoutRept = allColorsWithRep.filter(function (este, i) {
+      return allColorsWithRep.indexOf(este) === i;
+    });
+    setAllColors(allColorsWithoutRept);
+    setColorSelected(allColorsWithoutRept[0]);
+  }, [modalData]);
+
+  useEffect(() => {
+    const detail = modalData.details_product.filter(
+      (detail) => detail.color === colorSelect
+    );
+
+    siteSizeSelected("");
+    const sizes = detail.map((size) => size.size);
+
+    detail.length > 0 && detail[0].photos.length > 0
+      ? setImageUrl(detail[0].photos[0])
+      : setImageUrl("");
+
+    setAllSizes(sizes);
+  }, [colorSelect]);
 
   function addItemCart(item) {
-    dispatch(addToCart({...item, total: item.price * qty, qty: qty}));
+    if (!sizeSelected || sizeSelected.length === 0) {
+      toast.warn("Por favor selecione ao menos um tamanho", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    if (!colorSelect || colorSelect.length === 0) {
+      toast.warn("Por favor selecione ao menos uma cor", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    const detailSelected = detailsProductAll.find(
+      (detail) => detail.size === sizeSelected && detail.color === colorSelect
+    );
+
+    if (!detailSelected) {
+      toast.error(
+        "Ocorreu um erro ao adicionar ao carrinho, por favor tente novamente mais tarde.",
+        {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
+      return;
+    }
+
+    dispatch(
+      addToCart({
+        ...item,
+        qty: qty,
+        total: item.price * qty,
+        title: item.name,
+        image: detailSelected.photos[0],
+        imageHover: detailSelected.photos[0],
+        productDetail: detailSelected,
+      })
+    );
+    // dispatch(addToCart({ ...item, total: item.price * qty, qty: qty }));
 
     toast.success("Adicionado ao carrinho", {
       position: "bottom-left",
@@ -37,23 +128,22 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
 
   const teste = card?.find((item) => modalData.id === item.id);
 
-  function checkIsExist (item) {
+  function checkIsExist(item) {
     if (!teste) {
-      addItemCart(item)
+      addItemCart(item);
       return;
     } else {
-      dispatch(removeItem(item.id))
-      addItemCart({...item, qty})      
+      dispatch(removeItem(item.id));
+      addItemCart({ ...item, qty });
     }
-    return
+    return;
   }
-  
 
   const modalClose = (close) => {
     return closeModal(modalClose);
-  }
+  };
 
-  const IncrementItem = ( ) => {
+  const IncrementItem = () => {
     if (qty < 10) {
       return setQty(qty + 1);
     } else {
@@ -65,6 +155,10 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
     if (qty > 1) {
       return setQty(qty - 1);
     }
+  };
+
+  const handleActiveColor = (color: string) => {
+    setColorSelected(color);
   };
 
   return (
@@ -89,7 +183,7 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6">
               <div className="productQuickView-image">
-                <img src={modalData?.image} alt="image" />
+                <img src={imageUrl} alt="image" />
               </div>
             </div>
 
@@ -109,19 +203,22 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
                   <li>
                     <span>Vendedor:</span>{" "}
                     <Link href="#">
-                      <a>Lereve</a>
+                      <a>{modalData?.provider}</a>
                     </Link>
                   </li>
                   <li>
                     <span>Disponivel:</span>{" "}
                     <Link href="#">
-                      <a>Em estoque (7 items)</a>
+                      <a>
+                        Em estoque ({modalData.qty} item
+                        {modalData.qty > 0 ? "s" : ""})
+                      </a>
                     </Link>
                   </li>
                   <li>
-                    <span>Tipo do produto:</span>{" "}
+                    <span>Tipo do material:</span>{" "}
                     <Link href="#">
-                      <a>Camiseta</a>
+                      <a>{modalData.materialType}</a>
                     </Link>
                   </li>
                 </ul>
@@ -129,7 +226,25 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
                 <div className="product-color-switch">
                   <h4>Cor:</h4>
 
-                  <ul>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
+                    {allColors.map((color, index) => (
+                      <CircleColors
+                        key={`${index}${color}color`}
+                        color={color}
+                        active={color === colorSelect}
+                        onClick={() => {
+                          handleActiveColor(color);
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* <ul>
                     <li>
                       <Link href="#">
                         <a title="Black" className="color-black"></a>
@@ -158,13 +273,41 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
                         <a title="Teal" className="color-teal"></a>
                       </Link>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
 
                 <div className="product-size-wrapper">
                   <h4>Tamanho:</h4>
 
                   <ul>
+                    {allSizes.map((size, index) => (
+                      <>
+                        {detailsProductAll.find(
+                          (s) => s.size === size && s.color === colorSelect
+                        ) &&
+                        detailsProductAll.find(
+                          (s) => s.size === size && s.color === colorSelect
+                        ).quantity > 0 ? (
+                          <li
+                            key={`${index}${size}size`}
+                            className={size === sizeSelected ? "active" : ""}
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => {
+                              siteSizeSelected(size);
+                            }}
+                          >
+                            <a>{size}</a>
+                          </li>
+                        ) : (
+                          <></>
+                        )}
+                      </>
+                    ))}
+                  </ul>
+
+                  {/* <ul>
                     <li>
                       <Link href="#">
                         <a>PP</a>
@@ -190,7 +333,7 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
                         <a>GGG</a>
                       </Link>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
 
                 <div className="product-add-to-cart">
@@ -203,7 +346,7 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
                       value={qty}
                       min={min}
                       max={max}
-                      onChange={e => setQty(Number(e.target.value))}
+                      onChange={(e) => setQty(Number(e.target.value))}
                     />
                     <span className="plus-btn" onClick={IncrementItem}>
                       <i className="fas fa-plus"></i>
@@ -220,7 +363,7 @@ const QuickView = ({closeModal,modalData, card}: QuickViewProps) => {
                 </div>
 
                 <Link href={`/products/${modalData?.id}`}>
-                  <a className="view-full-info">Ver mais detalheres</a>
+                  <a className="view-full-info">Ver mais detalhes</a>
                 </Link>
               </div>
             </div>

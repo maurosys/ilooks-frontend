@@ -1,0 +1,23 @@
+.container {
+  width: 24px;
+  height: 24px;
+  /* background-color: aqua; */
+  border-radius: 50%;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.content {
+  width: 18px;
+  height: 18px;
+  background-color: black;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* margin-top: 3px;
+  margin-left: 3px; */
+  /* position: absolute; */
+}

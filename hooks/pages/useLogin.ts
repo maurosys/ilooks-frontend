@@ -33,8 +33,10 @@ const useLogin = () => {
   });
 
   const onLogout = () => {
-    destroyCookie(undefined, "nextilooks.auth");
-    dispach(removeAuth());
+    destroyCookie(undefined, "nextilooks.auth", {
+      path: "/",
+    });
+    // dispach(removeAuth());
     Router.push("/");
   };
 
@@ -69,7 +71,7 @@ const useLogin = () => {
         api.defaults.headers["Authorization"] = `Bearer ${dataResponse.token}`;
         console.log(Router.query);
         if (Router.query.redirect) {
-          Router.push(`${Router.query.redirect}`)
+          Router.push(`${Router.query.redirect}`);
         } else {
           Router.push("/orders");
         }

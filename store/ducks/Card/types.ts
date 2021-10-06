@@ -1,3 +1,5 @@
+import { ProductsDetails } from "../products/types";
+
 /**
  * Actions Types
  */
@@ -6,6 +8,7 @@ export enum CardTypes {
   REMOVE_ITEM = "@card/REMOVE_ITEM",
   ALTER_QUANTITY = "@card/ALTER_QUANTITY",
   GET_ALL = "@card/GET_ALL",
+  CLEAR_CART = "@card/CLEAR_CART",
 }
 
 export interface card {
@@ -14,6 +17,9 @@ export interface card {
   price: number;
   image: string;
   imageHover: string;
+  color?: string;
+  materialType?: string;
+  productDetail?: ProductsDetails;
   qty: number;
   total: number;
 }

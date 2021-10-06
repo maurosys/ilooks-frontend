@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { connect } from "react-redux";
 import Link from "next/link";
+import { parseCookies } from "nookies";
+
 import Cart from "../Modal/Cart";
 import Wishlist from "../Modal/Wishlist";
 import { Products as ProductsPros } from "../../store/ducks/products/types";
@@ -11,6 +13,7 @@ import { selectAuth } from "../../store/ducks/Auth";
 
 //TYPES
 import { CategoryRequest, SubCategoryRequest } from "@type/request";
+import { getAPIClient } from "@services/api";
 
 interface StateProps {
   products: ProductsPros[];
@@ -22,14 +25,31 @@ interface StateProps {
 const MegaMenuTwo = ({
   products,
   card,
-  categories,
-  subCategories,
-}: StateProps) => {
+}: // categories,
+// subCategories,
+StateProps) => {
   const [display, setDisplay] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [searchForma, setSearchForma] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
-  const authUser = useAppSelector(selectAuth);
+  // const authUser = useAppSelector(selectAuth);
+
+  const { "nextilooks.auth": auth } = parseCookies();
+  const authUser = auth ? JSON.parse(auth) : {};
+
+  const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  const api = getAPIClient();
+
+  useEffect(() => {
+    const getDatas = async () => {
+      const categories = await api.get("category");
+      const subCategories = await api.get("subcategory");
+      setCategories(categories.data);
+      setSubCategories(subCategories.data);
+    };
+    getDatas();
+  }, []);
 
   const handleWishlist = () => {
     setOpenWishlist(true);
@@ -140,155 +160,6 @@ const MegaMenuTwo = ({
                                 </div>
                               ))}
 
-                            {/* <div className="col">
-                              <h6 className="submenu-title">Roupas</h6>
-                              <ul className="megamenu-submenu">
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Camisa</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Camiseta</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Jeans</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Blusa,</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Jaqueta</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Blusa de Frio</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Gravata</a>
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="col">
-                              <h6 className="submenu-title">Calçados</h6>
-
-                              <ul className="megamenu-submenu">
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Sapatilha</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Rasteirinha</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Tamanco</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Anabela</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Sandália </a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Birkenstock</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Slipper</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Plataforma</a>
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="col">
-                              <h6 className="submenu-title">Acessórios</h6>
-
-                              <ul className="megamenu-submenu">
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Bolas</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Óculos</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Carteiras</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Pulseiras</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Colar</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Boné</a>
-                                  </Link>
-                                </li>
-
-                                <li>
-                                  <Link href="/category-sidebar-fullwidth">
-                                    <a>Relógios</a>
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div> */}
-
                             <div className="col">
                               <ul className="megamenu-submenu">
                                 <li>
@@ -305,21 +176,6 @@ const MegaMenuTwo = ({
                                       <a></a>
                                     </Link>
                                   </div>
-
-                                  {/* <div className="aside-trending-products">
-                                    <img
-                                      src={require("../../images/category-products-img3.jpg")}
-                                      alt="image"
-                                    />
-
-                                    <div className="category">
-                                      <h4>Últimos Produtos</h4>
-                                    </div>
-
-                                    <Link href="#">
-                                      <a></a>
-                                    </Link>
-                                  </div> */}
                                 </li>
                               </ul>
                             </div>

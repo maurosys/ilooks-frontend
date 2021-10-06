@@ -26,7 +26,7 @@ const AddsModal = () => {
       <div className="bts-popup-container">
         <h3>Não perca nenhuma novidade!</h3>
         <p>
-          Se inscreva no nosso newsletter e{" "}
+          Inscreva-se no nosso newsletter e{" "}
           <strong>Receba ofertas exclusivas</strong>
         </p>
 

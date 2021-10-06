@@ -15,7 +15,7 @@ const DetailsTab = () => {
       tabcontent[i].style.display = "none";
     }
 
-   tablinks = document.getElementsByTagName("li");
+    tablinks = document.getElementsByTagName("li");
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace("current", "");
     }
@@ -41,7 +41,7 @@ const DetailsTab = () => {
                 <span className="tabs-nav-text">
                   <div className="dot"></div> Descrição
                 </span>
-              </li>    
+              </li>
             </ul>
           </div>
 
@@ -86,7 +86,7 @@ const DetailsTab = () => {
                     </div>
                   </div>
                 </div>
-              </div>                                              
+              </div>
             </div>
           </div>
         </div>

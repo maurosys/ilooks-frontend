@@ -6,31 +6,24 @@ import Facility from "../components/shop-style-five/Facility";
 import LeftSidebar from "../components/Sidebar/LeftSidebar";
 import ProductsFilterOptions from "../components/Common/ProductsFilterOptions";
 import ProductsCard from "../components/products/ProductsCard";
-import {ApplicationState} from '../store'
-import { Products as ProductsPros } from '../store/ducks/products/types';
-import { loadResquestProduct } from '../store/ducks/products/actions';
-
-
+import { ApplicationState } from "../store";
+import { Products as ProductsPros } from "../store/ducks/products/types";
+import { loadResquestProduct } from "../store/ducks/products/actions";
 
 interface StateProps {
-  products: ProductsPros[]
+  products: ProductsPros[];
 }
 
-const hookClass = ({products}: StateProps) => {
-  const dispatch = useDispatch();
-  useEffect(()=> {
-    dispatch(loadResquestProduct());
-  },[])
+const hookClass = ({ products }: StateProps) => {
+  // const dispatch = useDispatch();
+  // useEffect(()=> {
+  //   dispatch(loadResquestProduct());
+  // },[])
 
-  return (
-    <Category
-      {...products}
-      products={products}
-    />
-  );
+  return <Category {...products} products={products} />;
 };
 
-const Category = ({products}: StateProps) => {
+const Category = ({ products }: StateProps) => {
   const [gridClass, setGridClass] = useState("");
 
   function handleGrid(e) {
@@ -53,15 +46,15 @@ const Category = ({products}: StateProps) => {
             <LeftSidebar col={3} />
 
             <div className="col-lg-9 col-md-12">
-              <ProductsFilterOptions onClick={ (e) => handleGrid(e.target.value)} />
+              <ProductsFilterOptions
+                onClick={(e) => handleGrid(e.target.value)}
+              />
 
               <div
                 id="products-filter"
                 className={`products-collections-listing row ${gridClass}`}
               >
-                <ProductsCard
-                  products={products}
-                />
+                <ProductsCard products={products} />
               </div>
             </div>
           </div>
@@ -75,9 +68,8 @@ const Category = ({products}: StateProps) => {
   );
 };
 
-const mapStateToProps = (state: ApplicationState ) => ({
-  products: state.products.data
+const mapStateToProps = (state: ApplicationState) => ({
+  products: state.products.data,
 });
-
 
 export default connect(mapStateToProps)(hookClass);

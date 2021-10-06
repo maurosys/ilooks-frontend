@@ -11,7 +11,6 @@ interface WishlistProps {
 
 const Wishlist = ({ closeWishlist, wishlists }: WishlistProps) => {
   const dispatch = useDispatch();
-  console.table(wishlists);
   return (
     <div
       className="modal right fade show shoppingWishlistModal"
