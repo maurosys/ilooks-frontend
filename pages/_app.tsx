@@ -18,12 +18,10 @@ import { Provider } from "react-redux";
 import ReactNotification from "react-notifications-component";
 // import withRedux from 'next-redux-wrapper';
 import NProgress from "nprogress";
-import getConfig from "next/config";
 
 import store from "../store";
 
-const { publicRuntimeConfig } = getConfig();
-NProgress.configure({ showSpinner: publicRuntimeConfig.NProgressShowSpinner });
+NProgress.configure({ showSpinner: true });
 
 Router.events.on("routeChangeStart", (url) => {
   console.log("onRouteChangeStart triggered");
