@@ -8,6 +8,7 @@ import api from "@services/api";
 
 //TYPES
 import { UserReponse } from "@type/global";
+import { StatusHistoryItem } from "@type/orders";
 export interface ItemsProps {
   productDetailId?: string;
   title: string;
@@ -30,7 +31,7 @@ export interface OrderItemProps {
   numberOrder: number | string;
   orderStatus: string;
   items: ItemsProps[];
-  statusHistory: OrderStatusProps[];
+  statusHistory: StatusHistoryItem[];
   showButtomDetails?: boolean;
 
   amount?: string;

@@ -16,11 +16,14 @@ import useLogin from "../hooks/pages/useLogin";
 import api, { getAPIClient } from "../services/api";
 import OrderDetail from "@components/OrderDetail";
 
+//TYPES
+import { OrderReponse } from "@type/orders";
+
 const Orders = () => {
   const dispatch = useDispatch();
   const { onLogout } = useLogin();
 
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<OrderReponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
 
