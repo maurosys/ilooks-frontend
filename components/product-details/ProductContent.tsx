@@ -30,7 +30,7 @@ interface StateProps {
 const ProductContent = ({ product, card, setImages }: StateProps) => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
-  const [max, setMax] = useState(10);
+  const [max, setMax] = useState(15);
   const [min, setMin] = useState(1);
   const [sizeGuide, setSizeGuide] = useState(false);
   const [shipModal, setShipModal] = useState(false);
@@ -74,6 +74,12 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
 
     siteSizeSelected("");
     const sizes = detail.map((size) => size.size);
+    
+    if (product.quantity_all > max) {
+      setMax(max);
+    } else {
+      setMax(product.quantity_all);
+    }
 
     setAllSizes(sizes);
   }, [colorSelect]);
@@ -134,6 +140,7 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
       return;
     }
 
+
     dispatch(
       addToCart({
         ...item,
@@ -156,7 +163,7 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
   }
 
   const IncrementItem = () => {
-    if (qty < 10) {
+    if (qty < max) {
       return setQty(qty + 1);
     } else {
       return null;
@@ -347,11 +354,11 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
           </div>
 
           <div className="product-info-btn">
-            <Link href="#">
+{/*            <Link href="#">
               <a onClick={openSizeGuide}>
                 <i className="fas fa-crop"></i> Guia de Tamanhos
               </a>
-            </Link>
+            </Link>*/}
             <Link href="#">
               <a onClick={openShipModal}>
                 <i className="fas fa-truck"></i> Entrega
@@ -369,7 +376,7 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
                 value={qty}
                 min={min}
                 max={max}
-                onChange={(e) => setQty(Number(e.target.value))}
+                onChange={(e) => setQty(Number(e.target.value)>max?max:Number(e.target.value)>product.quantity_all?product.quantity_all:Number(e.target.value))}
               />
               <span className="plus-btn" onClick={IncrementItem}>
                 <i className="fas fa-plus"></i>

@@ -8,7 +8,7 @@ interface OrderSummaryProps {
 }
 
 const OrderSummary = ({ card }: OrderSummaryProps) => {
-  const correios = 0;
+  const correios = 9.99;
   const total = card?.reduce((acc, card) => {
     if (card.price) {
       return acc + card.total;
