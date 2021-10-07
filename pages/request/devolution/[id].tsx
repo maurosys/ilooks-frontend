@@ -160,6 +160,7 @@ const RequestDevolution = () => {
         </div>
       </section>
       <ModalRequestDevolutionItem
+        orderId={query.id}
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
         items={orders.length > 0 && orders[0].items}
