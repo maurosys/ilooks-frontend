@@ -19,7 +19,7 @@ export function getAPIClient(ctx?: any) {
   const { "nextilooks.auth": auth } = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: "https://ilooks-backend.herokuapp.com",
+    baseURL: "https://ilooks-api.herokuapp.com",
   });
 
   if (auth) {

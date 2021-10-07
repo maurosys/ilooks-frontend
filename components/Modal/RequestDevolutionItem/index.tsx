@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Modal from "react-modal";
 
 import ButtonPrimary from "@components/Button/Primary";
@@ -18,30 +19,50 @@ const customStyles = {
   },
 };
 
+//HOOKS
+import useRequestDevolution, {
+  ProductDevolutionProps,
+} from "@hooks/components/useRequestDevolution";
+
 //TYPES
 import { ItemsProps } from "@components/orderItem";
 interface ModalRequestDevolutionItemProps {
+  orderId: any;
   modalIsOpen?: boolean;
   setModalIsOpen?: any;
   items?: ItemsProps[];
   itemsSelected?: string[];
 }
+interface ItemPropsWihtQuantity extends ItemsProps {
+  quantityDev: number;
+}
 
 const ModalRequestDevolutionItem = ({
+  orderId,
   modalIsOpen,
   setModalIsOpen,
   items,
   itemsSelected,
 }: ModalRequestDevolutionItemProps) => {
-  const [itemsRendering, setItemsRendering] = useState<ItemsProps[]>([]);
+  //HOOKS INSTANCES
+  const { handleSubmitDevolution, loading } = useRequestDevolution();
+  const router = useRouter();
+
+  //STATES
+  const [itemsRendering, setItemsRendering] = useState<ItemPropsWihtQuantity[]>(
+    []
+  );
 
   useEffect(() => {
     if (itemsSelected && items) {
-      const newArray: ItemsProps[] = [];
+      const newArray: ItemPropsWihtQuantity[] = [];
       itemsSelected.map((itemSel) => {
         const object = items.find((item) => item.productDetailId === itemSel);
         if (object) {
-          newArray.push(object);
+          newArray.push({
+            ...object,
+            quantityDev: 1,
+          });
         }
       });
 
@@ -51,6 +72,21 @@ const ModalRequestDevolutionItem = ({
 
   function closeModal() {
     setModalIsOpen(false);
+  }
+
+  async function submit() {
+    const dataRequst: ProductDevolutionProps[] = itemsRendering.map((item) => ({
+      productDetailId: item.productDetailId,
+      quantity: item.quantityDev,
+    }));
+
+    const response = await handleSubmitDevolution({
+      orderId,
+      productsDevolutions: dataRequst,
+    });
+    if (response) {
+      router.push(`/request/detail/${orderId}`);
+    }
   }
 
   return (
@@ -72,7 +108,7 @@ const ModalRequestDevolutionItem = ({
               overflowX: "scroll",
             }}
           >
-            {itemsRendering.map((item) => (
+            {itemsRendering.map((item, index) => (
               <div className={styles.card} onClick={() => {}}>
                 <img src={item.imageUrl} alt="teste" />
                 <hr />
@@ -112,7 +148,39 @@ const ModalRequestDevolutionItem = ({
                   </span>
 
                   <br />
-                  <input type="number" min={1} max={item.quantity} />
+                  <input
+                    type="number"
+                    min={1}
+                    max={item.quantity}
+                    value={item.quantityDev}
+                    onChange={(e: any) => {
+                      let array = itemsRendering;
+                      const value = e.target.value;
+
+                      if (value) {
+                        const numbersString: string = value.replace(
+                          /[^0-9]/g,
+                          ""
+                        );
+                        if (numbersString.length <= 0) {
+                          array[index].quantityDev = 2;
+                          setItemsRendering([...array]);
+                        } else {
+                          const numberInt = parseInt(numbersString);
+                          if (numberInt === 0) {
+                            array[index].quantityDev = 1;
+                            setItemsRendering([...array]);
+                          } else if (numberInt <= item.quantity) {
+                            array[index].quantityDev = numberInt;
+                            setItemsRendering([...array]);
+                          }
+                        }
+                      } else {
+                        array[index].quantityDev = 1;
+                        setItemsRendering([...array]);
+                      }
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -128,7 +196,11 @@ const ModalRequestDevolutionItem = ({
               alignItems: "center",
             }}
           >
-            <ButtonPrimary style={{ marginRight: "10px" }}>
+            <ButtonPrimary
+              style={{ marginRight: "10px" }}
+              loading={loading}
+              onClick={submit}
+            >
               Confirmar Devolução
             </ButtonPrimary>
             <ButtonSecondary
