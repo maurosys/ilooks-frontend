@@ -1,6 +1,7 @@
 import { OrderStatusProps } from "@components/orderItem";
 import { ProductsDetails } from "@store/ducks/products/types";
 import { string } from "yup/lib/locale";
+import { StatusHistoryItem } from "./orders";
 
 type Product = {
   productDetailsId: string;
@@ -74,5 +75,5 @@ export type RequestDetailsResponse = {
   request_date: Date;
   status_payment: string;
   status_request: string;
-  statusHistory: OrderStatusProps[];
+  statusHistory: StatusHistoryItem[];
 };
