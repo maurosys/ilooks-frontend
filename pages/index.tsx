@@ -61,6 +61,7 @@ const Index = ({ productss, categories, subCategories }: Props) => {
             imageHover: imageUrl,
             qty: prod.quantity_all,
             provider: prod.provider.name,
+            providerId: prod.provider.id,
             materialType: prod.materialType,
             details_product: prod.details_product,
             total: 0,

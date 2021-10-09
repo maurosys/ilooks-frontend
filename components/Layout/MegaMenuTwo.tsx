@@ -151,7 +151,9 @@ StateProps) => {
                                         <li
                                           key={`${itemSubCategory.id}listheader`}
                                         >
-                                          <Link href="#">
+                                          <Link
+                                            href={`/products?category=${category.id}&sub_category=${itemSubCategory.id}`}
+                                          >
                                             <a>{itemSubCategory.name}</a>
                                           </Link>
                                         </li>
@@ -172,7 +174,7 @@ StateProps) => {
                                     <div className="category">
                                       <h4>Todos os produtos</h4>
                                     </div>
-                                    <Link href="#">
+                                    <Link href="/products">
                                       <a></a>
                                     </Link>
                                   </div>

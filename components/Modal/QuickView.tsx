@@ -30,7 +30,7 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
 
   const [allSizes, setAllSizes] = useState<any[]>([]);
   const [sizeSelected, siteSizeSelected] = useState("");
-  
+
   useEffect(() => {
     setDetailsProductAll(modalData.details_product);
 
@@ -202,7 +202,7 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
                 <ul className="product-info">
                   <li>
                     <span>Vendedor:</span>{" "}
-                    <Link href="#">
+                    <Link href={`/products?provider=${modalData.providerId}`}>
                       <a>{modalData?.provider}</a>
                     </Link>
                   </li>

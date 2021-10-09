@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import TimeLineOrder from "../timelineOrder";
+import TimelineOrderDevolution from "../timelineOrderDevolution";
 import { formatToUggly } from "@utils/formatToUggly";
 import { FiChevronsDown } from "@react-icons/all-files/fi/FiChevronsDown";
 import { FiChevronsUp } from "@react-icons/all-files/fi/FiChevronsUp";
@@ -8,7 +9,7 @@ import api from "@services/api";
 
 //TYPES
 import { UserReponse } from "@type/global";
-import { StatusHistoryItem } from "@type/orders";
+import { StatusHistoryItem, StatusRequest } from "@type/orders";
 export interface ItemsProps {
   productDetailId?: string;
   title: string;
@@ -136,6 +137,13 @@ export default function OrderItem({
           orderStatus={orderStatus}
           statusHistory={statusHistory}
         />
+
+        {orderStatus === StatusRequest.IN_BACK.toLowerCase() && (
+          <TimelineOrderDevolution
+            orderStatus={orderStatus}
+            statusHistory={statusHistory}
+          />
+        )}
 
         <div className="accordion-footer">
           <Link

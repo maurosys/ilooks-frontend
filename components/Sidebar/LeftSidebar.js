@@ -1,57 +1,60 @@
-import React, { Component } from 'react';
-import Link from 'next/link';
+import React, { Component } from "react";
+import Link from "next/link";
 
 class LeftSidebar extends Component {
-    state = {
-        currentSelection: false,
-        collection: false,
-        brand: false,
-        size: false,
-        price: false,
-        color: false,
-        popular: false
+  state = {
+    currentSelection: false,
+    collection: false,
+    brand: false,
+    size: false,
+    price: false,
+    color: false,
+    popular: false,
+  };
+
+  handleToggle = (e, evt) => {
+    e.preventDefault();
+
+    if (evt == "currentSelection") {
+      this.setState({
+        currentSelection: !this.state.currentSelection,
+      });
+    } else if (evt == "collection") {
+      this.setState({
+        collection: !this.state.collection,
+      });
+    } else if (evt == "brand") {
+      this.setState({
+        brand: !this.state.brand,
+      });
+    } else if (evt == "size") {
+      this.setState({
+        size: !this.state.size,
+      });
+    } else if (evt == "price") {
+      this.setState({
+        price: !this.state.price,
+      });
+    } else if (evt == "color") {
+      this.setState({
+        color: !this.state.color,
+      });
+    } else if (evt == "popular") {
+      this.setState({
+        popular: !this.state.popular,
+      });
     }
+  };
 
-    handleToggle = (e, evt) => {
-        e.preventDefault();
-
-        if (evt == "currentSelection"){
-            this.setState({
-                currentSelection: !this.state.currentSelection
-            })
-        } else if (evt == "collection"){
-            this.setState({
-                collection: !this.state.collection
-            })
-        } else if (evt == "brand"){
-            this.setState({
-                brand: !this.state.brand
-            })
-        } else if (evt == "size"){
-            this.setState({
-                size: !this.state.size
-            })
-        } else if (evt == "price"){
-            this.setState({
-                price: !this.state.price
-            })
-        }  else if (evt == "color"){
-            this.setState({
-                color: !this.state.color
-            })
-        } else if (evt == "popular"){
-            this.setState({
-                popular: !this.state.popular
-            })
-        }
-    }
-
-    render() {
-        let { currentSelection, collection, brand, size, price, color, popular } = this.state;
-        return (
-            <div className={`col-lg-${this.props.col ? this.props.col : '4' } col-md-12`}>
-                <div className="woocommerce-sidebar-area">
-                    <div 
+  render() {
+    let { currentSelection, collection, brand, size, price, color, popular } =
+      this.state;
+    return (
+      <div
+        className={`col-lg-${this.props.col ? this.props.col : "4"} col-md-12`}
+      >
+        <div className="woocommerce-sidebar-area">
+          {/* <div 
                         className={`collapse-widget filter-list-widget ${currentSelection ? '' : 'open'}`}>
                         <h3 
                             className={`collapse-widget-title ${currentSelection ? '' : 'active'}`}
@@ -436,115 +439,116 @@ class LeftSidebar extends Component {
                                 </Link>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
 
-                    <div className="collapse-widget aside-products-widget">
-                        <h3 className="aside-widget-title">
-                            Produtos populares
-                        </h3>
+          <div className="collapse-widget aside-products-widget">
+            <h3 className="aside-widget-title">Produtos populares</h3>
 
-                        <div className="aside-single-products">
-                            <div className="products-image">
-                                <Link href="#">
-                                    <a>
-                                        <img src={require("../../images/img2.jpg")} alt="image" />
-                                    </a>
-                                </Link>
-                            </div>
+            <div className="aside-single-products">
+              <div className="products-image">
+                <Link href="#">
+                  <a>
+                    <img src={require("../../images/img2.jpg")} alt="image" />
+                  </a>
+                </Link>
+              </div>
 
-                            <div className="products-content">
-                                <span>
-                                    <Link href="#">
-                                        <a>Men's</a>
-                                    </Link>
-                                </span>
-                                <h3>
-                                    <Link href="#">
-                                        <a>Belted chino trousers polo</a>
-                                    </Link>
-                                </h3>
+              <div className="products-content">
+                <span>
+                  <Link href="#">
+                    <a>Men's</a>
+                  </Link>
+                </span>
+                <h3>
+                  <Link href="#">
+                    <a>Belted chino trousers polo</a>
+                  </Link>
+                </h3>
 
-                                <div className="product-price">
-                                    <span className="new-price">$191.00</span>
-                                    <span className="old-price">$291.00</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="aside-single-products">
-                            <div className="products-image">
-                                <Link href="#">
-                                    <a>
-                                        <img src={require("../../images/img3.jpg")} alt="image" />
-                                    </a>
-                                </Link>
-                            </div>
-
-                            <div className="products-content">
-                                <span>
-                                    <Link href="#">
-                                        <a>Men's</a>
-                                    </Link>
-                                </span>
-                                <h3>
-                                    <Link href="#">
-                                        <a>Belted chino trousers polo</a>
-                                    </Link>
-                                </h3>
-
-                                <div className="product-price">
-                                    <span className="new-price">$191.00</span>
-                                    <span className="old-price">$291.00</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="aside-single-products">
-                            <div className="products-image">
-                                <Link href="#">
-                                    <a>
-                                        <img src={require("../../images/img4.jpg")} alt="image" />
-                                    </a>
-                                </Link>
-                            </div>
-
-                            <div className="products-content">
-                                <span>
-                                    <Link href="#">
-                                        <a>Men's</a>
-                                    </Link>
-                                </span>
-                                <h3>
-                                    <Link href="#">
-                                        <a>Belted chino trousers polo</a>
-                                    </Link>
-                                </h3>
-
-                                <div className="product-price">
-                                    <span className="new-price">$191.00</span>
-                                    <span className="old-price">$291.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="collapse-widget aside-trending-widget">
-                        <div className="aside-trending-products">
-                            <img src={require("../../images/bestseller-hover-img1.jpg")} alt="image" />
-
-                            <div className="category">
-                                <h4>Top Trending</h4>
-                                <span>Spring/Summer 2018 Collection</span>
-                            </div>
-                            <Link href="#">
-                                <a></a>
-                            </Link>
-                        </div>
-                    </div>
+                <div className="product-price">
+                  <span className="new-price">$191.00</span>
+                  <span className="old-price">$291.00</span>
                 </div>
+              </div>
             </div>
-        );
-    }
+
+            <div className="aside-single-products">
+              <div className="products-image">
+                <Link href="#">
+                  <a>
+                    <img src={require("../../images/img3.jpg")} alt="image" />
+                  </a>
+                </Link>
+              </div>
+
+              <div className="products-content">
+                <span>
+                  <Link href="#">
+                    <a>Men's</a>
+                  </Link>
+                </span>
+                <h3>
+                  <Link href="#">
+                    <a>Belted chino trousers polo</a>
+                  </Link>
+                </h3>
+
+                <div className="product-price">
+                  <span className="new-price">$191.00</span>
+                  <span className="old-price">$291.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="aside-single-products">
+              <div className="products-image">
+                <Link href="#">
+                  <a>
+                    <img src={require("../../images/img4.jpg")} alt="image" />
+                  </a>
+                </Link>
+              </div>
+
+              <div className="products-content">
+                <span>
+                  <Link href="#">
+                    <a>Men's</a>
+                  </Link>
+                </span>
+                <h3>
+                  <Link href="#">
+                    <a>Belted chino trousers polo</a>
+                  </Link>
+                </h3>
+
+                <div className="product-price">
+                  <span className="new-price">$191.00</span>
+                  <span className="old-price">$291.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="collapse-widget aside-trending-widget">
+            <div className="aside-trending-products">
+              <img
+                src={require("../../images/bestseller-hover-img1.jpg")}
+                alt="image"
+              />
+
+              <div className="category">
+                <h4>Top Trending</h4>
+                <span>Spring/Summer 2018 Collection</span>
+              </div>
+              <Link href="#">
+                <a></a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default LeftSidebar;
