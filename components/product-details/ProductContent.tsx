@@ -74,7 +74,7 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
 
     siteSizeSelected("");
     const sizes = detail.map((size) => size.size);
-    
+
     if (product.quantity_all > max) {
       setMax(max);
     } else {
@@ -139,7 +139,6 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
       );
       return;
     }
-
 
     dispatch(
       addToCart({
@@ -222,7 +221,7 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
           <ul className="product-info">
             <li>
               <span>Vendedor:</span>{" "}
-              <Link href="#">
+              <Link href={`/products?provider=${product.provider.id}`}>
                 <a>{product.provider.name}</a>
               </Link>
             </li>
@@ -354,7 +353,7 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
           </div>
 
           <div className="product-info-btn">
-{/*            <Link href="#">
+            {/*            <Link href="#">
               <a onClick={openSizeGuide}>
                 <i className="fas fa-crop"></i> Guia de Tamanhos
               </a>
@@ -376,7 +375,15 @@ const ProductContent = ({ product, card, setImages }: StateProps) => {
                 value={qty}
                 min={min}
                 max={max}
-                onChange={(e) => setQty(Number(e.target.value)>max?max:Number(e.target.value)>product.quantity_all?product.quantity_all:Number(e.target.value))}
+                onChange={(e) =>
+                  setQty(
+                    Number(e.target.value) > max
+                      ? max
+                      : Number(e.target.value) > product.quantity_all
+                      ? product.quantity_all
+                      : Number(e.target.value)
+                  )
+                }
               />
               <span className="plus-btn" onClick={IncrementItem}>
                 <i className="fas fa-plus"></i>

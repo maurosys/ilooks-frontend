@@ -30,6 +30,7 @@ export interface Products {
   imageHover: string;
   qty: number;
   provider: string;
+  providerId?: string;
   materialType: string;
   details_product: ProductsDetails[];
   total: number;

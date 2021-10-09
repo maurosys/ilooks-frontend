@@ -7,16 +7,19 @@ interface FormatToUglyProps {
 
 export const formatToUggly = ({ name, id }: FormatToUglyProps) => {
   const divisor = "id";
-
-  if (
-    name !== "" &&
-    name?.replaceAll(" ", "").length > 0 &&
-    id !== "" &&
-    id?.replaceAll(" ", "").length > 0
-  ) {
-    return `${removeAccents(name)
-      .replaceAll(" ", "-")
-      .toLowerCase()}${divisor}${id}`;
+  if (name && id) {
+    if (
+      name !== "" &&
+      name?.replace(/\s/g, "").length > 0 &&
+      id !== "" &&
+      id?.replace(/\s/g, "").length > 0
+    ) {
+      return `${removeAccents(name)
+        .replace(/\s/g, "-")
+        .toLowerCase()}${divisor}${id}`;
+    } else {
+      return `empty${divisor}emppy`;
+    }
   } else {
     return `empty${divisor}emppy`;
   }
