@@ -4,3 +4,10 @@ package-lock.json
 .next
 .vercel
 yarn-error.lock
+/.idea/dataSources.xml
+/.idea/ilooks-frontend.iml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/vcs.xml
+/.idea/yii2settings.xml
+/.idea/.gitignore
