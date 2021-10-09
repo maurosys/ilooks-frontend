@@ -65,6 +65,7 @@ const RequestDetail = () => {
                   <>
                     <CardRequestDetail
                       amount={orders.length > 0 && orders[0].amount}
+                      freight={orders.length > 0 && orders[0].freight}
                       customer={orders.length > 0 && orders[0].customer}
                     />
                     {orders &&

@@ -33,6 +33,7 @@ const useRequestDetail = () => {
         })),
         statusHistory: data.statusHistory,
         amount: data.amount,
+        freight: data.freight,
         customer: data.customer,
       };
 

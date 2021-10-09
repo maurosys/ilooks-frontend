@@ -127,9 +127,6 @@ const RequestDevolution = () => {
                             setItemsSelected={setItemsSelected}
                           />
                         ))}
-                      {/* <CardRequestDevolutionItemsSelect />
-                      <CardRequestDevolutionItemsSelect />
-                      <CardRequestDevolutionItemsSelect /> */}
                     </div>
                   </>
                 )}

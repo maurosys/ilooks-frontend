@@ -52,7 +52,7 @@ const CartContent = ({card} : CartContentProps) => {
                     }).format(total)}</span>
                   </li>
                   <li>
-                    Frete <span>0</span>
+                    Frete <span>R$ 9,99</span>
                   </li>
                   <li>
                     Total{" "}

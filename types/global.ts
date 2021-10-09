@@ -70,6 +70,7 @@ export type ProductReponse = {
 export type RequestDetailsResponse = {
   id: string;
   amount: string;
+  freight:number;
   customer: UserReponse;
   products: Product[];
   request_date: Date;

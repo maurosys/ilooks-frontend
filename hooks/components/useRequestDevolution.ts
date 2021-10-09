@@ -12,6 +12,8 @@ export type ProductDevolutionProps = {
 
 interface SubmitRequestProps {
   orderId: any;
+  devolutionMotive?:string;
+  observation?:string;
   productsDevolutions: ProductDevolutionProps[];
 }
 
@@ -21,6 +23,8 @@ const useRequestDevolution = () => {
 
   const handleSubmitDevolution = async ({
     orderId,
+      devolutionMotive,
+      observation,
     productsDevolutions,
   }: SubmitRequestProps): Promise<any> => {
     try {

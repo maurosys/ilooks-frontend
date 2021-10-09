@@ -6,11 +6,13 @@ import styles from "./requestdetail.module.css";
 
 interface CardRequestDetailProps {
 	amount?: string;
+	freight?: number;
 	customer?: UserReponse;
 }
 
 const CardRequestDetail = ({
 	                           amount = "0.00",
+	                           freight = 0.00,
 	                           customer,
                            }: CardRequestDetailProps) => {
 	return (
@@ -29,17 +31,23 @@ const CardRequestDetail = ({
 				}).format(Number(amount))}</span>
 				</div>
 				<div className={styles.line}>
-					<span>desconto</span> <span>R$ 0,00</span>
+					<span>desconto</span> <span>{new Intl.NumberFormat("br-BR", {
+					style: "currency",
+					currency: "BRL",
+				}).format(0)}</span>
 				</div>
 				<div className={styles.line}>
-					<span>frete</span> <span>R$ 0,00</span>
+					<span>frete</span> <span>{new Intl.NumberFormat("br-BR", {
+					style: "currency",
+					currency: "BRL",
+				}).format(freight)}</span>
 				</div>
 				<hr/>
 				<div className={styles.line}>
 					<span>total</span> <span>{new Intl.NumberFormat("br-BR", {
 					style: "currency",
 					currency: "BRL",
-				}).format(Number(amount))}</span>
+				}).format(Number(amount) + freight)}</span>
 				</div>
 			</div>
 			

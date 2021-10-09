@@ -1,10 +1,11 @@
 export enum StatusRequest {
   ACCOMPLISHED = "Realizado",
-  RECEIVED_CARRIER = "Recebido Transportadora",
-  IN_TRANSIT = "Em Trânsito",
+  READY = "Separado para entrega",
+  RECEIVED_CARRIER = "Recebido transportadora",
+  IN_TRANSIT = "Em trânsito",
   DELIVERED = "Entregue",
-  IN_BACK = "Em Devolução",
-  CANCELED = "Cancelado",
+  IN_BACK = "Em devolução",
+  CANCELED = "Cancelado"
 }
 
 export enum StatusPayment {
@@ -12,7 +13,16 @@ export enum StatusPayment {
   RESERVE = "Pré reservado",
   CONFIRMED = "Confirmado",
   NOT_AUTHORIZED = "Não autorizado",
-  CANCELED = "Cancelado",
+  CANCELED = "Cancelado"
+}
+
+export enum StatusDevolution {
+  REQUESTED = "Devolução solicitada",
+  IN_TRANSIT = "Coleta programada",
+  IN_CARRIER = "Com transportadora",
+  VALIDATION = "Aguardando validação Ilooks",
+  ACCEPTED = "Devolução aceita e autorizada",
+  REFUSED = "Devolução aceita e autorizada",
 }
 
 export type OrderItem = {
