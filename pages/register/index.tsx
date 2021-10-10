@@ -21,11 +21,20 @@ import Termo from "@components/Modal/Termo";
 // import styles from "./register.module.css";
 //HOOKS
 import useResgister from "@hooks/pages/useRegister";
+import useCep from "@hooks/pages/useCep";
 
 const Register = () => {
   //HOOKS INSTANCES
-  const { loading, register, handleSubmit, onRegister, errors } =
-    useResgister();
+  const {
+    loading,
+    register,
+    handleSubmit,
+    onRegister,
+    errors,
+    setValue,
+    watch,
+  } = useResgister();
+  const { handleGetCep } = useCep();
 
   //STATES
   const [termAccept, setTermAccept] = useState(false);
@@ -44,6 +53,19 @@ const Register = () => {
 
   const closeTermo = () => {
     return setOpenTerm(false);
+  };
+
+  const handleCep = async (e: any) => {
+    const value = e.target.value;
+    console.log(value);
+    const data = await handleGetCep(value);
+    if (data) {
+      setValue("address", data.logradouro);
+      setValue("complement", data.complemento);
+      setValue("district", data.bairro);
+      setValue("city", data.localidade);
+      setValue("state", data.uf);
+    }
   };
 
   return (
@@ -159,16 +181,21 @@ const Register = () => {
                 label="CEP"
                 placeholder="00000-000"
                 errors={errors.zipcode}
+                onBlur={handleCep}
               />
             </div>
             <div className="col-lg-6 col-md-12">
               <InputText
                 {...register("address")}
+                value={watch("address")}
                 name="address"
                 id="address"
                 label="Endereço"
                 placeholder="Ex. Avenida Paulista"
                 errors={errors.address}
+                onChange={(e: any) => {
+                  setValue("address", e.target.value);
+                }}
               />
             </div>
             <div className="col-lg-3 col-md-12">
@@ -187,40 +214,56 @@ const Register = () => {
             <div className="col-lg-3 col-md-12">
               <InputText
                 {...register("complement")}
+                value={watch("complement")}
                 name="complement"
                 id="complement"
                 label="Complemento"
                 placeholder="Ex.: Casa A"
+                onChange={(e: any) => {
+                  setValue("complement", e.target.value);
+                }}
               />
             </div>
             <div className="col-lg-3 col-md-12">
               <InputText
                 {...register("district")}
+                value={watch("district")}
                 name="district"
                 id="district"
                 label="Bairro"
                 placeholder="Ex.: Vila Maria"
+                onChange={(e: any) => {
+                  setValue("district", e.target.value);
+                }}
               />
             </div>
             <div className="col-lg-4 col-md-12">
               <InputText
                 {...register("city")}
+                value={watch("city")}
                 name="city"
                 id="city"
                 label="Cidade"
                 placeholder="Ex.: São Paulo"
                 errors={errors.city}
+                onChange={(e: any) => {
+                  setValue("city", e.target.value);
+                }}
               />
             </div>
             <div className="col-lg-2 col-md-12">
               <InputText
                 {...register("state")}
+                value={watch("state")}
                 name="state"
                 id="state"
                 label="UF"
                 placeholder="Ex.: SP"
                 maxlength="2"
                 errors={errors.state}
+                onChange={(e: any) => {
+                  setValue("state", e.target.value);
+                }}
               />
             </div>
           </div>

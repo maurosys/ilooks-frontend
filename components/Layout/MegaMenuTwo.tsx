@@ -97,7 +97,13 @@ StateProps) => {
             <nav className="navbar navbar-expand-md navbar-light">
               <Link href="/">
                 <a className="navbar-brand">
-                  <img src={require("../../images/ilooks.png")} alt="logo" />
+                  <img
+                    src={require("../../images/logoBranco.png")}
+                    alt="logo"
+                    style={{
+                      width: "60px",
+                    }}
+                  />
                 </a>
               </Link>
 

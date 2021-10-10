@@ -9,6 +9,8 @@ interface InputCEPProps extends HTMLAttributes<HTMLElement> {
   id?: string;
   name?: string;
   errors?: any;
+  value?: any;
+  required?: any;
 }
 
 const InputCEP = (props: InputCEPProps) => {

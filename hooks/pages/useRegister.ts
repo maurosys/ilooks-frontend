@@ -26,6 +26,7 @@ const useRegister = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -102,6 +103,7 @@ const useRegister = () => {
   return {
     register,
     setValue,
+    watch,
     handleSubmit,
     errors,
     loading,

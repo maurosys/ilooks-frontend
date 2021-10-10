@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { parseCookies } from "nookies";
 
+import InputCEP from "@components/Form/Input/CEP";
 import OrderSummary from "./OrderSummary";
 import useForm from "./userForm";
 import { createRequest, getUserFromId, Request } from "@services/request.api";
@@ -11,9 +12,12 @@ import api from "@services/api";
 import { clearCart, removeItem } from "@store/ducks/Card/actions";
 import { useDispatch } from "react-redux";
 import { card } from "@store/ducks/Card/types";
+import { ToastDanger } from "@utils/toast";
+import useCep from "@hooks/pages/useCep";
 
 function CheckoutForm() {
   const dispatch = useDispatch();
+  const { handleGetCep } = useCep();
   const router = useRouter();
   const [isLoged, setIsLoged] = useState(false);
   const [isDiffentetAddress, setIsDiffentetAddress] = useState(false);
@@ -210,37 +214,76 @@ function CheckoutForm() {
     },
   };
 
-  const { state, handleOnChange, handleOnSubmit, disable } = useForm(
+  const { state, setState, handleOnChange, handleOnSubmit, disable } = useForm(
     stateSchema,
     validationStateSchema,
     handleSubmit
   );
 
+  const handleCep = async (e: any) => {
+    const value = e.target.value;
+    const data = await handleGetCep(value);
+    if (data) {
+      setState({
+        ...state,
+        differentAddress_address: {
+          ...state.differentAddress_address,
+          value: data.logradouro,
+        },
+        differentAddress_complement: {
+          ...state.differentAddress_complement,
+          value: data.complemento,
+        },
+        differentAddress_city: {
+          ...state.differentAddress_city,
+          value: data.localidade,
+        },
+        differentAddress_state: {
+          ...state.differentAddress_state,
+          value: data.uf,
+        },
+      });
+    }
+  };
+
   async function handleSubmit() {
     setLoading(true);
     try {
       if (isDiffentetAddress) {
-        const response = await api.post(
-          "/address",
-          {
-            address: state.differentAddress_address.value,
-            district: state.differentAddress_district.value,
-            number: state.differentAddress_number.value,
-            complement: state.differentAddress_complement.value,
-            city: state.differentAddress_city.value,
-            state: state.differentAddress_state.value,
-            zipcode: state.differentAddress_zipcode.value,
-            description: "Novo endereço",
-            userId: user["id"],
-            primary: false,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+        try {
+          const response = await api.post(
+            "/address",
+            {
+              address: state.differentAddress_address.value,
+              district: state.differentAddress_district.value,
+              number: state.differentAddress_number.value,
+              complement: state.differentAddress_complement.value,
+              city: state.differentAddress_city.value,
+              state: state.differentAddress_state.value,
+              zipcode: state.differentAddress_zipcode.value,
+              description: "Novo endereço",
+              userId: user["id"],
+              primary: false,
             },
-          }
-        );
-        _REQUEST.addressId = response.data.id;
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          _REQUEST.addressId = response.data.id;
+        } catch (error) {
+          const response =
+            error &&
+            error.response &&
+            error.response.data &&
+            error.response.data.message
+              ? error.response.data.message
+              : "Ocorreu algum erro, tente novamente.";
+          console.log(error);
+          ToastDanger("Alterção de endereço", response);
+          return;
+        }
       } else {
         _REQUEST.addressId = user["primaryAddres"]["id"];
       }
@@ -495,6 +538,34 @@ function CheckoutForm() {
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
                             <label>
+                              CEP <span className="required">*</span>
+                            </label>
+                            <InputCEP
+                              name="differentAddress_zipcode"
+                              className="form-control"
+                              onChange={handleOnChange}
+                              onBlur={handleCep}
+                              value={state.differentAddress_zipcode.value}
+                            />
+                            {/* <input
+                              type="text"
+                              name="differentAddress_zipcode"
+                              className="form-control"
+                              onChange={handleOnChange}
+                              onBlur={handleCep}
+                              value={state.differentAddress_zipcode.value}
+                            /> */}
+                            {state.differentAddress_zipcode.error && (
+                              <p style={errorStyle}>
+                                {state.differentAddress_zipcode.error}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-group">
+                            <label>
                               Endereço <span className="required">*</span>
                             </label>
                             <input
@@ -585,26 +656,6 @@ function CheckoutForm() {
                             {state.differentAddress_state.error && (
                               <p style={errorStyle}>
                                 {state.differentAddress_state.error}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="col-lg-6 col-md-6">
-                          <div className="form-group">
-                            <label>
-                              CEP <span className="required">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              name="differentAddress_zipcode"
-                              className="form-control"
-                              onChange={handleOnChange}
-                              value={state.differentAddress_zipcode.value}
-                            />
-                            {state.differentAddress_zipcode.error && (
-                              <p style={errorStyle}>
-                                {state.differentAddress_zipcode.error}
                               </p>
                             )}
                           </div>
