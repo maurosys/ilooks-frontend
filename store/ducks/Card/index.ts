@@ -36,9 +36,11 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
     case CardTypes.REMOVE_ITEM:
       localStorage.setItem(
         "@ilooksecommerce_cart",
-        JSON.stringify(state.filter((item) => item.id != action.payload))
+        JSON.stringify(
+          state.filter((item) => item.productDetail != action.payload)
+        )
       );
-      return state.filter((item) => item.id != action.payload);
+      return state.filter((item) => item.productDetail != action.payload);
 
     case CardTypes.GET_ALL:
       if (
