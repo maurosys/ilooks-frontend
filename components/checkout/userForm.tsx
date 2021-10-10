@@ -27,7 +27,7 @@ function useForm(stateSchema, validationSchema = {}, callback) {
       const stateValue = state[key].value;
       const stateError = state[key].error;
 
-      return (isInputFieldRequired && !stateValue) || stateError != '';
+      return (isInputFieldRequired && !stateValue) || stateError != "";
     });
 
     return hasErrorInState;
@@ -75,7 +75,7 @@ function useForm(stateSchema, validationSchema = {}, callback) {
     }
   }
 
-  return { state, disable, handleOnChange, handleOnSubmit };
+  return { state, setState, disable, handleOnChange, handleOnSubmit };
 }
 
 export default useForm;
