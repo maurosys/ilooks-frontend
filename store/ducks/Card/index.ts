@@ -8,7 +8,9 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
     case CardTypes.ADD_TO_CART:
       const products0 = action.payload;
 
-      const index0 = state.findIndex((e) => e.id === products0.id);
+      const index0 = state.findIndex(
+        (e) => e.productDetail === products0.productDetail
+      );
 
       if (index0 < 0) {
         localStorage.setItem(
@@ -34,9 +36,11 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
     case CardTypes.REMOVE_ITEM:
       localStorage.setItem(
         "@ilooksecommerce_cart",
-        JSON.stringify(state.filter((item) => item.id != action.payload))
+        JSON.stringify(
+          state.filter((item) => item.productDetail != action.payload)
+        )
       );
-      return state.filter((item) => item.id != action.payload);
+      return state.filter((item) => item.productDetail != action.payload);
 
     case CardTypes.GET_ALL:
       if (
@@ -50,7 +54,9 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
 
     case CardTypes.ALTER_QUANTITY:
       const product = action.payload;
-      const index = state.findIndex((e) => e.id === product.id);
+      const index = state.findIndex(
+        (e) => e.productDetail === product.productDetail
+      );
       if (index >= 0) {
         state[index] = product;
       }

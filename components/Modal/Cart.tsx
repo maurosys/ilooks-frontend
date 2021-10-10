@@ -94,7 +94,7 @@ const Cart = ({ card, onClick }: StateProps) => {
                           <i
                             className="fa fa-trash fa-1x"
                             style={{ marginLeft: "100px", cursor: "pointer" }}
-                            onClick={() => removeitemCart(card.id)}
+                            onClick={() => removeitemCart(card.productDetail)}
                           />
                         </div>
                       </div>

@@ -24,7 +24,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
 
   let teste = 0;
 
-  const deleteCard = (id: number) => {
+  const deleteCard = (id: any) => {
     dispatch(removeItem(id));
   };
 
@@ -125,7 +125,10 @@ const CartProduct = ({ card }: CartPorductProps) => {
               </span>
 
               <Link href="#">
-                <a className="remove" onClick={() => deleteCard(data.id)}>
+                <a
+                  className="remove"
+                  onClick={() => deleteCard(data.productDetail)}
+                >
                   <i className="far fa-trash-alt"></i>
                 </a>
               </Link>
