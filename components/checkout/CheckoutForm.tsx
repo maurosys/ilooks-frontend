@@ -46,6 +46,7 @@ function CheckoutForm() {
     cardholder_name: { value: "", error: "" },
     expiration_month: { value: "", error: "" },
     expiration_year: { value: "", error: "" },
+    security_code: { value: "", error: "" },
   };
   const _REQUEST: Request = {
     credit_payment: {
@@ -171,6 +172,14 @@ function CheckoutForm() {
       validator: {
         regEx: /^[0-9]+$/,
         error: "Invalid number_token format use like 21",
+      },
+    },
+  
+    security_code: {
+      required: true,
+      validator: {
+        regEx: /^[0-9]+$/,
+        error: "Invalid security_code format 955",
       },
     },
 
@@ -299,8 +308,10 @@ function CheckoutForm() {
         number_token: state.number_token.value,
         expiration_month: state.expiration_month.value,
         expiration_year: state.expiration_year.value,
+        security_code: state.security_code.value,
       };
       _REQUEST.userId = user["id"];
+      _REQUEST.freight = 9.99;
       _REQUEST.amount = cart?.reduce((acc, card) => {
         if (card.price) {
           return acc + card.total;
@@ -751,6 +762,27 @@ function CheckoutForm() {
                         {state.expiration_year.error && (
                           <p style={errorStyle}>
                             {state.expiration_year.error}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-lg-3 col-md-3">
+                      <div className="form-group">
+                        <label>
+                          Código de Verificação
+                          <span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="security_code"
+                          className="form-control"
+                          onChange={handleOnChange}
+                          maxLength={3}
+                          value={state.security_code.value}
+                        />
+                        {state.security_code.error && (
+                          <p style={errorStyle}>
+                            {state.security_code.error}
                           </p>
                         )}
                       </div>

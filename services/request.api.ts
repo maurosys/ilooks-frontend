@@ -17,6 +17,7 @@ export function getUserFromId(userId: string, token: string): Promise<AxiosRespo
 
 export interface Request {
     amount: string;
+    freight: number;
     userId: string;
     addressId: string;
     required_products: [
@@ -36,6 +37,7 @@ export interface Request {
             cardholder_name: string;
             expiration_month: string;
             expiration_year: string;
+            security_code: string;
         };
     };
 }
