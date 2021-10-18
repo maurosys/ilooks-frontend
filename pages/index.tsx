@@ -40,7 +40,7 @@ const Index = ({ productss, categories, subCategories }: Props) => {
 
   const loadProducts = async () => {
     api
-      .get("/product?limit=16")
+      .get("/product?stock=true&limit=16")
       .then((response) => {
         const _products: ProductsPros[] = response.data.products.map((prod) => {
           let imageUrl = "";

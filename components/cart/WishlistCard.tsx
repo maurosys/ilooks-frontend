@@ -40,7 +40,7 @@ const CartProduct = ({ wishlist }: CartPorductProps) => {
                     Size: <strong>XL</strong>
                   </li>
                   <li>
-                    Material: <strong>Cotton</strong>
+                    Composição: <strong>Cotton</strong>
                   </li>
                 </ul>
               </td>

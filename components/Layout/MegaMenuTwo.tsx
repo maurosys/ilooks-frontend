@@ -32,6 +32,7 @@ StateProps) => {
   const [openWishlist, setOpenWishlist] = useState(false);
   const [searchForma, setSearchForma] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
+  const [qttyItems, setQttyItems] = useState(0);
   // const authUser = useAppSelector(selectAuth);
 
   const { "nextilooks.auth": auth } = parseCookies();
@@ -50,6 +51,14 @@ StateProps) => {
     };
     getDatas();
   }, []);
+  
+  useEffect(() => {
+    let qtty = 0;
+    if (card && card.length > 0) {
+      card.forEach((item) => qtty += item.qty);
+    }
+    setQttyItems(qtty);
+  }, [card]);
 
   const handleWishlist = () => {
     setOpenWishlist(true);
@@ -276,7 +285,7 @@ StateProps) => {
                           handleCart();
                         }}
                       >
-                        Carrinho({card.length}){" "}
+                        Carrinho({qttyItems}){" "}
                         <i className="fas fa-shopping-bag"></i>
                       </a>
                     </Link>

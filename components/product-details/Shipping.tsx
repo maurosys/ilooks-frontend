@@ -25,28 +25,13 @@ const Shipping = ({closeShipModal}: ShippingProps) => {
           <div className="shipping-content">
             <h3>Entregas</h3>
             <ul>
-              <li>Envio terrestre gratuito em 1 a 7 dias úteis</li>
-              <li>Coleta na loja disponível em 1 a 7 dias úteis</li>
-              <li>
-                Opções de entrega expressa e no dia seguinte também disponíveis
-              </li>
-              <li>
-                As compras são entregues em uma caixa laranja amarrada com uma
-                fita Bolduc, com exceção de alguns itens
-              </li>
-              <li>
-                Consulte as perguntas frequentes sobre entrega para obter
-                detalhes sobre métodos de envio, custos e prazos de entrega
-              </li>
+              <li>Envio via transportadora em até 48h do recebimento do pedido.</li>
+              <li>Consulte nossa região de atendimento <a href="#">LINK</a></li>
             </ul>
 
-            <h3>Devoluções e trocas</h3>
+            <h3>Devolução</h3>
             <ul>
-              <li>Fácil e gratuito, em 48 horas</li>
-              <li>
-                Consulte as condições e o procedimento em nossas Perguntas
-                frequentes sobre devolução
-              </li>
+              <li>Consulte as condições e o procedimento em nossa FAQ e política de devolução.</li>
             </ul>
           </div>
         </div>

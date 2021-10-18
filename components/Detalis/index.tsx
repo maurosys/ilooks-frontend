@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link'
 
 import { MdCardGiftcard, MdAccountCircle, MdLocationOn, MdContactPhone } from 'react-icons/md';
+import React from "react";
 
 
 
@@ -51,11 +52,13 @@ const Details = (props) => {
             <hr />
             
             <div className="menu-option-orders-details">
-                <button className="btn btn-secondary" style={{
-                    backgroundColor: '#222',
-                    borderRadius: 5,
-                }}>fale com a gente</button>
-                {/* <button className="btn-primary-br">Fale com a gente</button> */}
+                <Link href="/contact-us">
+                    <button className="btn btn-secondary" style={{
+                        backgroundColor: '#222',
+                        borderRadius: 5,
+                    }}>fale com a gente</button>
+                </Link>
+
                 <img src={require("../../images/ilooks.png")} alt="logo" style={{
                     width: 100,
                     marginTop: 50

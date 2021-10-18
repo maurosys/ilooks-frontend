@@ -84,7 +84,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                   Tamanho: <strong>{data.productDetail.size}</strong>
                 </li>
                 <li>
-                  Material: <strong>{data.materialType}</strong>
+                  Composição: <strong>{data.materialType}</strong>
                 </li>
               </ul>
             </td>
@@ -104,13 +104,17 @@ const CartProduct = ({ card }: CartPorductProps) => {
                   type="number"
                   value={data.qty}
                   min="1"
-                  max={100}
-                  onChange={(e) =>
-                    IncrementItem({
-                      ...data,
-                      total: data.price * Number(e.target.value),
-                      qty: Number(e.target.value),
-                    })
+                  max={15}
+                  onChange={(e) => {
+                      if (Number(e.target.value) > 15) {
+                          e.target.value = '15';
+                      }
+                      IncrementItem({
+                          ...data,
+                          total: data.price * Number(e.target.value),
+                          qty: Number(e.target.value),
+                      })
+                  }
                   }
                 />
               </div>
