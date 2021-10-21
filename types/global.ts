@@ -10,6 +10,7 @@ type Product = {
   color: string;
   size: string;
   quantity: number;
+  unitPrice:number;
   provider: UserReponse;
   photos: string[];
 };

@@ -14,6 +14,7 @@ interface SubmitRequestProps {
 	devolutionMotive?: string;
 	observation?: string;
 	productsDevolutions: ProductDevolutionProps[];
+	installments:number;
 }
 
 const useRequestDevolution = () => {
@@ -25,6 +26,7 @@ const useRequestDevolution = () => {
 		                                      devolutionMotive,
 		                                      observation,
 		                                      productsDevolutions,
+		                                      installments
 	                                      }: SubmitRequestProps): Promise<any> => {
 		try {
 			const response = await api.post(
@@ -32,7 +34,7 @@ const useRequestDevolution = () => {
 					motive: devolutionMotive,
 					observation: observation,
 					amount:0,
-					installments:1,
+					installments:installments,
 					items: productsDevolutions
 				}
 			);

@@ -54,6 +54,7 @@ const ModalRequestDevolutionItem = ({
 	const [observation, setObservation] = useState('');
 	const [installments, setInstallments] = useState(1);
 	const [parcelas, setParcelas] = useState<string[]>([]);
+	const [parcela, setParcela] = useState('à vista');
 	const currencyFormater = new Intl.NumberFormat('pt-br', {
 		style: 'currency',
 		currency: 'BRL'
@@ -110,7 +111,7 @@ const ModalRequestDevolutionItem = ({
 		}));
 		
 		const response = await handleSubmitDevolution({
-			orderId, devolutionMotive, observation, productsDevolutions: dataRequst,
+			orderId, devolutionMotive, observation, productsDevolutions: dataRequst,installments
 		});
 		if (response) {
 			router.push(`/request/detail/${orderId}`);
@@ -287,7 +288,15 @@ const ModalRequestDevolutionItem = ({
 								</td>
 								<td>
 									<label htmlFor="cboParcelas">Parcelas: </label>&nbsp;
-									<select id="cboParcelas">
+									<select id="cboParcelas" value={parcela} onChange={(e: any) => {
+										e.preventDefault();
+										if (e.target.value==='à vista') {
+											setInstallments(1);
+										} else {
+											setInstallments(e.target.value.substr(0,1));
+										}
+										setParcela(e.target.value);
+									}}>
 										{parcelas.map((item) => {
 											return (<option value={item}>{item}</option>);
 										})}

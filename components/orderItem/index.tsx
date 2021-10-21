@@ -183,7 +183,7 @@ export default function OrderItem({
 				)}
 				
 				<div className="accordion-footer">
-					{timeToDevolution > 0 &&
+					{timeToDevolution > 0 && orderStatus.toLowerCase() === StatusRequest.DELIVERED.toLowerCase() &&
 						<Link
 							href="/request/devolution/[id]"
 							as={`/request/devolution/${numberOrder}`}
