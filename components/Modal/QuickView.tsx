@@ -206,7 +206,7 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
                       <a>{modalData?.provider}</a>
                     </Link>
                   </li>
-                  <li>
+                  {/*<li>
                     <span>Disponivel:</span>{" "}
                     <Link href="#">
                       <a>
@@ -214,7 +214,7 @@ const QuickView = ({ closeModal, modalData, card }: QuickViewProps) => {
                         {modalData.qty > 0 ? "s" : ""})
                       </a>
                     </Link>
-                  </li>
+                  </li>*/}
                   <li>
                     <span>Tipo do material:</span>{" "}
                     <Link href="#">

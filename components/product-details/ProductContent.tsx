@@ -232,7 +232,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 								<a>{product.provider.name}</a>
 							</Link>
 						</li>
-						<li>
+{/*						<li>
 							<span>Em Estoque:</span>{" "}
 							<Link href="#">
 								<a>
@@ -240,7 +240,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 									{product.quantity_all > 0 ? "s" : ""}
 								</a>
 							</Link>
-						</li>
+						</li>*/}
 						<li>
 							<span>Composição:</span>{" "}
 							<Link href="#">

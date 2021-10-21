@@ -30,6 +30,7 @@ interface ModalRequestDevolutionItemProps {
 	setModalIsOpen?: any;
 	items?: ItemsProps[];
 	itemsSelected?: string[];
+	amount: string;
 }
 
 interface ItemPropsWihtQuantity extends ItemsProps {
@@ -42,12 +43,21 @@ const ModalRequestDevolutionItem = ({
 	                                    setModalIsOpen,
 	                                    items,
 	                                    itemsSelected,
+	                                    amount
                                     }: ModalRequestDevolutionItemProps) => {
 	//HOOKS INSTANCES
 	const {handleSubmitDevolution, loading} = useRequestDevolution();
 	const router = useRouter();
 	const [devolutionMotive, setDevolutionMotive] = useState('');
-	const [observation, setobservation] = useState('');
+	const [outros, setOutros] = useState(false);
+	const [newTotal, setNewTotal] = useState(0);
+	const [observation, setObservation] = useState('');
+	const [installments, setInstallments] = useState(1);
+	const [parcelas, setParcelas] = useState<string[]>([]);
+	const currencyFormater = new Intl.NumberFormat('pt-br', {
+		style: 'currency',
+		currency: 'BRL'
+	});
 	
 	//STATES
 	const [itemsRendering, setItemsRendering] = useState<ItemPropsWihtQuantity[]>(
@@ -57,6 +67,7 @@ const ModalRequestDevolutionItem = ({
 	useEffect(() => {
 		if (itemsSelected && items) {
 			const newArray: ItemPropsWihtQuantity[] = [];
+			let subTotal = 0;
 			itemsSelected.map((itemSel) => {
 				const object = items.find((item) => item.productDetailId === itemSel);
 				if (object) {
@@ -64,14 +75,31 @@ const ModalRequestDevolutionItem = ({
 						...object,
 						quantityDev: 1,
 					});
+					subTotal += object.unitPrice;
 				}
 			});
 			
 			setItemsRendering([...newArray]);
+			
+			setNewTotal(Number(amount) - subTotal);
+			if (newTotal > 1500) {
+				setParcelas(['à vista', '2x sem juros', '3x sem juros', '4x sem juros', '5x sem juros', '6x sem juros']);
+			} else if (newTotal > 1000) {
+				setParcelas(['à vista', '2x sem juros', '3x sem juros', '4x sem juros', '5x sem juros']);
+			} else if (newTotal > 700) {
+				setParcelas(['à vista', '2x sem juros', '3x sem juros', '4x sem juros']);
+			} else if (newTotal > 500) {
+				setParcelas(['à vista', '2x sem juros', '3x sem juros']);
+			} else if (newTotal > 300) {
+				setParcelas(['à vista', '2x sem juros']);
+			} else {
+				setParcelas(['à vista']);
+			}
 		}
 	}, [itemsSelected, items]);
 	
 	function closeModal() {
+		setNewTotal(Number(amount));
 		setModalIsOpen(false);
 	}
 	
@@ -145,7 +173,8 @@ const ModalRequestDevolutionItem = ({
 										/>
                   </span>
 									<span>
-                    <strong>Qtde. Comprada:</strong> {item.quantity}
+                    <strong>Qtde. Comprada:</strong> {item.quantity}<br/>
+                    <strong>Preço un.:</strong> {currencyFormater.format(item.unitPrice)}
                   </span>
 									
 									<br/>
@@ -159,10 +188,7 @@ const ModalRequestDevolutionItem = ({
 											const value = e.target.value;
 											
 											if (value) {
-												const numbersString: string = value.replace(
-													/[^0-9]/g,
-													""
-												);
+												const numbersString: string = value.replace(/[^0-9]/g, "");
 												if (numbersString.length <= 0) {
 													array[index].quantityDev = 2;
 													setItemsRendering([...array]);
@@ -180,11 +206,95 @@ const ModalRequestDevolutionItem = ({
 												array[index].quantityDev = 1;
 												setItemsRendering([...array]);
 											}
+											// calcular subtotal
+											let subTotal = 0;
+											itemsRendering.forEach((item) => {
+												subTotal += item.quantityDev * item.unitPrice;
+											});
+											setNewTotal(Number(amount) - subTotal);
 										}}
 									/>
 								</div>
 							</div>
 						))}
+					
+					</div>
+					
+					<div>
+						<fieldset>
+							<h6>Motivo de devolução</h6>
+							<table style={{width: '100%'}}>
+								<tr>
+									<td>
+										<input type="radio" id="rdTamanho" name="rdMotivo" value="Tamanho" checked={devolutionMotive === 'Tamanho'} onChange={(e: any) => {
+											e.preventDefault();
+											setOutros(false);
+											setDevolutionMotive(e.target.value);
+										}}/><label htmlFor="rdTamanho" style={{marginLeft: '10px'}}>Tamanho</label><br/>
+									</td>
+									<td>
+										<input type="radio" id="modelagem" name="rdMotivo" value="Modelagem" checked={devolutionMotive === 'Modelagem'} onChange={(e: any) => {
+											e.preventDefault();
+											setOutros(false);
+											setDevolutionMotive(e.target.value);
+										}}/><label htmlFor="modelagem" style={{marginLeft: '10px'}}>Modelagem</label><br/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="radio" id="rdNaoGostei" name="rdMotivo" value="Não gostei da peça" checked={devolutionMotive === 'Não gostei da peça'} onChange={(e: any) => {
+											e.preventDefault();
+											setOutros(false);
+											setDevolutionMotive(e.target.value);
+										}}/><label htmlFor="rdNaoGostei" style={{marginLeft: '10px'}}>Não gostei da peça</label><br/>
+									</td>
+									<td>
+										<input type="radio" id="rdOutros" name="rdMotivo" value="Outros" checked={outros} onChange={(e: any) => {
+											e.preventDefault();
+											setOutros(true);
+											setDevolutionMotive('');
+										}}/><label htmlFor="rdOutros" style={{marginLeft: '10px'}}>Outros</label><br/>
+									</td>
+								</tr>
+								{outros &&
+									<tr>
+										<td colSpan={2}>
+											<textarea id="edtMotivo" maxLength={100} rows={1} style={{width: '100%'}} onChange={(e: any) => {
+												e.preventDefault();
+												setDevolutionMotive(e.target.value);
+											}}></textarea>
+										</td>
+									</tr>}
+							</table>
+						
+						
+						</fieldset>
+					</div>
+					<div>
+						<label htmlFor="edtObservation">Observações para a coleta:</label>
+						<textarea id="edtObservation" rows={2} style={{width: '100%'}} onChange={(e: any) => {
+							e.preventDefault();
+							setObservation(e.target.value);
+						}}></textarea>
+					</div>
+					<div>
+						<h6>Pagamento</h6>
+						<table style={{width: '100%'}}>
+							<tr>
+								<td>
+									<strong>Valor Original: </strong>{currencyFormater.format(Number(amount))}<br/>
+									<strong>Novo Valor: </strong>{currencyFormater.format(newTotal)} <br/>
+								</td>
+								<td>
+									<label htmlFor="cboParcelas">Parcelas: </label>&nbsp;
+									<select id="cboParcelas">
+										{parcelas.map((item) => {
+											return (<option value={item}>{item}</option>);
+										})}
+									</select>
+								</td>
+							</tr>
+						</table>
 					</div>
 					
 					<div

@@ -30,6 +30,7 @@ const useRequestDetail = () => {
           color: product.color,
           quantity: product.quantity,
           imageUrl: product.photos[0],
+          unitPrice:product.unitPrice
         })),
         statusHistory: data.statusHistory,
         amount: data.amount,

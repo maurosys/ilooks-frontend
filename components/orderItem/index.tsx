@@ -15,6 +15,7 @@ export interface ItemsProps {
 	title: string;
 	imageUrl: string;
 	quantity: number;
+	unitPrice: number;
 	color?: string;
 	size?: string;
 	productId?: string;
@@ -59,6 +60,10 @@ export default function OrderItem({
 		second: "2-digit",
 		hour12: false,
 	};
+	const currencyFormater = new Intl.NumberFormat('pt-br', {
+		style: 'currency',
+		currency: 'BRL'
+	});
 	
 	useEffect(() => {
 		const deliveredIn = statusHistory.find((h: StatusHistoryItem) => h.status_request === StatusRequest.DELIVERED)?.action_date;

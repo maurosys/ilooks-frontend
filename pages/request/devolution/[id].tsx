@@ -120,6 +120,7 @@ const RequestDevolution = () => {
                             size={item.size}
                             color={item.color}
                             quantity={item.quantity}
+                            unitPrice={item.unitPrice}
                             isSelected={itemsSelected.includes(
                               item.productDetailId
                             )}
@@ -139,7 +140,7 @@ const RequestDevolution = () => {
                     width: "90%",
                   }}
                 >
-                  Realizar devoulução
+                  Realizar devolução
                 </ButtonPrimary>
                 <Link href="/orders">
                   <ButtonSecondary
@@ -162,6 +163,7 @@ const RequestDevolution = () => {
         setModalIsOpen={setModalIsOpen}
         items={orders.length > 0 && orders[0].items}
         itemsSelected={itemsSelected}
+        amount={orders[0]?.amount}
       />
     </>
   );
