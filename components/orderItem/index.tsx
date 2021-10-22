@@ -33,7 +33,7 @@ export interface OrderItemProps {
 	numberOrder: number | string;
 	orderStatus: string;
 	items: any[];
-	statusHistory: StatusHistoryItem[];
+	statusHistory: any[];
 	showButtomDetails?: boolean;
 	freight?: number;
 	amount?: string;
