@@ -91,19 +91,8 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 		setAllSizes(sizes);
 	}, [colorSelect]);
 	
-	// const teste = card.find((item) => product.id === item.id);
-	
-	// function checkIsExist(item) {
-	//   if (!teste) {
-	//     addItemCart(item);
-	//     return;
-	//   } else {
-	//     dispatch(removeItem(item.id));
-	//     addItemCart({ ...item, qty });
-	//   }
-	// }
-	
 	function addItemCart(item) {
+		console.log(`QTY: ${qty} MX: ${max}`);
 		if (!sizeSelected || sizeSelected.length === 0) {
 			toast.warn("Por favor selecione ao menos um tamanho", {
 				position: "bottom-left",
@@ -125,6 +114,11 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 				pauseOnHover: true,
 				draggable: true,
 			});
+			return;
+		}
+		
+		if (qty > max) {
+			setQty(max);
 			return;
 		}
 		
@@ -232,7 +226,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 								<a>{product.provider.name}</a>
 							</Link>
 						</li>
-{/*						<li>
+						{/*						<li>
 							<span>Em Estoque:</span>{" "}
 							<Link href="#">
 								<a>
@@ -270,33 +264,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							))}
 						</div>
 						
-						{/* <ul>
-              <li>
-                <Link href="#">
-                  <a title="Black" className="color-black"></a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a title="White" className="color-white"></a>
-                </Link>
-              </li>
-              <li className="active">
-                <Link href="#">
-                  <a title="Green" className="color-green"></a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a title="Yellow Green" className="color-yellowgreen"></a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a title="Teal" className="color-teal"></a>
-                </Link>
-              </li>
-            </ul> */}
+						
 					</div>
 					
 					<div className="product-size-wrapper">
@@ -330,42 +298,10 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							))}
 						</ul>
 						
-						{/* <ul>
-              <li>
-                <Link href="#">
-                  <a>P</a>
-                </Link>
-              </li>
-              <li className="active">
-                <Link href="#">
-                  <a>M</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>G</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>GG</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  <a>XG</a>
-                </Link>
-              </li>
-            </ul> */}
+						
 					</div>
 					
-					<div className="product-info-btn">
-						{/*            <Link href="#">
-              <a onClick={openSizeGuide}>
-                <i className="fas fa-crop"></i> Guia de Tamanhos
-              </a>
-            </Link>*/}
-						<Link href="#">
+					<div className="product-info-btn"><Link href="#">
 							<a onClick={openShipModal}>
 								<i className="fas fa-truck"></i> Entrega
 							</a>
@@ -402,7 +338,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							className="btn btn-primary"
 							onClick={() => addItemCart({...product, qty})}
 						>
-							<i className="fas fa-cart-plus"></i> Adiconar ao Carrinho
+							<i className="fas fa-cart-plus"></i> Adicionar ao Carrinho
 						</button>
 					</div>
 					

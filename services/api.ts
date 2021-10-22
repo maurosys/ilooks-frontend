@@ -20,6 +20,7 @@ export function getAPIClient(ctx?: any) {
 	
 	const api = axios.create({
 		baseURL: "https://ilooks-api.herokuapp.com",
+		//baseURL: "http://localhost:3333",
 	});
 	
 	if (auth) {
