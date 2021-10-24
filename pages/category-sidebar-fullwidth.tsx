@@ -47,7 +47,7 @@ const Category = ({ products }: StateProps) => {
 
             <div className="col-lg-9 col-md-12">
               <ProductsFilterOptions
-                onClick={(e) => handleGrid(e.target.value)}
+                onClick={(e: any) => handleGrid(e.target.value)}
               />
 
               <div

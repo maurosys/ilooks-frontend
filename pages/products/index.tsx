@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { connect, useDispatch } from "react-redux";
 import Header from "@components/Layout/HeaderFixed";
 import Footer from "@components/Layout/Footer";
@@ -12,9 +13,15 @@ import { loadResquestProduct } from "@store/ducks/products/actions";
 import { GetServerSideProps } from "next";
 import { getAPIClient } from "@services/api";
 
+import ModalLoading from "@components/Modal/Loading";
+import Pagination from "@components/Pagination";
+
 //TYPES
 interface StateProps {
   products: ProductsPros[];
+  commonProducts: ProductsPros[];
+  totalProducts: number;
+  totalPage: number;
 }
 
 // const hookClass = ({ products }: StateProps) => {
@@ -26,8 +33,89 @@ interface StateProps {
 //   return <Category {...products} products={products} />;
 // };
 
-const Products = ({ products }: StateProps) => {
+const LimitForPage = 12;
+
+const Products = ({
+  products,
+  commonProducts,
+  totalProducts,
+  totalPage,
+}: StateProps) => {
+  const [loadingGlobal, setLoadingGlobal] = useState(false);
+
+  const router = useRouter();
+  const { category, sub_category, provider } = router.query;
+
   const [gridClass, setGridClass] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1); //pagina atual
+  const [totalOfPages, setOfTotalPages] = useState(totalPage); //total de paginas
+  const [productForPage, setProductForPage] = useState(LimitForPage); //items por paginas
+  const [totalProductsLocated, setTotalProductsLocated] =
+    useState(totalProducts); //total de produtos localizados
+
+  const [productsView, setProductsView] = useState<ProductsPros[]>(products);
+  const [commonProductsView, setCommonProductsView] =
+    useState<ProductsPros[]>(commonProducts);
+
+  const updateQueryProducts = async () => {
+    const api = getAPIClient();
+    setLoadingGlobal(true);
+    try {
+      const response = await api.get("/product", {
+        params: {
+          limit: productForPage,
+          categoryId: category,
+          subCategoryId: sub_category,
+          providerId: provider,
+          page: currentPage,
+        },
+      });
+
+      setOfTotalPages(response.data.totalPage);
+      setTotalProductsLocated(response.data.totalProducts);
+
+      const productResponse = response.data.products.map((item) => ({
+        id: item.id,
+        title: item.name,
+        price: item.price,
+        image: item.details_product[0].photos[0],
+        imageHover: item.details_product[0].photos[0],
+        qty: item.quantity_all,
+        provider: item.provider.name,
+        providerId: item.provider.id,
+        materialType: item.materialType,
+        details_product: item.details_product,
+        total: item.quantity_all,
+      }));
+
+      const commonProductResponse = response.data.commonProdutcts.map(
+        (item) => ({
+          id: item.id,
+          title: item.name,
+          price: item.price,
+          image: item.details_product[0].photos[0],
+          imageHover: item.details_product[0].photos[0],
+          qty: item.quantity_all,
+          provider: item.provider.name,
+          providerId: item.provider.id,
+          materialType: item.materialType,
+          details_product: item.details_product,
+          total: item.quantity_all,
+        })
+      );
+
+      setProductsView([...productResponse]);
+      setCommonProductsView([...commonProductResponse]);
+      setLoadingGlobal(false);
+    } catch (error) {
+      setLoadingGlobal(false);
+    }
+  };
+
+  useEffect(() => {
+    updateQueryProducts();
+  }, [currentPage, totalOfPages, productForPage]);
 
   function handleGrid(e) {
     setGridClass(e);
@@ -37,6 +125,9 @@ const Products = ({ products }: StateProps) => {
     <>
       <Header />
 
+      {/* <LoadingOverlay active={true} spinner text="Loading your content...">
+        <p>Some content or children or something.</p>
+      </LoadingOverlay> */}
       <section className="products-collections-area ptb-60">
         <div className="container-fluid">
           <div className="section-title">
@@ -46,17 +137,31 @@ const Products = ({ products }: StateProps) => {
           </div>
 
           <div className="row">
-            <LeftSidebar col={3} />
+            <LeftSidebar col={3} commonProducts={commonProductsView} />
 
             <div className="col-lg-9 col-md-12">
-              <ProductsFilterOptions onClick={handleGrid} />
+              <ProductsFilterOptions
+                onClick={handleGrid}
+                totalProductsLocated={totalProductsLocated}
+                setTotalProductsLocated={setTotalProductsLocated}
+                productForPage={productForPage}
+                setProductForPage={setProductForPage}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
 
               <div
                 id="products-filter"
                 className={`products-collections-listing row ${gridClass}`}
               >
-                <ProductsCard products={products} />
+                <ProductsCard products={productsView} />
               </div>
+              <hr />
+              <Pagination
+                totalPages={totalOfPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
             </div>
           </div>
         </div>
@@ -65,6 +170,8 @@ const Products = ({ products }: StateProps) => {
       <Facility />
 
       <Footer />
+
+      <ModalLoading loading={loadingGlobal} />
     </>
   );
 };
@@ -77,18 +184,38 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { category, sub_category, provider } = ctx.query;
   const apiClient = getAPIClient(ctx);
   let products = [];
+  let commonProducts = [];
+  let totalProducts = 0;
+  let totalPage = 0;
 
   try {
     const response = await apiClient.get("/product", {
       params: {
-        limit: 10,
+        limit: LimitForPage,
         categoryId: category,
         subCategoryId: sub_category,
         providerId: provider,
       },
     });
 
+    totalProducts = response.data.totalProducts;
+    totalPage = response.data.totalPage;
+
     products = response.data.products.map((item) => ({
+      id: item.id,
+      title: item.name,
+      price: item.price,
+      image: item.details_product[0].photos[0],
+      imageHover: item.details_product[0].photos[0],
+      qty: item.quantity_all,
+      provider: item.provider.name,
+      providerId: item.provider.id,
+      materialType: item.materialType,
+      details_product: item.details_product,
+      total: item.quantity_all,
+    }));
+
+    commonProducts = response.data.commonProdutcts.map((item) => ({
       id: item.id,
       title: item.name,
       price: item.price,
@@ -116,6 +243,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       products,
+      commonProducts,
+      totalProducts,
+      totalPage,
     },
   };
 };
