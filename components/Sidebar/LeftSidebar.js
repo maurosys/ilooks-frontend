@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
+import { formatToUggly } from "@utils/formatToUggly";
 
 class LeftSidebar extends Component {
   state = {
@@ -444,7 +445,55 @@ class LeftSidebar extends Component {
           <div className="collapse-widget aside-products-widget">
             <h3 className="aside-widget-title">Produtos populares</h3>
 
-            <div className="aside-single-products">
+            {this.props.commonProducts &&
+              this.props.commonProducts.map((e, index) => (
+                <div className="aside-single-products">
+                  <div className="products-image">
+                    <Link
+                      href="/product/[id]"
+                      as={`/product/${formatToUggly({
+                        name: e.title,
+                        id: e.id,
+                      })}`}
+                    >
+                      <a>
+                        <img src={e.image} alt="image" />
+                      </a>
+                    </Link>
+                  </div>
+
+                  <div className="products-content">
+                    {/* <span>
+                      <Link href="#">
+                        <a>Men's</a>
+                      </Link>
+                    </span> */}
+                    <h3>
+                      <Link
+                        href="/product/[id]"
+                        as={`/product/${formatToUggly({
+                          name: e.title,
+                          id: e.id,
+                        })}`}
+                      >
+                        <a>{e.title}</a>
+                      </Link>
+                    </h3>
+
+                    <div className="product-price">
+                      <span className="new-price">
+                        {new Intl.NumberFormat("br-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(e.price)}
+                      </span>
+                      {/* <span className="old-price">$291.00</span> */}
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+            {/* <div className="aside-single-products">
               <div className="products-image">
                 <Link href="#">
                   <a>
@@ -526,7 +575,7 @@ class LeftSidebar extends Component {
                   <span className="old-price">$291.00</span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="collapse-widget aside-trending-widget">

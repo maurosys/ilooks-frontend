@@ -11,6 +11,7 @@ import "../public/assets/styles/responsive.css";
 import "../public/assets/styles/custom.css";
 import "react-notifications-component/dist/theme.css";
 
+import { useState } from "react";
 import Router from "next/router";
 import Layout from "../components/_App/Layout";
 import { AppProps } from "next/app";
@@ -19,26 +20,51 @@ import ReactNotification from "react-notifications-component";
 // import withRedux from 'next-redux-wrapper';
 import NProgress from "nprogress";
 
+import Load from "../components/Modal/Loading/loading.gif";
+
 import store from "../store";
 
-NProgress.configure({ showSpinner: true });
-
-Router.events.on("routeChangeStart", (url) => {
-  console.log("onRouteChangeStart triggered");
-  NProgress.start();
-});
-
-Router.events.on("routeChangeComplete", (url) => {
-  console.log("onRouteChangeComplete triggered");
-  NProgress.done();
-});
-
-Router.events.on("routeChangeError", (url) => {
-  console.log("onRouteChangeComplete triggered");
-  NProgress.done();
-});
-
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  // NProgress.configure({ showSpinner: true });
+
+  Router.events.on("routeChangeStart", (url) => {
+    console.log("onRouteChangeStart triggered");
+
+    let div: any = document.createElement("div");
+    div.id = "loadingGlobalTemp";
+    div.style =
+      "width: 100%;height: 100%;background: rgb(98 98 98 / 30%);position: fixed;top: 0;left: 0;z-index: 9999;display: flex; justify-content: center; align-items: center;";
+
+    let divContainerLoad: any = document.createElement("div");
+    divContainerLoad.style =
+      "width: 200px; height: 200px;background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #212529;";
+    divContainerLoad.innerHTML = `<img src=${Load} alt="" width="180" height="180" />`;
+
+    div.appendChild(divContainerLoad);
+    document.body.appendChild(div);
+
+    // NProgress.start();
+  });
+
+  Router.events.on("routeChangeComplete", (url) => {
+    console.log("onRouteChangeComplete triggered");
+
+    let div = document.getElementById("loadingGlobalTemp");
+    if (div) {
+      div.remove();
+    }
+
+    // NProgress.done();
+  });
+
+  Router.events.on("routeChangeError", (url) => {
+    console.log("onRouteChangeComplete triggered");
+    let div = document.getElementById("loadingGlobalTemp");
+    if (div) {
+      div.remove();
+    }
+    // NProgress.done();
+  });
   return (
     <Layout>
       <Provider store={store}>
