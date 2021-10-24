@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import Link from "next/link";
 
 interface ProductsFilterOptionsProps {
-  onClick: any;
-  totalProductsLocated: number;
-  setTotalProductsLocated: any;
-  productForPage: number;
-  setProductForPage: any;
-  currentPage: number;
-  setCurrentPage: any;
+  onClick?: any;
+  totalProductsLocated?: number;
+  setTotalProductsLocated?: any;
+  productForPage?: number;
+  setProductForPage?: any;
+  currentPage?: number;
+  setCurrentPage?: any;
 }
 
 const limitsForPage = [12, 16, 20, 24, 28, 32];
