@@ -1,5 +1,5 @@
 import axios from "axios";
-import {parseCookies} from "nookies";
+import { parseCookies } from "nookies";
 
 // const { "nextilooks.auth": auth } = parseCookies();
 
@@ -16,20 +16,20 @@ import {parseCookies} from "nookies";
 // export default api;
 
 export function getAPIClient(ctx?: any) {
-	const {"nextilooks.auth": auth} = parseCookies(ctx);
-	
-	const api = axios.create({
-		baseURL: "https://ilooks-api.herokuapp.com",
-		//baseURL: "http://localhost:3333",
-	});
-	
-	if (auth) {
-		const token = JSON.parse(auth);
-		
-		api.defaults.headers["Authorization"] = `Bearer ${token.token}`;
-	}
-	
-	return api;
+  const { "nextilooks.auth": auth } = parseCookies(ctx);
+
+  const api = axios.create({
+    // baseURL: "https://ilooks-api.herokuapp.com",
+    baseURL: "http://localhost:3333",
+  });
+
+  if (auth) {
+    const token = JSON.parse(auth);
+
+    api.defaults.headers["Authorization"] = `Bearer ${token.token}`;
+  }
+
+  return api;
 }
 
 const api = getAPIClient();
