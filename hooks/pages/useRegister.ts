@@ -33,9 +33,10 @@ const useRegister = () => {
   });
 
   const onRegister = (data: Inputs.RegisterUser) => {
+    const dBirth = data.birthDate.split('/');
     const dataRequest: Request.RegisterRequest = {
       fullName: data.fullName,
-      birthDate: data.birthDate,
+      birthDate: `${dBirth[1]}/${dBirth[0]}/${dBirth[2]}`,
       document: data.document,
       email: data.email,
       password: data.password,
