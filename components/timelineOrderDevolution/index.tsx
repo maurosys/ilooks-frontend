@@ -42,7 +42,7 @@ const timelineOrderDevolution = ({
 
     statusHistory.map((status) => {
       if (status.status_request === StatusRequest.IN_BACK) {
-        objectStatus.inBack = status.change_date;
+        objectStatus.inBack = status.action_date;
       }
     });
 
@@ -52,23 +52,23 @@ const timelineOrderDevolution = ({
     //   orderPlaced:
     //     statusHistory.filter((h) => {
     //       return h.status_request.toLowerCase() == "realizado";
-    //     })[0]?.change_date ?? "",
+    //     })[0]?.action_date ?? "",
     //   reservedPayment:
     //     statusHistory.filter((h) => {
     //       return h.status_request.toLowerCase() == "pagamento";
-    //     })[0]?.change_date ?? "",
+    //     })[0]?.action_date ?? "",
     //   withCarrier:
     //     statusHistory.filter((h) => {
     //       return h.status_request.toLowerCase() == "transportadora";
-    //     })[0]?.change_date ?? "",
+    //     })[0]?.action_date ?? "",
     //   onCarriage:
     //     statusHistory.filter((h) => {
     //       return h.status_request.toLowerCase() == "transito";
-    //     })[0]?.change_date ?? "",
+    //     })[0]?.action_date ?? "",
     //   delivered:
     //     statusHistory.filter((h) => {
     //       return h.status_request.toLowerCase() == "entregue";
-    //     })[0]?.change_date ?? "",
+    //     })[0]?.action_date ?? "",
     // };
     // setHistory(tempHistory);
 

@@ -25,7 +25,7 @@ export interface OrderStatusProps {
 	id: string;
 	status_request: string;
 	status_payment: string;
-	change_date: string;
+	action_date: string;
 }
 
 export interface OrderItemProps {

@@ -9,7 +9,7 @@ const reducer: Reducer = (state = INITIAL_STATE, action) => {
       const products0 = action.payload;
 
       const index0 = state.findIndex(
-        (e) => e.productDetail === products0.productDetail
+        (e) => e.productDetail.id === products0.productDetail.id
       );
 
       if (index0 < 0) {

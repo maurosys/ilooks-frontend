@@ -31,29 +31,29 @@ const TimeLineOrder = ({ orderStatus, statusHistory }: TimeLineOrderProps) => {
       orderPlaced:
         statusHistory.filter((h) => {
           return h.status_request.toLowerCase() === "realizado";
-        })[0]?.change_date ?? "",
+        })[0]?.action_date ?? "",
       reservedPayment:
         statusHistory.filter((h) => {
           return h.status_payment.toLowerCase() === "pré reservado";
-        })[0]?.change_date ?? "",
+        })[0]?.action_date ?? "",
       withCarrier:
         statusHistory.filter((h) => {
           return (
             h.status_request.toLowerCase() === "recebido transportadora" ||
             h.status_request.toLowerCase() === "entregue"
           );
-        })[0]?.change_date ?? "",
+        })[0]?.action_date ?? "",
       onCarriage:
         statusHistory.filter((h) => {
           return (
             h.status_request.toLowerCase() === "em trânsito" ||
             h.status_request.toLowerCase() === "entregue"
           );
-        })[0]?.change_date ?? "",
+        })[0]?.action_date ?? "",
       delivered:
         statusHistory.filter((h) => {
           return h.status_request.toLowerCase() === "entregue";
-        })[0]?.change_date ?? "",
+        })[0]?.action_date ?? "",
     };
     setHistory(tempHistory);
 

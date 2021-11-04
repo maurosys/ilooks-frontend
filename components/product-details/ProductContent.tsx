@@ -39,7 +39,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 	const [colorSelect, setColorSelected] = useState<string>();
 	
 	const [allSizes, setAllSizes] = useState<any[]>([]);
-	const [sizeSelected, siteSizeSelected] = useState("");
+	const [sizeSelected, setSizeSelected] = useState("");
 	
 	useEffect(() => {
 		setDetailsProductAll(product.details_product);
@@ -68,7 +68,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			setImages && setImages([...photos]);
 		}
 		
-		siteSizeSelected("");
+		//setSizeSelected("");
 		const sizes = detail.map((size) => size.size);
 		sizes.sort((a, b) => {
 			if (a === 'U' || a === 'P' || a === 'M' || a === 'G' || a === 'GG' ||
@@ -81,18 +81,12 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			}
 			return Number(a) < Number(b) ? -1 : 0;
 		});
-		
-		if (product.quantity_all > max) {
-			setMax(max);
-		} else {
-			setMax(product.quantity_all);
-		}
+		setSizeSelected(sizes[0]?.toString() ?? "");
 		
 		setAllSizes(sizes);
 	}, [colorSelect]);
 	
 	function addItemCart(item) {
-		console.log(`QTY: ${qty} MX: ${max}`);
 		if (!sizeSelected || sizeSelected.length === 0) {
 			toast.warn("Por favor selecione ao menos um tamanho", {
 				position: "bottom-left",
@@ -141,6 +135,40 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			return;
 		}
 		
+		const ccart = JSON.parse(localStorage.getItem("@ilooksecommerce_cart"));
+		const product = ccart?.find((prod) => prod.id === item.id);
+		const qtyRequested = (product?.qty ?? 0) + qty;
+		
+		if (detailSelected.quantity < qtyRequested) {
+			toast.warn(
+				`Estoque disponível de ${detailSelected.quantity} para esta peça nesta cor e tamanho`,
+				{
+					position: "bottom-left",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+				}
+			);
+			return;
+		}
+		
+		if (qtyRequested > 15) {
+			toast.warn(
+				`Quantidade máxima de 15 peças por produto`,
+				{
+					position: "bottom-left",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+				}
+			);
+			return;
+		}
+		
 		dispatch(
 			addToCart({
 				...item,
@@ -160,6 +188,8 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			pauseOnHover: true,
 			draggable: true,
 		});
+		
+		setQty(1);
 	}
 	
 	const IncrementItem = () => {
@@ -263,8 +293,8 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 								/>
 							))}
 						</div>
-						
-						
+					
+					
 					</div>
 					
 					<div className="product-size-wrapper">
@@ -286,7 +316,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 												cursor: "pointer",
 											}}
 											onClick={() => {
-												siteSizeSelected(size);
+												setSizeSelected(size);
 											}}
 										>
 											<a>{size}</a>
@@ -297,15 +327,14 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 								</>
 							))}
 						</ul>
-						
-						
+					
+					
 					</div>
 					
-					<div className="product-info-btn"><Link href="#">
-							<a onClick={openShipModal}>
-								<i className="fas fa-truck"></i> Entrega
-							</a>
-						</Link>
+					<div className="product-info-btn">
+						<a onClick={openShipModal} style={{cursor: "pointer"}}>
+							<i className="fas fa-truck"></i> Entrega
+						</a>
 					</div>
 					
 					<div className="product-add-to-cart">
@@ -322,9 +351,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 									setQty(
 										Number(e.target.value) > max
 											? max
-											: Number(e.target.value) > product.quantity_all
-												? product.quantity_all
-												: Number(e.target.value)
+											: Number(e.target.value)
 									)
 								}
 							/>

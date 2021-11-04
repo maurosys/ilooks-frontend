@@ -59,6 +59,7 @@ const Products = ({
     useState<ProductsPros[]>(commonProducts);
 
   const updateQueryProducts = async () => {
+    console.log('aaaaaaaaaaaaaaaaaaa')
     const api = getAPIClient();
     setLoadingGlobal(true);
     try {
@@ -115,7 +116,7 @@ const Products = ({
 
   useEffect(() => {
     updateQueryProducts();
-  }, [currentPage, totalOfPages, productForPage]);
+  }, [currentPage, totalOfPages, productForPage,sub_category]);
 
   function handleGrid(e) {
     setGridClass(e);
