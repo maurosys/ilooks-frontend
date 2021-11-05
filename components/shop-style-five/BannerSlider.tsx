@@ -42,15 +42,6 @@ const BannerSlider = () => {
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <div className="banner-content">
-                          <h1
-                            className={
-                              isVisible
-                                ? "animated fadeInUp opacityOne"
-                                : "opacityZero"
-                            }
-                          >
-                            Você na moda <br/> no seu tempo
-                          </h1>
 
                           {/*<Link href="/category-sidebar-fullwidth">
                             <a
