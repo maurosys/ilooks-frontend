@@ -1,121 +1,127 @@
-import React, { Component, useState } from "react";
-import Link from "next/link";
-import QuickView from "../Modal/QuickView";
-import AddToCart from "../Shared/AddToCart";
-import { Products as ProductsPros } from "../../store/ducks/products/types";
-import { formatToUggly } from "@utils/formatToUggly";
+import React, {Component, useState} from 'react';
+import Link                         from 'next/link';
+import QuickView                    from '../Modal/QuickView';
+import AddToCart                    from '../Shared/AddToCart';
+import {Products as ProductsPros}   from '../../store/ducks/products/types';
+import {formatToUggly}              from '@utils/formatToUggly';
 
 interface StateProps {
-  products: ProductsPros[];
+	products: ProductsPros[];
 }
 
-const ProductsCard = ({ products }: StateProps) => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalData, setModalData] = useState(null);
+const ProductsCard = ({products}: StateProps) => {
+	const [modalOpen, setModalOpen] = useState(false);
+	const [modalData, setModalData] = useState(null);
 
-  const openModal = () => {
-    return setModalOpen(true);
-  };
+	const openModal = () => {
+		return setModalOpen(true);
+	};
 
-  const closeModal = () => {
-    return setModalOpen(false);
-  };
+	const closeModal = () => {
+		return setModalOpen(false);
+	};
 
-  const handleModalData = (data) => {
-    return setModalData(data);
-  };
+	const handleModalData = (data) => {
+		return setModalData(data);
+	};
 
-  return (
-    <>
-      {products.map((data, idx) => (
-        <div
-          className="col-lg-4 col-sm-6 col-md-4 col-6 products-col-item"
-          key={idx}
-        >
-          <div className="single-product-box">
-            <div className="product-image">
-              <Link
-                href="/product/[id]"
-                as={`/product/${formatToUggly({
-                  name: data.title,
-                  id: data.id,
-                })}`}
-              >
-                <a>
-                  <img src={data.image} alt="image" />
-                  <img src={data.imageHover} alt="image" />
-                </a>
-              </Link>
+	return (
+		<>
+			{products.map((data, idx) => (
+				<div
+					className="col-lg-4 col-sm-6 col-md-4 col-6 products-col-item"
+					key={idx}
+				>
+					<div className="single-product-box">
+						<div className="product-image">
+							<Link
+								href="/product/[id]"
+								as={`/product/${formatToUggly({
+									                              name: data.title,
+									                              id:   data.id,
+								                              })}`}
+							>
+								<a>
+									<img src={data.image} alt="image"/>
+									<img src={data.imageHover} alt="image"/>
+								</a>
+							</Link>
 
-              <ul>
-                <li>
-                  <Link href="#">
-                    <a
-                      data-tip="Quick View"
-                      data-place="left"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        openModal();
-                        handleModalData(data);
-                      }}
-                    >
-                      <i className="far fa-eye"></i>
-                    </a>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+							<ul>
+								<li>
+									<Link href="#">
+										<a
+											data-tip="Quick View"
+											data-place="left"
+											onClick={(e) => {
+												e.preventDefault();
+												openModal();
+												handleModalData(data);
+											}}
+										>
+											<i className="far fa-eye"></i>
+										</a>
+									</Link>
+								</li>
+							</ul>
+						</div>
 
-            <div className="product-content">
-              <h3>
-                <Link href="/product/[id]" as={`/product/${data.id}`}>
-                  <a>{data.title}</a>
-                </Link>
-              </h3>
+						<div className="product-content">
+							<h3>
+								<Link href="/product/[id]" as={`/product/${data.id}`}>
+									<a>{data.title}</a>
+								</Link>
+							</h3>
 
-              <div className="product-price">
-                <span className="new-price">
-                  {new Intl.NumberFormat("br-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(data.price)}
-                </span>
-              </div>
+							<div className="price">
+								{data.outletPrice > 0 &&
+								 <span>de&nbsp;</span>
+								}
+								<span className="new-price">
+              {new Intl.NumberFormat('br-BR', {
+	              style:    'currency',
+	              currency: 'BRL',
+              }).format(data?.price)}
+            </span>
 
-              {/* <div className="rating">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="far fa-star"></i>
-              </div> */}
+								{data.outletPrice > 0 &&
+								 <>
+									 <span>&nbsp;por&nbsp;</span>
+									 <span className="new-price">
+                                      {new Intl.NumberFormat('br-BR', {
+	                                      style:    'currency',
+	                                      currency: 'BRL',
+                                      }).format(data.outletPrice)}
+                                    </span>
+								 </>
+								}
+							</div>
 
-              {/* <AddToCart data={data} /> */}
 
-              <div>
-                <Link
-                  href="/product/[id]"
-                  as={`/product/${formatToUggly({
-                    name: data.title,
-                    id: data.id,
-                  })}`}
-                >
-                  <a className="btn btn-light" onClick={(e) => {}}>
-                    Visualizar detalhes
-                  </a>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-      {modalOpen ? (
-        <QuickView closeModal={closeModal} modalData={modalData} />
-      ) : (
-        ""
-      )}
-    </>
-  );
+							<div>
+								<Link
+									href="/product/[id]"
+									as={`/product/${formatToUggly({
+										                              name: data.title,
+										                              id:   data.id,
+									                              })}`}
+								>
+									<a className="btn btn-light" onClick={(e) => {}}>
+										Visualizar detalhes
+									</a>
+								</Link>
+							</div>
+						</div>
+					</div>
+				</div>
+			))}
+			{modalOpen ? (
+				<QuickView closeModal={closeModal} modalData={modalData}/>
+			) : (
+				 ''
+			 )}
+		</>
+	);
 };
 
 export default ProductsCard;

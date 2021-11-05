@@ -279,7 +279,7 @@ const Register = () => {
                 }}
               />
               &nbsp;&nbsp;
-              <a
+              <a style={{display:"inline-block"}}
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();

@@ -1,5 +1,6 @@
 import InputCPF                         from '@components/Form/Input/CPF';
 import InputSelect, {OptionSelectProps} from '@components/Form/Input/Select';
+import InfoParcelamento                 from '@components/Modal/InfoParcelamento';
 import React, {useEffect, useState}     from 'react';
 import Link                             from 'next/link';
 import {parseCookies}                   from 'nookies';
@@ -24,7 +25,9 @@ function CheckoutForm() {
 	const [isLoged, setIsLoged] = useState(false);
 	const [isDiffentetAddress, setIsDiffentetAddress] = useState(false);
 	const [token, setToken] = useState();
-	const [user, setUser] = useState<{}>();
+	const [documentPayer, setDocumentPayer] = useState('');
+	const [infoParcelamento, setInfoParcelamento] = useState(false);
+	const [user, setUser] = useState<{}>({});
 	const [cart, setCart] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [totalAmount, setTotalAmount] = useState(0);
@@ -67,6 +70,7 @@ function CheckoutForm() {
 
 	useEffect(() => {
 		if (process.browser) {
+			sessionStorage.removeItem('@ilooksecommerce_aceiteparcelamento');
 			const {'nextilooks.auth': auth} = parseCookies();
 			const user_session = auth ? JSON.parse(auth) : undefined;
 			// const user_session = JSON.parse(
@@ -285,6 +289,10 @@ function CheckoutForm() {
 		handleSubmit
 	);
 
+	const closeInfoParcelamento = () => {
+		return setInfoParcelamento(false);
+	};
+
 	const handleCep = async (e: any) => {
 		const value = e.target.value;
 		const data = await handleGetCep(value);
@@ -312,6 +320,22 @@ function CheckoutForm() {
 	};
 
 	async function handleSubmit() {
+		const aceitouParcelamento = sessionStorage.getItem('@ilooksecommerce_aceiteparcelamento');
+		if (aceitouParcelamento == undefined || !aceitouParcelamento) {
+			setInfoParcelamento(true);
+			return;
+		}
+
+		// @ts-ignore
+		if (user?.document != documentPayer) {
+			// @ts-ignore
+			console.log(`${user?.document}!=${documentPayer}`);
+			AlertWarning({
+				             title:   'Pedido',
+				             message: 'CPF do titular cartão não corresponde ao seu CPF',
+			             });
+		}
+
 		setLoading(true);
 		try {
 			if (isDiffentetAddress) {
@@ -380,10 +404,8 @@ function CheckoutForm() {
 				             title:   'Pedido',
 				             message: 'Seu Pedido foi finalizado com sucesso!',
 			             });
+			sessionStorage.removeItem('@ilooksecommerce_aceiteparcelamento');
 			router.push('/orders');
-			// setTimeout(() => {
-			// 	router.push("/orders");
-			// }, 3000);
 		} catch (error) {
 			console.log('ERR:', error.response.data);
 			AlertWarning({
@@ -889,6 +911,9 @@ function CheckoutForm() {
 													id="document"
 													label="CPF do Titular*"
 													placeholder="Ex.: 123.456.789.12"
+													onChange={(e: any) => {
+														setDocumentPayer(e.target.value);
+													}}
 												/>
 												{state.security_code.error && (
 													<p style={errorStyle}>{state.security_code.error}</p>
@@ -913,6 +938,10 @@ function CheckoutForm() {
 					</form>
 				</div>
 			</section>
+
+			{infoParcelamento &&
+			 <InfoParcelamento closeModal={closeInfoParcelamento}/>
+			}
 		</>
 	);
 }
