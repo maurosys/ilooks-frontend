@@ -234,14 +234,29 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			<div className="col-lg-6 col-md-6">
 				<div className="product-details-content">
 					<h3>{product?.name}</h3>
-					
+
 					<div className="price">
+						{product.outletPrice > 0 &&
+						 <span>de&nbsp;</span>
+						}
             <span className="new-price">
               {new Intl.NumberFormat("br-BR", {
 	              style: "currency",
 	              currency: "BRL",
               }).format(product?.price)}
             </span>
+
+						{product.outletPrice > 0 &&
+						 <>
+							 <span>&nbsp;por&nbsp;</span>
+							 <span className="new-price">
+                                      {new Intl.NumberFormat('br-BR', {
+	                                      style:    'currency',
+	                                      currency: 'BRL',
+                                      }).format(product.outletPrice)}
+                                    </span>
+						 </>
+						}
 					</div>
 					
 					{/* <p>

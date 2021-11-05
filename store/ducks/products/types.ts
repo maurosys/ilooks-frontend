@@ -26,6 +26,7 @@ export interface Products {
   id: number;
   title: string;
   price: number;
+  outletPrice?: number;
   image: string;
   imageHover: string;
   qty: number;

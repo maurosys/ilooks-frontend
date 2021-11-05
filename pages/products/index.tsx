@@ -59,7 +59,6 @@ const Products = ({
     useState<ProductsPros[]>(commonProducts);
 
   const updateQueryProducts = async () => {
-    console.log('aaaaaaaaaaaaaaaaaaa')
     const api = getAPIClient();
     setLoadingGlobal(true);
     try {
@@ -70,6 +69,7 @@ const Products = ({
           subCategoryId: sub_category,
           providerId: provider,
           page: currentPage,
+          stock: true
         },
       });
 

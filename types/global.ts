@@ -46,6 +46,7 @@ export type ProductReponse = {
   id: string;
   name: string;
   price: number;
+  outletPrice: number;
   materialType: string;
   status: string;
   views: number;

@@ -35,8 +35,8 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 	
 	useEffect(() => {
 		const getDatas = async () => {
-			const categories = await api.get("category");
-			const subCategories = await api.get("subcategory");
+			const categories = await api.get("category?stock=true");
+			const subCategories = await api.get("subcategory?stock=true");
 			setCategories(categories.data);
 			setSubCategories(subCategories.data);
 		};

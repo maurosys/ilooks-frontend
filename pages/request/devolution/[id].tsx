@@ -108,7 +108,7 @@ const RequestDevolution = () => {
                       }}
                     ></div>
 
-                    <h2>Selecione as peças que iram ser devolvidas:</h2>
+                    <h2>Selecione as peças que serão devolvidas:</h2>
                     <br />
                     <div className={styles.container}>
                       {orders.length > 0 &&
