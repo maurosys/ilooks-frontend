@@ -16,6 +16,7 @@ import Shipping from "./Shipping";
 //TYPES
 import {ProductsDetails,} from "../../store/ducks/products/types";
 import {ProductReponse} from "@type/global";
+import {useRouter} from "next/router";
 
 interface StateProps {
 	product?: ProductReponse;
@@ -25,6 +26,7 @@ interface StateProps {
 
 const ProductContent = ({product, card, setImages}: StateProps) => {
 	const dispatch = useDispatch();
+	const router = useRouter();
 	const [qty, setQty] = useState(1);
 	const [totalQty, setTotalQty] = useState(0);
 	const [max, setMax] = useState(15);
@@ -188,6 +190,8 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			pauseOnHover: true,
 			draggable: true,
 		});
+		
+		router.push('/');
 		
 		setQty(1);
 	}

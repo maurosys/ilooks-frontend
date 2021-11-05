@@ -168,7 +168,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																</div>
 															))}
 														
-														<div className="col">
+														{/*<div className="col">
 															<ul className="megamenu-submenu">
 																<li>
 																	<div className="aside-trending-products">
@@ -186,7 +186,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																	</div>
 																</li>
 															</ul>
-														</div>
+														</div>*/}
 													</div>
 												</div>
 											</li>

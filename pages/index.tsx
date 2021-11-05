@@ -92,7 +92,7 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
 			<Facility/>
 
-			<CategoryTypes/>
+			{/*<CategoryTypes/>*/}
 
 			<Products products={products}/>
 

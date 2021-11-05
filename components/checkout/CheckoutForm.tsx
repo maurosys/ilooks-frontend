@@ -328,12 +328,11 @@ function CheckoutForm() {
 
 		// @ts-ignore
 		if (user?.document != documentPayer) {
-			// @ts-ignore
-			console.log(`${user?.document}!=${documentPayer}`);
 			AlertWarning({
 				             title:   'Pedido',
 				             message: 'CPF do titular cartão não corresponde ao seu CPF',
 			             });
+			return;
 		}
 
 		setLoading(true);
