@@ -1,0 +1,5 @@
+---
+applications:
+  - name: ilooks
+    random-route: false
+    memory: 256M
