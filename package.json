@@ -2,11 +2,11 @@
   "name": "ilooks",
   "version": "3.9.0",
   "description": "Ilooks",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "next -p 3006",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "server": "json-server --watch db.json"
   },
   "author": "EnvyTheme.com",
