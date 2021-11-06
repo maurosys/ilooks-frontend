@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next -p 3006",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "server": "json-server --watch db.json"
   },
   "author": "EnvyTheme.com",
@@ -79,9 +79,7 @@
     "stripe": "7.63.1",
     "typesafe-actions": "5.1.0",
     "webpack": "4.44.1",
-    "yup": "0.32.9"
-  },
-  "devDependencies": {
+    "yup": "0.32.9",
     "@types/node": "16.0.0",
     "@types/react": "17.0.13",
     "@types/react-input-mask": "3.0.1",

@@ -7,7 +7,7 @@ const stripe = require("stripe")(keys.stripeSecretKey);
 
 const dev = process.env.NODE_ENV !== "production";
 
-const app = next({ dir: ".", dev });
+const app = next({ dir: ".", dev: true });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
