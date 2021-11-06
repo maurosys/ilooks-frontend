@@ -290,7 +290,13 @@ function CheckoutForm() {
 	);
 
 	const closeInfoParcelamento = () => {
-		return setInfoParcelamento(false);
+		setInfoParcelamento(false);
+
+		const aceitouParcelamento = sessionStorage.getItem('@ilooksecommerce_aceiteparcelamento');
+		if (aceitouParcelamento && aceitouParcelamento === 'aceitou') {
+			handleSubmit();
+			return;
+		}
 	};
 
 	const handleCep = async (e: any) => {
@@ -319,13 +325,8 @@ function CheckoutForm() {
 		}
 	};
 
-	async function handleSubmit() {
-		const aceitouParcelamento = sessionStorage.getItem('@ilooksecommerce_aceiteparcelamento');
-		if (aceitouParcelamento == undefined || !aceitouParcelamento) {
-			setInfoParcelamento(true);
-			return;
-		}
 
+	async function handleSubmit() {
 		// @ts-ignore
 		if (user?.document != documentPayer) {
 			AlertWarning({
@@ -339,6 +340,8 @@ function CheckoutForm() {
 		try {
 			if (isDiffentetAddress) {
 				try {
+					sessionStorage.removeItem('@ilooksecommerce_aceiteparcelamento');
+
 					const response = await api.post(
 						'/address',
 						{
@@ -403,7 +406,6 @@ function CheckoutForm() {
 				             title:   'Pedido',
 				             message: 'Seu Pedido foi finalizado com sucesso!',
 			             });
-			sessionStorage.removeItem('@ilooksecommerce_aceiteparcelamento');
 			router.push('/orders');
 		} catch (error) {
 			console.log('ERR:', error.response.data);
@@ -920,9 +922,10 @@ function CheckoutForm() {
 											</div>
 										</div>
 										<button
-											type="submit"
+											type="button"
 											className="btn btn-primary mb-3"
 											disabled={loading}
+											onClick={(e) => setInfoParcelamento(true)}
 										>
 											{loading ? (
 												<div className="spinner-border" role="status"></div>

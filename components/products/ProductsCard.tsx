@@ -41,7 +41,9 @@ const ProductsCard = ({products}: StateProps) => {
 									                              id:   data.id,
 								                              })}`}
 							>
-								<a>
+								<a onClick={(e) => {
+									sessionStorage.setItem('@ilooksecommerce',location.href);
+								}}>
 									<img src={data.image} alt="image"/>
 									<img src={data.imageHover} alt="image"/>
 								</a>
@@ -69,32 +71,23 @@ const ProductsCard = ({products}: StateProps) => {
 						<div className="product-content">
 							<h3>
 								<Link href="/product/[id]" as={`/product/${data.id}`}>
-									<a>{data.title}</a>
+									<a onClick={(e) => {
+										sessionStorage.setItem('@ilooksecommerce',location.href);
+									}}>{data.title}</a>
 								</Link>
 							</h3>
 
 							<div className="price">
-								{data.outletPrice > 0 &&
-								 <span>de&nbsp;</span>
-								}
-								<span className="new-price">
-              {new Intl.NumberFormat('br-BR', {
-	              style:    'currency',
-	              currency: 'BRL',
-              }).format(data?.price)}
-            </span>
-
-								{data.outletPrice > 0 &&
-								 <>
+								{data.outletPrice > 0
+								 ? <>
+									 <span>de&nbsp;</span>
+									 <span className="new-price" style={{textDecoration: 'line-through'}}>{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
 									 <span>&nbsp;por&nbsp;</span>
-									 <span className="new-price">
-                                      {new Intl.NumberFormat('br-BR', {
-	                                      style:    'currency',
-	                                      currency: 'BRL',
-                                      }).format(data.outletPrice)}
-                                    </span>
+									 <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data.outletPrice)}</span>
 								 </>
+								 : <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
 								}
+
 							</div>
 
 
@@ -106,7 +99,9 @@ const ProductsCard = ({products}: StateProps) => {
 										                              id:   data.id,
 									                              })}`}
 								>
-									<a className="btn btn-light" onClick={(e) => {}}>
+									<a className="btn btn-light" onClick={(e) => {
+										sessionStorage.setItem('@ilooksecommerce',location.href);
+									}}>
 										Visualizar detalhes
 									</a>
 								</Link>

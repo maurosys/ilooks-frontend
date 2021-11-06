@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import Link              from 'next/link';
-import ButtonPrimary     from '@components/Button/Primary';
+import React, {useEffect, useState} from 'react';
+import Link                         from 'next/link';
+import ButtonPrimary                from '@components/Button/Primary';
 
 interface InfoParcelamentoProps {
 	closeModal: (close) => void;
@@ -13,9 +13,12 @@ const InfoParcelamento = ({closeModal}: InfoParcelamentoProps) => {
 	const modalClose = (close) => {
 		if (aceito) {
 			sessionStorage.setItem('@ilooksecommerce_aceiteparcelamento', 'aceitou');
+		} else {
+			sessionStorage.removeItem('@ilooksecommerce_aceiteparcelamento');
 		}
 		return closeModal(modalClose);
 	};
+
 
 	return (
 		<div
@@ -69,7 +72,7 @@ const InfoParcelamento = ({closeModal}: InfoParcelamentoProps) => {
 						</div>
 					</p>
 					<ButtonPrimary disabled={!aceito} type="button" onClick={closeModal}>
-						Fechar
+						Enviar meu pedido
 					</ButtonPrimary>
 				</div>
 			</div>

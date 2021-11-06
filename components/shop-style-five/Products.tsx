@@ -149,7 +149,9 @@ const Products = ({products, wishlist}: StateProps) => {
 																			                              id:   data.id,
 																		                              })}`}
 																	>
-																		<a>
+																		<a onClick={(e) => {
+																			sessionStorage.setItem('@ilooksecommerce',location.href);
+																		}}>
 																			<img src={data.image} alt="image"/>
 																			<img src={data.imageHover} alt="image"/>
 																		</a>
@@ -210,32 +212,23 @@ const Products = ({products, wishlist}: StateProps) => {
 																				                              id:   data.id,
 																			                              })}`}
 																		>
-																			<a>{data.title}</a>
+																			<a onClick={(e) => {
+																				sessionStorage.setItem('@ilooksecommerce',location.href);
+																			}}>{data.title}</a>
 																		</Link>
 																	</h3>
 
 																	<div className="product-price">
-																		{data.outletPrice > 0 &&
-																		 <span>de&nbsp;</span>
-																		}
-																		<span className="new-price">
-                                      {new Intl.NumberFormat('br-BR', {
-	                                      style:    'currency',
-	                                      currency: 'BRL',
-                                      }).format(data.price)}
-                                    </span>
-
-																		{data.outletPrice > 0 &&
-																		 <>
+																		{data.outletPrice > 0
+																		 ? <>
+																			 <span>de&nbsp;</span>
+																			 <span className="new-price" style={{textDecoration: 'line-through'}}>{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
 																			 <span>&nbsp;por&nbsp;</span>
-																			 <span className="new-price">
-                                      {new Intl.NumberFormat('br-BR', {
-	                                      style:    'currency',
-	                                      currency: 'BRL',
-                                      }).format(data.outletPrice)}
-                                    </span>
+																			 <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data.outletPrice)}</span>
 																		 </>
+																		 : <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
 																		}
+
 																	</div>
 
 																	<div>
@@ -248,7 +241,9 @@ const Products = ({products, wishlist}: StateProps) => {
 																		>
 																			<a
 																				className="btn btn-light"
-																				onClick={(e) => {}}
+																				onClick={(e) => {
+																					sessionStorage.setItem('@ilooksecommerce',location.href);
+																				}}
 																			>
 																				Visualizar detalhes
 																			</a>
@@ -283,7 +278,9 @@ const Products = ({products, wishlist}: StateProps) => {
 																		href="/product/[id]"
 																		as={`/product/${data.id}`}
 																	>
-																		<a>
+																		<a onClick={(e) => {
+																			sessionStorage.setItem('@ilooksecommerce',location.href);
+																		}}>
 																			<img src={data.image} alt="image"/>
 																			<img src={data.imageHover} alt="image"/>
 																		</a>
@@ -341,31 +338,21 @@ const Products = ({products, wishlist}: StateProps) => {
 																			href="/product/[id]"
 																			as={`/product/${data.id}`}
 																		>
-																			<a>{data.title}</a>
+																			<a onClick={(e) => {
+																				sessionStorage.setItem('@ilooksecommerce',location.href);
+																			}}>{data.title}</a>
 																		</Link>
 																	</h3>
 
 																	<div className="product-price">
-																		{data.outletPrice > 0 &&
-																		 <span>de&nbsp;</span>
-																		}
-																		<span className="new-price">
-                                      {new Intl.NumberFormat('br-BR', {
-	                                      style:    'currency',
-	                                      currency: 'BRL',
-                                      }).format(data.price)}
-                                    </span>
-
-																		{data.outletPrice > 0 &&
-																		 <>
+																		{data.outletPrice > 0
+																		 ? <>
+																			 <span>de&nbsp;</span>
+																			 <span className="new-price" style={{textDecoration: 'line-through'}}>{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
 																			 <span>&nbsp;por&nbsp;</span>
-																			 <span className="new-price">
-																		{new Intl.NumberFormat('br-BR', {
-																			style:    'currency',
-																			currency: 'BRL',
-																		}).format(data.outletPrice)}
-																			</span>
+																			 <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data.outletPrice)}</span>
 																		 </>
+																		 : <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
 																		}
 																	</div>
 
