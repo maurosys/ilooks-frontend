@@ -51,12 +51,10 @@ const Products = ({
   const [currentPage, setCurrentPage] = useState(1); //pagina atual
   const [totalOfPages, setOfTotalPages] = useState(totalPage); //total de paginas
   const [productForPage, setProductForPage] = useState(LimitForPage); //items por paginas
-  const [totalProductsLocated, setTotalProductsLocated] =
-    useState(totalProducts); //total de produtos localizados
+  const [totalProductsLocated, setTotalProductsLocated] = useState(totalProducts); //total de produtos localizados
 
   const [productsView, setProductsView] = useState<ProductsPros[]>(products);
-  const [commonProductsView, setCommonProductsView] =
-    useState<ProductsPros[]>(commonProducts);
+  const [commonProductsView, setCommonProductsView] = useState<ProductsPros[]>(commonProducts);
 
   const updateQueryProducts = async () => {
     const api = getAPIClient();

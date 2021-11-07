@@ -29,7 +29,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 	const router = useRouter();
 	const [qty, setQty] = useState(1);
 	const [totalQty, setTotalQty] = useState(0);
-	const [max, setMax] = useState(15);
+	const [max, setMax] = useState(10);
 	const [min, setMin] = useState(1);
 	const [sizeGuide, setSizeGuide] = useState(false);
 	const [shipModal, setShipModal] = useState(false);
@@ -134,16 +134,16 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 		}
 
 		const ccart = JSON.parse(localStorage.getItem('@ilooksecommerce_cart'));
-		const product = ccart?.find((prod) => prod.id === item.id);
-		const qtyRequested = (product?.qty ?? 0) + qty;
+		const product = ccart?.find((prod) => prod.productDetail.id === detailSelected.id);
+		const qtyRequested = (product?.productDetail.quantity ?? 0) + qty;
 
 		const cartQtyTotal = ccart?.reduce((totalizador, item) => {
 			return totalizador += item.qty;
 		}, 0);
 
-		if (cartQtyTotal + qty > 15) {
+		if (cartQtyTotal + qty > max) {
 			toast.warn(
-				`Quantidade máxima de 15 peças por pedido`,
+				`Quantidade máxima de ${max} peças por pedido`,
 				{
 					position:        'bottom-left',
 					autoClose:       5000,

@@ -18,13 +18,12 @@ const Lgpd = () => {
 
           <div>
             <p className="text-justify">
-              Este Termo é regido pela Lei 13.709/2018 (LGPD) e registra a livre manifestação de
-              vontade, mediante concordância expressa do doravante denominado TITULAR, para o
-              tratamento dos seus dados disponibilizados à empresa KEILA BERTI ME. cujo nome
-              fantasia é o I LOOK’S MODAS, inscrita ao CNPJ/MF nº 41.076.430/0001-74, sediada
-              na Avenida Deputado Emílio Carlos, nº 521, conj. 45 – Limão – São Paulo/SP –
-              CEP: 02721-000, por meio do cadastro em seu <i>site</i>
-              <a href="http://www.ilooks.com.br/cadastro">www.ilooks.com.br/cadastro</a>,
+              Este Termo é regido pela Lei 13.709/2018 (LGPD) e registra a livre manifestação de vontade, mediante concordância
+              expressa do doravante denominado TITULAR, para o tratamento dos seus dados disponibilizados à empresa KEILA BERTI ME.
+              cujo nome fantasia é o I LOOK’S MODAS, inscrita ao CNPJ/MF nº 41.076.430/0001-74, sediada na
+              Avenida Deputado Emílio Carlos, nº 521, conj. 45 – Limão – São Paulo/SP – CEP: 02721-000,
+              por meio do cadastro em seu <i>site</i>&nbsp;
+              <a style={{display:"inline-block"}} href="http://www.ilooks.com.br/register">www.ilooks.com.br/cadastro</a>,
               doravante denominada CONTROLADORA.</p>
             <p className="bold">DOS DADOS PESSOAIS</p>
             <p>
@@ -54,7 +53,7 @@ const Lgpd = () => {
                 <li>Viabilização de relacionamento comercial;</li>
                 <li>Viabilização logística composta pela entrega do produto via
                     transportadora parceira da CONTROLADORA, qual seja: ENTREGA JÁ LOG TRANSPORTES EPP.
-                    e o depósito do produto via <i>locker </i>disponibilizado e operado pela empresa parceira <i>BOXIT;</i></li>
+                    e o depósito do produto via <i>locker</i> disponibilizado e operado pela empresa parceira <i>BOXIT</i>;</li>
                 <li>Envio de <i>newsletter;</i></li>
                 <li>Envio de novas coleções de vestuários;</li>
                 <li>Envio de cupons promocionais;</li>
@@ -114,7 +113,7 @@ const Lgpd = () => {
             <p>
               <span className="bold">Cláusula 8ª: </span>
               O TITULAR poderá solicitar via e-mail, correspondência à CONTROLADORA,
-              ou ainda, pelas simples exclusão de cadastro de conta e dados tratados,
+              ou ainda, pela simples exclusão de cadastro de conta e dados tratados,
               a qualquer momento, que sejam eliminados os seus dados pessoais não
               anonimizados (aqueles que o vinculam ao seu indivíduo), ficando o
               referido ciente de que poderá ser inviável à CONTROLADORA a ele continuar o
@@ -127,7 +126,7 @@ const Lgpd = () => {
               Nos termos dos artigos 9º da Lei 13.709-2018, o TITULAR terá acesso facilitado
               aos seus dados e ao presente termo a qualquer tempo, o qual, por sua vez,
               estará disponível no seguinte <i>link/aba </i>
-              <a href="http://www.ilooks.com.br/termo">www.ilooks.com.br/termo</a>.
+              <a style={{display:"inline-block"}} href="https://www.ilooks.com.br/termo">www.ilooks.com.br/termo</a>.
             </p>
             <p>
               <span className="bold">Cláusula 10ª: </span>
@@ -165,7 +164,7 @@ const Lgpd = () => {
                     conta cadastrada e mediante a simples exclusão da conta e cadastro da
                     plataforma <i>on line </i> por meio do botão <i>CANCELAMENTO DE CONTA, </i>
                     sem avisos prévios, nem penalidades, disponibilizando a CONTROLADORA, contudo,
-                    o suporte técnico via o endereço de e-mail @@@@@@ilooks.com.br para a solução
+                    o suporte técnico via o endereço de e-mail <a style={{display:"inline-block"}} href="mailto:atendimento@ilooks.com.br">atendimento@ilooks.com.br</a> para a solução
                     dos eventuais problemas encontrados pelo TITULAR para cancelar a sua conta.
                 </li>
               </ol>

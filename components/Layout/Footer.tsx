@@ -79,17 +79,17 @@ const Footer = () => {
               <ul className="footer-contact-info">
                 <li>
                   <i className="fas fa-map-marker-alt"></i>
-                  Localização: 2750 Quadra Street <br /> Victoria, Canada
+                  Localização: Avenida Deputado Emílio Carlos,<br/>nº 521, conj. 45 – Limão – São Paulo/SP<br/>CEP: 02721-000
                 </li>
                 <li>
                   <i className="fas fa-phone"></i>
                   Ligue para nós:{" "}
-                  <a href="tel:(+55)11 99999-7898">(+55)11 99999-9999</a>
+                  <a href="tel:(+55)11 99021-6565">(+55) 11 99021-6565</a>
                 </li>
                 <li>
                   <i className="far fa-envelope"></i>
-                  Email Us:{" "}
-                  <a href="mailto:support@novine.com">support@ilooks.com</a>
+                  Email:{" "}
+                  <a href="mailto:suporte@ilooks.com.br">suporte@ilooks.com.br</a>
                 </li>
               </ul>
             </div>

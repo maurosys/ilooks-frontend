@@ -107,7 +107,7 @@ function CheckoutForm() {
 						return acc + card.total;
 					}
 					return acc;
-				}, 0) + 9.99);
+				}, 0) + 0.00); //ToDo: FRETE FIXO
 				setTotalAmount(newTotal);
 
 
@@ -393,7 +393,7 @@ function CheckoutForm() {
 				security_code:    state.security_code.value,
 			};
 			_REQUEST.userId = user['id'];
-			_REQUEST.freight = 9.99;
+			_REQUEST.freight = 0.00; //ToDo: FRETE FIXO
 			_REQUEST.amount = cart?.reduce((acc, card) => {
 				if (card.price) {
 					return acc + card.total;

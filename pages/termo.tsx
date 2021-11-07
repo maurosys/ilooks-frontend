@@ -22,15 +22,15 @@ const Termo = () => {
               sobre os seus direitos e obrigações, bem como dos procedimentos a serem adotados.
               Tais informações são importantes, assim, pedimos que você as leia com toda atenção.<br/>
               Qualquer dúvida entre em contato através dos nossos Canais de Atendimento disponíveis
-              em nosso site nos seguintes dias e horários de atendimento:
-              <span className="bold">
+              em nosso site nos seguintes dias e horários de atendimento: <br/>
+              <span style={{fontWeight:"bold"}}>
                 segunda-feira a sexta-feira entre às 08h00m e 18h00m e aos sábados entre às 08h00m e 11h00m.
               </span>
             </p>
 
-            <p className="bold">DEFINIÇÕES</p>
+            <p style={{fontWeight:"bold"}}>DEFINIÇÕES</p>
             <p className="text-justify">
-              <span className="bold">Cookies: </span>
+              <span style={{fontWeight:"bold"}}>Cookies: </span>
               Arquivos enviados pelo servidor do site para o computador do CONSUMIDOR, com a finalidade de
               identificar o computador e obter dados de acesso, como páginas navegadas ou links clicados,
               permitindo, desta forma, personalizar a utilização do site, de acordo com o seu perfil.
@@ -38,20 +38,20 @@ const Termo = () => {
             </p>
 
             <p className="text-justify">
-              <span className="bold">Comércio Eletrônico ou e-commerce: </span>
+              <span style={{fontWeight:"bold"}}>Comércio Eletrônico ou e-commerce: </span>
               Abrange o envio, a transmissão, a recepção, o armazenamento de mensagens de dados pela via
               eletrônica para fins comerciais, celebrando, portanto, contratos de venda e compra pelo
               meio eletrônico e NÃO presencial.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Consumidores/Consumidor: </span>
+              <span style={{fontWeight:"bold"}}>Consumidores/Consumidor: </span>
               são(é) as(a) pessoas(a) físicas(a) cadastradas(a) na Plataforma de Internet denominada ILOOKS
               que acessem a esta para adquirir, por meio do comércio eletrônico, os produtos comercializados.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Plataforma de Internet ILooks: </span>
+              <span style={{fontWeight:"bold"}}>Plataforma de Internet ILooks: </span>
               Website administrado e com os direitos exclusivos de utilização no Brasil pela ILOOKS,
               através do qual:
               <ol type="i">
@@ -63,76 +63,76 @@ const Termo = () => {
             </p>
 
             <p className="text-justify">
-              <span className="bold">ILooks: </span>
+              <span style={{fontWeight:"bold"}}>ILooks: </span>
               É a operadora da plataforma de internet cuja razão social é Keila Berti ME, CNPJ/MF: 41.076.430/0001-74.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Lojistas Parceiros: </span>
+              <span style={{fontWeight:"bold"}}>Lojistas Parceiros: </span>
               Comércios varejistas e de atacado que fornecem os seus produtos por meio de parceria comercial com a ILOOKS.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Dados Pessoais: </span>
+              <span style={{fontWeight:"bold"}}>Dados Pessoais: </span>
               É toda informação que permite identificar ou fazer identificável uma pessoa física cujos tratamentos foram
               aceitos pelo CONSUMIDOR através do TERMO DE CONSENTIMENTO PARA TRATAMENTO DE DADOS.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Maior de Idade: </span>
+              <span style={{fontWeight:"bold"}}>Maior de Idade: </span>
               Pessoa física maior de dezoito (18) anos.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Mensagens de Dados: </span>
+              <span style={{fontWeight:"bold"}}>Mensagens de Dados: </span>
               A informação gerada, enviada, recebida, armazenada ou comunicada por meios eletrônicos, ópticos ou similares,
               como poderiam ser, entre outros, o Intercâmbio Eletrônico de Dados (EDI), Internet, o correio eletrônico,
               o telegrama, o telex e o telefax.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Publicidade: </span>
+              <span style={{fontWeight:"bold"}}>Publicidade: </span>
               É toda forma de comunicação realizada pela ILOOKS com a finalidade de prestar informações sobre produtos,
               atividades comerciais e comunicar estratégias ou campanhas publicitárias ou de marketing, próprias ou de terceiros;
               realizada como mecanismo de referência e não como oferta pública.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Produto: </span>
+              <span style={{fontWeight:"bold"}}>Produto: </span>
               Bem de consumo exibido através da plataforma de internet.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Serviço: </span>
+              <span style={{fontWeight:"bold"}}>Serviço: </span>
               Serviços oferecidos através da plataforma.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Janelas Emergentes (Pop-Ups): </span>
+              <span style={{fontWeight:"bold"}}>Janelas Emergentes (Pop-Ups): </span>
               Janela ou aviso da internet que emerge automaticamente em qualquer momento quando a plataforma
               é utilizada, especialmente utilizado para a formalização do contrato de compra e venda.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Pedido Consignado: </span>
+              <span style={{fontWeight:"bold"}}>Pedido Consignado: </span>
               É o pedido feito pelo CONSUMIDOR cujo valor de venda foi pré aprovado com o cadastro do cartão
               de crédito, mas ainda não efetivado em razão da experiência de prova do produto em domicílio pelo CONSUMIDOR.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Experiência de Prova: </span>
+              <span style={{fontWeight:"bold"}}>Experiência de Prova: </span>
               É a experiência diferencial ofertada e operada pela I LOOK’S ao possibilitar que o CONSUMIDOR
               receba o seu pedido em domicílio, sem o compromisso de compra, para inicialmente
               prová-lo e decidir se efetivará ou não a aquisição.
             </p>
 
             <p className="text-justify">
-              <span className="bold">Entrega Domiciliar: </span>
+              <span style={{fontWeight:"bold"}}>Entrega Domiciliar: </span>
               É a entrega realizada diretamente ao endereço cadastrado pelo CONSUMIDOR.
             </p>
 
             <ol className="firstLevel">
-              <li className="firtTitle">OBJETO
+              <li className="firtTitle"><b>OBJETO</b>
                 <ol>
                   <li>
                     O objeto do presente Termo é a aquisição de vestuários, adornos e acessórios pelo
@@ -161,11 +161,11 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firtTitle">PEDIDO
+              <li className="firtTitle"><b>PEDIDO</b>
                 <ol>
                   <li>
                     Os pedidos somente serão considerados válidos quando realizados por meio do site
-                    oficial https://www.ilooks.com.br ("site oficial"). A ILOOKS não reconhece e não
+                    oficial <a href="https://www.ilooks.com.br">https://www.ilooks.com.br</a> ("site oficial"). A ILOOKS não reconhece e não
                     se responsabiliza por qualquer compra feita em outro site que não o seu site
                     oficial, ou, ainda, por eventuais alterações e/ou fraudes ocorridas no computador,
                     tablet, celular do CONSUMIDOR e/ou qualquer outro meio de acesso à internet.
@@ -228,7 +228,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firtTitle">PROCESSO DE DEVOLUÇÃO VIA RETIRADA DOMICILIAR
+              <li className="firtTitle"><b>PROCESSO DE DEVOLUÇÃO VIA RETIRADA DOMICILIAR</b>
                 <ol>
                   <li>
                     Havendo a manifestação de devolução do pedido pelo CONSUMIDOR, seja ela integral ou parcial,
@@ -246,7 +246,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firtTitle">OFERTA E PROMOÇÃO
+              <li className="firtTitle"><b>OFERTA E PROMOÇÃO</b>
                 <ol>
                   <li>
                     As ofertas e promoções serão veiculadas no site oficial da ILOOKS (www.ilooks.com.br), em mídias,
@@ -281,7 +281,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firtTitle">FORMAS DE PAGAMENTO
+              <li className="firtTitle"><b>FORMAS DE PAGAMENTO</b>
                 <ol>
                   <li>
                     O CONSUMIDOR somente poderá pagar as suas compras através de cartão de crédito, se utilizando
@@ -297,7 +297,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firtTitle">CONFIRMAÇÃO DE PAGAMENTO
+              <li className="firtTitle"><b>CONFIRMAÇÃO DE PAGAMENTO</b>
                 <ol>
                   <li>
                     As confirmações se darão nos termos do item 2 - “PEDIDOS”.
@@ -329,7 +329,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firtTitle">ENTREGA
+              <li className="firtTitle"><b>ENTREGA</b>
                 <ol>
                   <li>
                     Um dos diferenciais da ILOOKS é o compromisso firmado com o CONSUMIDOR de atender ao prazo de até 3 dias úteis para a entrega.
@@ -356,7 +356,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firstTitle">TROCAS
+              <li className="firtTitle"><b>TROCAS</b>
                 <ol>
                   <li>
                     Não serão possíveis as efetivações de trocas de produtos, ainda que parciais,
@@ -365,7 +365,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firstTitle">9. DIREITO DE ARREPENDIMENTO
+              <li className="firtTitle"><b>DIREITO DE ARREPENDIMENTO</b>
                 <ol>
                   <li>
                     O exercício do Direito de Arrependimento poderá ser feito em até 07 (sete) dias corridos
@@ -429,7 +429,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firstTitle">10.	DIVERGÊNCIAS NO PEDIDO
+              <li className="firtTitle"><b>DIVERGÊNCIAS NO PEDIDO</b>
                 <ol>
                   <li>
                     No ato da entrega do(s) produto(s), o CONSUMIDOR ou o terceiro responsável pelo
@@ -480,7 +480,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firstTitle">GARANTIA
+              <li className="firtTitle"><b>GARANTIA</b>
                 <ol>
                   <li>
                     O prazo total de garantia compreende a garantia legal de 90 (noventa) dias, nos termos do
@@ -575,7 +575,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firstTitle">DEVOLUÇÃO DE VALORES
+              <li className="firtTitle"><b>DEVOLUÇÃO DE VALORES</b>
                 <ol>
                   <li>
                     Aplicam-se as devoluções de valores nos seguintes casos:
@@ -635,7 +635,7 @@ const Termo = () => {
                 </ol>
               </li>
 
-              <li className="firstTitle">AUTORIZAÇÃO E FORMA DE POSTAGEM/DEVOLUÇÃO
+              <li className="firtTitle"><b>AUTORIZAÇÃO E FORMA DE POSTAGEM/DEVOLUÇÃO</b>
                 <ol>
                   <li>
                     A coleta/retirada será programada com data e local pela ILOOKS,

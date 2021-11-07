@@ -145,7 +145,9 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																	key={`${category.id}listheader`}
 																>
 																	<h6 className="submenu-title">
-																		{category.name}
+																		<Link href={`/products?category=${category.id}`}>
+																			<a>{category.name}</a>
+																		</Link>
 																	</h6>
 																	<ul className="megamenu-submenu">
 																		{subCategories

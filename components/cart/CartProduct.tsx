@@ -104,10 +104,10 @@ const CartProduct = ({ card }: CartPorductProps) => {
                   type="number"
                   value={data.qty}
                   min="1"
-                  max={15}
+                  max={max}
                   onChange={(e) => {
-                      if (Number(e.target.value) > 15) {
-                          e.target.value = '15';
+                      if (Number(e.target.value) > max) {
+                          e.target.value = `${max}`;
                       }
                       IncrementItem({
                           ...data,

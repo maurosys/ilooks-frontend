@@ -10,7 +10,7 @@ interface CartContentProps {
 }
 
 const CartContent = ({card}: CartContentProps) => {
-  const freight = 9.99;
+  const freight = 0.00; //ToDo: FRETE FIXO
 	const total = card?.reduce((acc, card) => {
 		if (card.price) {
 			return acc + card.total;
