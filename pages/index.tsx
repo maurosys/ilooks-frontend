@@ -100,7 +100,7 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
 			<Partner/>
 
-			<Subscribe/>
+			{/*<Subscribe/>*/}
 
 			<InstagramPhoto/>
 

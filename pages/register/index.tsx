@@ -1,3 +1,4 @@
+import LgpdModal           from '@components/Modal/Lgpd';
 import React, { useState } from "react";
 
 //COMPONENT
@@ -38,6 +39,8 @@ const Register = () => {
 
   //STATES
   const [termAccept, setTermAccept] = useState(false);
+  const [termLgpd, setLgpdAccept] = useState(false);
+  const [openLgpd, setOpenLgpd] = useState(false);
   const [openTerm, setOpenTerm] = useState(false);
   const [typePhone, setTypePhone] = useState("");
   const [optionsTypePhone, setOptionTypePhone] = useState<OptionSelectProps[]>([
@@ -53,6 +56,10 @@ const Register = () => {
 
   const closeTermo = () => {
     return setOpenTerm(false);
+  };
+
+  const closeLgpd = () => {
+    return setOpenLgpd(false);
   };
 
   const handleCep = async (e: any) => {
@@ -293,13 +300,38 @@ const Register = () => {
             </div>
             <br />
           </div>
+          <div className="col-sm-12">
+            <div className="item">
+              <input
+                className="inp-cbx"
+                id="cbxLgpd"
+                type="checkbox"
+                onChange={(e) => {
+                  setLgpdAccept(e.target.checked);
+                }}
+              />
+              &nbsp;&nbsp;
+              <a style={{display:"inline-block"}}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenLgpd(true);
+                }}
+              >
+                <span className="pl-3">
+                  Política LGPD
+                </span>
+              </a>
+            </div>
+            <br />
+          </div>
 
           <ButtonPrimary
             type="submit"
             loading={loading}
-            disabled={!termAccept}
+            disabled={!termAccept || !termLgpd}
             title={
-              !termAccept ? "É necessário aceitar os termos e condições" : ""
+              !termAccept || !termLgpd ? "É necessário aceitar os termos e condições" : ""
             }
           >
             Realizar cadastro
@@ -311,6 +343,7 @@ const Register = () => {
 
       <Footer />
       {openTerm && <Termo closeModal={closeTermo} />}
+      {openLgpd && <LgpdModal closeModal={closeLgpd} />}
     </>
   );
 };

@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer-area">
       <div className="container">
         <div className="row">
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-5 col-md-6">
             <div className="single-footer-widget">
               <div className="logo">
                 <Link href="/">
@@ -17,9 +17,7 @@ const Footer = () => {
               </div>
 
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                ipsum suspendisse ultrices gravida.
+                RESERVE | EXPERIMENTE | COMPRE SOMENTE O QUE GOSTAR!
               </p>
             </div>
           </div>
@@ -40,15 +38,25 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact-us">
-                    <a>Nosso Contato</a>
+                  <Link href="/lgpd">
+                    <a>Política de LGPD</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/termo">
+                    <a>Termos de uso</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/politica-devolution">
+                    <a>Política de devolução</a>
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="col-lg-3 col-md-6">
+          <div className="col-lg-1 col-md-6">
             {/*<div className="single-footer-widget">
               <h3>Information</h3>
 
@@ -79,17 +87,17 @@ const Footer = () => {
               <ul className="footer-contact-info">
                 <li>
                   <i className="fas fa-map-marker-alt"></i>
-                  Localização: Avenida Deputado Emílio Carlos,<br/>nº 521, conj. 45 – Limão – São Paulo/SP<br/>CEP: 02721-000
+                  Localização: Rua da Graça, 201 SL 52<br/> Bom Retiro - SP
                 </li>
                 <li>
                   <i className="fas fa-phone"></i>
                   Ligue para nós:{" "}
-                  <a href="tel:(+55)11 99021-6565">(+55) 11 99021-6565</a>
+                  <a href="tel:+5511972689781">(+55) 11 97268-9781</a>
                 </li>
                 <li>
                   <i className="far fa-envelope"></i>
                   Email:{" "}
-                  <a href="mailto:suporte@ilooks.com.br">suporte@ilooks.com.br</a>
+                  <a href="mailto:suporte@ilooks.com.br">atendimento@ilooks.com.br</a>
                 </li>
               </ul>
             </div>

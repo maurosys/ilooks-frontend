@@ -8,9 +8,9 @@ const Facility = () => {
           <div className="col-lg-3 col-md-6">
             <div className="facility-box">
               <div className="icon">
-                <i className="fas fa-plane"></i>
+                <i className="fas fa-truck"></i>
               </div>
-              <h3>Entrega grátis para toda São paulo</h3>
+              <h3>Região de atendimento SP e grande SP</h3>
             </div>
           </div>
 

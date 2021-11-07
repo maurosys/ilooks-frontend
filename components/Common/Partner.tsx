@@ -80,7 +80,7 @@ const Partner = () => {
               </Link>
             </div>
 
-            <div className="partner-item">
+         {/*   <div className="partner-item">
               <Link href="#">
                 <a target="_blank">
                   <img src={require("../../images/partner5.png")} alt="image" />
@@ -94,7 +94,7 @@ const Partner = () => {
                   <img src={require("../../images/partner6.png")} alt="image" />
                 </a>
               </Link>
-            </div>
+            </div>*/}
           </OwlCarousel>
         ) : (
           ""

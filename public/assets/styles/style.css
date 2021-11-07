@@ -2103,7 +2103,7 @@ About Area CSS
 
 .about-image .about-img1 {
   position: relative;
-  right: -100px;
+  right: -230px;
 }
 
 .about-image .about-img2 {
@@ -3635,7 +3635,7 @@ Facility Area CSS
 }
 
 .facility-area.black-bg {
-  background-color: #222222;
+  background-color: #5f1d74;
 }
 
 .facility-area.black-bg .facility-box h3 {
@@ -9665,7 +9665,7 @@ Go Top CSS
 }
 
 .navbar-area.bg-black .comero-nav.is-sticky {
-  background-color: black !important;
+  background-color: #5f1d74 !important;
 }
 
 /* Home slider */
@@ -9713,11 +9713,12 @@ Go Top CSS
 }
 
 .item-bg5 {
-  background-image: url(../../../images/main-banner5.png);
+  background-image: url(../../../images/main-banner5.jpg);
 }
 
 .item-bg6 {
-  background-image: url(../../../images/main-banner6.png);
+  background-image: url(../../../images/main-banner6.jpg);
+
 }
 
 .banner-content {

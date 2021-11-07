@@ -38,26 +38,7 @@ const BannerSlider = () => {
             <div className="banner-section item-bg5">
               <div className="d-table">
                 <div className="d-table-cell">
-                  <div className="container">
-                    <VisibilitySensor>
-                      {({ isVisible }) => (
-                        <div className="banner-content">
 
-                          {/*<Link href="/category-sidebar-fullwidth">
-                            <a
-                              className={`btn btn-primary ${
-                                isVisible
-                                  ? "animated fadeInUp opacityOne"
-                                  : "opacityZero"
-                              }`}
-                            >
-                              Loja
-                            </a>
-                          </Link>*/}
-                        </div>
-                      )}
-                    </VisibilitySensor>
-                  </div>
                 </div>
               </div>
             </div>
@@ -67,31 +48,7 @@ const BannerSlider = () => {
                 <div className="d-table-cell">
                   <div className="container">
                     <VisibilitySensor>
-                      {({ isVisible }) => (
-                        <div className="banner-content">
-                          <h1
-                            className={
-                              isVisible
-                                ? "animated fadeInUp opacityOne"
-                                : "opacityZero"
-                            }
-                          >
-                            Tudo para o seu <br/> guarda roupa
-                          </h1>
 
-                          {/*<Link href="/category-sidebar-fullwidth">
-                            <a
-                              className={`btn btn-primary ${
-                                isVisible
-                                  ? "animated fadeInUp opacityOne"
-                                  : "opacityZero"
-                              }`}
-                            >
-                              Categorias
-                            </a>
-                          </Link>*/}
-                        </div>
-                      )}
                     </VisibilitySensor>
                   </div>
                 </div>
