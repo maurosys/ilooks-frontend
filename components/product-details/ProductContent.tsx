@@ -395,7 +395,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							<Link href="#">
 								<a>
 									<img
-										src={require('../../images/payment-image/1.svg')}
+										src={require('../../images/visa.png')}
 										alt="image"
 									/>
 								</a>
@@ -404,7 +404,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							<Link href="#">
 								<a>
 									<img
-										src={require('../../images/payment-image/2.svg')}
+										src={require('../../images/mastercard.png')}
 										alt="image"
 									/>
 								</a>
@@ -413,7 +413,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							<Link href="#">
 								<a>
 									<img
-										src={require('../../images/payment-image/3.svg')}
+										src={require('../../images/mastercard2.png')}
 										alt="image"
 									/>
 								</a>
@@ -422,7 +422,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							<Link href="#">
 								<a>
 									<img
-										src={require('../../images/payment-image/4.svg')}
+										src={require('../../images/visa2.png')}
 										alt="image"
 									/>
 								</a>
@@ -431,25 +431,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 							<Link href="#">
 								<a>
 									<img
-										src={require('../../images/payment-image/5.svg')}
-										alt="image"
-									/>
-								</a>
-							</Link>
-
-							<Link href="#">
-								<a>
-									<img
-										src={require('../../images/payment-image/6.svg')}
-										alt="image"
-									/>
-								</a>
-							</Link>
-
-							<Link href="#">
-								<a>
-									<img
-										src={require('../../images/payment-image/7.svg')}
+										src={require('../../images/expresscard.png')}
 										alt="image"
 									/>
 								</a>

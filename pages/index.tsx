@@ -106,9 +106,9 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
 			<Footer/>
 			
-			{!subscription &&
+{/*			{!subscription &&
 			 <AddsModal/>
-			}
+			}*/}
 		</>
 	);
 };

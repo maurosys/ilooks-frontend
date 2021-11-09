@@ -37,7 +37,7 @@ const Facility = () => {
               <div className="icon">
                 <i className="fas fa-headset"></i>
               </div>
-              <h3>24/7 Suporte Online</h3>
+              <h3>Suporte Online</h3>
             </div>
           </div>
         </div>

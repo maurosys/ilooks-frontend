@@ -28,17 +28,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   // NProgress.configure({ showSpinner: true });
 
   Router.events.on("routeChangeStart", (url) => {
-    console.log("onRouteChangeStart triggered");
-
     let div: any = document.createElement("div");
     div.id = "loadingGlobalTemp";
     div.style =
       "width: 100%;height: 100%;background: rgb(98 98 98 / 30%);position: fixed;top: 0;left: 0;z-index: 9999;display: flex; justify-content: center; align-items: center;";
 
     let divContainerLoad: any = document.createElement("div");
-    divContainerLoad.style =
-      "width: 200px; height: 200px;background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #212529;";
-    divContainerLoad.innerHTML = `<img src=${Load} alt="" width="180" height="180" />`;
+    divContainerLoad.style = "width: 120px; height: 120px;background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center;";
+    divContainerLoad.innerHTML = `<img src=${Load} alt="" width="100" height="72" />`;
 
     div.appendChild(divContainerLoad);
     document.body.appendChild(div);

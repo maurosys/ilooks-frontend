@@ -49,35 +49,19 @@ const Partner = () => {
             {...options}
           >
             <div className="partner-item">
-              <Link href="#">
-                <a target="_blank">
-                  <img src={require("../../images/partner1.png")} alt="image" />
-                </a>
-              </Link>
+              <img src={require("../../images/partner1.png")} alt="image" />
             </div>
 
             <div className="partner-item">
-              <Link href="#">
-                <a target="_blank">
-                  <img src={require("../../images/partner2.png")} alt="image" />
-                </a>
-              </Link>
+              <img src={require("../../images/partner2.png")} alt="image" />
             </div>
 
             <div className="partner-item">
-              <Link href="#">
-                <a target="_blank">
-                  <img src={require("../../images/partner3.png")} alt="image" />
-                </a>
-              </Link>
+              <img src={require("../../images/partner3.png")} alt="image" />
             </div>
 
             <div className="partner-item">
-              <Link href="#">
-                <a target="_blank">
-                  <img src={require("../../images/partner4.png")} alt="image" />
-                </a>
-              </Link>
+              <img src={require("../../images/partner4.png")} alt="image" />
             </div>
 
          {/*   <div className="partner-item">

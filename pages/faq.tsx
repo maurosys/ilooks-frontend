@@ -42,7 +42,7 @@ const Faq = () => {
                   <AccordionItemPanel>
                     <p>
                       Escolha tudo que o gostar em nossa plataforma, roupas, acessórios ou calçados.<br/>
-                      Vamos realizar a entrega dos produtos no endereço cadastrado, você terá 48h para experimentar tudo com conforto e no seu tempo. <br/>
+                      Vamos realizar a entrega dos produtos no endereço cadastrado, você terá 48h úteis para experimentar tudo com conforto e no seu tempo. <br/>
                       Pague apenas o que decidir ficar.
 
                     </p>
@@ -214,7 +214,7 @@ const Faq = () => {
                   </AccordionItemHeading>
                   <AccordionItemPanel>
                     <p>
-                      Você poderá escolher até 15 peças por pedido e não existe limitação de valor.
+                      Você poderá escolher até 10 peças por pedido e não existe limitação de valor.
 
                     </p>
                   </AccordionItemPanel>

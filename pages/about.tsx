@@ -16,18 +16,15 @@ const About = () => {
 								&nbsp;<br/>
 								<p><b>RESERVE| EXPERIMENTE| COMPRE SOMENTE O QUE GOSTAR.</b></p>
 								<p>Somos muito mais que uma loja on-line de Moda. Valorizar seu tempo é nossa principal Missão.</p>
-								<p>A Ilooks nasceu com o propósito de inovar o mercado de Moda no Brasil oferecendo aos nossos clientes uma experiência de compra única,
+								<p>A ILooks nasceu com o propósito de inovar o mercado de Moda no Brasil oferecendo aos nossos clientes uma experiência de compra única e
 									totalmente diferente de qualquer loja on-line de Moda.</p>
 								<p>
 									<b>Experimente antes de comprar.</b><br/>
-									Um dos nossos diferenciais é oferecer aos nossos clientes a comodidade experimentar, tocar e sentir o produto antes da efetivação de compra.
+									Um dos nossos diferenciais é oferecer aos nossos clientes a comodidade de experimentar, tocar e sentir o produto antes da efetivação de compra.
 								</p>
 								<p>
 									<b>Entregas.</b><br/>
-									Entregas rápidas com Entregas.
-									Entregas rápidas com experiência praticamente delivery também faz do nosso negócio único, afinal sempre aparece aquele evento, ou compromisso
-									de última hora e você pode contar com a Ilooks e agilidade de nossas entregas.experiência praticamente delivery também faz do nosso negócio único,
-									afinal sempre aparece aquele evento, ou compromisso de última hora e você pode contar com a Ilooks e agilidade de nossas entregas.
+									Entregas rápidas também faz do nosso negócio único, afinal sempre aparece aquele evento ou compromisso de última hora e você pode contar com a Ilooks e nossa agilidade nas entregas.
 								</p>
 								<p>
 									<b>Devoluções.</b><br/>

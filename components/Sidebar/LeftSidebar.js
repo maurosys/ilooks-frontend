@@ -578,7 +578,7 @@ class LeftSidebar extends Component {
             </div> */}
           </div>
 
-          <div className="collapse-widget aside-trending-widget">
+          {/*<div className="collapse-widget aside-trending-widget">
             <div className="aside-trending-products">
               <img
                 src={require("../../images/bestseller-hover-img1.jpg")}
@@ -593,7 +593,7 @@ class LeftSidebar extends Component {
                 <a></a>
               </Link>
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
     );

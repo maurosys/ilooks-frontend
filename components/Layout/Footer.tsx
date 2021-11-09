@@ -34,7 +34,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link href="/faq">
-                    <a>Faq's</a>
+                    <a>Dúvidas frequentes</a>
                   </Link>
                 </li>
                 <li>
@@ -90,9 +90,9 @@ const Footer = () => {
                   Localização: Rua da Graça, 201 SL 52<br/> Bom Retiro - SP
                 </li>
                 <li>
-                  <i className="fas fa-phone"></i>
+                  <i className="fab fa-whatsapp"></i>
                   Ligue para nós:{" "}
-                  <a href="tel:+5511972689781">(+55) 11 97268-9781</a>
+                  <a href="https://wa.me/5511972689781" target="_blank">(+55) 11 97268-9781</a>
                 </li>
                 <li>
                   <i className="far fa-envelope"></i>

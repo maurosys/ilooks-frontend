@@ -254,7 +254,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 											</Link>
 										) : (
 											<Link href="/login">
-												<a>Login / Cadastro</a>
+												<a>Entrar</a>
 											</Link>
 										)}
 									</div>
@@ -266,7 +266,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 													handleWishlist();
 												}}
 											>
-												Lista de desejo <i className="far fa-heart"></i>
+												<i className="far fa-heart"></i>
 											</a>
 										</Link>
 									</div>
@@ -278,8 +278,8 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 													handleCart();
 												}}
 											>
-												Carrinho({qttyItems}){" "}
 												<i className="fas fa-shopping-bag"></i>
+												({qttyItems}){" "}
 											</a>
 										</Link>
 									</div>
