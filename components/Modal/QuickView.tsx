@@ -388,9 +388,9 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 									</button>
 								</div>
 
-								<Link href={`/products/${modalData?.id}`}>
+{/*								<Link href={`/products/${modalData?.id}`}>
 									<a className="view-full-info">Ver mais detalhes</a>
-								</Link>
+								</Link>*/}
 							</div>
 						</div>
 					</div>
