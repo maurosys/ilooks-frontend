@@ -34,6 +34,7 @@ const BannerSlider = () => {
           <OwlCarousel
             className="home-slides-two owl-carousel owl-theme"
             {...options}
+            stytle={{marginTop:60}}
           >
             <div className="banner-section item-bg5">
               <div className="d-table">
