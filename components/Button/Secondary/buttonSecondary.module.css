@@ -5,12 +5,12 @@
 
 .button {
   background-color: white;
-  border: 1px solid #222222;
-  color: #222222;
+  border: 1px solid #5f1d74;
+  color: #5f1d74;
 }
 
 .button:hover {
-  background-color: #222222;
-  border: 1px solid #222222;
+  background-color: #351041;
+  border: 1px solid #351041;
   color: white;
 }

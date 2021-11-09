@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const ProductsOffer = () => {
   return (
-    <section className="products-offer-area bg-image2 ptb-60">
-      <div className="container" style={{height:400}}>
+    <section className="products-offer-area bg-image2 ptb-60" style={{marginTop:100}}>
+      <div className="container" style={{height:450}}>
         {/*<div className="products-offer-content">
           <span>O Tempo estar se esgotando</span>
           <h1>-40% Off</h1>

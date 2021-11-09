@@ -12,7 +12,7 @@ const About = () => {
 					<div className="row align-items-center">
 						<div className="col-lg-6 col-md-12">
 							<div className="about-content">
-								<h2>Quem somos.</h2>
+								<h2>Sobre nós</h2>
 								&nbsp;<br/>
 								<p><b>RESERVE| EXPERIMENTE| COMPRE SOMENTE O QUE GOSTAR.</b></p>
 								<p>Somos muito mais que uma loja on-line de Moda. Valorizar seu tempo é nossa principal Missão.</p>

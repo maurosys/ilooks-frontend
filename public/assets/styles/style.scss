@@ -61,7 +61,7 @@ Default CSS
 $font-family: "Archivo", sans-serif;
 $font-size: 14px;
 $paragraph-color: #666666;
-$black-color: #222222;
+$black-color: #5f1d74;
 $white-color: #ffffff;
 $transition: 0.5s;
 
@@ -3113,6 +3113,7 @@ Testimonials Area CSS
 Products Offer Area CSS
 =================================================*/
 .products-offer-area {
+  top:50px;
   position: relative;
   z-index: 1;
   background: {
@@ -3123,8 +3124,8 @@ Products Offer Area CSS
   }
   &.bg-image2 {
     background: {
-      image: url(../../../images/offer-bg2.png);
-    }
+      image: url(../../../images/offer-bg2.jpg);
+    },
   }
 }
 .products-offer-content {
@@ -7935,7 +7936,7 @@ Go Top CSS
   z-index: 999;
 }
 .header-fixed-area {
-  background-color: #222222;
+  background-color: #5f1d74;
   left: 0;
   top: 0;
   width: 100%;

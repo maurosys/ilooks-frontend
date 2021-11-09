@@ -42,7 +42,7 @@ const Faq = () => {
                   <AccordionItemPanel>
                     <p>
                       Escolha tudo que o gostar em nossa plataforma, roupas, acessórios ou calçados.<br/>
-                      Vamos realizar a entrega dos produtos no endereço cadastrado, você terá 48h úteis para experimentar tudo com conforto e no seu tempo. <br/>
+                      Vamos realizar a entrega dos produtos no endereço cadastrado, você terá 48h corridas para experimentar tudo com conforto e no seu tempo. <br/>
                       Pague apenas o que decidir ficar.
 
                     </p>
@@ -281,7 +281,7 @@ const Faq = () => {
                   </AccordionItemHeading>
                   <AccordionItemPanel>
                     <p>
-                      Após realizar o pedido o prazo de entrega será de até 48h. Será contado a partir da confirmação do
+                      Após realizar o pedido o prazo de entrega será de até 48hrs úteis. Será contado a partir da confirmação do
                       pedido realizado que enviaremos via e-mail.<br/>
                       Você poderá realizar o rastreamento de sua entrega em nosso site.
 

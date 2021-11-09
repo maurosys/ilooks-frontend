@@ -17,6 +17,7 @@ const Pagination = ({
   setCurrentPage,
 }: PaginationProps) => {
   const handleUpdateCurrentPage = (currentPage: number) => {
+    sessionStorage.setItem('@ilookscommerce_cpage',`${currentPage}`);
     setCurrentPage(currentPage);
   };
 

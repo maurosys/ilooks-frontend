@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
-import {connect} from "react-redux";
-import Link from "next/link";
-import {parseCookies} from "nookies";
+import React, {useEffect, useState} from 'react';
+import {connect}                    from 'react-redux';
+import Link                         from 'next/link';
+import {parseCookies}               from 'nookies';
 
-import Cart from "../Modal/Cart";
-import Wishlist from "../Modal/Wishlist";
-import {Products as ProductsPros} from "../../store/ducks/products/types";
+import Cart                       from '../Modal/Cart';
+import Wishlist                   from '../Modal/Wishlist';
+import {Products as ProductsPros} from '../../store/ducks/products/types';
 // import { ApplicationState } from "../../store";
 
 //TYPES
-import {CategoryRequest, SubCategoryRequest} from "@type/request";
-import {getAPIClient} from "@services/api";
+import {CategoryRequest, SubCategoryRequest} from '@type/request';
+import {getAPIClient}                        from '@services/api';
 
 interface StateProps {
 	products: ProductsPros[];
@@ -25,24 +25,27 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 	const [searchForma, setSearchForma] = useState(false);
 	const [collapsed, setCollapsed] = useState(true);
 	const [qttyItems, setQttyItems] = useState(0);
-	
-	const {"nextilooks.auth": auth} = parseCookies();
+
+	const {'nextilooks.auth': auth} = parseCookies();
 	const authUser = auth ? JSON.parse(auth) : {};
-	
+
 	const [categories, setCategories] = useState([]);
 	const [subCategories, setSubCategories] = useState([]);
 	const api = getAPIClient();
-	
+
 	useEffect(() => {
 		const getDatas = async () => {
-			const categories = await api.get("category?stock=true");
-			const subCategories = await api.get("subcategory?stock=true");
+			const categories = await api.get('category?stock=true');
+			const subCategories = await api.get('subcategory?stock=true');
+
+			sessionStorage.setItem('@ilooksecommerce_categories', JSON.stringify(categories.data));
+			sessionStorage.setItem('@ilooksecommerce_subcategories', JSON.stringify(subCategories.data));
 			setCategories(categories.data);
 			setSubCategories(subCategories.data);
 		};
 		getDatas();
 	}, []);
-	
+
 	useEffect(() => {
 		let qtty = 0;
 		if (card && card.length > 0) {
@@ -50,45 +53,43 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 		}
 		setQttyItems(qtty);
 	}, [card]);
-	
+
 	const handleWishlist = () => {
 		setOpenWishlist(true);
 	};
-	
+
 	const handleCloseWishlist = () => {
 		setOpenWishlist(false);
 	};
-	
+
 	const handleCart = () => {
 		return setDisplay(!display);
 	};
-	
+
 	const handleSearchForm = () => {
 		return setSearchForma(!searchForma);
 	};
-	
+
 	const toggleNavbar = () => {
 		return setCollapsed(!collapsed);
 	};
-	
+
 	useEffect(() => {
-		let elementId = document.getElementById("navbar");
-		document.addEventListener("scroll", () => {
-			if (window.scrollY > 170) {
-				elementId.classList.add("is-sticky");
+		let elementId = document.getElementById('navbar');
+		document.addEventListener('scroll', () => {
+			if (window.scrollY > 10) {
+				elementId.classList.add('is-sticky');
+				console.log('ISITICK');
 			} else {
-				elementId.classList.remove("is-sticky");
+				elementId.classList.remove('is-sticky');
+				console.log('NN-ISITICK');
 			}
 		});
 		window.scrollTo(0, 0);
 	}, []);
-	
-	const classOne = collapsed
-		? "collapse navbar-collapse"
-		: "collapse navbar-collapse show";
-	const classTwo = collapsed
-		? "navbar-toggler navbar-toggler-right collapsed"
-		: "navbar-toggler navbar-toggler-right";
+
+	const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
+	const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
 	return (
 		<>
 			<div className="navbar-area bg-black">
@@ -98,15 +99,15 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 							<Link href="/">
 								<a className="navbar-brand">
 									<img
-										src={require("../../images/logoBranco.png")}
+										src={require('../../images/logoBranco.png')}
 										alt="logo"
 										style={{
-											width: "60px",
+											width: '60px',
 										}}
 									/>
 								</a>
 							</Link>
-							
+
 							<button
 								onClick={toggleNavbar}
 								className={classTwo}
@@ -121,7 +122,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 								<span className="icon-bar middle-bar"></span>
 								<span className="icon-bar bottom-bar"></span>
 							</button>
-							
+
 							<div className={classOne} id="navbarSupportedContent">
 								<ul className="navbar-nav">
 									<li className="nav-item megamenu">
@@ -130,7 +131,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 												className="nav-link"
 												onClick={(e) => e.preventDefault()}
 											>
-												Compre por Departamento{" "}
+												Compre por Departamento{' '}
 												<i className="fas fa-chevron-down"></i>
 											</a>
 										</Link>
@@ -139,51 +140,51 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 												<div className="container">
 													<div className="row">
 														{categories &&
-															categories.map((category) => (
-																<div
-																	className="col"
-																	key={`${category.id}listheader`}
-																>
-																	<h6 className="submenu-title">
-																		<Link href={`/products?category=${category.id}`}>
-																			<a>{category.name}</a>
-																		</Link>
-																	</h6>
-																	<ul className="megamenu-submenu">
-																		{subCategories
-																			.filter(
-																				(subCategory) =>
-																					subCategory.categoryId === category.id
-																			)
-																			.map((itemSubCategory) => (
-																				<li
-																					key={`${itemSubCategory.id}listheader`}
-																				>
-																					<Link
-																						href={`/products?category=${category.id}&sub_category=${itemSubCategory.id}`}
-																					>
-																						<a>{itemSubCategory.name}</a>
-																					</Link>
-																				</li>
-																			))}
-																	</ul>
-																</div>
-															))}
-														
+														 categories.map((category) => (
+															 <div
+																 className="col"
+																 key={`${category.id}listheader`}
+															 >
+																 <h6 className="submenu-title">
+																	 <Link href={`/products?category=${category.id}`}>
+																		 <a onClick={(e) => sessionStorage.removeItem('@ilookscommerce_cpage')}>{category.name}</a>
+																	 </Link>
+																 </h6>
+																 <ul className="megamenu-submenu">
+																	 {subCategories
+																		 .filter(
+																			 (subCategory) =>
+																				 subCategory.categoryId === category.id
+																		 )
+																		 .map((itemSubCategory) => (
+																			 <li
+																				 key={`${itemSubCategory.id}listheader`}
+																			 >
+																				 <Link
+																					 href={`/products?category=${category.id}&sub_category=${itemSubCategory.id}`}
+																				 >
+																					 <a onClick={(e) => sessionStorage.removeItem('@ilookscommerce_cpage')}>{itemSubCategory.name}</a>
+																				 </Link>
+																			 </li>
+																		 ))}
+																 </ul>
+															 </div>
+														 ))}
+
 														<div className="col">
 															<ul className="megamenu-submenu">
 																<li>
 																	<div className="aside-trending-products">
 																		<img
-																			src={require("../../images/category-products-img2.jpg")}
+																			src={require('../../images/category-products-img2.jpg')}
 																			alt="image"
 																		/>
-																		
+
 																		<div className="category">
 																			<h4>Todos os produtos</h4>
 																		</div>
 																		<Link href="/products">
-																			<a></a>
+																			<a onClick={(e) => sessionStorage.removeItem('@ilookscommerce_cpage')}></a>
 																		</Link>
 																	</div>
 																</li>
@@ -194,41 +195,41 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 											</li>
 										</ul>
 									</li>
-									
+
 									<li className="nav-item p-relative">
 										<Link href="/">
 											<a className="nav-link active">Home</a>
 										</Link>
 									</li>
-									
+
 									<li className="nav-item megamenu">
 										<Link href="/about">
 											<a className="nav-link">Sobre nós</a>
 										</Link>
 									</li>
 								</ul>
-								
+
 								<div className="others-option">
 									<div className="option-item">
 										<i
 											onClick={handleSearchForm}
 											className="search-btn fas fa-search"
 											style={{
-												display: searchForma ? "none" : "block",
+												display: searchForma ? 'none' : 'block',
 											}}
 										></i>
-										
+
 										<i
 											onClick={handleSearchForm}
 											className={`close-btn fas fa-times ${
-												searchForma ? "active" : ""
+												searchForma ? 'active' : ''
 											}`}
 										></i>
-										
+
 										<div
 											className="search-overlay search-popup"
 											style={{
-												display: searchForma ? "block" : "none",
+												display: searchForma ? 'block' : 'none',
 											}}
 										>
 											<div className="search-box">
@@ -246,17 +247,17 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 											</div>
 										</div>
 									</div>
-									
+
 									<div className="option-item">
 										{authUser.userId ? (
 											<Link href="/orders">
 												<a>Minha conta</a>
 											</Link>
 										) : (
-											<Link href="/login">
-												<a>Entrar</a>
-											</Link>
-										)}
+											 <Link href="/login">
+												 <a>Entrar</a>
+											 </Link>
+										 )}
 									</div>
 									<div className="option-item">
 										<Link href="#">
@@ -279,7 +280,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 												}}
 											>
 												<i className="fas fa-shopping-bag"></i>
-												({qttyItems}){" "}
+												({qttyItems}){' '}
 											</a>
 										</Link>
 									</div>
@@ -289,8 +290,8 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 					</div>
 				</div>
 			</div>
-			{display ? <Cart onClick={handleCart}/> : ""}
-			{openWishlist ? <Wishlist closeWishlist={handleCloseWishlist}/> : ""}
+			{display ? <Cart onClick={handleCart}/> : ''}
+			{openWishlist ? <Wishlist closeWishlist={handleCloseWishlist}/> : ''}
 		</>
 	);
 };
@@ -298,7 +299,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 const mapStateToProps = (state) => {
 	return {
 		products: state.products.data,
-		card: state.card,
+		card:     state.card,
 	};
 };
 

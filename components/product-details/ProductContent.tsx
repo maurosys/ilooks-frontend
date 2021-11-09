@@ -135,7 +135,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 
 		const ccart = JSON.parse(localStorage.getItem('@ilooksecommerce_cart'));
 		const product = ccart?.find((prod) => prod.productDetail.id === detailSelected.id);
-		const qtyRequested = (product?.productDetail.quantity ?? 0) + qty;
+		const qtyRequested = (product?.qty ?? 0) + qty;
 
 		const cartQtyTotal = ccart?.reduce((totalizador, item) => {
 			return totalizador += item.qty;
@@ -359,11 +359,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 								min={min}
 								max={max}
 								onChange={(e) =>
-									setQty(
-										Number(e.target.value) > max
-										? max
-										: Number(e.target.value)
-									)
+									setQty(Number(e.target.value) > max ? max : Number(e.target.value))
 								}
 							/>
 							<span className="plus-btn" onClick={IncrementItem}>

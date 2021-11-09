@@ -15,7 +15,7 @@
 .radio-custom {
   width: 20px;
   height: 20px;
-  border: 1px solid #222;
+  border: 1px solid #5f1d74;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -26,5 +26,5 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #222;
+  background-color: #5f1d74;
 }

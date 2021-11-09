@@ -1753,7 +1753,7 @@ Modal CSS
 
 .bts-popup .bts-popup-container form button:hover,
 .bts-popup .bts-popup-container form button:focus {
-  background-color: #000000;
+  background-color: #351041;
 }
 
 .bts-popup .bts-popup-container form .validation-danger {
@@ -1766,7 +1766,7 @@ Modal CSS
 }
 
 .modal {
-  background-color: #0000004d;
+  background-color: #3510414d;
 }
 
 .shoppingWishlistModal.modal.right .modal-dialog {
@@ -3776,7 +3776,7 @@ Products Offer Area CSS
 }
 
 .products-offer-area.bg-image2 {
-  background-image: url(../../../images/offer-bg2.png);
+  background-image: url(../../../images/offer-bg2.jpg);
 }
 
 .products-offer-content {
@@ -4073,7 +4073,7 @@ News Details Area CSS
 }
 
 .blog-details .article-content .category li a {
-  border: 1px solid #222222;
+  border: 1px solid #5f1d74;
   border-radius: 5px;
   padding: 4px 15px;
   font-size: 13px;
@@ -4229,7 +4229,7 @@ blockquote cite::before {
 }
 
 .comments-area .comment-body .reply a {
-  border: 1px solid #222222;
+  border: 1px solid #5f1d74;
   color: #222222;
   display: inline-block;
   padding: 5px 20px;
@@ -4480,7 +4480,7 @@ Subscribe Area CSS
 
 .newsletter-form button:hover,
 .newsletter-form button:focus {
-  background-color: #000000;
+  background-color: #351041;
 }
 
 .newsletter-form .validation-danger {
@@ -4524,7 +4524,7 @@ Instagram Area CSS
   top: 0;
   width: 100%;
   height: 100%;
-  background: #000000;
+  background: #351041;
   left: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -5934,7 +5934,7 @@ Woocommerce Sidebar Area CSS
   .collection-filter-by-price
   .irs--flat
   .irs-single::before {
-  border-top-color: #222222;
+  border-top-color: #5f1d74;
 }
 
 .woocommerce-sidebar-area
@@ -6651,7 +6651,7 @@ Products Details Area CSS
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid #222222;
+  border: 2px solid #5f1d74;
   opacity: 0;
   visibility: hidden;
   -webkit-transition: 0.5s;
@@ -8693,7 +8693,7 @@ Checkout CSS
   background: #ffffff;
   padding: 18px 25px 15px;
   margin-bottom: 35px;
-  border-top: 3px solid #222222;
+  border-top: 3px solid #5f1d74;
 }
 
 .user-actions i {
@@ -9371,7 +9371,7 @@ Go Top CSS
 
 .main-banner-three.item-bg4::before {
   content: "";
-  background-color: #000000;
+  background-color: #351041;
   position: absolute;
   left: 0;
   top: 0;
@@ -10830,7 +10830,7 @@ All Products Area CSS
   left: 0;
   width: 12px;
   height: 12px;
-  border: 1px solid #222222;
+  border: 1px solid #5f1d74;
 }
 
 .products-category-tab-style-2 .title h2 .dot::before {
@@ -10923,8 +10923,8 @@ All Products Area CSS
   background-color: #ffffff;
   color: #999999;
   font-size: 17px;
-  -webkit-box-shadow: 0px 15px 20px -12px #000000;
-  box-shadow: 0px 15px 20px -12px #000000;
+  -webkit-box-shadow: 0px 15px 20px -12px #351041;
+  box-shadow: 0px 15px 20px -12px #351041;
   line-height: 35px;
   -webkit-transition: 0.5s;
   transition: 0.5s;

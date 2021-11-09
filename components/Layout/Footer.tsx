@@ -97,7 +97,7 @@ const Footer = () => {
                 <li>
                   <i className="far fa-envelope"></i>
                   Email:{" "}
-                  <a href="mailto:suporte@ilooks.com.br">atendimento@ilooks.com.br</a>
+                  <a href="mailto:atendimento@ilooks.com.br">atendimento@ilooks.com.br</a>
                 </li>
               </ul>
             </div>

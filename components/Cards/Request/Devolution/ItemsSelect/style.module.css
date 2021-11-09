@@ -1,5 +1,5 @@
 .card {
-  border: 1px solid #222;
+  border: 1px solid #5f1d74;
   padding: 5px;
   width: 140px;
   /* height: 250px; */
@@ -27,6 +27,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #222;
+  border-top: 1px solid #5f1d74;
   /* height: 10px; */
 }
