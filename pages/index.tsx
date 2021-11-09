@@ -96,7 +96,8 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
 			<Products products={products}/>
 
-			<ProductsOffer/>
+			{/*<ProductsOffer/>*/}
+			<img src={require("../images/offer-bg2.png")}/>
 
 			<Partner/>
 

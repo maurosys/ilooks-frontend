@@ -24,7 +24,7 @@ const Footer = () => {
 
           <div className="col-lg-3 col-md-6">
             <div className="single-footer-widget">
-              <h3>Link rápidos</h3>
+              <h3>Links rápidos</h3>
 
               <ul className="quick-links">
                 <li>
