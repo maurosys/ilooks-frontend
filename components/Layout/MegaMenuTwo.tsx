@@ -108,6 +108,44 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 								</a>
 							</Link>
 
+							{/*home*/}
+							<div className="nav-item p-relative">
+								<Link href="/">
+									<a className="nav-link active" onClick={(e) => setCollapsed(true)} style={{textTransform:"uppercase",color:"#fff"}}>Home</a>
+								</Link>
+							</div>
+
+							{/*favoritos*/}
+							<div className="option-item">
+								<Link href="#">
+									<a
+										onClick={(e) => {
+											e.preventDefault();
+											setCollapsed(true);
+											handleWishlist();
+										}}
+									>
+										<i className="far fa-heart" style={{color:"#fff"}}></i>
+									</a>
+								</Link>
+							</div>
+							{/*carrinho*/}
+							<div className="option-item" style={{width:40,marginLeft:10}}>
+								<Link href="#">
+									<a
+										onClick={(e) => {
+											e.preventDefault();
+											setCollapsed(true);
+											handleCart();
+										}}
+										style={{color:"#fff"}}
+									>
+										<i className="fas fa-shopping-bag" style={{color:"#fff"}}></i>
+										({qttyItems}){' '}
+									</a>
+								</Link>
+							</div>
+
 							<button
 								onClick={toggleNavbar}
 								className={classTwo}
@@ -129,7 +167,10 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 										<Link href="#">
 											<a
 												className="nav-link"
-												onClick={(e) => e.preventDefault()}
+												onClick={(e) => {
+													e.preventDefault();
+													setCollapsed(true);
+												}}
 											>
 												Compre por Departamento{' '}
 												<i className="fas fa-chevron-down"></i>
@@ -147,7 +188,10 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 															 >
 																 <h6 className="submenu-title">
 																	 <Link href={`/products?category=${category.id}`}>
-																		 <a onClick={(e) => sessionStorage.removeItem('@ilookscommerce_cpage')}>{category.name}</a>
+																		 <a onClick={(e) => {
+																			 setCollapsed(true);
+																			 sessionStorage.removeItem('@ilookscommerce_cpage');
+																		 }}>{category.name}</a>
 																	 </Link>
 																 </h6>
 																 <ul className="megamenu-submenu">
@@ -163,7 +207,10 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																				 <Link
 																					 href={`/products?category=${category.id}&sub_category=${itemSubCategory.id}`}
 																				 >
-																					 <a onClick={(e) => sessionStorage.removeItem('@ilookscommerce_cpage')}>{itemSubCategory.name}</a>
+																					 <a onClick={(e) => {
+																						 setCollapsed(true);
+																						 sessionStorage.removeItem('@ilookscommerce_cpage');
+																					 }}>{itemSubCategory.name}</a>
 																				 </Link>
 																			 </li>
 																		 ))}
@@ -184,7 +231,10 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																			<h4>Todos os produtos</h4>
 																		</div>
 																		<Link href="/products">
-																			<a onClick={(e) => sessionStorage.removeItem('@ilookscommerce_cpage')}></a>
+																			<a onClick={(e) => {
+																				setCollapsed(true);
+																				sessionStorage.removeItem('@ilookscommerce_cpage');
+																			}}></a>
 																		</Link>
 																	</div>
 																</li>
@@ -196,15 +246,10 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 										</ul>
 									</li>
 
-									<li className="nav-item p-relative">
-										<Link href="/">
-											<a className="nav-link active">Home</a>
-										</Link>
-									</li>
-
+									{/*sobre*/}
 									<li className="nav-item megamenu">
 										<Link href="/about">
-											<a className="nav-link">Sobre nós</a>
+											<a className="nav-link" onClick={(e) => setCollapsed(true)}>Sobre nós</a>
 										</Link>
 									</li>
 								</ul>
@@ -226,12 +271,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 											}`}
 										></i>
 
-										<div
-											className="search-overlay search-popup"
-											style={{
-												display: searchForma ? 'block' : 'none',
-											}}
-										>
+										<div className="search-overlay search-popup" style={{display: searchForma ? 'block' : 'none',}}>
 											<div className="search-box">
 												<form className="search-form">
 													<input
@@ -247,43 +287,19 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 											</div>
 										</div>
 									</div>
-
+									{/*login*/}
 									<div className="option-item">
 										{authUser.userId ? (
 											<Link href="/orders">
-												<a>Minha conta</a>
+												<a onClick={(e) => setCollapsed(true)}>Minha conta</a>
 											</Link>
 										) : (
 											 <Link href="/login">
-												 <a>Entrar</a>
+												 <a onClick={(e) => setCollapsed(true)}>Entrar</a>
 											 </Link>
 										 )}
 									</div>
-									<div className="option-item">
-										<Link href="#">
-											<a
-												onClick={(e) => {
-													e.preventDefault();
-													handleWishlist();
-												}}
-											>
-												<i className="far fa-heart"></i>
-											</a>
-										</Link>
-									</div>
-									<div className="option-item">
-										<Link href="#">
-											<a
-												onClick={(e) => {
-													e.preventDefault();
-													handleCart();
-												}}
-											>
-												<i className="fas fa-shopping-bag"></i>
-												({qttyItems}){' '}
-											</a>
-										</Link>
-									</div>
+
 								</div>
 							</div>
 						</nav>
