@@ -130,7 +130,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 								</Link>
 							</div>
 							{/*carrinho*/}
-							<div className="option-item" style={{width:40,marginLeft:10}}>
+							<div className="option-item" style={{width:60,marginLeft:10}}>
 								<Link href="#">
 									<a
 										onClick={(e) => {
