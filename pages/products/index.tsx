@@ -148,7 +148,7 @@ const Products = ({
 		if (!category && !sub_category && !provider) {
 			setOrigemProducts('Todos os produtos');
 		}
-	}, [currentPage, totalOfPages, productForPage, sub_category]);
+	}, [currentPage, totalOfPages, productForPage,category, sub_category]);
 
 	function handleGrid(e) {
 		setGridClass(e);

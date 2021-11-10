@@ -51,7 +51,7 @@ const Details = (props) => {
             </div>
             <hr />
             
-            <div className="menu-option-orders-details">
+{/*            <div className="menu-option-orders-details">
                 <Link href="/contact-us">
                     <button className="btn btn-secondary" style={{
                         backgroundColor: '#222',
@@ -63,7 +63,7 @@ const Details = (props) => {
                     width: 100,
                     marginTop: 50
                 }} />
-            </div>
+            </div>*/}
     
         </div>
     )

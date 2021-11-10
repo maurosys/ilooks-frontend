@@ -221,7 +221,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 														<div className="col">
 															<ul className="megamenu-submenu">
 																<li>
-																	<div className="aside-trending-products" style={{height:"60px"}}>
+																	<div className="aside-trending-products" style={{height:"60px",width:"150px"}}>
 {/*																		<img
 																			src={require('../../images/category-products-img2.jpg')}
 																			alt="image"
