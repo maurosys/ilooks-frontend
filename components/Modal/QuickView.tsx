@@ -101,13 +101,49 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 			return;
 		}
 
-		const detailSelected = detailsProductAll.find(
-			(detail) => detail.size === sizeSelected && detail.color === colorSelect
-		);
+		const detailSelected = detailsProductAll.find((detail) => detail.size === sizeSelected && detail.color === colorSelect);
 
 		if (!detailSelected) {
 			toast.error(
 				'Ocorreu um erro ao adicionar ao carrinho, por favor tente novamente mais tarde.',
+				{
+					position:        'bottom-left',
+					autoClose:       5000,
+					hideProgressBar: false,
+					closeOnClick:    true,
+					pauseOnHover:    true,
+					draggable:       true,
+				}
+			);
+			return;
+		}
+
+		const ccart = JSON.parse(localStorage.getItem('@ilooksecommerce_cart'));
+		const product = ccart?.find((prod) => prod.productDetail.id === detailSelected.id);
+		const qtyRequested = (product?.qty ?? 0) + qty;
+
+		const cartQtyTotal = ccart?.reduce((totalizador, item) => {
+			return totalizador += item.qty;
+		}, 0);
+
+		if (cartQtyTotal + qty > max) {
+			toast.warn(
+				`Quantidade máxima de ${max} peças por pedido`,
+				{
+					position:        'bottom-left',
+					autoClose:       5000,
+					hideProgressBar: false,
+					closeOnClick:    true,
+					pauseOnHover:    true,
+					draggable:       true,
+				}
+			);
+			return;
+		}
+
+		if (detailSelected.quantity < qtyRequested) {
+			toast.warn(
+				`Estoque disponível de ${detailSelected.quantity} para esta peça nesta cor e tamanho`,
 				{
 					position:        'bottom-left',
 					autoClose:       5000,
@@ -388,9 +424,9 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 									</button>
 								</div>
 
-{/*								<Link href={`/products/${modalData?.id}`}>
-									<a className="view-full-info">Ver mais detalhes</a>
-								</Link>*/}
+								{/*								<Link href={`/products/${modalData?.id}`}>
+								 <a className="view-full-info">Ver mais detalhes</a>
+								 </Link>*/}
 							</div>
 						</div>
 					</div>
