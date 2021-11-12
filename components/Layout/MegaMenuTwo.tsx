@@ -79,10 +79,8 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 		document.addEventListener('scroll', () => {
 			if (window.scrollY > 10) {
 				elementId.classList.add('is-sticky');
-				console.log('ISITICK');
 			} else {
 				elementId.classList.remove('is-sticky');
-				console.log('NN-ISITICK');
 			}
 		});
 		window.scrollTo(0, 0);

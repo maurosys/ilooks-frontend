@@ -22,8 +22,6 @@ const CartProduct = ({ card }: CartPorductProps) => {
   const [max, setMax] = useState(10);
   const [min, setMin] = useState(1);
 
-  let teste = 0;
-
   const deleteCard = (id: any) => {
     dispatch(removeItem(id));
   };
@@ -37,7 +35,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
       card.map((data, idx) => {
         return (
           <tr key={idx}>
-            <td className="product-thumbnail">
+            <td className="product-thumbnail" colSpan={1}>
               <Link
                 href="/product/[id]"
                 as={`/product/${formatToUggly({
@@ -94,7 +92,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                 {new Intl.NumberFormat("br-BR", {
                   style: "currency",
                   currency: "BRL",
-                }).format(data.price)}
+                }).format((data.outletPrice>0?data.outletPrice:data.price))}
               </span>
             </td>
 
@@ -111,7 +109,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                       }
                       IncrementItem({
                           ...data,
-                          total: data.price * Number(e.target.value),
+                          total: (data.outletPrice>0?data.outletPrice:data.price) * Number(e.target.value),
                           qty: Number(e.target.value),
                       })
                   }
@@ -125,7 +123,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
                 {new Intl.NumberFormat("br-BR", {
                   style: "currency",
                   currency: "BRL",
-                }).format(data.price * data.qty)}
+                }).format((data.outletPrice>0?data.outletPrice:data.price) * data.qty)}
               </span>
 
               <Link href="#">
@@ -142,7 +140,7 @@ const CartProduct = ({ card }: CartPorductProps) => {
       })
     ) : (
       <tr>
-        <td className="product-thumbnail" colSpan={5}>
+        <td className="product-thumbnail">
           <p>Nenhum produto foi adicionado ao carrinho.</p>
         </td>
       </tr>

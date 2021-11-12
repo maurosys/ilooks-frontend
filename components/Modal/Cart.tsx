@@ -89,7 +89,7 @@ const Cart = ({ card, onClick }: StateProps) => {
                             {new Intl.NumberFormat("br-BR", {
                               style: "currency",
                               currency: "BRL",
-                            }).format(card.price)}
+                            }).format((card.outletPrice>0?card.outletPrice:card.price))}
                           </span>
                           <i
                             className="fa fa-trash fa-1x"

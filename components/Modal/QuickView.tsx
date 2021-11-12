@@ -160,10 +160,7 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 			addToCart({
 				          ...item,
 				          qty:           qty,
-				          total:         item.price * qty,
-				          title:         item.name,
-				          image:         detailSelected.photos[0],
-				          imageHover:    detailSelected.photos[0],
+				          total:         item.outletPrice > 0 ? item.outletPrice * qty : item.price * qty,
 				          productDetail: detailSelected,
 			          })
 		);
@@ -179,9 +176,9 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 		});
 	}
 
-	const teste = card?.find((item) => modalData.id === item.id);
-
 	function checkIsExist(item) {
+		console.log('ITEM:', item);
+		const teste = card?.find((item) => modalData.id === item.id);
 		if (!teste) {
 			addItemCart(item);
 			return;
@@ -306,36 +303,6 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 										))}
 									</div>
 
-									{/* <ul>
-									 <li>
-									 <Link href="#">
-									 <a title="Black" className="color-black"></a>
-									 </Link>
-									 </li>
-									 <li>
-									 <Link href="#">
-									 <a title="White" className="color-white"></a>
-									 </Link>
-									 </li>
-									 <li className="active">
-									 <Link href="#">
-									 <a title="Green" className="color-green"></a>
-									 </Link>
-									 </li>
-									 <li>
-									 <Link href="#">
-									 <a
-									 title="Yellow Green"
-									 className="color-yellowgreen"
-									 ></a>
-									 </Link>
-									 </li>
-									 <li>
-									 <Link href="#">
-									 <a title="Teal" className="color-teal"></a>
-									 </Link>
-									 </li>
-									 </ul> */}
 								</div>
 
 								<div className="product-size-wrapper">
@@ -369,33 +336,6 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 										))}
 									</ul>
 
-									{/* <ul>
-									 <li>
-									 <Link href="#">
-									 <a>PP</a>
-									 </Link>
-									 </li>
-									 <li className="active">
-									 <Link href="#">
-									 <a>P</a>
-									 </Link>
-									 </li>
-									 <li className="active">
-									 <Link href="#">
-									 <a>M</a>
-									 </Link>
-									 </li>
-									 <li>
-									 <Link href="#">
-									 <a>GG</a>
-									 </Link>
-									 </li>
-									 <li>
-									 <Link href="#">
-									 <a>GGG</a>
-									 </Link>
-									 </li>
-									 </ul> */}
 								</div>
 
 								<div className="product-add-to-cart">
@@ -424,9 +364,6 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
 									</button>
 								</div>
 
-								{/*								<Link href={`/products/${modalData?.id}`}>
-								 <a className="view-full-info">Ver mais detalhes</a>
-								 </Link>*/}
 							</div>
 						</div>
 					</div>

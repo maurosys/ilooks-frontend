@@ -90,6 +90,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 	}, [colorSelect]);
 
 	function addItemCart(item) {
+		console.log('ii:', item);
 		if (!sizeSelected || sizeSelected.length === 0) {
 			toast.warn('Por favor selecione ao menos um tamanho', {
 				position:        'bottom-left',
@@ -170,11 +171,11 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			);
 			return;
 		}
-
+		
 		dispatch(
 			addToCart({
 				          ...item,
-				          total:         item.price * qty,
+				          total:         item.outletPrice > 0 ? item.outletPrice * qty : item.price * qty,
 				          title:         item.name,
 				          image:         detailSelected.photos[0],
 				          imageHover:    detailSelected.photos[0],
