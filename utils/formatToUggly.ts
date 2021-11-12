@@ -18,9 +18,9 @@ export const formatToUggly = ({ name, id }: FormatToUglyProps) => {
         .replace(/\s/g, "-")
         .toLowerCase()}${divisor}${id}`;
     } else {
-      return `empty${divisor}emppy`;
+      return `empty${divisor}empty`;
     }
   } else {
-    return `empty${divisor}emppy`;
+    return `empty${divisor}empty`;
   }
 };

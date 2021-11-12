@@ -171,7 +171,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
 			);
 			return;
 		}
-		
+
 		dispatch(
 			addToCart({
 				          ...item,

@@ -90,7 +90,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   var product = undefined;
 
   try {
-    const response = await apiClient.get(`product/${uuid}`);
+    const response = await apiClient.get(`product/${uuid}?stock=true`);
     if (response.data.products.length > 0) {
       product = response.data.products[0];
     }
