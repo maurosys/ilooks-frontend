@@ -85,7 +85,7 @@ const ModalRequestDevolutionItem = ({
       setItemsRendering([...newArray]);
 
       setNewTotal(Number(amount) - subTotal);
-      if (newTotal > 1500) {
+      if (newTotal >= 1500) {
         setParcelas([
           "à vista",
           "2x sem juros",
@@ -94,7 +94,7 @@ const ModalRequestDevolutionItem = ({
           "5x sem juros",
           "6x sem juros",
         ]);
-      } else if (newTotal > 1000) {
+      } else if (newTotal >= 900) {
         setParcelas([
           "à vista",
           "2x sem juros",
@@ -102,16 +102,16 @@ const ModalRequestDevolutionItem = ({
           "4x sem juros",
           "5x sem juros",
         ]);
-      } else if (newTotal > 700) {
+      } else if (newTotal >= 600) {
         setParcelas([
           "à vista",
           "2x sem juros",
           "3x sem juros",
           "4x sem juros",
         ]);
-      } else if (newTotal > 500) {
+      } else if (newTotal >= 400) {
         setParcelas(["à vista", "2x sem juros", "3x sem juros"]);
-      } else if (newTotal > 300) {
+      } else if (newTotal >= 100) {
         setParcelas(["à vista", "2x sem juros"]);
       } else {
         setParcelas(["à vista"]);

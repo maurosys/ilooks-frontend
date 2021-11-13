@@ -111,7 +111,7 @@ function CheckoutForm() {
 				setTotalAmount(newTotal);
 
 
-				if (newTotal > 1500) {
+				if (newTotal >= 1500) {
 					setOptionsInstallments([
 						                       {label: 'à vista', value: '1',},
 						                       {label: '2x sem juros', value: '2',},
@@ -120,7 +120,7 @@ function CheckoutForm() {
 						                       {label: '5x sem juros', value: '5',},
 						                       {label: '6x sem juros', value: '6',},
 					                       ]);
-				} else if (newTotal > 1000) {
+				} else if (newTotal >= 900) {
 					setOptionsInstallments([
 						                       {label: 'à vista', value: '1',},
 						                       {label: '2x sem juros', value: '2',},
@@ -128,20 +128,20 @@ function CheckoutForm() {
 						                       {label: '4x sem juros', value: '4',},
 						                       {label: '5x sem juros', value: '5',},
 					                       ]);
-				} else if (newTotal > 700) {
+				} else if (newTotal >= 600) {
 					setOptionsInstallments([
 						                       {label: 'à vista', value: '1',},
 						                       {label: '2x sem juros', value: '2',},
 						                       {label: '3x sem juros', value: '3',},
 						                       {label: '4x sem juros', value: '4',},
 					                       ]);
-				} else if (newTotal > 500) {
+				} else if (newTotal >= 400) {
 					setOptionsInstallments([
 						                       {label: 'à vista', value: '1',},
 						                       {label: '2x sem juros', value: '2',},
 						                       {label: '3x sem juros', value: '3',},
 					                       ]);
-				} else if (newTotal > 300) {
+				} else if (newTotal >= 100) {
 					setOptionsInstallments([
 						                       {label: 'à vista', value: '1',},
 						                       {label: '2x sem juros', value: '2',},
@@ -283,11 +283,7 @@ function CheckoutForm() {
 		},
 	};
 
-	const {state, setState, handleOnChange, handleOnSubmit, disable} = useForm(
-		stateSchema,
-		validationStateSchema,
-		handleSubmit
-	);
+	const {state, setState, handleOnChange, handleOnSubmit, disable} = useForm(stateSchema, validationStateSchema, handleSubmit);
 
 	const closeInfoParcelamento = () => {
 		setInfoParcelamento(false);
@@ -329,10 +325,7 @@ function CheckoutForm() {
 	async function handleSubmit() {
 		// @ts-ignore
 		if (user?.document != documentPayer) {
-			AlertWarning({
-				             title:   'Pedido',
-				             message: 'CPF do titular cartão não corresponde ao seu CPF',
-			             });
+			AlertWarning({title: 'Pedido', message: 'CPF do titular cartão não corresponde ao seu CPF',});
 			return;
 		}
 
@@ -364,13 +357,7 @@ function CheckoutForm() {
 					);
 					_REQUEST.addressId = response.data.id;
 				} catch (error) {
-					const response =
-						      error &&
-						      error.response &&
-						      error.response.data &&
-						      error.response.data.message
-						      ? error.response.data.message
-						      : 'Ocorreu algum erro, tente novamente.';
+					const response = error && error.response && error.response.data && error.response.data.message ? error.response.data.message : 'Ocorreu algum erro, tente novamente.';
 					console.log(error);
 					ToastDanger('Alteração de endereço', response);
 					return;
@@ -402,10 +389,7 @@ function CheckoutForm() {
 			}, 0);
 			const requestResponse = await createRequest(_REQUEST, token);
 			dispatch(clearCart());
-			AlertSuccess({
-				             title:   'Pedido',
-				             message: 'Seu Pedido foi finalizado com sucesso!',
-			             });
+			AlertSuccess({title: 'Pedido', message: 'Seu Pedido foi finalizado com sucesso!',});
 			router.push('/orders');
 		} catch (error) {
 			console.log('ERR:', error.response.data);
