@@ -170,7 +170,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 													setCollapsed(true);
 												}}
 											>
-												Compre por Departamento{' '}
+												Compre por categoria{' '}
 												<i className="fas fa-chevron-down"></i>
 											</a>
 										</Link>
@@ -289,7 +289,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 									<div className="option-item">
 										{authUser.userId ? (
 											<Link href="/orders">
-												<a onClick={(e) => setCollapsed(true)}>Minha conta</a>
+												<a onClick={(e) => setCollapsed(true)}>Olá {authUser.fullName.split(' ')[0]}</a>
 											</Link>
 										) : (
 											 <Link href="/login">

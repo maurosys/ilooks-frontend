@@ -26,18 +26,18 @@ const Facility = () => {
           <div className="col-lg-3 col-md-6">
             <div className="facility-box">
               <div className="icon">
-                <i className="far fa-credit-card"></i>
+                <i className="fas fa-file-invoice-dollar"></i>
               </div>
-              <h3>Aceitamos Cartões de créditos</h3>
+              <h3>Parcele suas compras em até 6x sem juros</h3>
             </div>
           </div>
 
           <div className="col-lg-3 col-md-6">
             <div className="facility-box">
               <div className="icon">
-                <i className="fas fa-headset"></i>
+                <i className="fas fa-boxes"></i>
               </div>
-              <h3>Suporte Online</h3>
+              <h3>Reserve até 10 peças por pedido</h3>
             </div>
           </div>
         </div>
