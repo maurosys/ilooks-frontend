@@ -51,6 +51,7 @@ export default function OrderItem({
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [timeToDevolution, setTimeToDevolution] = useState(0);
 	const [timeLimitToDevolution, setTimeLimitToDevolution] = useState<Date | undefined>(null);
+	const [hasDevolution,setHasDevolution] = useState(false);
 	const dateOptions: any = {
 		day: "2-digit",
 		month: "2-digit",
@@ -67,6 +68,10 @@ export default function OrderItem({
 	
 	useEffect(() => {
 		const deliveredIn = statusHistory.find((h: StatusHistoryItem) => h.status_request === StatusRequest.DELIVERED)?.action_date;
+		const hadDevolution = statusHistory.find((h)=> h.status_request === StatusRequest.IN_BACK);
+		if (hadDevolution) {
+			setHasDevolution(true);
+		}
 		console.log(deliveredIn);
 		if (deliveredIn) {
 			const timeNow = new Date();
@@ -175,7 +180,7 @@ export default function OrderItem({
 					statusHistory={statusHistory}
 				/>
 				
-				{orderStatus === StatusRequest.IN_BACK.toLowerCase() && (
+				{hasDevolution && (
 					<TimelineOrderDevolution
 						orderStatus={orderStatus}
 						statusHistory={statusHistory}
