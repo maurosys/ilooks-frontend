@@ -1,6 +1,5 @@
-import { OrderStatusProps } from "@components/orderItem";
-import { StatusHistoryItem, StatusRequest, StatusPayment } from "@type/orders";
-import { useEffect, useState } from "react";
+import {StatusDevolution, StatusHistoryItem, StatusRequest} from '@type/orders';
+import {useEffect, useState}                                from 'react';
 
 interface TimeLineOrderProps {
   orderStatus: string;
@@ -44,35 +43,22 @@ const timelineOrderDevolution = ({
       if (status.status_request === StatusRequest.IN_BACK) {
         objectStatus.inBack = status.action_date;
       }
+
+      if (status.status_devolution === StatusDevolution.IN_CARRIER) {
+        objectStatus.reservedPayment = status.action_date;
+      }
+
+      if (status.status_devolution === StatusDevolution.VALIDATION) {
+        objectStatus.withCarrier = status.action_date;
+      }
+
+      if (status.status_devolution === StatusDevolution.ACCEPTED) {
+        objectStatus.delivered = status.action_date;
+      }
     });
 
     setHistory(objectStatus);
 
-    // const tempHistory: historyStatusProps = {
-    //   orderPlaced:
-    //     statusHistory.filter((h) => {
-    //       return h.status_request.toLowerCase() == "realizado";
-    //     })[0]?.action_date ?? "",
-    //   reservedPayment:
-    //     statusHistory.filter((h) => {
-    //       return h.status_request.toLowerCase() == "pagamento";
-    //     })[0]?.action_date ?? "",
-    //   withCarrier:
-    //     statusHistory.filter((h) => {
-    //       return h.status_request.toLowerCase() == "transportadora";
-    //     })[0]?.action_date ?? "",
-    //   onCarriage:
-    //     statusHistory.filter((h) => {
-    //       return h.status_request.toLowerCase() == "transito";
-    //     })[0]?.action_date ?? "",
-    //   delivered:
-    //     statusHistory.filter((h) => {
-    //       return h.status_request.toLowerCase() == "entregue";
-    //     })[0]?.action_date ?? "",
-    // };
-    // setHistory(tempHistory);
-
-    // console.log("HST", tempHistory);
   }, []);
 
   return (
@@ -80,11 +66,7 @@ const timelineOrderDevolution = ({
       <div className={`circle ${history.inBack && "active"}`}>
         <div className="icon"></div>
         <div className="labels">
-          <span className="title-circle">
-            Devolução
-            <br />
-            solicitada
-          </span>
+          <span className="title-circle">Devolução<br />solicitada</span>
           <span className="description-circle">
             {history.inBack &&
               new Date(history.inBack).toLocaleString("pt-BR", dateOptions)}
@@ -96,7 +78,7 @@ const timelineOrderDevolution = ({
       <div className={`circle ${history.reservedPayment && "active"}`}>
         <div className="icon"></div>
         <div className="labels">
-          <span className="title-circle">Com transportadora</span>
+          <span className="title-circle">Com  <br />transportadora</span>
           <span className="description-circle">
             {history.reservedPayment &&
               new Date(history.reservedPayment).toLocaleString(
@@ -111,7 +93,7 @@ const timelineOrderDevolution = ({
       <div className={`circle ${history.withCarrier && "active"}`}>
         <div className="icon"></div>
         <div className="labels">
-          <span className="title-circle">Validação Ilooks</span>
+          <span className="title-circle">Validação <br />Ilooks</span>
           <span className="description-circle">
             {history.withCarrier &&
               new Date(history.withCarrier).toLocaleString(
@@ -123,29 +105,11 @@ const timelineOrderDevolution = ({
         <div className="line"></div>
       </div>
 
-      {/* <div className={`circle ${history.onCarriage ? "active" : ""}`}>
-        <div className="icon"></div>
-        <div className="labels">
-          <span className="title-circle">
-            Devolução <br />
-            aprovada
-          </span>
-          <span className="description-circle">
-            {history.onCarriage &&
-              new Date(history.onCarriage).toLocaleString("pt-BR", dateOptions)}
-          </span>
-        </div>
-        <div className="line"></div>
-      </div> */}
-
       <div className={`circle end ${history.delivered && "active"}`}>
         <div className="icon"></div>
 
         <div className="labels">
-          <span className="title-circle">
-            Devolução <br />
-            aprovada
-          </span>
+          <span className="title-circle">Devolução <br />aprovada</span>
           <span className="description-circle">
             {history.delivered &&
               new Date(history.delivered).toLocaleString("pt-BR", dateOptions)}

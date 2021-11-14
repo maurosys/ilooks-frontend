@@ -17,12 +17,12 @@ export enum StatusPayment {
 }
 
 export enum StatusDevolution {
-  REQUESTED = "Devolução solicitada",
-  IN_TRANSIT = "Coleta programada",
-  IN_CARRIER = "Com transportadora",
-  VALIDATION = "Aguardando validação Ilooks",
-  ACCEPTED = "Devolução aceita e autorizada",
-  REFUSED = "Devolução aceita e autorizada",
+  REQUESTED  = 'Devolução solicitada',
+  IN_CARRIER = 'Pré com transportadora',
+  IN_TRANSIT = 'Transportadora a caminho',
+  VALIDATION = 'Validação com Ilooks',
+  ACCEPTED   = 'Devolução aceita e autorizada',
+  REJECTED   = 'Devolução recusada',
 }
 
 export type OrderItem = {
@@ -38,6 +38,7 @@ export type StatusHistoryItem = {
   id: string;
   status_request: StatusRequest;
   status_payment: StatusPayment;
+  status_devolution: StatusDevolution;
   change_date: Date | string;
   action_date: Date | string;
   requestId: string;

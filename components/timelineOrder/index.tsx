@@ -65,11 +65,7 @@ const TimeLineOrder = ({ orderStatus, statusHistory }: TimeLineOrderProps) => {
       <div className={`circle ${history.orderPlaced && "active"}`}>
         <div className="icon"></div>
         <div className="labels">
-          <span className="title-circle">
-            Pedido
-            <br />
-            realizado
-          </span>
+          <span className="title-circle">Pedido<br />realizado</span>
           <span className="description-circle">
             {history.orderPlaced &&
               new Date(history.orderPlaced).toLocaleString(
@@ -84,11 +80,7 @@ const TimeLineOrder = ({ orderStatus, statusHistory }: TimeLineOrderProps) => {
       <div className={`circle ${history.reservedPayment && "active"}`}>
         <div className="icon"></div>
         <div className="labels">
-          <span className="title-circle">
-            Pagamento
-            <br />
-            pré-reservado
-          </span>
+          <span className="title-circle">Pagamento<br />pré-reservado</span>
           <span className="description-circle">
             {history.reservedPayment &&
               new Date(history.reservedPayment).toLocaleString(
@@ -103,7 +95,7 @@ const TimeLineOrder = ({ orderStatus, statusHistory }: TimeLineOrderProps) => {
       <div className={`circle ${history.withCarrier && "active"}`}>
         <div className="icon"></div>
         <div className="labels">
-          <span className="title-circle">Com transportadora</span>
+          <span className="title-circle">Com  <br />transportadora</span>
           <span className="description-circle">
             {history.withCarrier &&
               new Date(history.withCarrier).toLocaleString(
@@ -118,7 +110,7 @@ const TimeLineOrder = ({ orderStatus, statusHistory }: TimeLineOrderProps) => {
       <div className={`circle ${history.onCarriage ? "active" : ""}`}>
         <div className="icon"></div>
         <div className="labels">
-          <span className="title-circle">Em transporte</span>
+          <span className="title-circle">Em  <br />transporte</span>
           <span className="description-circle">
             {history.onCarriage &&
               new Date(history.onCarriage).toLocaleString("pt-BR", dateOptions)}
@@ -131,7 +123,7 @@ const TimeLineOrder = ({ orderStatus, statusHistory }: TimeLineOrderProps) => {
         <div className="icon"></div>
 
         <div className="labels">
-          <span className="title-circle">Entregue</span>
+          <span className="title-circle">Pedido  <br />entregue</span>
           <span className="description-circle">
             {history.delivered &&
               new Date(history.delivered).toLocaleString("pt-BR", dateOptions)}
