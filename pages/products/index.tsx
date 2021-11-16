@@ -75,6 +75,7 @@ const Products = ({
 				};
 			}
 
+			sessionStorage.setItem('@ilooks_ecommerce_actualparams',JSON.stringify(params));
 			const response = await api.get('/product', {params});
 
 			setOfTotalPages(response.data.totalPage);
@@ -124,7 +125,15 @@ const Products = ({
 
 	useEffect(() => {
 		if (page) {
+			console.log(`TEM PAGE: ${page}`);
 			setCurrentPage(Number(page));
+		} else {
+			console.log(`NUM TEM PAGE`);
+			const oldPage = sessionStorage.getItem('@ilookscommerce_cpage');
+			if (oldPage) {
+				console.log(`PEGOU PAGE: ${oldPage}`);
+				setCurrentPage(Number(oldPage));
+			}
 		}
 		updateQueryProducts();
 
@@ -148,7 +157,7 @@ const Products = ({
 		if (!category && !sub_category && !provider) {
 			setOrigemProducts('Todos os produtos');
 		}
-	}, [currentPage, totalOfPages, productForPage,category, sub_category]);
+	}, [currentPage, totalOfPages, productForPage, category, sub_category]);
 
 	function handleGrid(e) {
 		setGridClass(e);
