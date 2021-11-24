@@ -52,7 +52,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -62,7 +62,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -72,7 +72,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -82,7 +82,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -92,7 +92,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -102,7 +102,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -112,7 +112,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -122,7 +122,7 @@ const InstagramPhoto = () => {
               <i className="fab fa-instagram"></i>
             </div>
 
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
 
           <div className="instagram-box">
@@ -131,7 +131,7 @@ const InstagramPhoto = () => {
             <div className="icon">
               <i className="fab fa-instagram"></i>
             </div>
-            <a target="_blank" href="https://www.instagram.com/"></a>
+            <a target="_blank" href="https://www.instagram.com/ilooksmodaoficial"></a>
           </div>
         </OwlCarousel>
       ) : (

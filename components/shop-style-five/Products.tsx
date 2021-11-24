@@ -9,20 +9,22 @@ const OwlCarousel = dynamic(import('react-owl-carousel3'));
 import {Products as ProductsPros} from '../../store/ducks/products/types';
 import {connect, useDispatch}     from 'react-redux';
 import {addToWishlist}            from '../../store/ducks/WishList/action';
-import {ToastContainer, toast}    from 'react-toastify';
 import {Wishlist}                 from '../../store/ducks/WishList/types';
 import {BsHeartFill}              from 'react-icons/bs';
 
 import {formatToUggly} from '@utils/formatToUggly';
 
 const options = {
-	loop:               true,
+	loop:               false,
+	rewind:             true,
+	center:             true,
 	nav:                false,
-	dots:               true,
+	dots:               false,
 	margin:             30,
 	smartSpeed:         750,
 	autoplay:           true,
 	autoplayHoverPause: true,
+	startPosition:      5,
 	navText:            [
 		'<i class=\'fas fa-chevron-left\'></i>',
 		'<i class=\'fas fa-chevron-right\'></i>',
@@ -111,7 +113,7 @@ const Products = ({products, wishlist}: StateProps) => {
 									className="current"
 								>
                   <span className="tabs-nav-text">
-                    <span className="dot"></span> Produtos recem adicionados
+                    <span className="dot"></span> Produtos em detaque
                   </span>
 								</li>
 
@@ -135,9 +137,7 @@ const Products = ({products, wishlist}: StateProps) => {
 										{display ? (
 											<OwlCarousel {...options}>
 												{products?.map((data, idx) => {
-													const wishlistId = wishlist.filter(
-														(item: Wishlist) => item.id === data.id
-													);
+													const wishlistId = wishlist.filter((item: Wishlist) => item.id === data.id);
 													return (
 														<div className="col-lg-12 col-md-12" key={idx}>
 															<div className="single-product-box">
@@ -150,13 +150,12 @@ const Products = ({products, wishlist}: StateProps) => {
 																		                              })}`}
 																	>
 																		<a onClick={(e) => {
-																			sessionStorage.setItem('@ilooksecommerce',location.href);
+																			sessionStorage.setItem('@ilooksecommerce', location.href);
 																		}}>
 																			<img src={data.image} alt="image"/>
 																			<img src={data.imageHover} alt="image"/>
 																		</a>
 																	</Link>
-
 																	<ul>
 																		<li
 																			style={{
@@ -213,7 +212,7 @@ const Products = ({products, wishlist}: StateProps) => {
 																			                              })}`}
 																		>
 																			<a onClick={(e) => {
-																				sessionStorage.setItem('@ilooksecommerce',location.href);
+																				sessionStorage.setItem('@ilooksecommerce', location.href);
 																			}}>{data.title}</a>
 																		</Link>
 																	</h3>
@@ -242,7 +241,7 @@ const Products = ({products, wishlist}: StateProps) => {
 																			<a
 																				className="btn btn-light"
 																				onClick={(e) => {
-																					sessionStorage.setItem('@ilooksecommerce',location.href);
+																					sessionStorage.setItem('@ilooksecommerce', location.href);
 																				}}
 																			>
 																				Visualizar detalhes
@@ -263,110 +262,110 @@ const Products = ({products, wishlist}: StateProps) => {
 								</div>
 
 								<div id="tab2" className="tabs_item">
-									<div className="row">
-										{display ? (
-											<OwlCarousel {...options}>
-												{products.map((data, idx) => {
-													const wishlistId = wishlist.filter(
-														(item: Wishlist) => item.id === data.id
-													);
-													return (
-														<div className="col-lg-12 col-md-12" key={idx}>
-															<div className="single-product-box">
-																<div className="product-image">
-																	<Link
-																		href="/product/[id]"
-																		as={`/product/${data.id}`}
-																	>
-																		<a onClick={(e) => {
-																			sessionStorage.setItem('@ilooksecommerce',location.href);
-																		}}>
-																			<img src={data.image} alt="image"/>
-																			<img src={data.imageHover} alt="image"/>
-																		</a>
-																	</Link>
+									{/*<div className="row">*/}
+									{/*	{display ? (*/}
+									{/*		<OwlCarousel {...options}>*/}
+									{/*			{products.map((data, idx) => {*/}
+									{/*				const wishlistId = wishlist.filter(*/}
+									{/*					(item: Wishlist) => item.id === data.id*/}
+									{/*				);*/}
+									{/*				return (*/}
+									{/*					<div className="col-lg-12 col-md-12" key={idx}>*/}
+									{/*						<div className="single-product-box">*/}
+									{/*							<div className="product-image">*/}
+									{/*								<Link*/}
+									{/*									href="/product/[id]"*/}
+									{/*									as={`/product/${data.id}`}*/}
+									{/*								>*/}
+									{/*									<a onClick={(e) => {*/}
+									{/*										sessionStorage.setItem('@ilooksecommerce',location.href);*/}
+									{/*									}}>*/}
+									{/*										<img src={data.image} alt="image"/>*/}
+									{/*										<img src={data.imageHover} alt="image"/>*/}
+									{/*									</a>*/}
+									{/*								</Link>*/}
 
-																	<ul>
-																		<li
-																			style={{
-																				cursor: 'pointer',
-																			}}
-																			onClick={() => {
-																				// e.preventDefault();
-																				setModalData(data);
-																				openModal();
-																			}}
-																		>
-																			<a
-																				data-tip="Quick View"
-																				data-place="left"
-																			>
-																				<i className="far fa-eye"></i>
-																			</a>
-																		</li>
-																		<li
-																			onClick={() => {
-																				dispatch(
-																					addToWishlist({
-																						              ...data,
-																						              active: true,
-																					              })
-																				);
-																			}}
-																		>
-																			<Link href="#">
-																				<a
-																					data-tip="Add to Wishlist"
-																					data-place="left"
-																				>
-																					<i className="far">
-																						{wishlistId[0]?.active ? (
-																							<BsHeartFill color="red"/>
-																						) : (
-																							 <BsHeartFill/>
-																						 )}
-																					</i>
-																				</a>
-																			</Link>
-																		</li>
-																	</ul>
-																</div>
+									{/*								<ul>*/}
+									{/*									<li*/}
+									{/*										style={{*/}
+									{/*											cursor: 'pointer',*/}
+									{/*										}}*/}
+									{/*										onClick={() => {*/}
+									{/*											// e.preventDefault();*/}
+									{/*											setModalData(data);*/}
+									{/*											openModal();*/}
+									{/*										}}*/}
+									{/*									>*/}
+									{/*										<a*/}
+									{/*											data-tip="Quick View"*/}
+									{/*											data-place="left"*/}
+									{/*										>*/}
+									{/*											<i className="far fa-eye"></i>*/}
+									{/*										</a>*/}
+									{/*									</li>*/}
+									{/*									<li*/}
+									{/*										onClick={() => {*/}
+									{/*											dispatch(*/}
+									{/*												addToWishlist({*/}
+									{/*													              ...data,*/}
+									{/*													              active: true,*/}
+									{/*												              })*/}
+									{/*											);*/}
+									{/*										}}*/}
+									{/*									>*/}
+									{/*										<Link href="#">*/}
+									{/*											<a*/}
+									{/*												data-tip="Add to Wishlist"*/}
+									{/*												data-place="left"*/}
+									{/*											>*/}
+									{/*												<i className="far">*/}
+									{/*													{wishlistId[0]?.active ? (*/}
+									{/*														<BsHeartFill color="red"/>*/}
+									{/*													) : (*/}
+									{/*														 <BsHeartFill/>*/}
+									{/*													 )}*/}
+									{/*												</i>*/}
+									{/*											</a>*/}
+									{/*										</Link>*/}
+									{/*									</li>*/}
+									{/*								</ul>*/}
+									{/*							</div>*/}
 
-																<div className="product-content">
-																	<h3>
-																		<Link
-																			href="/product/[id]"
-																			as={`/product/${data.id}`}
-																		>
-																			<a onClick={(e) => {
-																				sessionStorage.setItem('@ilooksecommerce',location.href);
-																			}}>{data.title}</a>
-																		</Link>
-																	</h3>
+									{/*							<div className="product-content">*/}
+									{/*								<h3>*/}
+									{/*									<Link*/}
+									{/*										href="/product/[id]"*/}
+									{/*										as={`/product/${data.id}`}*/}
+									{/*									>*/}
+									{/*										<a onClick={(e) => {*/}
+									{/*											sessionStorage.setItem('@ilooksecommerce',location.href);*/}
+									{/*										}}>{data.title}</a>*/}
+									{/*									</Link>*/}
+									{/*								</h3>*/}
 
-																	<div className="product-price">
-																		{data.outletPrice > 0
-																		 ? <>
-																			 <span>de&nbsp;</span>
-																			 <span className="new-price" style={{textDecoration: 'line-through'}}>{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
-																			 <span>&nbsp;por&nbsp;</span>
-																			 <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data.outletPrice)}</span>
-																		 </>
-																		 : <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>
-																		}
-																	</div>
+									{/*								<div className="product-price">*/}
+									{/*									{data.outletPrice > 0*/}
+									{/*									 ? <>*/}
+									{/*										 <span>de&nbsp;</span>*/}
+									{/*										 <span className="new-price" style={{textDecoration: 'line-through'}}>{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>*/}
+									{/*										 <span>&nbsp;por&nbsp;</span>*/}
+									{/*										 <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data.outletPrice)}</span>*/}
+									{/*									 </>*/}
+									{/*									 : <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(data?.price)}</span>*/}
+									{/*									}*/}
+									{/*								</div>*/}
 
-																	{/* <AddToCart data={data} /> */}
-																</div>
-															</div>
-														</div>
-													);
-												})}
-											</OwlCarousel>
-										) : (
-											 ''
-										 )}
-									</div>
+									{/*								 <AddToCart data={data} /> */}
+									{/*							</div>*/}
+									{/*						</div>*/}
+									{/*					</div>*/}
+									{/*				);*/}
+									{/*			})}*/}
+									{/*		</OwlCarousel>*/}
+									{/*	) : (*/}
+									{/*		 ''*/}
+									{/*	 )}*/}
+									{/*</div>*/}
 								</div>
 							</div>
 						</div>

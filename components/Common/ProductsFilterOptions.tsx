@@ -11,7 +11,7 @@ interface ProductsFilterOptionsProps {
   setCurrentPage?: any;
 }
 
-const limitsForPage = [12, 16, 20, 24, 28, 32];
+const limitsForPage = [20, 24, 28, 32];
 // const limitsForPage = [1, 2, 3];
 
 const ProductsFilterOptions = ({
@@ -108,34 +108,6 @@ const ProductsFilterOptions = ({
           <p>Total de produtos: {totalProductsLocated} </p>
         </div>
 
-        <div className="col d-flex">
-          <span>Produtos por página:</span>
-
-          <div className="show-products-number">
-            <select value={productForPage} onChange={handleUpdateItemForPage}>
-              {limitsForPage.map((value) => (
-                <option key={`value${value}index${value}`} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* <span>Sort:</span>
-
-          <div className="products-ordering-list">
-            <select>
-              <option value="1">Featured</option>
-              <option value="2">Best Selling</option>
-              <option value="3">Price Ascending</option>
-              <option value="4">Price Descending</option>
-              <option value="5">Date Ascending</option>
-              <option value="6">Date Descending</option>
-              <option value="7">Name Ascending</option>
-              <option value="8">Name Descending</option>
-            </select>
-          </div> */}
-        </div>
       </div>
     </div>
   );
