@@ -17,6 +17,7 @@ export function getUserFromId(userId: string, token: string): Promise<AxiosRespo
 
 export interface Request {
     amount: string;
+    couponId: string;
     freight: number;
     userId: string;
     addressId: string;

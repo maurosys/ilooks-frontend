@@ -37,6 +37,7 @@ export interface OrderItemProps {
 	showButtomDetails?: boolean;
 	freight?: number;
 	amount?: string;
+	couponId?: string;
 	customer?: UserReponse;
 }
 
