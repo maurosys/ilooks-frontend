@@ -213,7 +213,7 @@ const Products = ({products, wishlist}: StateProps) => {
 																		>
 																			<a onClick={(e) => {
 																				sessionStorage.setItem('@ilooksecommerce', location.href);
-																			}}>{data.title}</a>
+																			}} style={{textOverflow: "ellipsis",overflow: "hidden",whiteSpace: "nowrap"}}>{data.title}</a>
 																		</Link>
 																	</h3>
 

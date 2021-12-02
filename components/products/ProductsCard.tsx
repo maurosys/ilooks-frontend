@@ -73,7 +73,7 @@ const ProductsCard = ({products}: StateProps) => {
 								<Link href="/product/[id]" as={`/product/${data.id}`}>
 									<a onClick={(e) => {
 										sessionStorage.setItem('@ilooksecommerce',location.href);
-									}}>{data.title}</a>
+									}} style={{textOverflow: "ellipsis",overflow: "hidden",whiteSpace: "nowrap"}}>{data.title}</a>
 								</Link>
 							</h3>
 
