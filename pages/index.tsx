@@ -30,7 +30,7 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
   useEffect(() => {
     if (window.location.href !== 'https://www.ilooks.com.br') {
-		//	window.location.href = 'https://www.ilooks.com.br';
+			window.location.href = 'https://www.ilooks.com.br';
     }
     console.log();
     //dispatch(loadResquestProduct());
