@@ -29,7 +29,8 @@ const Index = ({productss, categories, subCategories}: Props) => {
   const [subscription, setSubscription] = useState(false);
 
   useEffect(() => {
-    if (window.location.href !== 'https://www.ilooks.com.br') {
+    if (window.location.href !== 'https://www.ilooks.com.br' && window.location.href !== 'https://ilooks.com.br'
+        && window.location.href !== 'https://www.ilooks.com.br/' && window.location.href !== 'https://ilooks.com.br/') {
 			window.location.href = 'https://www.ilooks.com.br';
     }
     console.log();
