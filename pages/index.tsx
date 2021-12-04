@@ -29,9 +29,9 @@ const Index = ({productss, categories, subCategories}: Props) => {
   const [subscription, setSubscription] = useState(false);
 
   useEffect(() => {
-    if (window.location.protocol !== 'https:' || window.location.hostname.indexOf('ilooks.com.br') < 0) {
+/*    if (window.location.protocol !== 'https:' || window.location.hostname.indexOf('ilooks.com.br') < 0) {
       window.location.href = 'https://www.ilooks.com.br';
-    }
+    }*/
     //dispatch(loadResquestProduct());
     loadProducts();
     const subs = localStorage.getItem('@ilooksecommerce_subscription');

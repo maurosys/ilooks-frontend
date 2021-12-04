@@ -9,6 +9,7 @@ type PhoneRequest = {
 
 export type RegisterRequest = {
   fullName: string;
+  howFindUs?: string;
   birthDate: string;
   document: string;
   email?: string;

@@ -193,7 +193,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																	 </Link>
 																	 <hr style={{margin:0}}/>
 																 </h6>
-																 <ul className="megamenu-submenu" style={{paddingLeft:20}}>
+																 <ul className="megamenu-submenu">
 																	 {subCategories
 																		 .filter(
 																			 (subCategory) =>

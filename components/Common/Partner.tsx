@@ -1,29 +1,26 @@
-import React, { Component } from "react";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import { useState } from "react";
-import { useEffect } from "react";
-import OwlCarousel from "react-owl-carousel3";
+import React, {useEffect, useState} from "react";
+import Link                         from "next/link";
+import OwlCarousel                  from "react-owl-carousel3";
 
 const options = {
-  loop: true,
-  nav: false,
-  dots: false,
+  loop:               true,
+  nav:                false,
+  dots:               false,
   autoplayHoverPause: true,
-  autoplay: true,
-  navText: [
+  autoplay:           true,
+  navText:            [
     "<i class='fas fa-chevron-left'></i>",
     "<i class='fas fa-chevron-right'></i>",
   ],
-  responsive: {
-    0: {
-      items: 3,
+  responsive:         {
+    0:    {
+      items:  3,
       margin: 30,
     },
-    576: {
+    576:  {
       items: 4,
     },
-    768: {
+    768:  {
       items: 5,
     },
     1200: {
@@ -49,29 +46,29 @@ const Partner = () => {
             {...options}
           >
             <div className="partner-item">
-              <img src={require("../../images/partner1.png")} alt="image" />
+              <img src={require("../../images/partner1.png")} alt="image"/>
             </div>
 
             <div className="partner-item">
-              <img src={require("../../images/partner2.png")} alt="image" />
+              <img src={require("../../images/partner2.png")} alt="image"/>
             </div>
 
             <div className="partner-item">
-              <img src={require("../../images/partner3.png")} alt="image" />
+              <img src={require("../../images/partner3.png")} alt="image"/>
             </div>
 
             <div className="partner-item">
-              <img src={require("../../images/partner4.png")} alt="image" />
+              <img src={require("../../images/partner4.png")} alt="image"/>
             </div>
 
-         {/*   <div className="partner-item">
+            <div className="partner-item">
               <Link href="#">
                 <a target="_blank">
-                  <img src={require("../../images/partner5.png")} alt="image" />
+                  <img src={require("../../images/partner5.png")} alt="image"/>
                 </a>
               </Link>
             </div>
-
+            {/*
             <div className="partner-item">
               <Link href="#">
                 <a target="_blank">
@@ -81,8 +78,8 @@ const Partner = () => {
             </div>*/}
           </OwlCarousel>
         ) : (
-          ""
-        )}
+           ""
+         )}
       </div>
     </div>
   );
