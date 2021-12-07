@@ -81,7 +81,7 @@ const Index = ({productss, categories, subCategories}: Props) => {
   return (
     <>
       <Head>
-        <title>HOMOLOGAÇÃO ::: Ilooks | Home </title>
+        <title>Ilooks | Home </title>
       </Head>
       <Header categories={categories} subCategories={subCategories}/>
 
