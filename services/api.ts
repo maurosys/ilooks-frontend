@@ -21,8 +21,8 @@ export function getAPIClient(ctx?: any) {
   const api = axios.create({
                              //baseURL: "https://ilooks-api.herokuapp.com",
                              //baseURL: "http://localhost:3333",
-                             //baseURL: "https://api-ilooks.mybluemix.net",
-                             baseURL: "https://api-ilooks-homologacao.mybluemix.net",
+                             baseURL: "https://api-ilooks.mybluemix.net",
+                             //baseURL: "https://api-ilooks-homologacao.mybluemix.net",
                            });
 
   if (auth) {
