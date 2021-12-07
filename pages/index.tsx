@@ -33,6 +33,9 @@ const Index = ({productss, categories, subCategories}: Props) => {
       window.location.href = 'https://www.ilooks.com.br';
     }*/
     //dispatch(loadResquestProduct());
+    if (window.location.protocol !== 'https:' || window.location.hostname.indexOf('ilooks.com.br') < 0) {
+      window.location.href = 'https://www.ilooks.com.br';
+    }
     loadProducts();
     const subs = localStorage.getItem('@ilooksecommerce_subscription');
     if (subs) {
