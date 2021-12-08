@@ -25,6 +25,9 @@ function CheckoutForm() {
 	const [isLoged, setIsLoged] = useState(false);
 	const [isDiffentetAddress, setIsDiffentetAddress] = useState(false);
 	const [token, setToken] = useState();
+	const [couponId, setCouponId] = useState('');
+	const [couponCode, setCouponCode] = useState('');
+	const [discountAmount, setDiscountAmount] = useState(0);
 	const [documentPayer, setDocumentPayer] = useState('');
 	const [infoParcelamento, setInfoParcelamento] = useState(false);
 	const [user, setUser] = useState<{}>({});
@@ -295,6 +298,39 @@ function CheckoutForm() {
 		}
 	};
 
+	const handleCoupon = async (e: any) => {
+		const value = e.target.value;
+		setCouponId('');
+		setDiscountAmount(0);
+		api.get(`/coupon/validate/${value}`)
+		   .then((resp: any) => {
+					if (resp.data) {
+						const coupon = resp.data;
+						if (coupon.quantity > coupon.quantityUsed && coupon.minimum <= totalAmount) {
+							setCouponId(coupon.id);
+							if (coupon.amount > 0) {
+								setDiscountAmount(coupon.amount);
+								setTotalAmount(totalAmount - coupon.amount);
+							} else {
+								const cValue = (totalAmount * coupon.percent) / 100;
+								setDiscountAmount(cValue);
+								setTotalAmount(totalAmount - cValue);
+							}
+							return;
+						} else if (coupon.minimum > totalAmount) {
+							AlertWarning({title: 'Cupom', message: 'Código de cupom de desconto válido para pedidos acima de ' + new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(totalAmount),});
+							return;
+						}
+					}
+			   AlertWarning({title: 'Cupom', message: 'Código de cupom de desconto inválido',});
+		   })
+		   .catch((error: any) => {
+			   const response = error && error.response && error.response.data && error.response.data.message ? error.response.data.message : 'Ocorreu algum erro, tente novamente.';
+			   console.log(error);
+			   ToastDanger('Código de cupom de desconto inválido', response);
+		   });
+	};
+
 	const handleCep = async (e: any) => {
 		const value = e.target.value;
 		const data = await handleGetCep(value);
@@ -381,12 +417,14 @@ function CheckoutForm() {
 			};
 			_REQUEST.userId = user['id'];
 			_REQUEST.freight = 0.00; //ToDo: FRETE FIXO
+			_REQUEST.couponId = couponId;
 			_REQUEST.amount = cart?.reduce((acc, card) => {
 				if (card.price) {
 					return acc + card.total;
 				}
 				return acc;
 			}, 0);
+			console.log(_REQUEST);
 			const requestResponse = await createRequest(_REQUEST, token);
 			dispatch(clearCart());
 			AlertSuccess({title: 'Pedido', message: 'Seu Pedido foi finalizado com sucesso!',});
@@ -617,21 +655,7 @@ function CheckoutForm() {
 														<label>
 															CEP <span className="required">*</span>
 														</label>
-														<InputCEP
-															name="differentAddress_zipcode"
-															className="form-control"
-															onChange={handleOnChange}
-															onBlur={handleCep}
-															value={state.differentAddress_zipcode.value}
-														/>
-														{/* <input
-														 type="text"
-														 name="differentAddress_zipcode"
-														 className="form-control"
-														 onChange={handleOnChange}
-														 onBlur={handleCep}
-														 value={state.differentAddress_zipcode.value}
-														 /> */}
+														<InputCEP name="differentAddress_zipcode" className="form-control" onChange={handleOnChange} onBlur={handleCep} value={state.differentAddress_zipcode.value}/>
 														{state.differentAddress_zipcode.error && (
 															<p style={errorStyle}>
 																{state.differentAddress_zipcode.error}
@@ -645,13 +669,7 @@ function CheckoutForm() {
 														<label>
 															Endereço <span className="required">*</span>
 														</label>
-														<input
-															type="text"
-															name="differentAddress_address"
-															className="form-control"
-															onChange={handleOnChange}
-															value={state.differentAddress_address.value}
-														/>
+														<input type="text" name="differentAddress_address" className="form-control" onChange={handleOnChange} value={state.differentAddress_address.value}/>
 														{state.differentAddress_address.error && (
 															<p style={errorStyle}>
 																{state.differentAddress_address.error}
@@ -665,13 +683,7 @@ function CheckoutForm() {
 														<label>
 															Número <span className="required">*</span>
 														</label>
-														<input
-															type="text"
-															name="differentAddress_number"
-															className="form-control"
-															onChange={handleOnChange}
-															value={state.differentAddress_number.value}
-														/>
+														<input type="text" name="differentAddress_number" className="form-control" onChange={handleOnChange} value={state.differentAddress_number.value}/>
 														{state.differentAddress_number.error && (
 															<p style={errorStyle}>
 																{state.differentAddress_number.error}
@@ -683,13 +695,7 @@ function CheckoutForm() {
 												<div className="col-lg-6 col-md-6">
 													<div className="form-group">
 														<label>Complemento</label>
-														<input
-															type="text"
-															name="differentAddress_complement"
-															className="form-control"
-															onChange={handleOnChange}
-															value={state.differentAddress_complement.value}
-														/>
+														<input type="text" name="differentAddress_complement" className="form-control" onChange={handleOnChange} value={state.differentAddress_complement.value}/>
 														{state.differentAddress_complement.error && (
 															<p style={errorStyle}>
 																{state.differentAddress_complement.error}
@@ -703,13 +709,7 @@ function CheckoutForm() {
 														<label>
 															Cidade <span className="required">*</span>
 														</label>
-														<input
-															type="text"
-															name="differentAddress_city"
-															className="form-control"
-															onChange={handleOnChange}
-															value={state.differentAddress_city.value}
-														/>
+														<input type="text" name="differentAddress_city" className="form-control" onChange={handleOnChange} value={state.differentAddress_city.value}/>
 														{state.differentAddress_city.error && (
 															<p style={errorStyle}>
 																{state.differentAddress_city.error}
@@ -723,13 +723,7 @@ function CheckoutForm() {
 														<label>
 															Estado <span className="required">*</span>
 														</label>
-														<input
-															type="text"
-															name="differentAddress_state"
-															className="form-control"
-															onChange={handleOnChange}
-															value={state.differentAddress_state.value}
-														/>
+														<input type="text" name="differentAddress_state" className="form-control" onChange={handleOnChange} value={state.differentAddress_state.value}/>
 														{state.differentAddress_state.error && (
 															<p style={errorStyle}>
 																{state.differentAddress_state.error}
@@ -755,38 +749,34 @@ function CheckoutForm() {
 										<div className="col-lg-6 col-md-6">
 											<div className="form-group">
 												<label>
+													Código do cupom de desconto
+												</label>
+												<input type="text" name="discountCoupon" className="form-control" value={couponCode} onChange={(e: any) => {setCouponCode(e.target.value);}} onBlur={handleCoupon}/>
+											</div>
+										</div>
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<label>
+													Valor do desconto
+												</label>
+												<input type="text" name="totalAmount" className="form-control" readOnly={true} disabled={true} value={new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(discountAmount)}/>
+											</div>
+										</div>
+
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<label>
 													Valor total
 												</label>
 												<input
-													type="text"
-													name="totalAmount"
-													className="form-control"
-													readOnly={true}
-													disabled={true}
-													value={new Intl.NumberFormat('br-BR', {
-														style:    'currency',
-														currency: 'BRL',
-													}).format(totalAmount)}
-												/>
+													type="text" name="totalAmount" className="form-control" readOnly={true} disabled={true} value={new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(totalAmount)}/>
 												{state.number_token.error && (
 													<p style={errorStyle}>{state.number_token.error}</p>
 												)}
 											</div>
-
 										</div>
 										<div className="col-lg-6 col-md-6">
-
-
-											<InputSelect
-												id="typePhone"
-												name="typePhone"
-												label="Parcelamento:"
-												placeholder="Escolha o parcelamento"
-												options={optionsInstallments}
-												onChange={(event: any) => {
-													setInstallments(event.target.value);
-												}}
-											/>
+											<InputSelect id="typePhone" name="typePhone" label="Parcelamento:" placeholder="Escolha o parcelamento" options={optionsInstallments} onChange={(event: any) => {setInstallments(event.target.value);}}/>
 										</div>
 
 										<div className="col-lg-6 col-md-6">
@@ -794,14 +784,7 @@ function CheckoutForm() {
 												<label>
 													Número do Cartão <span className="required">*</span>
 												</label>
-												<input
-													type="text"
-													name="number_token"
-													className="form-control"
-													onChange={handleOnChange}
-													maxLength={19}
-													value={state.number_token.value}
-												/>
+												<input type="text" name="number_token" className="form-control" onChange={handleOnChange} maxLength={19} value={state.number_token.value}/>
 												{state.number_token.error && (
 													<p style={errorStyle}>{state.number_token.error}</p>
 												)}
@@ -814,13 +797,7 @@ function CheckoutForm() {
 													<span className="required">*</span>
 												</label>
 												<input
-													type="text"
-													name="cardholder_name"
-													className="form-control"
-													style={{textTransform: 'uppercase'}}
-													onChange={handleOnChange}
-													value={state.cardholder_name.value}
-												/>
+													type="text" name="cardholder_name" className="form-control" style={{textTransform: 'uppercase'}} onChange={handleOnChange} value={state.cardholder_name.value}/>
 												{state.cardholder_name.error && (
 													<p style={errorStyle}>
 														{state.cardholder_name.error}
@@ -834,14 +811,7 @@ function CheckoutForm() {
 													Mês Expiração
 													<span className="required">*</span>
 												</label>
-												<input
-													type="text"
-													name="expiration_month"
-													className="form-control"
-													onChange={handleOnChange}
-													maxLength={2}
-													value={state.expiration_month.value}
-												/>
+												<input type="text" name="expiration_month" className="form-control" onChange={handleOnChange} maxLength={2} value={state.expiration_month.value}/>
 												{state.expiration_month.error && (
 													<p style={errorStyle}>
 														{state.expiration_month.error}
@@ -855,14 +825,7 @@ function CheckoutForm() {
 													Ano Expiração
 													<span className="required">*</span>
 												</label>
-												<input
-													type="text"
-													name="expiration_year"
-													className="form-control"
-													onChange={handleOnChange}
-													maxLength={2}
-													value={state.expiration_year.value}
-												/>
+												<input type="text" name="expiration_year" className="form-control" onChange={handleOnChange} maxLength={2} value={state.expiration_year.value}/>
 												{state.expiration_year.error && (
 													<p style={errorStyle}>
 														{state.expiration_year.error}
@@ -876,14 +839,7 @@ function CheckoutForm() {
 													Código de Verificação
 													<span className="required">*</span>
 												</label>
-												<input
-													type="text"
-													name="security_code"
-													className="form-control"
-													onChange={handleOnChange}
-													maxLength={3}
-													value={state.security_code.value}
-												/>
+												<input type="text" name="security_code" className="form-control" onChange={handleOnChange} maxLength={3} value={state.security_code.value}/>
 												{state.security_code.error && (
 													<p style={errorStyle}>{state.security_code.error}</p>
 												)}
@@ -891,26 +847,13 @@ function CheckoutForm() {
 										</div>
 										<div className="col-lg-3 col-md-3">
 											<div className="form-group">
-												<InputCPF
-													name="document"
-													id="document"
-													label="CPF do Titular*"
-													placeholder="Ex.: 123.456.789.12"
-													onChange={(e: any) => {
-														setDocumentPayer(e.target.value);
-													}}
-												/>
+												<InputCPF name="document" id="document" label="CPF do Titular*" placeholder="Ex.: 123.456.789.12" onChange={(e: any) => { setDocumentPayer(e.target.value); }}/>
 												{state.security_code.error && (
 													<p style={errorStyle}>{state.security_code.error}</p>
 												)}
 											</div>
 										</div>
-										<button
-											type="button"
-											className="btn btn-primary mb-3"
-											disabled={loading}
-											onClick={(e) => setInfoParcelamento(true)}
-										>
+										<button type="button" className="btn btn-primary mb-3" disabled={loading} onClick={(e) => setInfoParcelamento(true)}>
 											{loading ? (
 												<div className="spinner-border" role="status"></div>
 											) : (

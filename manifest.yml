@@ -1,5 +1,5 @@
 ---
 applications:
-  - name: ilooks
+  - name: ilooks-homolagacao
     random-route: false
     memory: 256M

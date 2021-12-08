@@ -35,12 +35,7 @@ interface StateProps {
 
 const LimitForPage = 12;
 
-const Products = ({
-	                  products,
-	                  commonProducts,
-	                  totalProducts,
-	                  totalPage,
-                  }: StateProps) => {
+const Products = ({products, commonProducts, totalProducts, totalPage,}: StateProps) => {
 	const [loadingGlobal, setLoadingGlobal] = useState(false);
 	const [origemProducts, setOrigemProducts] = useState('');
 
@@ -125,13 +120,10 @@ const Products = ({
 
 	useEffect(() => {
 		if (page) {
-			console.log(`TEM PAGE: ${page}`);
 			setCurrentPage(Number(page));
 		} else {
-			console.log(`NUM TEM PAGE`);
 			const oldPage = sessionStorage.getItem('@ilookscommerce_cpage');
 			if (oldPage) {
-				console.log(`PEGOU PAGE: ${oldPage}`);
 				setCurrentPage(Number(oldPage));
 			}
 		}

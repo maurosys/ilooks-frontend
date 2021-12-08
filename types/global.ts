@@ -71,6 +71,7 @@ export type ProductReponse = {
 
 export type RequestDetailsResponse = {
   id: string;
+  couponId: string;
   amount: string;
   freight:number;
   customer: UserReponse;

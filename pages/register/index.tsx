@@ -275,6 +275,15 @@ const Register = () => {
             </div>
           </div>
 
+          <InputText
+            {...register("howFindUs")}
+            name="howFindUs"
+            id="howFindUs"
+            label="De onde conheceu a ILooks"
+            placeholder="Conte-nos de onde conheceu a ILooks"
+            errors={errors.howFindUs}
+          />
+
           <div className="col-sm-12">
             <div className="item">
               <input

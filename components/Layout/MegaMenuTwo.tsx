@@ -184,13 +184,14 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																 className="col"
 																 key={`${category.id}listheader`}
 															 >
-																 <h6 className="submenu-title">
+																 <h6 className="megamenu-submenu">
 																	 <Link href={`/products?category=${category.id}`}>
 																		 <a onClick={(e) => {
 																			 setCollapsed(true);
 																			 sessionStorage.removeItem('@ilookscommerce_cpage');
-																		 }}>{category.name}</a>
+																		 }} style={{padding:0,fontWeight:800}}>{category.name}</a>
 																	 </Link>
+																	 <hr style={{margin:0}}/>
 																 </h6>
 																 <ul className="megamenu-submenu">
 																	 {subCategories
@@ -271,7 +272,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 
 										<div className="search-overlay search-popup" style={{display: searchForma ? 'block' : 'none',}}>
 											<div className="search-box">
-												<form className="search-form">
+												<form action="/products" className="search-form">
 													<input
 														className="search-input"
 														name="search"

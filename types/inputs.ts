@@ -20,6 +20,7 @@ export type ResetPasswordNoLogged = {
 
 export type RegisterUser = {
   fullName: string;
+  howFindUs?: string;
   birthDate: string;
   document: string;
   email: string;

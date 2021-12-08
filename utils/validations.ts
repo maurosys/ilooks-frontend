@@ -1,7 +1,11 @@
-import { string } from "yup";
+import {string} from "yup";
 
 export const fullName = string().required(
   "Campo obrigatório, digite o seu nome completo"
+);
+
+export const howFindUs = string().required(
+  "Por favor, deixe-nos saber como nos conheceu"
 );
 
 export const birthDate = string().required(
@@ -14,19 +18,19 @@ export const document = string().required(
 
 export const email = string()
   .test({
-    name: "email",
-    message: "E-mail inválido",
-    test: async (value = "") => {
-      const valid = await Promise.all([
-        string()
-          .email()
-          .validate(value)
-          .then(() => true)
-          .catch(() => false),
-      ]);
-      return valid.some((v) => v);
-    },
-  })
+          name:    "email",
+          message: "E-mail inválido",
+          test:    async (value = "") => {
+            const valid = await Promise.all([
+                                              string()
+                                                .email()
+                                                .validate(value)
+                                                .then(() => true)
+                                                .catch(() => false),
+                                            ]);
+            return valid.some((v) => v);
+          },
+        })
   .required("Por favor, prencha o campo e-mail");
 
 export const password = string()

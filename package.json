@@ -1,7 +1,7 @@
 {
   "name": "ilooks",
   "version": "3.9.0",
-  "description": "Ilooks",
+  "description": "Versão de homologação do site Ilooks",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 3006",

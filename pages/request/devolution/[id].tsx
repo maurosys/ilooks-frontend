@@ -159,11 +159,12 @@ const RequestDevolution = () => {
       </section>
       <ModalRequestDevolutionItem
         orderId={query.id}
+        couponId={orders[0]?.couponId}
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
         items={orders.length > 0 && orders[0].items}
         itemsSelected={itemsSelected}
-        amount={orders[0]?.amount}
+        amount={orders[0]?.items.reduce((stt, it) => { return stt + (it.quantity * it.unitPrice);}, 0)}
       />
     </>
   );

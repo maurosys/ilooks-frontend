@@ -29,10 +29,10 @@ const Index = ({productss, categories, subCategories}: Props) => {
   const [subscription, setSubscription] = useState(false);
 
   useEffect(() => {
-    //dispatch(loadResquestProduct());
-    if (window.location.protocol !== 'https:' || window.location.hostname.indexOf('ilooks.com.br') < 0) {
+/*    if (window.location.protocol !== 'https:' || window.location.hostname.indexOf('ilooks.com.br') < 0) {
       window.location.href = 'https://www.ilooks.com.br';
-    }
+    }*/
+    //dispatch(loadResquestProduct());
     loadProducts();
     const subs = localStorage.getItem('@ilooksecommerce_subscription');
     if (subs) {
@@ -42,9 +42,9 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
   const loadProducts = async () => {
     api
-      .get('/product?stock=true&limit=16')
+      .get('/product/featured')
       .then((response) => {
-        const _products: ProductsPros[] = response.data.products.map((prod) => {
+        const _products: ProductsPros[] = response.data.map((prod) => {
           let imageUrl = '';
 
           if (
@@ -81,7 +81,7 @@ const Index = ({productss, categories, subCategories}: Props) => {
   return (
     <>
       <Head>
-        <title> Ilooks | Home </title>
+        <title>HOMOLOGAÇÃO ::: Ilooks | Home </title>
       </Head>
       <Header categories={categories} subCategories={subCategories}/>
 

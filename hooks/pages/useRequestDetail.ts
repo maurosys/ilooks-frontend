@@ -21,6 +21,7 @@ const useRequestDetail = () => {
       const request: OrderItemProps = {
         id,
         orderStatus: data.status_request,
+        couponId:data.couponId,
         numberOrder: data.id,
         items: data.products.map((product) => ({
           productDetailId: product.productDetailsId,
