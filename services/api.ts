@@ -24,7 +24,7 @@ export function getAPIClient(ctx?: any) {
   PRD:  https://api-ilooks.mybluemix.net
  */
   const api = axios.create({
-                             baseURL: 'https://api-ilooks-homologacao.mybluemix.net',
+                             baseURL: 'http://localhost:3333',
                            });
 
   if (auth) {
