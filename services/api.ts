@@ -18,11 +18,13 @@ import {parseCookies} from "nookies";
 export function getAPIClient(ctx?: any) {
   const {"nextilooks.auth": auth} = parseCookies(ctx);
 
+/*
+  HOMO: https://api-ilooks-homologacao.mybluemix.net
+  DEV:  http://localhost:3333
+  PRD:  https://api-ilooks.mybluemix.net
+ */
   const api = axios.create({
-                             //baseURL: "https://ilooks-api.herokuapp.com",
-                             //baseURL: "http://localhost:3333",
-                             baseURL: "https://api-ilooks.mybluemix.net",
-                             //baseURL: "https://api-ilooks-homologacao.mybluemix.net",
+                             baseURL: 'https://api-ilooks.mybluemix.net',
                            });
 
   if (auth) {

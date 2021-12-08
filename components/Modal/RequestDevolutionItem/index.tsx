@@ -7,328 +7,331 @@ import ButtonPrimary   from '@components/Button/Primary';
 import ButtonSecondary from '@components/Button/Secondary';
 
 //STYLES
-import styles from './style.module.css';
+import styles                                          from './style.module.css';
 //HOOKS
-import useRequestDevolution, {
-	ProductDevolutionProps,
-}             from '@hooks/components/useRequestDevolution';
+import useRequestDevolution, {ProductDevolutionProps,} from '@hooks/components/useRequestDevolution';
 
 //TYPES
 import {ItemsProps} from '@components/orderItem';
 
 const customStyles = {
-	content: {
-		top:         '50%',
-		left:        '50%',
-		right:       'auto',
-		bottom:      'auto',
-		marginRight: '-50%',
-		transform:   'translate(-50%, -50%)',
-	},
+  content: {
+    top:         '50%',
+    left:        '50%',
+    right:       'auto',
+    bottom:      'auto',
+    marginRight: '-50%',
+    transform:   'translate(-50%, -50%)',
+  },
 };
 
 interface ModalRequestDevolutionItemProps {
-	orderId: any;
-	modalIsOpen?: boolean;
-	setModalIsOpen?: any;
-	items?: ItemsProps[];
-	itemsSelected?: string[];
-	amount: string;
-	couponId: string;
+  orderId: any;
+  modalIsOpen?: boolean;
+  setModalIsOpen?: any;
+  items?: ItemsProps[];
+  itemsSelected?: string[];
+  amount: string;
+  couponId: string;
 }
 
 interface ItemPropsWihtQuantity extends ItemsProps {
-	quantityDev: number;
-	devolutionMotive: string;
-	devolutionMotiveOther: string;
+  quantityDev: number;
+  devolutionMotive: string;
+  devolutionMotiveOther: string;
 }
 
 const ModalRequestDevolutionItem = ({
-	                                    orderId,
-	                                    modalIsOpen,
-	                                    setModalIsOpen,
-	                                    items,
-	                                    itemsSelected,
-	                                    amount,
-	                                    couponId
+                                      orderId,
+                                      modalIsOpen,
+                                      setModalIsOpen,
+                                      items,
+                                      itemsSelected,
+                                      amount,
+                                      couponId
                                     }: ModalRequestDevolutionItemProps) => {
-	//HOOKS INSTANCES
-	const {handleSubmitDevolution, loading} = useRequestDevolution();
-	const router = useRouter();
-	const [devolutionMotive, setDevolutionMotive] = useState('');
-	const [outros, setOutros] = useState(false);
-	const [newTotal, setNewTotal] = useState(0);
-	const [applyCoupon, setApplyCoupon] = useState('none');
-	const [coupon, setCoupon] = useState<any>(undefined);
-	const [observation, setObservation] = useState('');
-	const [installments, setInstallments] = useState(1);
-	const [parcelas, setParcelas] = useState<string[]>([]);
-	const [parcela, setParcela] = useState('à vista');
-	const currencyFormater = new Intl.NumberFormat('pt-br', {
-		style:    'currency',
-		currency: 'BRL',
-	});
+  //HOOKS INSTANCES
+  const {handleSubmitDevolution, loading} = useRequestDevolution();
+  const router = useRouter();
+  const [devolutionMotive, setDevolutionMotive] = useState('');
+  const [outros, setOutros] = useState<boolean>(false);
+  const [newTotal, setNewTotal] = useState<number>(0);
+  const [applyCoupon, setApplyCoupon] = useState<string>('none');
+  const [coupon, setCoupon] = useState<any>(undefined);
+  const [observation, setObservation] = useState<string>('');
+  const [installments, setInstallments] = useState<number>(1);
+  const [parcelas, setParcelas] = useState<string[]>([]);
+  const [parcela, setParcela] = useState('à vista');
+  let devolutionTotal: number = 0;
+  const currencyFormater = new Intl.NumberFormat('pt-br', {
+    style:    'currency',
+    currency: 'BRL',
+  });
 
-	//STATES
-	const [itemsRendering, setItemsRendering] = useState<ItemPropsWihtQuantity[]>(
-		[]
-	);
+  //STATES
+  const [itemsRendering, setItemsRendering] = useState<ItemPropsWihtQuantity[]>(
+    []
+  );
 
-	useEffect(() => {
-		if (itemsSelected && items) {
-			const newArray: ItemPropsWihtQuantity[] = [];
-			let subTotal = 0;
-			itemsSelected.map((itemSel:any) => {
-				const object:any = items.find((item:any) => item.productDetailId === itemSel);
-				if (object) {
-					newArray.push({...object, quantityDev: 1,});
-					subTotal += object.unitPrice;
-				}
-			});
+  useEffect(() => {
+    if (itemsSelected && items) {
+      const newArray: ItemPropsWihtQuantity[] = [];
+      devolutionTotal = 0;
+      console.log('SEL>', itemsSelected);
+      itemsSelected.map((itemSel: any) => {
+        const object: any = items.find((item: any) => item.productDetailId === itemSel);
+        if (object) {
+          newArray.push({...object, quantityDev: 1,});
+          devolutionTotal += Number(object.unitPrice);
+        }
+      });
 
-			setItemsRendering([...newArray]);
+      setItemsRendering([...newArray]);
 
-			setNewTotal(Number(amount) - subTotal);
+      setNewTotal(Number(amount) - devolutionTotal);
+      console.log('NTT.:', newTotal);
+      if (couponId) {
+        getCoupon();
+      }
 
-			if (couponId) {
-				getCoupon();
-			}
+      if (newTotal >= 1500) {
+        setParcelas([
+                      'à vista',
+                      '2x sem juros',
+                      '3x sem juros',
+                      '4x sem juros',
+                      '5x sem juros',
+                      '6x sem juros',
+                    ]);
+      } else if (newTotal >= 900) {
+        setParcelas([
+                      'à vista',
+                      '2x sem juros',
+                      '3x sem juros',
+                      '4x sem juros',
+                      '5x sem juros',
+                    ]);
+      } else if (newTotal >= 600) {
+        setParcelas([
+                      'à vista',
+                      '2x sem juros',
+                      '3x sem juros',
+                      '4x sem juros',
+                    ]);
+      } else if (newTotal >= 400) {
+        setParcelas(['à vista', '2x sem juros', '3x sem juros']);
+      } else if (newTotal >= 100) {
+        setParcelas(['à vista', '2x sem juros']);
+      } else {
+        setParcelas(['à vista']);
+      }
+    }
+  }, [itemsSelected, items]);
 
-			if (newTotal >= 1500) {
-				setParcelas([
-					            'à vista',
-					            '2x sem juros',
-					            '3x sem juros',
-					            '4x sem juros',
-					            '5x sem juros',
-					            '6x sem juros',
-				            ]);
-			} else if (newTotal >= 900) {
-				setParcelas([
-					            'à vista',
-					            '2x sem juros',
-					            '3x sem juros',
-					            '4x sem juros',
-					            '5x sem juros',
-				            ]);
-			} else if (newTotal >= 600) {
-				setParcelas([
-					            'à vista',
-					            '2x sem juros',
-					            '3x sem juros',
-					            '4x sem juros',
-				            ]);
-			} else if (newTotal >= 400) {
-				setParcelas(['à vista', '2x sem juros', '3x sem juros']);
-			} else if (newTotal >= 100) {
-				setParcelas(['à vista', '2x sem juros']);
-			} else {
-				setParcelas(['à vista']);
-			}
-		}
-	}, [itemsSelected, items]);
+  function closeModal() {
+    setNewTotal(Number(amount));
+    setModalIsOpen(false);
+  }
 
-	function closeModal() {
-		setNewTotal(Number(amount));
-		setModalIsOpen(false);
-	}
+  async function getCoupon() {
+    await api.get(`coupon/${couponId}`)
+             .then((resp: any) => {
+               const total:number = Number(amount) - devolutionTotal;
+               setCoupon(resp.data);
+               console.log('Coupon:', `Min: ${resp.data.minimum}, nTot: ${newTotal}, Tot: ${total}`);
+               if (resp.data.minimum <= total) {
+                 if (resp.data.amount > 0) {
+                   setNewTotal(total - coupon.amount);
+                 } else {
+                   const cValue: number = (newTotal * coupon.percent) / 100;
+                   setNewTotal(total - cValue);
+                 }
 
-	async function getCoupon() {
-		await api.get(`coupon/${couponId}`)
-		         .then((resp: any) => {
-			         setCoupon(resp.data);
-			         console.log('CC:', `M: ${resp.data.minimum}, V: ${newTotal}`);
-			         if (resp.data.minimum <= newTotal) {
-				         const tValue = newTotal;
-				         if (resp.data.amount > 0) {
-					         setNewTotal(tValue - coupon.amount);
-				         } else {
-					         const cValue = (newTotal * coupon.percent) / 100;
-					         setNewTotal(tValue - cValue);
-				         }
+                 setApplyCoupon('none');
+               } else {
+                 setApplyCoupon('line-through');
+               }
+             })
+             .catch((err: any) => {
+               console.log('Erro ao carregar o cupom do pedido');
+             });
+  }
 
-				         setApplyCoupon('none');
-			         } else {
-				         setApplyCoupon('line-through');
-			         }
-		         })
-		         .catch((err: any) => {
-			         console.log('Erro ao carregar o cupom do pedido');
-		         });
-	}
+  async function submit() {
+    const dataRequest: ProductDevolutionProps[] = itemsRendering.map((item) => ({
+      productDetailId:    item.productDetailId,
+      quantity:           item.quantityDev,
+      motive_description: item.devolutionMotiveOther ?? '',
+      devolution_motive:  item.devolutionMotive ?? 'Tamanho',
+    }));
 
-	async function submit() {
-		const dataRequst: ProductDevolutionProps[] = itemsRendering.map((item) => ({
-			productDetailId:    item.productDetailId,
-			quantity:           item.quantityDev,
-			motive_description: item.devolutionMotiveOther ?? '',
-			devolution_motive:  item.devolutionMotive ?? 'Tamanho',
-		}));
+    //console.log('OBS:', observation);
 
-		//console.log('OBS:', observation);
+    const response: any = await handleSubmitDevolution({
+                                                         orderId,
+                                                         observation,
+                                                         productsDevolutions: dataRequest,
+                                                         couponId:            applyCoupon == 'none' ? coupon?.id : '',
+                                                         installments,
+                                                       });
+    if (response) {
+      router.push(`/request/detail/${orderId}`);
+    }
+  }
 
-		const response = await handleSubmitDevolution({
-			                                              orderId,
-			                                              observation,
-			                                              productsDevolutions: dataRequst,
-			                                              couponId:            applyCoupon == 'none' ? coupon?.id : '',
-			                                              installments,
-		                                              });
-		if (response) {
-			router.push(`/request/detail/${orderId}`);
-		}
-	}
+  return (
+    <div>
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
+        <div className={styles['container-modal']}>
+          <h3>Informe a quantidade de devolução de cada peça:</h3>
+          <hr/>
 
-	return (
-		<div>
-			<Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
-				<div className={styles['container-modal']}>
-					<h3>Informe a quantidade de devolução de cada peça:</h3>
-					<hr/>
+          <div style={{display: 'flex', maxWidth: '900px', overflowX: 'scroll',}}>
+            {itemsRendering.map((item, index) => (
+              <div className={styles.card} onClick={() => {
+              }}>
+                <img src={item.imageUrl} alt="teste"/>
+                <hr/>
+                <p>{item.title}</p>
 
-					<div style={{display: 'flex', maxWidth: '900px', overflowX: 'scroll',}}>
-						{itemsRendering.map((item, index) => (
-							<div className={styles.card} onClick={() => {}}>
-								<img src={item.imageUrl} alt="teste"/>
-								<hr/>
-								<p>{item.title}</p>
-
-								<div style={{display: 'flex', flexDirection: 'column', paddingBottom: '2px',}}>
+                <div style={{display: 'flex', flexDirection: 'column', paddingBottom: '2px',}}>
                   <span>
                     <strong>Tamanho:</strong> {item.size}
                   </span>
-									<span style={{display: 'flex', flexDirection: 'row', alignItems: 'center',}}>
+                  <span style={{display: 'flex', flexDirection: 'row', alignItems: 'center',}}>
                     <strong>Cor:</strong>{' '}
-										<div style={{width: 10, height: 10, borderRadius: 5, background: item.color, marginRight: 3, marginLeft: 3,}}/>
+                    <div style={{width: 10, height: 10, borderRadius: 5, background: item.color, marginRight: 3, marginLeft: 3,}}/>
                   </span>
-									<span>
+                  <span>
                     <strong>Qtde. Comprada:</strong> {item.quantity}
-										<br/>
+                    <br/>
                     <strong>Preço un.:</strong>{' '}
-										{currencyFormater.format(item.unitPrice)}
+                    {currencyFormater.format(item.unitPrice)}
                   </span>
-									<strong>Qtde. a devolver</strong>
-									<input type="number" min={1} max={item.quantity} value={item.quantityDev} style={{textAlign: 'center'}}
-									       onChange={(e: any) => {
-										       let array = itemsRendering;
-										       const value = e.target.value;
+                  <strong>Qtde. a devolver</strong>
+                  <input type="number" min={1} max={item.quantity} value={item.quantityDev} style={{textAlign: 'center'}}
+                         onChange={(e: any) => {
+                           let array = itemsRendering;
+                           const value = e.target.value;
 
-										       if (value) {
-											       const numbersString: string = value.replace(/[^0-9]/g, '');
-											       if (numbersString.length <= 0) {
-												       array[index].quantityDev = 2;
-												       setItemsRendering([...array]);
-											       } else {
-												       const numberInt = parseInt(numbersString);
-												       if (numberInt === 0) {
-													       array[index].quantityDev = 1;
-													       setItemsRendering([...array]);
-												       } else if (numberInt <= item.quantity) {
-													       array[index].quantityDev = numberInt;
-													       setItemsRendering([...array]);
-												       }
-											       }
-										       } else {
-											       array[index].quantityDev = 1;
-											       setItemsRendering([...array]);
-										       }
-										       // calcular subtotal
-										       let subTotal = 0;
-										       itemsRendering.forEach((item) => {
-											       subTotal += item.quantityDev * item.unitPrice;
-										       });
-										       setNewTotal(Number(amount) - subTotal);
-									       }}
-									/>
-									<span>
+                           if (value) {
+                             const numbersString: string = value.replace(/[^0-9]/g, '');
+                             if (numbersString.length <= 0) {
+                               array[index].quantityDev = 1;
+                               setItemsRendering([...array]);
+                             } else {
+                               const numberInt = parseInt(numbersString);
+                               if (numberInt === 0) {
+                                 array[index].quantityDev = 1;
+                                 setItemsRendering([...array]);
+                               } else if (numberInt <= item.quantity) {
+                                 array[index].quantityDev = numberInt;
+                                 setItemsRendering([...array]);
+                               }
+                             }
+                           } else {
+                             array[index].quantityDev = 1;
+                             setItemsRendering([...array]);
+                           }
+                           // calcular subtotal
+                           let subTotal = 0;
+                           itemsRendering.forEach((item) => {
+                             subTotal += item.quantityDev * item.unitPrice;
+                           });
+                           setNewTotal(Number(amount) - subTotal);
+                         }}
+                  />
+                  <span>
 										<strong>Motivo de devolução</strong>
 										<select onChange={(e: any) => {
-											let array = itemsRendering;
-											array[index].devolutionMotive = e.target.value;
-											setItemsRendering([...array]);
-										}}>
+                      let array = itemsRendering;
+                      array[index].devolutionMotive = e.target.value;
+                      setItemsRendering([...array]);
+                    }}>
 											<option value="Tamanho">Tamanho</option>
 											<option value="Modelagem">Modelagem</option>
 											<option value="Não gostei da peça">Não gostei da peça</option>
 											<option value="Outros">Outros</option>
 										</select>
-										{itemsRendering[index].devolutionMotive == 'Outros' && (
-											<tr>
-												<td colSpan={2}>
+                    {itemsRendering[index].devolutionMotive == 'Outros' && (
+                      <tr>
+                        <td colSpan={2}>
                       <textarea maxLength={100} rows={2} style={{width: '100%'}}
                                 onChange={(e: any) => {
-	                                let array = itemsRendering;
-	                                array[index].devolutionMotiveOther = e.target.value;
-	                                setItemsRendering([...array]);
+                                  let array = itemsRendering;
+                                  array[index].devolutionMotiveOther = e.target.value;
+                                  setItemsRendering([...array]);
                                 }}
                       ></textarea>
-												</td>
-											</tr>
-										)}
+                        </td>
+                      </tr>
+                    )}
 										</span>
-								</div>
-							</div>
-						))}
-					</div>
+                </div>
+              </div>
+            ))}
+          </div>
 
-					<hr/>
+          <hr/>
 
-					<div>
-						<label htmlFor="edtObservation">Observações para a coleta:</label>
-						<textarea id="edtObservation" rows={2} style={{width: '100%'}}
-						          onChange={(e: any) => {
-							          e.preventDefault();
-							          setObservation(e.target.value);
-						          }}
-						></textarea>
-					</div>
-					<div>
-						<h6>Pagamento</h6>
-						<table style={{width: '100%'}}>
-							<tr>
-								<td>
-									{coupon && <>
+          <div>
+            <label htmlFor="edtObservation">Observações para a coleta:</label>
+            <textarea id="edtObservation" rows={2} style={{width: '100%'}}
+                      onChange={(e: any) => {
+                        e.preventDefault();
+                        setObservation(e.target.value);
+                      }}
+            ></textarea>
+          </div>
+          <div>
+            <h6>Pagamento</h6>
+            <table style={{width: '100%'}}>
+              <tr>
+                <td>
+                  {coupon && <>
 										<strong>Cupom de desconto:</strong>
 										&nbsp;<span style={{textDecoration: applyCoupon}}>-{currencyFormater.format(coupon.amount > 0 ? coupon.amount : ((newTotal * coupon.percent) / 100))}</span>&nbsp;
-										{applyCoupon != 'none' && <div style={{color: 'red', fontStyle: 'italic'}}>Pedido ficou abaixo do valor mínimo para o cupom ({currencyFormater.format(coupon.minimum)})</div>}
+                    {applyCoupon != 'none' && <div style={{color: 'red', fontStyle: 'italic'}}>Pedido ficou abaixo do valor mínimo para o cupom ({currencyFormater.format(coupon.minimum)})</div>}
 										<br/>
 									</>}
-									<strong>Valor Original: </strong>
-									{currencyFormater.format(Number(amount))}
-									<br/>
-									<strong>Novo Valor: </strong>
-									{currencyFormater.format(newTotal)} <br/>
-								</td>
-								<td>
-									<label htmlFor="cboParcelas">Parcelas: </label>&nbsp;
-									<select id="cboParcelas" value={parcela}
-									        onChange={(e: any) => {
-										        e.preventDefault();
-										        if (e.target.value === 'à vista') {
-											        setInstallments(1);
-										        } else {
-											        setInstallments(e.target.value.substr(0, 1));
-										        }
-										        setParcela(e.target.value);
-									        }}
-									>
-										{parcelas.map((item) => {
-											return <option value={item}>{item}</option>;
-										})}
-									</select>
-								</td>
-							</tr>
-						</table>
-					</div>
+                  <strong>Valor Original: </strong>
+                  {currencyFormater.format(Number(amount))}
+                  <br/>
+                  <strong>Novo Valor: </strong>
+                  {currencyFormater.format(newTotal)} <br/>
+                </td>
+                <td>
+                  <label htmlFor="cboParcelas">Parcelas: </label>&nbsp;
+                  <select id="cboParcelas" value={parcela}
+                          onChange={(e: any) => {
+                            e.preventDefault();
+                            if (e.target.value === 'à vista') {
+                              setInstallments(1);
+                            } else {
+                              setInstallments(e.target.value.substr(0, 1));
+                            }
+                            setParcela(e.target.value);
+                          }}
+                  >
+                    {parcelas.map((item) => {
+                      return <option value={item}>{item}</option>;
+                    })}
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-					<div style={{marginTop: '30px', borderTop: '1px solid #222', paddingTop: '10px', paddingBottom: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
-						<ButtonPrimary style={{marginRight: '10px'}} loading={loading} onClick={submit}>Confirmar Devolução</ButtonPrimary>
-						<ButtonSecondary onClick={() => {setModalIsOpen(false);}}>Cancelar Devolução</ButtonSecondary>
-					</div>
-				</div>
-			</Modal>
-		</div>
-	);
+          <div style={{marginTop: '30px', borderTop: '1px solid #222', paddingTop: '10px', paddingBottom: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
+            <ButtonPrimary style={{marginRight: '10px'}} loading={loading} onClick={submit}>Confirmar Devolução</ButtonPrimary>
+            <ButtonSecondary onClick={() => {
+              setModalIsOpen(false);
+            }}>Cancelar Devolução</ButtonSecondary>
+          </div>
+        </div>
+      </Modal>
+    </div>
+  );
 };
 
 export default ModalRequestDevolutionItem;
