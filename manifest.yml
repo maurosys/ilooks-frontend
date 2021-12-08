@@ -2,4 +2,4 @@
 applications:
   - name: ilooks-homolagacao
     random-route: false
-    memory: 256M
+    memory: 1GB
