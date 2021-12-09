@@ -36,11 +36,12 @@ interface StateProps {
 const LimitForPage = 12;
 
 const Products = ({products, commonProducts, totalProducts, totalPage,}: StateProps) => {
+	let oldPage = '1';
 	const [loadingGlobal, setLoadingGlobal] = useState(false);
 	const [origemProducts, setOrigemProducts] = useState('');
 
 	const router = useRouter();
-	const {category, sub_category, provider, page, search} = router.query;
+	const {category, sub_category, provider, page, search,p} = router.query;
 
 	const [gridClass, setGridClass] = useState('');
 
@@ -119,10 +120,12 @@ const Products = ({products, commonProducts, totalProducts, totalPage,}: StatePr
 	};
 
 	useEffect(() => {
+		console.log('EFFECT:', `cp:${currentPage},tp:${totalOfPages},pp:${productForPage},c:${category},s:${sub_category}`);
+
 		if (page) {
 			setCurrentPage(Number(page));
 		} else {
-			const oldPage = sessionStorage.getItem('@ilookscommerce_cpage');
+			oldPage = sessionStorage.getItem('@ilookscommerce_cpage');
 			if (oldPage) {
 				setCurrentPage(Number(oldPage));
 			}
@@ -149,7 +152,7 @@ const Products = ({products, commonProducts, totalProducts, totalPage,}: StatePr
 		if (!category && !sub_category && !provider) {
 			setOrigemProducts('Todos os produtos');
 		}
-	}, [currentPage, totalOfPages, productForPage, category, sub_category]);
+	}, [currentPage, productForPage, category, sub_category]);
 
 	function handleGrid(e) {
 		setGridClass(e);

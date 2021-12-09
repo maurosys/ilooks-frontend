@@ -38,6 +38,7 @@
     "chart.js": "3.5.0",
     "classnames": "2.3.1",
     "dayjs": "1.10.6",
+    "dotenv": "^10.0.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-typescript": "2.4.0",

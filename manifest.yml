@@ -1,5 +1,5 @@
 ---
 applications:
-  - name: ilooks
+  - name: ${APPLICATION_NAME}
     random-route: false
     memory: 1GB
