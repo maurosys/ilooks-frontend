@@ -25,6 +25,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 	const [searchForma, setSearchForma] = useState(false);
 	const [collapsed, setCollapsed] = useState(true);
 	const [qttyItems, setQttyItems] = useState(0);
+	const [qttyItemsWish, setQttyItemsWish] = useState(0);
 
 	const {'nextilooks.auth': auth} = parseCookies();
 	const authUser = auth ? JSON.parse(auth) : {};
@@ -124,6 +125,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 										}}
 									>
 										<i className="far fa-heart" style={{color:"#fff"}}></i>
+										{/*({qttyItemsWish}){' '}*/}
 									</a>
 								</Link>
 							</div>
@@ -188,7 +190,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																	 <Link href={`/products?category=${category.id}`}>
 																		 <a onClick={(e) => {
 																			 setCollapsed(true);
-																			 sessionStorage.removeItem('@ilookscommerce_cpage');
+																			 sessionStorage.setItem('@ilookscommerce_cpage','1');
 																		 }} style={{padding:0,fontWeight:800}}>{category.name}</a>
 																	 </Link>
 																	 <hr style={{margin:0}}/>
@@ -204,11 +206,11 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																				 key={`${itemSubCategory.id}listheader`}
 																			 >
 																				 <Link
-																					 href={`/products?category=${category.id}&sub_category=${itemSubCategory.id}`}
+																					 href={`/products?category=${category.id}&sub_category=${itemSubCategory.id}&p=1`}
 																				 >
 																					 <a onClick={(e) => {
 																						 setCollapsed(true);
-																						 sessionStorage.removeItem('@ilookscommerce_cpage');
+																						 sessionStorage.setItem('@ilookscommerce_cpage','1');
 																					 }}>{itemSubCategory.name}</a>
 																				 </Link>
 																			 </li>
@@ -232,7 +234,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																		<Link href="/products">
 																			<a onClick={(e) => {
 																				setCollapsed(true);
-																				sessionStorage.removeItem('@ilookscommerce_cpage');
+																				sessionStorage.setItem('@ilookscommerce_cpage','1');
 																			}}></a>
 																		</Link>
 																	</div>
