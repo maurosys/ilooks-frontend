@@ -55,6 +55,7 @@ const ModalRequestDevolutionItem = ({
   const router = useRouter();
   const [devolutionMotive, setDevolutionMotive] = useState('');
   const [outros, setOutros] = useState<boolean>(false);
+  const [podePostar, setPodePostar] = useState<boolean>(false);
   const [newTotal, setNewTotal] = useState<number>(0);
   const [applyCoupon, setApplyCoupon] = useState<string>('none');
   const [coupon, setCoupon] = useState<any>(undefined);
@@ -87,14 +88,14 @@ const ModalRequestDevolutionItem = ({
       });
 
       setItemsRendering([...newArray]);
-
-      setNewTotal(Number(amount) - devolutionTotal);
-      console.log('NTT.:', newTotal);
+      const totalUpdated: number = Number(amount) - devolutionTotal;
+      setNewTotal(totalUpdated);
+      console.log('NTT.:', totalUpdated);
       if (couponId) {
         getCoupon();
       }
 
-      if (newTotal >= 1500) {
+      if (totalUpdated >= 1500) {
         setParcelas([
                       'à vista',
                       '2x sem juros',
@@ -103,7 +104,7 @@ const ModalRequestDevolutionItem = ({
                       '5x sem juros',
                       '6x sem juros',
                     ]);
-      } else if (newTotal >= 900) {
+      } else if (totalUpdated >= 900) {
         setParcelas([
                       'à vista',
                       '2x sem juros',
@@ -111,16 +112,16 @@ const ModalRequestDevolutionItem = ({
                       '4x sem juros',
                       '5x sem juros',
                     ]);
-      } else if (newTotal >= 600) {
+      } else if (totalUpdated >= 600) {
         setParcelas([
                       'à vista',
                       '2x sem juros',
                       '3x sem juros',
                       '4x sem juros',
                     ]);
-      } else if (newTotal >= 400) {
+      } else if (totalUpdated >= 400) {
         setParcelas(['à vista', '2x sem juros', '3x sem juros']);
-      } else if (newTotal >= 100) {
+      } else if (totalUpdated >= 100) {
         setParcelas(['à vista', '2x sem juros']);
       } else {
         setParcelas(['à vista']);
@@ -136,7 +137,7 @@ const ModalRequestDevolutionItem = ({
   async function getCoupon() {
     await api.get(`coupon/${couponId}`)
              .then((resp: any) => {
-               const total:number = Number(amount) - devolutionTotal;
+               const total: number = Number(amount) - devolutionTotal;
                setCoupon(resp.data);
                console.log('Coupon:', `Min: ${resp.data.minimum}, nTot: ${newTotal}, Tot: ${total}`);
                if (resp.data.minimum <= total) {
@@ -161,8 +162,8 @@ const ModalRequestDevolutionItem = ({
     const dataRequest: ProductDevolutionProps[] = itemsRendering.map((item) => ({
       productDetailId:    item.productDetailId,
       quantity:           item.quantityDev,
-      motive_description: item.devolutionMotiveOther ?? '',
-      devolution_motive:  item.devolutionMotive ?? 'Tamanho',
+      motive_description: item.devolutionMotiveOther ?? 'Outros',
+      devolution_motive:  item.devolutionMotive ?? 'Outros',
     }));
 
     //console.log('OBS:', observation);
@@ -183,7 +184,7 @@ const ModalRequestDevolutionItem = ({
     <div>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
         <div className={styles['container-modal']}>
-          <h3>Informe a quantidade de devolução de cada peça:</h3>
+          <h3>Informe o motivo e quantidade da sua devolução</h3>
           <hr/>
 
           <div style={{display: 'flex', maxWidth: '900px', overflowX: 'scroll',}}>
@@ -247,7 +248,10 @@ const ModalRequestDevolutionItem = ({
                       let array = itemsRendering;
                       array[index].devolutionMotive = e.target.value;
                       setItemsRendering([...array]);
+                      const naoPode = array.filter((i) => i.devolutionMotive == '0').length > 0;
+                      setPodePostar(!naoPode);
                     }}>
+											<option value="0">-- Selecione --</option>
 											<option value="Tamanho">Tamanho</option>
 											<option value="Modelagem">Modelagem</option>
 											<option value="Não gostei da peça">Não gostei da peça</option>
@@ -323,7 +327,7 @@ const ModalRequestDevolutionItem = ({
           </div>
 
           <div style={{marginTop: '30px', borderTop: '1px solid #222', paddingTop: '10px', paddingBottom: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
-            <ButtonPrimary style={{marginRight: '10px'}} loading={loading} onClick={submit}>Confirmar Devolução</ButtonPrimary>
+            <ButtonPrimary style={{marginRight: '10px'}} loading={loading} disabled={!podePostar} onClick={submit} title={podePostar?'':'Selecione o motivo para todas as peças'} >Confirmar Devolução</ButtonPrimary>
             <ButtonSecondary onClick={() => {
               setModalIsOpen(false);
             }}>Cancelar Devolução</ButtonSecondary>

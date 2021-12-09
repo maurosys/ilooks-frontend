@@ -23,7 +23,7 @@ const InfoParcelamento = ({closeModal}: InfoParcelamentoProps) => {
 	return (
 		<div
 			className="modal fade productQuickView show"
-			style={{marginTop: '20px', display: 'block', height: '80vh', overflow: 'auto'}}
+			style={{marginTop: '20px', display: 'block', overflow: 'auto'}}
 		>
 			<div className="modal-dialog modal-dialog-centered" role="document">
 				<div className="modal-content">
@@ -40,14 +40,34 @@ const InfoParcelamento = ({closeModal}: InfoParcelamentoProps) => {
 					</button>
 
 					<p>
-						<h1>ATENÇÃO!!!</h1>
+						<h1>ATENÇÃO - COMUNICADO IMPORTANTE!!!</h1>
 					</p>
-					<p>Vamos realizar uma pré reserva em seu cartão crédito no valor total do seu pedido.</p>
-					<p>Após o recebimento do seu pedido, você terá 48h para entrar na área do cliente e indicar se haverá devolução de alguma peça.</p>
-					<p>Caso contrário, o valor total será debitado do seu cartão para pagamento da compra.</p>
-					<p>Você deve decidir ainda na pré reserva se deseja realizar o pagamento parcelado e indicar o número de parcelas. Assim se ficar com o pedido integral, seu processo de pagamento já será concluído automaticamente após as 48h.</p>
-					<p>No caso de devoluções parciais haverá atualização de valores e você poderá decidir com base nos valores atualizados em quantas parcelas desejará realizar sua compra.</p>
-					<p>No caso de devoluções integrais o estorno da pré reserva será realizado após retira das peças e triagem pela Ilooks.</p>
+					<p style={{fontSize:'18px'}}><strong>INFORMAMOS QUE NÃO ACEITAMOS COMPRAS COM CARTÃO DE CRÉDITO VIRTUAL QUE SEJA TEMPORÁRIO, APENAS CARTÕES VIRTUAIS QUE SEJAM RECORRENTES.</strong>
+						 No caso da utilização de um cartão virtual temporário, existindo o interesse em devolver qualquer produto, não será possível estornar valores parciais,
+						 validaremos 100% do valor da pré-reserva.
+					</p>
+
+					<p>Para os demais tipos de cartões de crédito, faremos uma pré-reserva no cartão, no valor total do seu pedido.</p>
+
+					<p>Após o recebimento do seu pedido, você terá 48 (quarenta e oito) horas para entrar na área do cliente e indicar
+						 se haverá devolução de alguma peça. Fique atento, pois o prazo expira a partir do horário recebido, portanto,
+						 caso tenha dúvidas quanto ao horário de recebimento, acesse a área do cliente disponível em www.ilooks.com.br e
+						 confira exatamente quanto tempo ainda resta para manifestar interesse em devolução parcial ou total dos produtos.</p>
+
+					<p>Caso contrário, o valor total da pré-reserva será debitado do seu cartão de crédito para o pagamento da sua compra.</p>
+
+					<p>Você deve decidir ainda na pré-reserva, se deseja realizar o pagamento parcelado e indicar o número das parcelas. Sendo assim, caso decida ficar com o
+						 pedido integral, não será necessário manifestar-se junto a área do cliente, pois seu processo de pagamento já será concluído automaticamente após as
+						 48 (quarenta e oito) horas.</p>
+
+					<p>Caso queira devolver parcialmente (um ou mais produtos), haverá nova atualização dos valores e você poderá decidir com base nesses novos valores,
+						 em quantas parcelas deseja realizar sua compra.</p>
+
+					<p>Caso queira devolver integralmente (todos os produtos), o estorno da pré-reserva será realizado após a retirada das peças e o devido
+						 processo de triagem pela ILOOKS. </p>
+
+					<p>REVISE OS DADOS DE PAGAMENTO, CERTIFIQUE-SE DA NOSSA POLÍTICA DE PAGAMENTO,
+						 E CLIQUE NO BOTÃO ENVIAR NOVAMENTE PARA PROSSEGUIR COM A CONFIRMAÇÃO DE SEU PEDIDO.</p>
 
 					<p>
 						<div className="form-check">
