@@ -27,7 +27,6 @@ const Index = ({productss, categories, subCategories}: Props) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [subscription, setSubscription] = useState(false);
-  const titlePrefix = process.env.NEXT_PUBLIC_AMBIENTE != 'PRODUCAO' ? `${process.env.NEXT_PUBLIC_AMBIENTE} - ` : '';
 
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_AMBIENTE === 'PRODUCAO') {
@@ -83,9 +82,6 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
   return (
     <>
-      <Head>
-        <title>{titlePrefix}Ilooks | Home </title>
-      </Head>
       <Header categories={categories} subCategories={subCategories}/>
 
       <BannerSlider/>
