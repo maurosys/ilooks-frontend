@@ -1,7 +1,5 @@
-import { OrderStatusProps } from "@components/orderItem";
-import { ProductsDetails } from "@store/ducks/products/types";
-import { string } from "yup/lib/locale";
-import { StatusHistoryItem } from "./orders";
+import {ProductsDetails}   from "@store/ducks/products/types";
+import {StatusHistoryItem} from "./orders";
 
 type Product = {
   productDetailsId: string;
@@ -10,7 +8,7 @@ type Product = {
   color: string;
   size: string;
   quantity: number;
-  unitPrice:number;
+  unitPrice: number;
   provider: UserReponse;
   photos: string[];
 };
@@ -44,6 +42,7 @@ export type Address = {
 
 export type ProductReponse = {
   id: string;
+  slugy: string;
   name: string;
   price: number;
   outletPrice: number;
@@ -56,14 +55,17 @@ export type ProductReponse = {
   category: {
     id: string;
     name: string;
+    slugy: string;
   };
   subCategory: {
     id: string;
     name: string;
+    slugy: string;
   };
   provider: {
     id: string;
     name: string;
+    slugy: string;
   };
   quantity_all: number;
   details_product: ProductsDetails[];
@@ -73,7 +75,7 @@ export type RequestDetailsResponse = {
   id: string;
   couponId: string;
   amount: string;
-  freight:number;
+  freight: number;
   customer: UserReponse;
   products: Product[];
   request_date: Date;

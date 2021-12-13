@@ -45,9 +45,12 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
   const [sizeSelected, setSizeSelected] = useState('');
 
   useEffect(() => {
-    setDetailsProductAll(product.details_product);
+    if (!product) {
+      return;
+    }
+    setDetailsProductAll(product?.details_product);
 
-    const allColorsWithRep = product.details_product.map(
+    const allColorsWithRep = product?.details_product.map(
       (detail) => detail.color
     );
     var allColorsWithoutRept = allColorsWithRep.filter(function (este, i) {
@@ -58,7 +61,11 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
   }, [product]);
 
   useEffect(() => {
-    const detail = product.details_product.filter(
+    if (!product) {
+      return;
+    }
+
+    const detail = product?.details_product.filter(
       (detail) => detail.color === colorSelect
     );
 
@@ -245,12 +252,12 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
           <h3>{product?.name}</h3>
 
           <div className="price">
-            {product.outletPrice > 0
+            {product?.outletPrice > 0
              ? <>
                <span>de&nbsp;</span>
                <span className="new-price" style={{textDecoration: 'line-through'}}>{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(product?.price)}</span>
                <span>&nbsp;por&nbsp;</span>
-               <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(product.outletPrice)}</span>
+               <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(product?.outletPrice)}</span>
              </>
              : <span className="new-price">{new Intl.NumberFormat('br-BR', {style: 'currency', currency: 'BRL',}).format(product?.price)}</span>
             }
@@ -265,8 +272,8 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
           <ul className="product-info">
             <li>
               <span>Marca:</span>{' '}
-              <Link href={`/products?provider=${product.provider.id}`}>
-                <a>{product.provider.name}</a>
+              <Link href={`/marca/${product?.provider?.slugy}`}>
+                <a>{product?.provider?.name}</a>
               </Link>
             </li>
             {/*						<li>
@@ -281,7 +288,7 @@ const ProductContent = ({product, card, setImages}: StateProps) => {
             <li>
               <span>Composição:</span>{' '}
               <Link href="#">
-                <a>{product.materialType}</a>
+                <a>{product?.materialType}</a>
               </Link>
             </li>
           </ul>

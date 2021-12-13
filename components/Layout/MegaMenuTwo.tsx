@@ -182,12 +182,9 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 													<div className="row">
 														{categories &&
 														 categories.map((category) => (
-															 <div
-																 className="col"
-																 key={`${category.id}listheader`}
-															 >
+															 <div className="col" key={`${category.id}listheader`}>
 																 <h6 className="megamenu-submenu">
-																	 <Link href={`/products?category=${category.id}`}>
+																	 <Link href={`/produtos/${category.slugy}`}>
 																		 <a onClick={(e) => {
 																			 setCollapsed(true);
 																			 sessionStorage.setItem('@ilookscommerce_cpage','1');
@@ -197,16 +194,13 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																 </h6>
 																 <ul className="megamenu-submenu">
 																	 {subCategories
-																		 .filter(
-																			 (subCategory) =>
-																				 subCategory.categoryId === category.id
-																		 )
+																		 .filter((subCategory) => subCategory.categoryId === category.id)
 																		 .map((itemSubCategory) => (
 																			 <li
 																				 key={`${itemSubCategory.id}listheader`}
 																			 >
 																				 <Link
-																					 href={`/products?category=${category.id}&sub_category=${itemSubCategory.id}&p=1`}
+																					 href={`/produtos/${category.slugy}/${itemSubCategory.slugy}`}
 																				 >
 																					 <a onClick={(e) => {
 																						 setCollapsed(true);
@@ -231,7 +225,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 																		<div className="category">
 																			<h4>Todos os produtos</h4>
 																		</div>
-																		<Link href="/products">
+																		<Link href="/produtos">
 																			<a onClick={(e) => {
 																				setCollapsed(true);
 																				sessionStorage.setItem('@ilookscommerce_cpage','1');
@@ -274,7 +268,7 @@ const MegaMenuTwo = ({products, card,}: StateProps) => {
 
 										<div className="search-overlay search-popup" style={{display: searchForma ? 'block' : 'none',}}>
 											<div className="search-box">
-												<form action="/products" className="search-form">
+												<form action="/produtos" className="search-form">
 													<input
 														className="search-input"
 														name="search"

@@ -10,6 +10,7 @@ interface StateProps {
 }
 
 const ProductsCard = ({products}: StateProps) => {
+	console.log(products);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [modalData, setModalData] = useState(null);
 
@@ -35,11 +36,7 @@ const ProductsCard = ({products}: StateProps) => {
 					<div className="single-product-box">
 						<div className="product-image">
 							<Link
-								href="/product/[id]"
-								as={`/product/${formatToUggly({
-									                              name: data.title,
-									                              id:   data.id,
-								                              })}`}
+								href={`/produtos/${data.category?.slugy}/${data.subCategory?.slugy}/${data.slugy}`}
 							>
 								<a onClick={(e) => {
 									sessionStorage.setItem('@ilooksecommerce',location.href);
@@ -70,7 +67,7 @@ const ProductsCard = ({products}: StateProps) => {
 
 						<div className="product-content">
 							<h3>
-								<Link href="/product/[id]" as={`/product/${data.id}`}>
+								<Link href={`/produtos/${data.category?.slugy}/${data.subCategory?.slugy}/${data.slugy}`}>
 									<a onClick={(e) => {
 										sessionStorage.setItem('@ilooksecommerce',location.href);
 									}} style={{textOverflow: "ellipsis",overflow: "hidden",whiteSpace: "nowrap"}}>{data.title}</a>
@@ -92,13 +89,7 @@ const ProductsCard = ({products}: StateProps) => {
 
 
 							<div>
-								<Link
-									href="/product/[id]"
-									as={`/product/${formatToUggly({
-										                              name: data.title,
-										                              id:   data.id,
-									                              })}`}
-								>
+								<Link href={`/produtos/${data.category?.slugy}/${data.subCategory?.slugy}/${data.slugy}`}>
 									<a className="btn btn-light" onClick={(e) => {
 										sessionStorage.setItem('@ilooksecommerce',location.href);
 									}}>

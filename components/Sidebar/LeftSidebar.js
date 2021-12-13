@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Link from "next/link";
-import { formatToUggly } from "@utils/formatToUggly";
+import Link                 from "next/link";
+import { formatToUggly }    from "@utils/formatToUggly";
+import {json}               from "body-parser";
 
 class LeftSidebar extends Component {
   state = {
@@ -449,13 +450,7 @@ class LeftSidebar extends Component {
               this.props.commonProducts.map((e, index) => (
                 <div className="aside-single-products">
                   <div className="products-image">
-                    <Link
-                      href="/product/[id]"
-                      as={`/product/${formatToUggly({
-                        name: e.title,
-                        id: e.id,
-                      })}`}
-                    >
+                    <Link href={`/produtos/${e.category?.slugy}/${e.subCategory?.slugy}/${e.slugy}`}>
                       <a>
                         <img src={e.image} alt="image" />
                       </a>
@@ -469,13 +464,7 @@ class LeftSidebar extends Component {
                       </Link>
                     </span> */}
                     <h3>
-                      <Link
-                        href="/product/[id]"
-                        as={`/product/${formatToUggly({
-                          name: e.title,
-                          id: e.id,
-                        })}`}
-                      >
+                      <Link href={`/produtos/${e.category?.slugy}/${e.subCategory?.slugy}/${e.slugy}`}>
                         <a>{e.title}</a>
                       </Link>
                     </h3>
