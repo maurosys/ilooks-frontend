@@ -1,7 +1,6 @@
 //SERVICE
 import api                                   from '@services/api';
 import {CategoryRequest, SubCategoryRequest} from '@type/request';
-import {GetStaticProps}                      from 'next';
 import Head                                  from 'next/head';
 import {useEffect, useState}                 from 'react';
 import {useDispatch}                         from 'react-redux';
@@ -13,6 +12,8 @@ import BannerSlider                          from '../components/shop-style-five
 import Facility                              from '../components/shop-style-five/Facility';
 import Products                              from '../components/shop-style-five/Products';
 import {Products as ProductsPros}            from '../store/ducks/products/types';
+import {GetStaticProps}                      from "next";
+import {store}                               from "react-notifications-component";
 
 //TYPES
 interface StateProps {
@@ -28,6 +29,53 @@ const Index = ({productss, categories, subCategories}: Props) => {
   const [products, setProducts] = useState([]);
   const [subscription, setSubscription] = useState(false);
 
+  const recesso = true;
+  const [emailRecesso, setEmailRecesso] = useState('');
+
+  const imgRecesso = require("../images/img-recesso.jpg");
+  const divRecesso: any = {
+    backgroundColor:     "#73228D",
+    backgroundImage:     `url('${imgRecesso}')`,
+    width:               "101vw",
+    height:              "101vh",
+    backgroundSize:      "contain",
+    backgroundPositionX: "center",
+    backgroundRepeat:    "no-repeat",
+    backgroundPositionY: "top"
+  }
+  const divEmailRecesso: any = {
+    position:  "absolute",
+    marginTop: "49%",
+    textAlign: "center",
+    width:     "100%"
+  }
+  const enviarEmailRecesso = async () => {
+    if (emailRecesso) {
+      try {
+        const registroRecesso = await api.post('user/emailrecesso', {email: emailRecesso});
+      } catch (err:any) {
+        console.log(err);
+      }
+
+      store.addNotification({
+                              title:        "Confirmação",
+                              message:      'E-mail registrado, aguarde as novidades',
+                              type:         "success",
+                              insert:       "top",
+                              container:    "top-right",
+                              animationIn:  ["animate__animated", "animate__fadeIn"],
+                              animationOut: ["animate__animated", "animate__fadeOut"],
+                              dismiss:      {
+                                duration: 5000,
+                                onScreen: true,
+                              },
+                            });
+
+      setEmailRecesso('');
+    }
+  }
+
+
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_AMBIENTE === 'PRODUCAO') {
       if (window.location.protocol !== 'https:' || window.location.hostname.indexOf('ilooks.com.br') < 0) {
@@ -35,10 +83,12 @@ const Index = ({productss, categories, subCategories}: Props) => {
       }
     }
     //dispatch(loadResquestProduct());
-    loadProducts();
-    const subs = localStorage.getItem('@ilooksecommerce_subscription');
-    if (subs) {
-      setSubscription(true);
+    if (!recesso) {
+      loadProducts();
+      const subs = localStorage.getItem('@ilooksecommerce_subscription');
+      if (subs) {
+        setSubscription(true);
+      }
     }
   }, []);
 
@@ -82,30 +132,41 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
   return (
     <>
-      <Header categories={categories} subCategories={subCategories}/>
+      {!recesso && <>
+				<Header categories={categories} subCategories={subCategories}/>
 
-      <BannerSlider/>
+				<BannerSlider/>
 
-      <Facility/>
+				<Facility/>
 
-      {/*<CategoryTypes/>*/}
+        {/*<CategoryTypes/>*/}
 
-      <Products products={products}/>
+				<Products products={products}/>
 
-      {/*<ProductsOffer/>*/}
-      <img src={require("../images/offer-bg2.png")}/>
+        {/*<ProductsOffer/>*/}
+				<img src={require("../images/offer-bg2.png")}/>
 
-      <Partner/>
+				<Partner/>
 
-      {/*<Subscribe/>*/}
+        {/*<Subscribe/>*/}
 
-      <InstagramPhoto/>
+				<InstagramPhoto/>
 
-      <Footer/>
-
-      {/*			{!subscription &&
-			 <AddsModal/>
-			}*/}
+				<Footer/>
+			</>
+      }
+      {recesso &&
+			 <div style={divRecesso}>
+				 <div style={divEmailRecesso}>
+					 <input type="email" value={emailRecesso} placeholder="Informe aqui o seu e-mail..." style={{width: '70%', maxWidth: '300px'}} onChange={(e: any) => {
+             e.preventDefault();
+             setEmailRecesso(e.target.value);
+           }
+           }/>
+					 <input type="button" value="Enviar" style={{border: "solid 1px orange", backgroundColor: "#73228D", color: "#FFFFFF", paddingLeft: "20px", paddingRight: "20px"}} onClick={enviarEmailRecesso}/>
+				 </div>
+			 </div>
+      }
     </>
   );
 };
