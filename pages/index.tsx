@@ -52,7 +52,7 @@ const Index = ({productss, categories, subCategories}: Props) => {
   const enviarEmailRecesso = async () => {
     if (emailRecesso) {
       try {
-        const registroRecesso = await api.post('user/emailrecesso', {email: emailRecesso});
+        const registroRecesso = await api.post('users/emailrecesso', {email: emailRecesso});
       } catch (err:any) {
         console.log(err);
       }
