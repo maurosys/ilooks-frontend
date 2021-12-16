@@ -59,6 +59,7 @@ const Cart = ({ card, onClick }: StateProps) => {
 
                       <div className="product-content">
                         <h3>
+                          {/*ToDo: arrumar URL*/}
                           <Link href="#">
                             <a>{card.title}</a>
                           </Link>

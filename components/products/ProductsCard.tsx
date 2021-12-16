@@ -35,9 +35,7 @@ const ProductsCard = ({products}: StateProps) => {
 				>
 					<div className="single-product-box">
 						<div className="product-image">
-							<Link
-								href={`/produtos/${data.category?.slugy}/${data.subCategory?.slugy}/${data.slugy}`}
-							>
+							<Link href={`/produtos/${data.category?.slugy}/${data.subCategory?.slugy}/${data.slugy}`}>
 								<a onClick={(e) => {
 									sessionStorage.setItem('@ilooksecommerce',location.href);
 								}}>

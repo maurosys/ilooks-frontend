@@ -173,10 +173,7 @@ const Products = ({products, commonProducts, totalProducts, totalPage,}: StatePr
                 setCurrentPage={setCurrentPage}
               />
 
-              <div
-                id="products-filter"
-                className={`products-collections-listing row ${gridClass}`}
-              >
+              <div id="products-filter" className={`products-collections-listing row ${gridClass}`}>
                 <ProductsCard products={productsView}/>
               </div>
               <hr/>

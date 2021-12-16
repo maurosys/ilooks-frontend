@@ -2,7 +2,6 @@
 import api                                   from '@services/api';
 import {CategoryRequest, SubCategoryRequest} from '@type/request';
 import {GetStaticProps}                      from 'next';
-import Head                                  from 'next/head';
 import {useEffect, useState}                 from 'react';
 import {useDispatch}                         from 'react-redux';
 import InstagramPhoto                        from '../components/Common/InstagramPhoto';
@@ -23,7 +22,7 @@ interface StateProps {
 
 type Props = StateProps;
 
-const Index = ({productss, categories, subCategories}: Props) => {
+const LojaIndex = ({productss, categories, subCategories}: Props) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [subscription, setSubscription] = useState(false);
@@ -34,7 +33,7 @@ const Index = ({productss, categories, subCategories}: Props) => {
         window.location.href = 'https://www.ilooks.com.br';
       }
     }
-    //dispatch(loadResquestProduct());
+
     loadProducts();
     const subs = localStorage.getItem('@ilooksecommerce_subscription');
     if (subs) {
@@ -59,6 +58,9 @@ const Index = ({productss, categories, subCategories}: Props) => {
 
           return {
             id:              prod.id,
+            slugy:           prod.slugy,
+            category:        prod.category,
+            subCategory:     prod.subCategory,
             title:           prod.name,
             price:           prod.price,
             outletPrice:     prod.outletPrice,
@@ -127,4 +129,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 // export default connect(mapStateToProps)(Index);
 
-export default Index;
+export default LojaIndex;

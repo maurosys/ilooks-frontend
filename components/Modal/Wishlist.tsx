@@ -45,6 +45,7 @@ const Wishlist = ({ closeWishlist, wishlists }: WishlistProps) => {
             
                       <div className="product-content">
                         <h3>
+                          {/*ToDo: ajustar URL*/}
                           <Link href={`/product/${data.id}`}>
                             <a>{data?.title}</a>
                           </Link>

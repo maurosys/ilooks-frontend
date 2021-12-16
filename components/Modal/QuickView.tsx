@@ -262,7 +262,7 @@ const QuickView = ({closeModal, modalData, card}: QuickViewProps) => {
                 <ul className="product-info">
                   <li>
                     <span>Marca:</span>{' '}
-                    <Link href={`/products?provider=${modalData.providerId}`}>
+                    <Link href={`/produt/s/marca/${modalData.providerSlugy}`}>
                       <a>{modalData?.provider}</a>
                     </Link>
                   </li>
