@@ -50,3 +50,12 @@ export type OrderReponse = {
   items: OrderItem[];
   statusHistory: StatusHistoryItem[];
 };
+
+const tipoTexto = [
+  {value: 'about', name: 'Sobre a ILooks'},
+  {value: 'faq', name: 'FAQ'},
+  {value: 'lgpd', name: 'LGPD'},
+  {value: 'term', name: 'Termos de Uso'},
+  {value: 'payment', name: 'Comunicado Pagamento'},
+  {value: 'devolution', name: 'Política de Devolução'},
+];

@@ -1,9 +1,6 @@
-import React, { Component } from "react";
-import Link from "next/link";
-import VisibilitySensor from "react-visibility-sensor";
-import { useState } from "react";
-import { useEffect } from "react";
-import OwlCarousel from "react-owl-carousel3";
+import React, {useEffect, useState} from "react";
+import OwlCarousel                  from "react-owl-carousel3";
+import api                          from "@services/api";
 
 const options = {
   items: 1,
@@ -20,48 +17,41 @@ const options = {
 };
 
 const BannerSlider = () => {
-  const [display, setDisplay] = useState(false);
-  const [panel, setPanel] = useState(true);
-  
+	const [display, setDisplay] = useState(false);
+	const [banners, setBanners] = useState([]);
 
-  useEffect(() => {
-    setDisplay(true);
-  },[])
+	const loadBanners = async () => {
+		api.get('system/banners').then((resp: any) => {
+			if (resp.data) {
+				const _iniciais = resp.data.filter((banner: any) => banner.type == 'inicial');
+				setBanners(_iniciais);
+				setDisplay(true);
+			}
+		}).catch((error: any) => {
+			console.log(error);
+		});
+	}
 
-    return (
-      <>
-        {display ? (
-          <OwlCarousel
-            className="home-slides-two owl-carousel owl-theme"
-            {...options}
-            style={{marginTop:65}}
-          >
-            <div className="banner-section item-bg5">
-              <div className="d-table">
-                <div className="d-table-cell">
+	useEffect(() => {
+		loadBanners();
+	}, [])
 
-                </div>
-              </div>
-            </div>
-
-            <div className="banner-section item-bg6">
-              <div className="d-table">
-                <div className="d-table-cell">
-                  <div className="container">
-                    <VisibilitySensor>
-
-                    </VisibilitySensor>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </OwlCarousel>
-        ) : (
-          ""
-        )}
-      </>
-    );
-  }
+	return (
+		<>
+			{display ? (
+				<OwlCarousel
+					className="home-slides-two owl-carousel owl-theme"
+					{...options}
+					style={{marginTop: 65}}
+				>
+					{banners.map((banner: any) => <div key={banner.id} className="banner-section" style={{backgroundImage: `url(${banner.value})`}}></div>)}
+				</OwlCarousel>
+			) : (
+				 ""
+			 )}
+		</>
+	);
+}
 
 
 export default BannerSlider;
